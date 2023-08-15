@@ -15,6 +15,7 @@
     "prettier:check": "prettier --check --ignore-path .gitignore .",
     "prettier:write": "prettier --write --ignore-path .gitignore ."
   },
+  "pre-commit": "lint-staged",
   "lint-staged": {
     "src/**/*.{ts,css,html}": [
       "npm run prettier:check"
