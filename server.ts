@@ -7,6 +7,7 @@ import { existsSync } from 'fs';
 import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
+import appRouter from './api/router';
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -36,6 +37,9 @@ export function app(): express.Express {
       maxAge: '1y',
     }),
   );
+
+  // Use app router to get api routes.
+  server.use('/api', appRouter);
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
