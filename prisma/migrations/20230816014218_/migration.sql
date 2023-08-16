@@ -6,7 +6,8 @@ CREATE TABLE "Car" (
     "year" INTEGER NOT NULL,
     "colour" TEXT NOT NULL,
     "make" TEXT NOT NULL,
-    "model" TEXT NOT NULL
+    "model" TEXT NOT NULL,
+    "ownerId" TEXT NOT NULL
 );
 
 -- CreateTable
@@ -27,7 +28,9 @@ CREATE TABLE "User" (
     "firstName" TEXT NOT NULL,
     "lastName" TEXT NOT NULL,
     "email" TEXT NOT NULL,
-    "password" TEXT NOT NULL
+    "password" TEXT NOT NULL,
+    "carsSaved" INTEGER NOT NULL DEFAULT 0,
+    "carsOwned" INTEGER NOT NULL DEFAULT 0
 );
 
 -- CreateTable
@@ -42,15 +45,6 @@ CREATE TABLE "UserAvatar" (
 
 -- CreateTable
 CREATE TABLE "SavedCar" (
-    "id" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updatedAt" TIMESTAMP(3) NOT NULL,
-    "carId" TEXT NOT NULL,
-    "userId" TEXT NOT NULL
-);
-
--- CreateTable
-CREATE TABLE "CarOwner" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -79,8 +73,8 @@ CREATE UNIQUE INDEX "UserAvatar_userId_key" ON "UserAvatar"("userId");
 -- CreateIndex
 CREATE UNIQUE INDEX "SavedCar_id_key" ON "SavedCar"("id");
 
--- CreateIndex
-CREATE UNIQUE INDEX "CarOwner_id_key" ON "CarOwner"("id");
+-- AddForeignKey
+ALTER TABLE "Car" ADD CONSTRAINT "Car_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "CarImage" ADD CONSTRAINT "CarImage_carId_fkey" FOREIGN KEY ("carId") REFERENCES "Car"("id") ON DELETE SET NULL ON UPDATE CASCADE;
@@ -93,9 +87,3 @@ ALTER TABLE "SavedCar" ADD CONSTRAINT "SavedCar_carId_fkey" FOREIGN KEY ("carId"
 
 -- AddForeignKey
 ALTER TABLE "SavedCar" ADD CONSTRAINT "SavedCar_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CarOwner" ADD CONSTRAINT "CarOwner_carId_fkey" FOREIGN KEY ("carId") REFERENCES "Car"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "CarOwner" ADD CONSTRAINT "CarOwner_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
