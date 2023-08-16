@@ -4,6 +4,9 @@ import userAvatarsRouter from './routes/userAvatars';
 import savedCarsRouter from './routes/savedCars.route';
 import carsRouter from './routes/cars.route';
 
+// App router defines all the routes used in the application.
+// App router is exported into the main server file.
+
 const appRouter = express.Router();
 
 appRouter.use('/cars', carsRouter);
