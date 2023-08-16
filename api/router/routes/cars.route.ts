@@ -2,7 +2,7 @@ import * as express from 'express';
 
 const carsRouter = express.Router();
 
-carsRouter.get('/', (_req, res) => {
+carsRouter.get('/cars', (_req, res) => {
   res.status(200).send('cars');
 });
 

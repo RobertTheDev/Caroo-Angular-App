@@ -2,7 +2,7 @@ import * as express from 'express';
 
 const savedCarsRouter = express.Router();
 
-savedCarsRouter.get('/', (_req, res) => {
+savedCarsRouter.get('/saved-cars', (_req, res) => {
   res.status(200).send('saved cars');
 });
 
