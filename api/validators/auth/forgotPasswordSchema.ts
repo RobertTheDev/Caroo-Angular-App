@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Forgot password schema is a validation schema defining the acceptable fields required.
+
 const forgotPasswordSchema = z.object({
   email: z
     .string({

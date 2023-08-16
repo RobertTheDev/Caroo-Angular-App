@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Close account schema is a validation schema defining the acceptable fields required.
+
 const closeAccountSchema = z.object({
   password: z.string({
     required_error: 'Password is required.',

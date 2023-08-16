@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Change password schema is a validation schema defining the acceptable fields required.
+
 const changePasswordSchema = z
   .object({
     currentPassword: z.string().nonempty('Password is required.'),

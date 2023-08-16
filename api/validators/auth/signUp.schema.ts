@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Sign up schema is a validation schema defining the acceptable fields required.
+
 const signUpSchema = z.object({
   email: z
     .string({

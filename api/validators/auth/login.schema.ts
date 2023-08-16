@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Login schema is a validation schema defining the acceptable fields required.
+
 const loginSchema = z.object({
   email: z
     .string({

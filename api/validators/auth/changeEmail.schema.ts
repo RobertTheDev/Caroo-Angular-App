@@ -1,5 +1,7 @@
 import * as z from 'zod';
 
+// Change email schema is a validation schema defining the acceptable fields required.
+
 const changeEmailSchema = z.object({
   newEmailAddress: z
     .string({
