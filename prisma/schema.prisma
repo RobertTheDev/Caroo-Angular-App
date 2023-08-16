@@ -18,8 +18,9 @@ model Car {
   colour     String
   make       String
   model      String
+  owner      User?      @relation(fields: [ownerId], references: [id])
+  ownerId    String
   usersSaved SavedCar[]
-  owners     CarOwner[]
   images     CarImage[]
 }
 
@@ -42,7 +43,7 @@ model User {
   email     String      @unique
   password  String
   savedCars SavedCar[]
-  ownedCars CarOwner[]
+  ownedCars Car[]
   avatar    UserAvatar?
 }
 
@@ -57,16 +58,6 @@ model UserAvatar {
 }
 
 model SavedCar {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  car       Car      @relation(fields: [carId], references: [id])
-  carId     String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-}
-
-model CarOwner {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
