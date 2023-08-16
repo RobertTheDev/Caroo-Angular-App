@@ -9,3 +9,69 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Car {
+  id         String     @unique @default(uuid())
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  year       Int
+  colour     String
+  make       String
+  model      String
+  usersSaved SavedCar[]
+  owners     CarOwner[]
+  images     CarImage[]
+}
+
+model CarImage {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String
+  alt       String
+  car       Car?     @relation(fields: [carId], references: [id])
+  carId     String?
+}
+
+model User {
+  id        String      @unique @default(uuid())
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  firstName String
+  lastName  String
+  email     String      @unique
+  password  String
+  savedCars SavedCar[]
+  ownedCars CarOwner[]
+  avatar    UserAvatar?
+}
+
+model UserAvatar {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  url       String
+  alt       String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @unique
+}
+
+model SavedCar {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  car       Car      @relation(fields: [carId], references: [id])
+  carId     String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
+
+model CarOwner {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  car       Car      @relation(fields: [carId], references: [id])
+  carId     String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+}
