@@ -8,6 +8,24 @@ import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import appRouter from './api/router';
+import * as session from 'express-session';
+import { createClient } from 'redis';
+import RedisStore from 'connect-redis';
+
+declare module 'express-session' {
+  interface SessionData {
+    user: {
+      id: string;
+      createdAt: Date;
+      updatedAt: Date;
+      firstName: string;
+      lastName: string;
+      email: string;
+      carsSaved: number;
+      carsOwned: number;
+    } | null;
+  }
+}
 
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(): express.Express {
@@ -35,6 +53,30 @@ export function app(): express.Express {
     '*.*',
     express.static(distFolder, {
       maxAge: '1y',
+    }),
+  );
+
+  // Allow JSON to be used.
+  server.use(express.json());
+
+  server.set('trust proxy', 1); // trust first proxy
+
+  const redisClient = createClient();
+  redisClient.connect().catch(console.error);
+
+  // Initialize store.
+  const redisStore = new RedisStore({
+    client: redisClient,
+    prefix: 'myapp:',
+  });
+
+  server.use(
+    session({
+      store: redisStore,
+      secret: 'keyboard cat',
+      resave: true,
+      saveUninitialized: true,
+      cookie: { secure: false },
     }),
   );
 
