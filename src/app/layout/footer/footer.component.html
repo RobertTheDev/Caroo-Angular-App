@@ -1,0 +1,6 @@
+<footer>
+  <p>© {{ currentYear }} {{ companyName }}</p>
+  <a *ngFor="let footerLink of footerLinks" [routerLink]="footerLink.path">{{
+    footerLink.name
+  }}</a>
+</footer>
