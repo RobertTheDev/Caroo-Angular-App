@@ -1,3 +1,4 @@
+import getCarById from 'api/controllers/cars/getCarById';
 import getCars from 'api/controllers/cars/getCars';
 import * as express from 'express';
 
@@ -7,5 +8,7 @@ import * as express from 'express';
 const carsRouter = express.Router();
 
 carsRouter.get('/', getCars);
+
+carsRouter.get('/:id', getCarById);
 
 export default carsRouter;
