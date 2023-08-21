@@ -1,3 +1,4 @@
+import getCars from 'api/controllers/cars/getCars';
 import * as express from 'express';
 
 // Cars router defines all the routes used in modifying cars data.
@@ -5,8 +6,6 @@ import * as express from 'express';
 
 const carsRouter = express.Router();
 
-carsRouter.get('/cars', (_req, res) => {
-  res.status(200).send('cars');
-});
+carsRouter.get('/', getCars);
 
 export default carsRouter;
