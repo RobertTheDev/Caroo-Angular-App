@@ -1,3 +1,6 @@
+import getUserByEmail from 'api/controllers/users/getUserByEmail';
+import getUserById from 'api/controllers/users/getUserById';
+import getUsers from 'api/controllers/users/getUsers';
 import * as express from 'express';
 
 // User router defines all the routes used in modifying users data.
@@ -5,8 +8,10 @@ import * as express from 'express';
 
 const usersRouter = express.Router();
 
-usersRouter.get('/users', (_req, res) => {
-  res.status(200).send('users');
-});
+usersRouter.get('/', getUsers);
+
+usersRouter.get('/:id', getUserById);
+
+usersRouter.get('/email/:email', getUserByEmail);
 
 export default usersRouter;
