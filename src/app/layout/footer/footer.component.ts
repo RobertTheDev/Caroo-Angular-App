@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import footerLinks from 'src/lib/links/footerLinks';
 
 @Component({
   selector: 'app-footer',
@@ -9,22 +10,5 @@ export class FooterComponent {
   currentYear = new Date().getFullYear();
   companyName = 'Caroo';
 
-  footerLinks = [
-    {
-      path: 'about',
-      name: 'About',
-    },
-    {
-      path: 'accessibility-statement',
-      name: 'Accessibility Statement',
-    },
-    {
-      path: 'privacy-policy',
-      name: 'Privacy Policy',
-    },
-    {
-      path: 'terms-and-conditions',
-      name: 'Terms and Conditions',
-    },
-  ];
+  footerLinks = footerLinks;
 }
