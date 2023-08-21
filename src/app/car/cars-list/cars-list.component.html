@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let car of cars">
+    <a [routerLink]="['/cars', car.id]"> {{ car.make }} - {{ car.model }}</a>
+  </li>
+</ul>
