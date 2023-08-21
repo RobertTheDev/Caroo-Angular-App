@@ -12,8 +12,8 @@ import authRouter from './routes/auth.route';
 const appRouter = express.Router();
 
 appRouter.use('/auth', authRouter);
-appRouter.use('/cars', carOwnersRouter);
-appRouter.use('/car-owners', carsRouter);
+appRouter.use('/cars', carsRouter);
+appRouter.use('/car-owners', carOwnersRouter);
 appRouter.use('/saved-cars', savedCarsRouter);
 appRouter.use('/user-avatars', userAvatarsRouter);
 appRouter.use('/users', usersRouter);
