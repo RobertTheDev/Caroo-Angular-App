@@ -1,0 +1,7 @@
+<header>
+  <a routerLink="/">Logo</a>
+  <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.path">{{
+    headerLink.name
+  }}</a>
+  <a routerLink="/profile">Profile</a>
+</header>
