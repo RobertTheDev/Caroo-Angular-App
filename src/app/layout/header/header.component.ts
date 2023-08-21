@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import headerLinks from 'src/lib/links/headerLinks';
 
 @Component({
   selector: 'app-header',
@@ -6,18 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
-  headerLinks = [
-    {
-      path: '',
-      name: 'Find Cars',
-    },
-    {
-      path: '',
-      name: 'Sell A Car',
-    },
-    {
-      path: '/about',
-      name: 'About',
-    },
-  ];
+  headerLinks = headerLinks;
 }
