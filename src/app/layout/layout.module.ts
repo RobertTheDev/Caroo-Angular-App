@@ -8,6 +8,6 @@ import { PageLayoutComponent } from './page-layout/page-layout.component';
 @NgModule({
   declarations: [HeaderComponent, FooterComponent, PageLayoutComponent],
   imports: [CommonModule, RouterModule],
-  exports: [FooterComponent, HeaderComponent],
+  exports: [PageLayoutComponent],
 })
 export class LayoutModule {}
