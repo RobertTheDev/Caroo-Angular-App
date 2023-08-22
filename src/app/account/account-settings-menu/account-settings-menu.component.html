@@ -1,1 +1,5 @@
-<p>account-settings-menu works!</p>
+<a
+  *ngFor="let accountSettingsLink of accountSettingsLinks"
+  [routerLink]="accountSettingsLink.path"
+  >{{ accountSettingsLink.name }}</a
+>
