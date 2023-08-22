@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarsListComponent } from './cars-list/cars-list.component';
 import { CarDetailComponent } from './car-detail/car-detail.component';
-import { CarService } from '../services/car/car.service';
+import { CarService } from '../../services/car/car.service';
 import { RouterModule } from '@angular/router';
 import { CarFilterMenuComponent } from './car-filter-menu/car-filter-menu.component';
 import { CarFilterListComponent } from './car-filter-list/car-filter-list.component';

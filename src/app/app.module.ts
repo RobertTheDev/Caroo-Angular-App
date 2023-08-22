@@ -3,12 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './modules/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
-import { CarModule } from './car/car.module';
-import { LayoutModule } from './layout/layout.module';
-import { AccountModule } from './account/account.module';
-import { CarOwnerModule } from './car-owner/car-owner.module';
+import { CarModule } from './modules/car/car.module';
+import { LayoutModule } from './modules/layout/layout.module';
+import { AccountModule } from './modules/account/account.module';
+import { CarOwnerModule } from './modules/car-owner/car-owner.module';
 import { ContentfulService } from './services/contentful/contentful.service';
 
 @NgModule({

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarsListComponent } from './car/cars-list/cars-list.component';
-import { CarDetailComponent } from './car/car-detail/car-detail.component';
-import { PrivacyPolicyComponent } from './info/privacy-policy/privacy-policy.component';
-import { TermsAndConditionsComponent } from './info/terms-and-conditions/terms-and-conditions.component';
-import { AccessibilityStatementComponent } from './info/accessibility-statement/accessibility-statement.component';
-import { AboutComponent } from './info/about/about.component';
-import { AccountDetailComponent } from './account/account-detail/account-detail.component';
-import { CarOwnerListComponent } from './car-owner/car-owner-list/car-owner-list.component';
-import { ChangeEmailFormComponent } from './account/change-email-form/change-email-form.component';
-import { ChangePasswordFormComponent } from './account/change-password-form/change-password-form.component';
-import { CloseAccountFormComponent } from './account/close-account-form/close-account-form.component';
-import { AccountEditProfileComponent } from './account/account-edit-profile/account-edit-profile.component';
+import { CarsListComponent } from './modules/car/cars-list/cars-list.component';
+import { CarDetailComponent } from './modules/car/car-detail/car-detail.component';
+import { PrivacyPolicyComponent } from './modules/info/privacy-policy/privacy-policy.component';
+import { TermsAndConditionsComponent } from './modules/info/terms-and-conditions/terms-and-conditions.component';
+import { AccessibilityStatementComponent } from './modules/info/accessibility-statement/accessibility-statement.component';
+import { AboutComponent } from './modules/info/about/about.component';
+import { AccountDetailComponent } from './modules/account/account-detail/account-detail.component';
+import { CarOwnerListComponent } from './modules/car-owner/car-owner-list/car-owner-list.component';
+import { ChangeEmailFormComponent } from './modules/account/change-email-form/change-email-form.component';
+import { ChangePasswordFormComponent } from './modules/account/change-password-form/change-password-form.component';
+import { CloseAccountFormComponent } from './modules/account/close-account-form/close-account-form.component';
+import { AccountEditProfileComponent } from './modules/account/account-edit-profile/account-edit-profile.component';
 import { NotFoundViewComponent } from './not-found-view/not-found-view.component';
 
 const routes: Routes = [
