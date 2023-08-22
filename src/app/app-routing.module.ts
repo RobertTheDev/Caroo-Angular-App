@@ -12,7 +12,7 @@ import { ChangeEmailFormComponent } from './modules/account/change-email-form/ch
 import { ChangePasswordFormComponent } from './modules/account/change-password-form/change-password-form.component';
 import { CloseAccountFormComponent } from './modules/account/close-account-form/close-account-form.component';
 import { AccountEditProfileComponent } from './modules/account/account-edit-profile/account-edit-profile.component';
-import { NotFoundViewComponent } from './not-found-view/not-found-view.component';
+import { NotFoundViewComponent } from './modules/not-found/not-found-view/not-found-view.component';
 
 const routes: Routes = [
   { path: '', component: CarsListComponent },

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import headerLinks from 'src/lib/links/headerLinks';
+import headerLinks from 'src/app/lib/links/headerLinks';
 
 @Component({
   selector: 'app-header',

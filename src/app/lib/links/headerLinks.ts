@@ -1,4 +1,4 @@
-import Link from '../types/Link';
+import Link from '../../types/Link';
 
 const headerLinks: Link[] = [
   { name: 'Find Cars', path: '' },

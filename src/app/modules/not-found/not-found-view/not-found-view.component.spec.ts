@@ -8,9 +8,8 @@ describe('NotFoundViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NotFoundViewComponent ]
-    })
-    .compileComponents();
+      declarations: [NotFoundViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(NotFoundViewComponent);
     component = fixture.componentInstance;

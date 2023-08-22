@@ -10,6 +10,7 @@ import { LayoutModule } from './modules/layout/layout.module';
 import { AccountModule } from './modules/account/account.module';
 import { CarOwnerModule } from './modules/car-owner/car-owner.module';
 import { ContentfulService } from './services/contentful/contentful.service';
+import { NotFoundModule } from './modules/not-found/not-found.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +23,7 @@ import { ContentfulService } from './services/contentful/contentful.service';
     LayoutModule,
     AccountModule,
     CarOwnerModule,
+    NotFoundModule,
   ],
   providers: [ContentfulService],
   bootstrap: [AppComponent],
