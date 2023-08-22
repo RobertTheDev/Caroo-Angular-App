@@ -1,5 +1,5 @@
 <header class="header-container">
-  <a routerLink="/">Logo</a>
+  <a routerLink="/">{{ companyName }}</a>
   <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.path">{{
     headerLink.name
   }}</a>

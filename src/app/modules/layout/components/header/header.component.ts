@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import companyName from 'src/app/lib/constants/companyName';
 import headerLinks from 'src/app/lib/links/headerLinks';
 
 @Component({
@@ -8,4 +9,5 @@ import headerLinks from 'src/app/lib/links/headerLinks';
 })
 export class HeaderComponent {
   headerLinks = headerLinks;
+  companyName = companyName;
 }
