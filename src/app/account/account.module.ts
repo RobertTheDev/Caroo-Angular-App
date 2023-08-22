@@ -6,8 +6,8 @@ import { ChangeEmailFormComponent } from './change-email-form/change-email-form.
 import { CloseAccountFormComponent } from './close-account-form/close-account-form.component';
 import { AccountSettingsMenuComponent } from './account-settings-menu/account-settings-menu.component';
 import { AccountSettingsLayoutComponent } from './account-settings-layout/account-settings-layout.component';
-
-
+import { AccountEditProfileComponent } from './account-edit-profile/account-edit-profile.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,10 +16,17 @@ import { AccountSettingsLayoutComponent } from './account-settings-layout/accoun
     ChangeEmailFormComponent,
     CloseAccountFormComponent,
     AccountSettingsMenuComponent,
-    AccountSettingsLayoutComponent
+    AccountSettingsLayoutComponent,
+    AccountEditProfileComponent,
   ],
-  imports: [
-    CommonModule
-  ]
+  imports: [CommonModule, RouterModule],
+  exports: [
+    AccountEditProfileComponent,
+    AccountDetailComponent,
+    ChangePasswordFormComponent,
+    ChangeEmailFormComponent,
+    CloseAccountFormComponent,
+    AccountSettingsLayoutComponent,
+  ],
 })
-export class AccountModule { }
+export class AccountModule {}
