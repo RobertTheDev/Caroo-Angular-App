@@ -9,6 +9,7 @@ import { CarModule } from './car/car.module';
 import { LayoutModule } from './layout/layout.module';
 import { AccountModule } from './account/account.module';
 import { CarOwnerModule } from './car-owner/car-owner.module';
+import { ContentfulService } from './services/contentful/contentful.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,7 @@ import { CarOwnerModule } from './car-owner/car-owner.module';
     AccountModule,
     CarOwnerModule,
   ],
-  providers: [],
+  providers: [ContentfulService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
