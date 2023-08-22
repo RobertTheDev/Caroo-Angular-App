@@ -12,9 +12,11 @@ import { ChangeEmailFormComponent } from './account/change-email-form/change-ema
 import { ChangePasswordFormComponent } from './account/change-password-form/change-password-form.component';
 import { CloseAccountFormComponent } from './account/close-account-form/close-account-form.component';
 import { AccountEditProfileComponent } from './account/account-edit-profile/account-edit-profile.component';
+import { NotFoundViewComponent } from './not-found-view/not-found-view.component';
 
 const routes: Routes = [
   { path: '', component: CarsListComponent },
+  { path: '**', component: NotFoundViewComponent },
   { path: 'cars', component: CarsListComponent },
   { path: 'cars/:id', component: CarDetailComponent },
   { path: 'profile', component: AccountDetailComponent },
