@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 import { Car } from '@prisma/client';
 import { CarService } from 'src/app/services/car/car.service';
 
@@ -9,12 +10,31 @@ import { CarService } from 'src/app/services/car/car.service';
 })
 export class CarsListComponent implements OnInit {
   cars: Car[] = [];
+  loading = true;
+  errorMessage: string | null = null;
 
-  constructor(private carService: CarService) {}
+  constructor(
+    private carService: CarService,
+    private meta: Meta,
+    private title: Title,
+  ) {}
 
   ngOnInit() {
-    this.carService.getCars().subscribe((data) => {
-      this.cars = data.data;
+    this.title.setTitle('Caroo | Cars');
+    this.meta.updateTag({
+      name: 'description',
+      content: 'This is the cars page.',
+    });
+
+    this.carService.getCars().subscribe({
+      next: (data) => {
+        this.loading = false;
+        this.cars = data.data;
+      },
+      error: (error) => {
+        this.loading = false;
+        this.errorMessage = error;
+      },
     });
   }
 }

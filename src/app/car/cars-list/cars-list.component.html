@@ -1,5 +1,13 @@
-<ul>
-  <li *ngFor="let car of cars">
-    <a [routerLink]="['/cars', car.id]"> {{ car.make }} - {{ car.model }}</a>
-  </li>
-</ul>
+<div *ngIf="loading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!loading && cars">
+  <ul>
+    <li *ngFor="let car of cars">
+      <a [routerLink]="['/cars', car.id]"> {{ car.make }} - {{ car.model }}</a>
+    </li>
+  </ul>
+</div>
+<div *ngIf="!loading && errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
