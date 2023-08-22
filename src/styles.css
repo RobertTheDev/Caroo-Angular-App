@@ -50,9 +50,18 @@ table {
 
 a {
     color: inherit;
+    font-size: 1.6rem;
     text-decoration: none;
 }
 
 img {
     object-fit: cover;
+}
+
+*, html {
+    font-size: 10px;
+}
+
+p {
+    font-size: 1.6rem;
 }
