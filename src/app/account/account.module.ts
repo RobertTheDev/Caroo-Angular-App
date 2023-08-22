@@ -5,6 +5,7 @@ import { ChangePasswordFormComponent } from './change-password-form/change-passw
 import { ChangeEmailFormComponent } from './change-email-form/change-email-form.component';
 import { CloseAccountFormComponent } from './close-account-form/close-account-form.component';
 import { AccountSettingsMenuComponent } from './account-settings-menu/account-settings-menu.component';
+import { AccountSettingsLayoutComponent } from './account-settings-layout/account-settings-layout.component';
 
 
 
@@ -14,7 +15,8 @@ import { AccountSettingsMenuComponent } from './account-settings-menu/account-se
     ChangePasswordFormComponent,
     ChangeEmailFormComponent,
     CloseAccountFormComponent,
-    AccountSettingsMenuComponent
+    AccountSettingsMenuComponent,
+    AccountSettingsLayoutComponent
   ],
   imports: [
     CommonModule
