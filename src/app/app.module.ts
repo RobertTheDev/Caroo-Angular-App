@@ -11,6 +11,7 @@ import { AccountModule } from './modules/account/account.module';
 import { CarOwnerModule } from './modules/car-owner/car-owner.module';
 import { ContentfulService } from './services/contentful/contentful.service';
 import { NotFoundModule } from './modules/not-found/not-found.module';
+import { InfoModule } from './modules/info/info.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { NotFoundModule } from './modules/not-found/not-found.module';
     AccountModule,
     CarOwnerModule,
     NotFoundModule,
+    InfoModule,
   ],
   providers: [ContentfulService],
   bootstrap: [AppComponent],

@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
-import { TermsAndConditionsComponent } from './terms-and-conditions/terms-and-conditions.component';
-import { AccessibilityStatementComponent } from './accessibility-statement/accessibility-statement.component';
-import { AboutComponent } from './about/about.component';
+import { AboutViewComponent } from './views/about-view/about-view.component';
+import { TermsAndConditionsViewComponent } from './views/terms-and-conditions-view/terms-and-conditions-view.component';
+import { PrivacyPolicyViewComponent } from './views/privacy-policy-view/privacy-policy-view.component';
+import { AccessibilityStatementViewComponent } from './views/accessibility-statement-view/accessibility-statement-view.component';
 
 @NgModule({
   declarations: [
-    PrivacyPolicyComponent,
-    TermsAndConditionsComponent,
-    AccessibilityStatementComponent,
-    AboutComponent,
+    PrivacyPolicyViewComponent,
+    TermsAndConditionsViewComponent,
+    AccessibilityStatementViewComponent,
+    AboutViewComponent,
   ],
   imports: [CommonModule],
   exports: [
-    PrivacyPolicyComponent,
-    TermsAndConditionsComponent,
-    AccessibilityStatementComponent,
-    AboutComponent,
+    PrivacyPolicyViewComponent,
+    TermsAndConditionsViewComponent,
+    AccessibilityStatementViewComponent,
+    AboutViewComponent,
   ],
 })
 export class InfoModule {}
