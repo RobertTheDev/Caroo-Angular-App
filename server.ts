@@ -11,6 +11,7 @@ import appRouter from './api/router';
 import * as session from 'express-session';
 import { createClient } from 'redis';
 import RedisStore from 'connect-redis';
+import * as cors from 'cors';
 
 declare module 'express-session' {
   interface SessionData {
@@ -53,6 +54,14 @@ export function app(): express.Express {
     '*.*',
     express.static(distFolder, {
       maxAge: '1y',
+    }),
+  );
+
+  // Allow cors origin for dev local host.
+  server.use(
+    cors({
+      origin: ['http://localhost:4401'],
+      methods: ['DELETE', 'GET', 'PATCH', 'PUT', 'POST'],
     }),
   );
 
