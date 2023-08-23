@@ -21,18 +21,26 @@
 
 .header-links-container {
     align-items: center;
-    display: flex;
+    display: none;
     flex: 2;
     gap: 3.2rem;
     justify-content: center;
+
+    @media (width >=640px) {
+        display: flex;
+    }
 }
 
 .header-controls-container {
     align-items: center;
-    display: flex;
+    display: none;
     flex: 1;
     gap: 3.2rem;
     justify-content: flex-end;
+
+    @media (width >=640px) {
+        display: flex;
+    }
 }
 
 .header-logo-text {
