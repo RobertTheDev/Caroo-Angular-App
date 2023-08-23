@@ -2,10 +2,10 @@
   <p>Loading...</p>
 </div>
 <div *ngIf="!loading && cars">
-  <ul>
-    <li *ngFor="let car of cars">
+  <ul class="cars-list-grid-container">
+    <li *ngFor="let car of cars" class="car-card-container">
       <a [routerLink]="['/cars', car.id]">
-        <img [src]="car.images[0].url" />
+        <img class="car-card-image-container" [src]="car.images[0].url" />
         <p>{{ car.make }} - {{ car.model }}</p>
       </a>
     </li>
