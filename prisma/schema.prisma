@@ -11,18 +11,27 @@ datasource db {
 }
 
 model Car {
-  id         String     @unique @default(uuid())
-  createdAt  DateTime   @default(now())
-  updatedAt  DateTime   @updatedAt
-  year       Int
-  colour     String
-  make       String
-  model      String
-  owner      User?      @relation(fields: [ownerId], references: [id])
-  ownerId    String
-  usersSaved SavedCar[]
-  images     CarImage[]
-  CarOwner   CarOwner[]
+  id              String     @unique @default(uuid())
+  createdAt       DateTime   @default(now())
+  updatedAt       DateTime   @updatedAt
+  doors           Int
+  gearbox         String
+  year            Int
+  colour          String
+  engineSizeTotal Int
+  engineSizeUnit  String     @default("litres")
+  fuelType        String
+  make            String
+  mileageTotal    Int
+  mileageUnit     String     @default("miles")
+  model           String
+  owner           User?      @relation(fields: [ownerId], references: [id])
+  ownerId         String
+  priceTotal      Int
+  priceCurrency   String     @default("GBP")
+  seats           Int
+  usersSaved      SavedCar[]
+  images          CarImage[]
 }
 
 model CarImage {
@@ -36,42 +45,21 @@ model CarImage {
 }
 
 model User {
-  id        String      @unique @default(uuid())
-  createdAt DateTime    @default(now())
-  updatedAt DateTime    @updatedAt
+  id        String     @unique @default(uuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
   firstName String
   lastName  String
-  email     String      @unique
+  email     String     @unique
   password  String
-  carsSaved Int         @default(0)
-  carsOwned Int         @default(0)
+  carsSaved Int        @default(0)
+  carsOwned Int        @default(0)
   savedCars SavedCar[]
   ownedCars Car[]
-  avatar    UserAvatar?
-  CarOwner  CarOwner[]
-}
-
-model UserAvatar {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  url       String
-  alt       String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String   @unique
+  avatarUrl String?
 }
 
 model SavedCar {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  car       Car      @relation(fields: [carId], references: [id])
-  carId     String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
-}
-
-model CarOwner {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
