@@ -1,104 +1,120 @@
-<!-- MAKE -->
-<p>Make</p>
-<select>
-  <option [value]="makeFilter.value" *ngFor="let makeFilter of makeFilters">
-    {{ makeFilter.name }}
-  </option>
-</select>
+<div class="car-filter-menu-sidebar">
+  <div class="car-filter-menu-component">
+    <!-- MAKE -->
+    <p>Make</p>
+    <select>
+      <option [value]="makeFilter.value" *ngFor="let makeFilter of makeFilters">
+        {{ makeFilter.name }}
+      </option>
+    </select>
 
-<!-- PRICE -->
-<p>Price</p>
-<p>Min</p>
-<select>
-  <option [value]="priceFilter.value" *ngFor="let priceFilter of priceFilters">
-    {{ priceFilter.name }}
-  </option>
-</select>
-<p>Max</p>
-<select>
-  <option [value]="priceFilter.value" *ngFor="let priceFilter of priceFilters">
-    {{ priceFilter.name }}
-  </option>
-</select>
+    <!-- PRICE -->
+    <p>Price</p>
+    <p>Min</p>
+    <select>
+      <option
+        [value]="priceFilter.value"
+        *ngFor="let priceFilter of priceFilters"
+      >
+        {{ priceFilter.name }}
+      </option>
+    </select>
+    <p>Max</p>
+    <select>
+      <option
+        [value]="priceFilter.value"
+        *ngFor="let priceFilter of priceFilters"
+      >
+        {{ priceFilter.name }}
+      </option>
+    </select>
 
-<!-- COLOUR -->
-<p>Colour</p>
-<div *ngFor="let colourFilter of colourFilters">
-  <input type="checkbox" [value]="colourFilter.value" />
-  <p>{{ colourFilter.name }}</p>
-</div>
+    <!-- AGE -->
+    <p>Age</p>
+    <p>Min</p>
+    <select>
+      <option [value]="yearFilter.value" *ngFor="let yearFilter of yearFilters">
+        {{ yearFilter.name }}
+      </option>
+    </select>
+    <p>Max</p>
+    <select>
+      <option [value]="yearFilter.value" *ngFor="let yearFilter of yearFilters">
+        {{ yearFilter.name }}
+      </option>
+    </select>
 
-<!-- MILEAGE -->
-<p>Mileage</p>
-<select>
-  <option
-    [value]="mileageFilter.value"
-    *ngFor="let mileageFilter of mileageFilters"
-  >
-    {{ mileageFilter.name }}
-  </option>
-</select>
+    <!-- MILEAGE -->
+    <p>Mileage</p>
+    <select>
+      <option
+        [value]="mileageFilter.value"
+        *ngFor="let mileageFilter of mileageFilters"
+      >
+        {{ mileageFilter.name }}
+      </option>
+    </select>
 
-<!-- AGE -->
-<p>Age</p>
-<p>Min</p>
-<select>
-  <option [value]="yearFilter.value" *ngFor="let yearFilter of yearFilters">
-    {{ yearFilter.name }}
-  </option>
-</select>
-<p>Max</p>
-<select>
-  <option [value]="yearFilter.value" *ngFor="let yearFilter of yearFilters">
-    {{ yearFilter.name }}
-  </option>
-</select>
+    <!-- FUEL TYPE -->
+    <p>Fuel Type</p>
+    <div *ngFor="let fuelTypeFilter of fuelTypeFilters">
+      <input type="checkbox" [value]="fuelTypeFilter.value" />
+      <p>{{ fuelTypeFilter.name }}</p>
+    </div>
 
-<!-- GEARBOX -->
-<p>Gearbox</p>
-<div *ngFor="let gearboxFilter of gearboxFilters">
-  <input type="checkbox" [value]="gearboxFilter.value" />
-  <p>{{ gearboxFilter.name }}</p>
-</div>
+    <!-- COLOUR -->
+    <p>Colour</p>
+    <div *ngFor="let colourFilter of colourFilters">
+      <div
+        [style]="{
+          'background-color': colourFilter.value,
+          height: '40px',
+          width: '40px'
+        }"
+      ></div>
+      <p>{{ colourFilter.name }}</p>
+    </div>
 
-<!-- FUEL TYPE -->
-<p>Fuel Type</p>
-<div *ngFor="let fuelTypeFilter of fuelTypeFilters">
-  <input type="checkbox" [value]="fuelTypeFilter.value" />
-  <p>{{ fuelTypeFilter.name }}</p>
-</div>
+    <!-- GEARBOX -->
+    <p>Gearbox</p>
+    <div *ngFor="let gearboxFilter of gearboxFilters">
+      <input type="checkbox" [value]="gearboxFilter.value" />
+      <p>{{ gearboxFilter.name }}</p>
+    </div>
 
-<!-- ENGINE SIZE -->
-<p>Engine Size</p>
-<p>Min</p>
-<select>
-  <option
-    [value]="engineSizeFilter.value"
-    *ngFor="let engineSizeFilter of engineSizeFilters"
-  >
-    {{ engineSizeFilter.name }}
-  </option>
-</select>
-<p>Max</p>
-<select>
-  <option
-    [value]="engineSizeFilter.value"
-    *ngFor="let engineSizeFilter of engineSizeFilters"
-  >
-    {{ engineSizeFilter.name }}
-  </option>
-</select>
+    <!-- ENGINE SIZE -->
+    <p>Engine Size</p>
+    <p>Min</p>
+    <select>
+      <option
+        [value]="engineSizeFilter.value"
+        *ngFor="let engineSizeFilter of engineSizeFilters"
+      >
+        {{ engineSizeFilter.name }}
+      </option>
+    </select>
+    <p>Max</p>
+    <select>
+      <option
+        [value]="engineSizeFilter.value"
+        *ngFor="let engineSizeFilter of engineSizeFilters"
+      >
+        {{ engineSizeFilter.name }}
+      </option>
+    </select>
 
-<!-- DOORS -->
-<p>Doors</p>
-<div *ngFor="let doorFilter of doorFilters">
-  <input type="checkbox" [value]="doorFilter.value" />
-  <p>{{ doorFilter.name }}</p>
-</div>
+    <!-- DOORS -->
+    <p>Doors</p>
+    <div *ngFor="let doorFilter of doorFilters">
+      <input type="checkbox" [value]="doorFilter.value" />
+      <p>{{ doorFilter.name }}</p>
+    </div>
 
-<!-- SEATS -->
-<p>Seats</p>
-<div *ngFor="let seatFilter of seatFilters">
-  <input type="checkbox" [value]="seatFilter.value" />
-  <p>{{ seatFilter.name }}</p>
+    <!-- SEATS -->
+    <p>Seats</p>
+    <div *ngFor="let seatFilter of seatFilters">
+      <input type="checkbox" [value]="seatFilter.value" />
+      <p>{{ seatFilter.name }}</p>
+    </div>
+  </div>
 </div>

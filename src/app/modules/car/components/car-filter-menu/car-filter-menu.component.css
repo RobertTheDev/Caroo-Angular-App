@@ -1,0 +1,27 @@
+.car-filter-menu-component {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.car-filter-menu-sidebar {
+    height: 100%;
+    width: 34rem;
+    background: white;
+    border-right: 1px solid lightgray;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 1.6rem;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
+    box-sizing: border-box;
+    z-index: 10;
+    display: none;
+
+    @media (width >=640px) {
+        display: inline;
+    }
+}
