@@ -1,9 +1,40 @@
 .header-container {
     align-items: center;
     background-color: white;
+    box-shadow: 0 2px 4px rgb(0 0 0 / 40%);
+    box-sizing: border-box;
     display: flex;
     height: 6rem;
+    padding: 1.6rem;
     position: absolute;
     top: 0;
     width: 100%;
+}
+
+.header-logo-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+}
+
+.header-links-container {
+    align-items: center;
+    display: flex;
+    flex: 2;
+    gap: 3.2rem;
+    justify-content: center;
+}
+
+.header-controls-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 3.2rem;
+    justify-content: flex-end;
+}
+
+.header-logo-text {
+    font-size: 2.4rem;
+    font-weight: 600;
 }

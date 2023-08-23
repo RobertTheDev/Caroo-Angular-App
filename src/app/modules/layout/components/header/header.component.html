@@ -1,9 +1,22 @@
+<!-- HEADER -->
 <header class="header-container">
-  <a routerLink="/">{{ companyName }}</a>
-  <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.path">{{
-    headerLink.name
-  }}</a>
-  <a routerLink="/profile">Profile</a>
-  <button (click)="navigateTo('/auth/sign-up')">Sign Up</button>
-  <button (click)="navigateTo('/auth/login')">Login</button>
+  <!-- LOGO -->
+  <div class="header-logo-container">
+    <a class="header-logo-text" routerLink="/">{{ companyName }}</a>
+  </div>
+  <!-- LINKS -->
+  <div class="header-links-container">
+    <a
+      class="header-link-text"
+      *ngFor="let headerLink of headerLinks"
+      [routerLink]="headerLink.path"
+      >{{ headerLink.name }}</a
+    >
+  </div>
+  <!-- CONTROLS -->
+  <div class="header-controls-container">
+    <a routerLink="/profile">Profile</a>
+    <button (click)="navigateTo('/auth/sign-up')">Sign Up</button>
+    <button (click)="navigateTo('/auth/login')">Login</button>
+  </div>
 </header>
