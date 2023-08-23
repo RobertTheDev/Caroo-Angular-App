@@ -29,12 +29,20 @@ export class CarService {
 
   // Return all cars by owner id.
   async findAllByOwnerId(ownerId: string): Promise<Car[]> {
-    return await this.prisma.car.findMany({ where: { ownerId } });
+    return await this.prisma.car.findMany({
+      include: {
+        images: true,
+      },
+      where: { ownerId },
+    });
   }
 
   // Find and return a car by id.
   async findOneById(id: string): Promise<Car | null> {
     return await this.prisma.car.findUnique({
+      include: {
+        images: true,
+      },
       where: {
         id,
       },
