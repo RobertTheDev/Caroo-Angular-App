@@ -14,6 +14,7 @@ import { EditProfileViewComponent } from './views/edit-profile-view/edit-profile
 import { ChangeEmailViewComponent } from './views/change-email-view/change-email-view.component';
 import { ChangePasswordViewComponent } from './views/change-password-view/change-password-view.component';
 import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import { CloseAccountViewComponent } from './views/close-account-view/close-acco
     ChangePasswordViewComponent,
     CloseAccountViewComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
     AccountProfileViewComponent,
     EditProfileViewComponent,
