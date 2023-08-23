@@ -12,6 +12,7 @@ import { CarOwnerModule } from './modules/car-owner/car-owner.module';
 import { ContentfulService } from './services/contentful/contentful.service';
 import { NotFoundModule } from './modules/not-found/not-found.module';
 import { InfoModule } from './modules/info/info.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { InfoModule } from './modules/info/info.module';
     CarOwnerModule,
     NotFoundModule,
     InfoModule,
+    FontAwesomeModule,
   ],
   providers: [ContentfulService],
   bootstrap: [AppComponent],

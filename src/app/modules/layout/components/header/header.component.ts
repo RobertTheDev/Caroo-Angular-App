@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { faHeart, faUser } from '@fortawesome/free-regular-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import companyName from 'src/app/lib/constants/companyName';
 import headerLinks from 'src/app/lib/links/headerLinks';
 
@@ -11,6 +13,9 @@ import headerLinks from 'src/app/lib/links/headerLinks';
 export class HeaderComponent {
   headerLinks = headerLinks;
   companyName = companyName;
+  faBars = faBars;
+  faHeart = faHeart;
+  faUser = faUser;
 
   constructor(private router: Router) {}
 
