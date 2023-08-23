@@ -14,6 +14,7 @@ model Car {
   id              String     @unique @default(uuid())
   createdAt       DateTime   @default(now())
   updatedAt       DateTime   @updatedAt
+  driveType       String
   doors           Int
   gearbox         String
   year            Int
