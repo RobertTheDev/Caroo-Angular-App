@@ -1,5 +1,5 @@
 <!-- SIGN UP FORM -->
-<form [formGroup]="profileForm" (ngSubmit)="handleSignUp()">
+<form [formGroup]="signUpForm" (ngSubmit)="handleSignUp()">
   <!-- EMAIL INPUT -->
   <label for="email">
     <input
@@ -81,6 +81,8 @@
     </div>
   </div>
 
+  <a routerLink="/auth/login">Login?</a>
+
   <!-- SIGN UP SUBMIT BUTTON -->
-  <button type="submit" [disabled]="profileForm.invalid">Sign Up</button>
+  <button type="submit" [disabled]="signUpForm.invalid">Sign Up</button>
 </form>

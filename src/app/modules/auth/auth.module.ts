@@ -8,6 +8,7 @@ import { ForgotPasswordFormComponent } from './components/forgot-password-form/f
 import { SignUpViewComponent } from './views/sign-up-view/sign-up-view.component';
 import { LoginViewComponent } from './views/login-view/login-view.component';
 import { ForgotPasswordViewComponent } from './views/forgot-password-view/forgot-password-view.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ForgotPasswordViewComponent } from './views/forgot-password-view/forgot
     LoginViewComponent,
     ForgotPasswordViewComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [
     SignUpViewComponent,
     LoginViewComponent,
