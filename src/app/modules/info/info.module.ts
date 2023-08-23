@@ -4,6 +4,7 @@ import { AboutViewComponent } from './views/about-view/about-view.component';
 import { TermsAndConditionsViewComponent } from './views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { PrivacyPolicyViewComponent } from './views/privacy-policy-view/privacy-policy-view.component';
 import { AccessibilityStatementViewComponent } from './views/accessibility-statement-view/accessibility-statement-view.component';
+import { MarkdownModule } from 'ngx-markdown';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { AccessibilityStatementViewComponent } from './views/accessibility-state
     AccessibilityStatementViewComponent,
     AboutViewComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, MarkdownModule.forRoot()],
   exports: [
     PrivacyPolicyViewComponent,
     TermsAndConditionsViewComponent,

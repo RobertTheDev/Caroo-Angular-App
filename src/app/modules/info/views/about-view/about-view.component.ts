@@ -5,14 +5,13 @@ import { Component } from '@angular/core';
   templateUrl: './about-view.component.html',
   styleUrls: ['./about-view.component.css'],
 })
-export class AboutViewComponent {}
-
-// constructor(private contentfulService: ContentfulService) {}
-
-// page: Entry<any> | null = null;
-
-// ngOnInit() {
-//   this.contentfulService
-//     .getAboutPage()
-//     .then((products: any) => (this.page = products));
-// }
+export class AboutViewComponent {
+  markdownContent = `
+  # Hello, Markdown!
+  
+  This is **bold** and *italic* text.
+  
+  - List item 1
+  - List item 2
+  `;
+}
