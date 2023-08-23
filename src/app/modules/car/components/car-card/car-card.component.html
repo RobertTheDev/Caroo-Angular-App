@@ -1,1 +1,6 @@
-<p>car-card works!</p>
+<li *ngIf="car" class="car-card-container">
+  <a [routerLink]="['/cars', car.id]">
+    <img class="car-card-image-container" [src]="car.images[0].url" />
+    <p>{{ car.make }} - {{ car.model }}</p>
+  </a>
+</li>
