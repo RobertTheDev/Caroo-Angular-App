@@ -4,6 +4,47 @@ import * as z from 'zod';
 // Create car schema is a validation schema defining the acceptable fields required.
 
 const createCarSchema = z.object({
+  description: z
+    .string({
+      required_error:
+        'A car description is required. Please provide a car description.',
+      invalid_type_error: 'Car description must be a string.',
+    })
+    .optional(),
+  doors: z.number({
+    required_error: 'A car price is required. Please provide a car price.',
+    invalid_type_error: 'Car price must be a string.',
+  }),
+  engineSizeTotal: z.number({
+    required_error: 'A car price is required. Please provide a car price.',
+    invalid_type_error: 'Car price must be a string.',
+  }),
+  seats: z.number({
+    required_error: 'A car price is required. Please provide a car price.',
+    invalid_type_error: 'Car price must be a string.',
+  }),
+  mileageTotal: z.number({
+    required_error: 'A car price is required. Please provide a car price.',
+    invalid_type_error: 'Car price must be a string.',
+  }),
+  priceTotal: z.number({
+    required_error: 'A car price is required. Please provide a car price.',
+    invalid_type_error: 'Car price must be a string.',
+  }),
+  driveType: z.string({
+    required_error:
+      'A car drive type is required. Please provide a car drive type.',
+    invalid_type_error: 'Car drive type must be a string.',
+  }),
+  fuelType: z.string({
+    required_error:
+      'A car fuel type is required. Please provide a car fuel type.',
+    invalid_type_error: 'Car fuel type must be a string.',
+  }),
+  gearbox: z.string({
+    required_error: 'A car gearbox is required. Please provide a car gearbox.',
+    invalid_type_error: 'Car gearbox must be a string.',
+  }),
   make: z.string({
     required_error: 'A car make is required. Please provide a car make.',
     invalid_type_error: 'Car make must be a string.',

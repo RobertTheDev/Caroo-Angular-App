@@ -20,7 +20,11 @@ export class CarService {
 
   // Return all cars.
   async findAll(): Promise<Car[]> {
-    return await this.prisma.car.findMany();
+    return await this.prisma.car.findMany({
+      include: {
+        images: true,
+      },
+    });
   }
 
   // Return all cars by owner id.

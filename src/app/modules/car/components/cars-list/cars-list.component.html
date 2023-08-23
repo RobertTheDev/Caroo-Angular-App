@@ -4,7 +4,10 @@
 <div *ngIf="!loading && cars">
   <ul>
     <li *ngFor="let car of cars">
-      <a [routerLink]="['/cars', car.id]"> {{ car.make }} - {{ car.model }}</a>
+      <a [routerLink]="['/cars', car.id]">
+        <img [src]="car.images[0].url" />
+        <p>{{ car.make }} - {{ car.model }}</p>
+      </a>
     </li>
   </ul>
 </div>
