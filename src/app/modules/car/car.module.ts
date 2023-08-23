@@ -13,6 +13,7 @@ import { CarViewComponent } from './views/car-view/car-view.component';
 import { CreateCarViewComponent } from './views/create-car-view/create-car-view.component';
 import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.component';
 import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
+import { CarCardComponent } from './components/car-card/car-card.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-vi
     CreateCarViewComponent,
     EditCarViewComponent,
     FilterCarsViewComponent,
+    CarCardComponent,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
