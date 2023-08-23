@@ -3,12 +3,7 @@
 </div>
 <div *ngIf="!loading && cars">
   <ul class="cars-list-grid-container">
-    <li *ngFor="let car of cars" class="car-card-container">
-      <a [routerLink]="['/cars', car.id]">
-        <img class="car-card-image-container" [src]="car.images[0].url" />
-        <p>{{ car.make }} - {{ car.model }}</p>
-      </a>
-    </li>
+    <app-car-card *ngFor="let car of cars" [car]="car" />
   </ul>
 </div>
 <div *ngIf="!loading && errorMessage">

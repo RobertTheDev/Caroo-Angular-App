@@ -3,12 +3,3 @@
     grid-template-columns: repeat(4, 1fr);
     width: 100%;
 }
-
-.car-card-container {
-    width: 100%;
-}
-
-.car-card-image-container {
-    aspect-ratio: 4/3;
-    width: 100%;
-}
