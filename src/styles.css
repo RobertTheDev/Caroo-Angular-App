@@ -230,16 +230,18 @@ h2 {
 
 
 .page-container {
-    width: 100%;
+    align-items: center;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    width: 100%;
 }
 
 .content-container {
-    width: 100%;
+    align-items: flex-start;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     padding: 1.6rem;
+    width: 100%;
 
     @media (width >=640px) {
         width: 70%;
@@ -251,8 +253,13 @@ h2 {
 }
 
 button {
+    border: none;
     font-size: 1.4rem;
-    line-height: 2.1rem;
+    font-weight: 400;
+}
+
+button:hover {
+    cursor: pointer;
 }
 
 input {
@@ -263,4 +270,20 @@ input {
 select {
     font-size: 1.4rem;
     line-height: 2.1rem;
+}
+
+.primary-button {
+    background-color: royalblue;
+    border-radius: 0.8rem;
+    color: white;
+    padding: 1.4rem 1.6rem;
+    transition-duration: 500ms;
+}
+
+.primary-button:hover {
+    background-color: darkblue;
+}
+
+.primary-button-icon {
+    font-size: 1.6rem;
 }
