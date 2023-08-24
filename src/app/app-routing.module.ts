@@ -20,6 +20,7 @@ import { AccessibilityStatementViewComponent } from './modules/info/views/access
 import { AboutViewComponent } from './modules/info/views/about-view/about-view.component';
 import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-view/privacy-policy-view.component';
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
+import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'info/accessibility-statement',
     component: AccessibilityStatementViewComponent,
+  },
+  {
+    path: 'info/cookie-policy',
+    component: CookiePolicyViewComponent,
   },
   { path: 'info/privacy-policy', component: PrivacyPolicyViewComponent },
   {

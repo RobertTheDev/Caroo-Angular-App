@@ -3,6 +3,7 @@ import Link from '../../types/Link';
 const footerLinks: Link[] = [
   { name: 'About', path: 'info/about' },
   { name: 'Accessibility Statement', path: 'info/accessibility-statement' },
+  { name: 'Cookie Policy', path: 'info/cookie-policy' },
   { name: 'Privacy Policy', path: 'info/privacy-policy' },
   { name: 'Terms and Conditions', path: 'info/terms-and-conditions' },
 ];
