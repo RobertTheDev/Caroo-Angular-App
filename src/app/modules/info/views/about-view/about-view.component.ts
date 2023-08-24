@@ -1,19 +1,44 @@
 import { Component, OnInit } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-about-view',
   templateUrl: './about-view.component.html',
-  styleUrls: ['./about-view.component.css'],
 })
 export class AboutViewComponent implements OnInit {
+  constructor(
+    private meta: Meta,
+    private title: Title,
+  ) {}
+
   markdownContent: string | null = null;
+  loading = true;
+
+  private async loadMarkdownContent() {
+    try {
+      const response = await fetch('assets/content/about.md');
+      if (response.ok) {
+        this.markdownContent = await response.text();
+      } else {
+        throw new Error('Markdown file not found.');
+      }
+    } catch (error) {
+      console.error('Error loading Markdown content:', error);
+      this.markdownContent = null;
+    } finally {
+      this.loading = false;
+    }
+  }
 
   ngOnInit(): void {
     this.loadMarkdownContent();
-  }
 
-  private async loadMarkdownContent() {
-    const response = await fetch('assets/content/about.md');
-    this.markdownContent = await response.text();
+    this.title.setTitle('About | Caroo');
+
+    this.meta.updateTag({
+      name: 'description',
+      content:
+        'Discover Caroo: Your top destination for car enthusiasts, sellers, and buyers. Experience seamless vehicle transactions and connections on Caroo.',
+    });
   }
 }

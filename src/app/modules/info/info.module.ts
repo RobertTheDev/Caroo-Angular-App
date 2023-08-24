@@ -6,6 +6,8 @@ import { PrivacyPolicyViewComponent } from './views/privacy-policy-view/privacy-
 import { AccessibilityStatementViewComponent } from './views/accessibility-statement-view/accessibility-statement-view.component';
 import { MarkdownModule } from 'ngx-markdown';
 import { CookiePolicyViewComponent } from './views/cookie-policy-view/cookie-policy-view.component';
+import { InfoPageLoaderComponent } from './components/info-page-loader/info-page-loader.component';
+import { InfoPageErrorComponent } from './components/info-page-error/info-page-error.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +16,8 @@ import { CookiePolicyViewComponent } from './views/cookie-policy-view/cookie-pol
     AccessibilityStatementViewComponent,
     AboutViewComponent,
     CookiePolicyViewComponent,
+    InfoPageLoaderComponent,
+    InfoPageErrorComponent,
   ],
   imports: [CommonModule, MarkdownModule.forRoot()],
   exports: [
