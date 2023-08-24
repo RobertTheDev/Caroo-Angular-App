@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './burger-menu.component.html',
   styleUrls: ['./burger-menu.component.css'],
 })
-export class BurgerMenuComponent {}
+export class BurgerMenuComponent {
+  active = false;
+}
