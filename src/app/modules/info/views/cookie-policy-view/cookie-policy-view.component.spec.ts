@@ -8,9 +8,8 @@ describe('CookiePolicyViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CookiePolicyViewComponent ]
-    })
-    .compileComponents();
+      declarations: [CookiePolicyViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CookiePolicyViewComponent);
     component = fixture.componentInstance;
