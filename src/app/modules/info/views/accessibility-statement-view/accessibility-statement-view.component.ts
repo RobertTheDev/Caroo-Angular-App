@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-accessibility-statement-view',
@@ -7,6 +8,7 @@ import { Meta, Title } from '@angular/platform-browser';
 })
 export class AccessibilityStatementViewComponent implements OnInit {
   constructor(
+    private logger: NGXLogger,
     private meta: Meta,
     private title: Title,
   ) {}
@@ -19,12 +21,13 @@ export class AccessibilityStatementViewComponent implements OnInit {
       const response = await fetch('assets/content/accessibility-statement.md');
       if (response.ok) {
         this.markdownContent = await response.text();
+        this.logger.info('Successfully rendered the about page markdown file.');
       } else {
         throw new Error('Markdown file not found.');
       }
     } catch (error) {
-      console.error('Error loading Markdown content:', error);
       this.markdownContent = null;
+      this.logger.error('Error loading Markdown content:', error);
     } finally {
       this.loading = false;
     }

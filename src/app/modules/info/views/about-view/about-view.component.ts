@@ -18,7 +18,7 @@ export class AboutViewComponent implements OnInit {
 
   private async loadMarkdownContent() {
     try {
-      const response = await fetch('assets/content/about.md');
+      const response = await fetch('assets/content/abou.md');
       if (response.ok) {
         this.markdownContent = await response.text();
         this.logger.info('Successfully rendered the about page markdown file.');
@@ -26,8 +26,8 @@ export class AboutViewComponent implements OnInit {
         throw new Error('Markdown file not found.');
       }
     } catch (error) {
-      this.logger.error('Error loading Markdown content:', error);
       this.markdownContent = null;
+      this.logger.error('Error loading Markdown content:', error);
     } finally {
       this.loading = false;
     }

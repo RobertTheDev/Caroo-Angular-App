@@ -8,6 +8,7 @@ import { MarkdownModule } from 'ngx-markdown';
 import { CookiePolicyViewComponent } from './views/cookie-policy-view/cookie-policy-view.component';
 import { InfoPageLoaderComponent } from './components/info-page-loader/info-page-loader.component';
 import { InfoPageErrorComponent } from './components/info-page-error/info-page-error.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { InfoPageErrorComponent } from './components/info-page-error/info-page-e
     InfoPageLoaderComponent,
     InfoPageErrorComponent,
   ],
-  imports: [CommonModule, MarkdownModule.forRoot()],
+  imports: [CommonModule, MarkdownModule.forRoot(), FontAwesomeModule],
   exports: [
     PrivacyPolicyViewComponent,
     TermsAndConditionsViewComponent,
