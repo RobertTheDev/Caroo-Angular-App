@@ -18,7 +18,7 @@ export class AboutViewComponent implements OnInit {
 
   private async loadMarkdownContent() {
     try {
-      const response = await fetch('assets/content/abou.md');
+      const response = await fetch('assets/content/about.md');
       if (response.ok) {
         this.markdownContent = await response.text();
         this.logger.info('Successfully rendered the about page markdown file.');
