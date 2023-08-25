@@ -11,7 +11,8 @@
     <!-- PRICE -->
     <p>Price</p>
     <p>Min</p>
-    <select>
+
+    <select class="custom-select">
       <option
         [value]="priceFilter.value"
         *ngFor="let priceFilter of priceFilters"
@@ -19,6 +20,7 @@
         {{ priceFilter.name }}
       </option>
     </select>
+
     <p>Max</p>
     <select>
       <option
@@ -57,15 +59,22 @@
 
     <!-- FUEL TYPE -->
     <p>Fuel Type</p>
-    <div *ngFor="let fuelTypeFilter of fuelTypeFilters">
-      <input type="checkbox" [value]="fuelTypeFilter.value" />
+    <div
+      class="checkbox-container"
+      *ngFor="let fuelTypeFilter of fuelTypeFilters"
+    >
+      <input class="checkbox" type="checkbox" [value]="fuelTypeFilter.value" />
       <p>{{ fuelTypeFilter.name }}</p>
     </div>
 
     <!-- COLOUR -->
     <p>Colour</p>
-    <div *ngFor="let colourFilter of colourFilters">
+    <div
+      class="colour-filter-container"
+      *ngFor="let colourFilter of colourFilters"
+    >
       <div
+        class="colour-filter-colour-container"
         [style]="{
           'background-color': colourFilter.value,
           height: '40px',
@@ -77,8 +86,11 @@
 
     <!-- GEARBOX -->
     <p>Gearbox</p>
-    <div *ngFor="let gearboxFilter of gearboxFilters">
-      <input type="checkbox" [value]="gearboxFilter.value" />
+    <div
+      class="checkbox-container"
+      *ngFor="let gearboxFilter of gearboxFilters"
+    >
+      <input class="checkbox" type="checkbox" [value]="gearboxFilter.value" />
       <p>{{ gearboxFilter.name }}</p>
     </div>
 
@@ -105,15 +117,15 @@
 
     <!-- DOORS -->
     <p>Doors</p>
-    <div *ngFor="let doorFilter of doorFilters">
-      <input type="checkbox" [value]="doorFilter.value" />
+    <div class="checkbox-container" *ngFor="let doorFilter of doorFilters">
+      <input class="checkbox" type="checkbox" [value]="doorFilter.value" />
       <p>{{ doorFilter.name }}</p>
     </div>
 
     <!-- SEATS -->
     <p>Seats</p>
-    <div *ngFor="let seatFilter of seatFilters">
-      <input type="checkbox" [value]="seatFilter.value" />
+    <div class="checkbox-container" *ngFor="let seatFilter of seatFilters">
+      <input class="checkbox" type="checkbox" [value]="seatFilter.value" />
       <p>{{ seatFilter.name }}</p>
     </div>
   </div>

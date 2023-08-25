@@ -25,3 +25,35 @@
         display: inline;
     }
 }
+
+.colour-filter-container {
+    align-items: center;
+    display: flex;
+    gap: 1.6rem;
+}
+
+.colour-filter-colour-container {
+    border-radius: 100%;
+
+}
+
+.checkbox-container {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+}
+
+.checkbox {
+    height: 2.4rem;
+    width: 2.4rem;
+}
+
+select {
+    /* Styles for the select element itself */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    color: #333;
+    padding: 1rem;
+}
