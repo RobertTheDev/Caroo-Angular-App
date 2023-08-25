@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CarService } from 'src/app/services/car/car.service';
 import CarWithImage from 'src/app/types/CarWithImages';
 import { formatDistanceToNow } from 'date-fns';
+import priceUnits from 'src/app/lib/units/priceUnits';
 
 @Component({
   selector: 'app-car-detail',
@@ -14,6 +15,7 @@ export class CarDetailComponent implements OnInit {
   car: CarWithImage | null = null;
   loading = true;
   errorMessage: string | null = null;
+  priceUnits = priceUnits;
 
   constructor(
     private meta: Meta,

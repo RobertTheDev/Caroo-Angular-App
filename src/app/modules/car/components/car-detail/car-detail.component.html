@@ -17,9 +17,9 @@
     </div>
   </div>
   <div class="car-detail-content-container">
-    <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
-
     <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+
+    <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
 
     <p>{{ car.colour }}</p>
 
@@ -39,7 +39,9 @@
 
     <p>{{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}</p>
 
-    <p>{{ car.priceCurrency }} {{ car.priceTotal.toLocaleString() }}</p>
+    <p>
+      {{ priceUnits[car.priceCurrency] }}{{ car.priceTotal.toLocaleString() }}
+    </p>
   </div>
 </div>
 <!-- <div *ngIf="loading">
