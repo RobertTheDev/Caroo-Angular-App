@@ -1,3 +1,47 @@
+<div *ngIf="!loading && car" class="car-detail-container">
+  <div class="car-detail-images-container">
+    <div class="car-images-container">
+      <div *ngFor="let carImage of car.images" class="car-image-container">
+        <img [src]="carImage.url" [alt]="carImage.alt" class="car-image" />
+      </div>
+    </div>
+    <div class="car-thumbnails-container">
+      <div *ngFor="let carImage of car.images" class="car-thumbnail-container">
+        <input
+          type="image"
+          [src]="carImage.url"
+          [alt]="carImage.alt"
+          class="car-thumbnail-image"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="car-detail-content-container">
+    <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
+
+    <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+
+    <p>{{ car.colour }}</p>
+
+    <p>{{ car.description }}</p>
+
+    <p>{{ car.doors }} doors</p>
+
+    <p>{{ car.seats }} seats</p>
+
+    <p>{{ car.driveType }}</p>
+
+    <p>{{ car.engineSizeTotal }} {{ car.engineSizeUnit }}</p>
+
+    <p>{{ car.fuelType }}</p>
+
+    <p>{{ car.gearbox }}</p>
+
+    <p>{{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}</p>
+
+    <p>{{ car.priceCurrency }} {{ car.priceTotal.toLocaleString() }}</p>
+  </div>
+</div>
 <!-- <div *ngIf="loading">
   <p>Loading...</p>
 </div>
@@ -62,51 +106,8 @@
   </div>
 </div> -->
 
-<div *ngIf="!loading && car" class="car-detail-container">
-  <div class="car-detail-images-container">
-    <div class="car-images-container">
-      <div *ngFor="let carImage of car.images" class="car-image-container">
-        <img [src]="carImage.url" [alt]="carImage.alt" class="car-image" />
-      </div>
-    </div>
-    <div class="car-thumbnails-container">
-      <div *ngFor="let carImage of car.images" class="car-thumbnail-container">
-        <input
-          type="image"
-          [src]="carImage.url"
-          [alt]="carImage.alt"
-          class="car-thumbnail-image"
-        />
-      </div>
-    </div>
-  </div>
-  <div class="car-detail-content-container">
-    <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
-
-    <p>{{ car.colour }}</p>
-
-    <p>{{ car.createdAt }}</p>
-
-    <p>{{ car.description }}</p>
-
-    <p>{{ car.doors }} doors</p>
-
-    <p>{{ car.seats }} seats</p>
-
-    <p>{{ car.driveType }}</p>
-
-    <p>{{ car.engineSizeTotal }} {{ car.engineSizeUnit }}</p>
-
-    <p>{{ car.fuelType }}</p>
-
-    <p>{{ car.gearbox }}</p>
-
-    <p>{{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}</p>
-
-    <p>{{ car.priceCurrency }} {{ car.priceTotal.toLocaleString() }}</p>
-  </div>
-  <!-- <div> -->
-  <!-- <div class="car-detail-images-container">
+<!-- <div> -->
+<!-- <div class="car-detail-images-container">
       <div
         *ngFor="let carImage of car.images"
         class="car-detail-image-container"
@@ -135,4 +136,3 @@
   <div>
  
   </div> -->
-</div>

@@ -3,6 +3,7 @@ import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CarService } from 'src/app/services/car/car.service';
 import CarWithImage from 'src/app/types/CarWithImages';
+import { formatDistanceToNow } from 'date-fns';
 
 @Component({
   selector: 'app-car-detail',
@@ -20,6 +21,10 @@ export class CarDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private carService: CarService,
   ) {}
+
+  formatDistance(date: Date) {
+    return formatDistanceToNow(date, { addSuffix: true });
+  }
 
   ngOnInit() {
     const id = this.route.snapshot.params['id'];
