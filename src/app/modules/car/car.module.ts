@@ -14,6 +14,7 @@ import { CreateCarViewComponent } from './views/create-car-view/create-car-view.
 import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.component';
 import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
 import { CarCardComponent } from './components/car-card/car-card.component';
+import { DateDistanceToNowFormatPipe } from 'src/app/pipes/dateDistanceToNowFormat/date-distance-to-now-format.pipe';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CarCardComponent } from './components/car-card/car-card.component';
     EditCarViewComponent,
     FilterCarsViewComponent,
     CarCardComponent,
+    DateDistanceToNowFormatPipe,
   ],
   imports: [CommonModule, RouterModule],
   exports: [
