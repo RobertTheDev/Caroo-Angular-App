@@ -287,3 +287,39 @@ select {
 .primary-button-icon {
     font-size: 1.6rem;
 }
+
+
+.form-container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0 0 0 / 20%), 0 6px 20px rgba(0 0 0 / 10%);
+    padding: 1.6rem;
+    width: 100%;
+    gap: 2.4rem;
+    border-radius: 0.8rem;
+}
+
+.form-input {
+    box-sizing: border-box;
+    height: 4rem;
+    padding: 0 1rem;
+    width: 100%;
+    border-radius: 0.4rem;
+    border: 1px solid lightgray;
+}
+
+.danger {
+    font-size: 1.6rem;
+    color: red;
+}
+
+.link {
+    font-size: 1.6rem;
+    font-weight: 400;
+}
+
+.link:hover {
+    color: royalblue;
+}

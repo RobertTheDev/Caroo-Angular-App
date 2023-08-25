@@ -1,12 +1,10 @@
 <li *ngIf="car" class="car-card-container">
-  <a [routerLink]="['/cars', car.id]">
-    <img class="car-card-image-container" [src]="car.images[0].url" />
-    <p>{{ car.year }} {{ car.make }} {{ car.model }}</p>
-    <p>{{ car.mileageTotal.toLocaleString() }} miles</p>
-    <p>{{ car.fuelType }}</p>
-    <p>{{ car.gearbox }}</p>
-    <p>£{{ car.priceTotal.toLocaleString() }}</p>
-    <button>Quick View</button>
-    <button>Save</button>
-  </a>
+  <img class="car-card-image-container" [src]="car.images[0].url" />
+  <p>{{ car.year }} {{ car.make }} {{ car.model }}</p>
+  <p>{{ car.mileageTotal.toLocaleString() }} miles</p>
+  <p>{{ car.fuelType }}</p>
+  <p>{{ car.gearbox }}</p>
+  <p>£{{ car.priceTotal.toLocaleString() }}</p>
+  <button>Quick View</button>
+  <button>Save</button>
 </li>
