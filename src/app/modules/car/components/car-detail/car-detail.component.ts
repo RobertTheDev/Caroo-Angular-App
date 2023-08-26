@@ -5,6 +5,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import CarWithImage from 'src/app/types/CarWithImages';
 import { formatDistanceToNow } from 'date-fns';
 import priceUnits from 'src/app/lib/units/priceUnits';
+import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
 
 @Component({
   selector: 'app-car-detail',
@@ -16,6 +17,9 @@ export class CarDetailComponent implements OnInit {
   loading = true;
   errorMessage: string | null = null;
   priceUnits = priceUnits;
+
+  faHeart = faHeart;
+  faMessage = faMessage;
 
   constructor(
     private meta: Meta,

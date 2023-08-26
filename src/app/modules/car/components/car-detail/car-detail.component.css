@@ -63,3 +63,22 @@
      flex-direction: column;
      width: 50%;
  }
+
+
+ .car-detail-action-buttons-container {
+     align-items: center;
+     display: flex;
+     gap: 1.6rem;
+ }
+
+ .car-detail-car-owner-avatar-image {
+     height: 6rem;
+     width: 6rem;
+     border-radius: 100%;
+     object-fit: cover;
+ }
+
+ .car-detail-car-owner-container {
+     align-items: center;
+     display: flex;
+ }

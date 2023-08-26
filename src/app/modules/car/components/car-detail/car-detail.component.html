@@ -18,30 +18,53 @@
   </div>
   <div class="car-detail-content-container">
     <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
-
     <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
-
-    <p>{{ car.colour }}</p>
-
-    <p>{{ car.description }}</p>
-
-    <p>{{ car.doors }} doors</p>
-
-    <p>{{ car.seats }} seats</p>
-
-    <p>{{ car.driveType }}</p>
-
-    <p>{{ car.engineSizeTotal }} {{ car.engineSizeUnit }}</p>
-
-    <p>{{ car.fuelType }}</p>
-
-    <p>{{ car.gearbox }}</p>
-
-    <p>{{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}</p>
-
     <p>
       {{ priceUnits[car.priceCurrency] }}{{ car.priceTotal.toLocaleString() }}
     </p>
+    <div class="car-detail-action-buttons-container">
+      <button>
+        <fa-icon [icon]="faHeart" />
+        Save Car
+      </button>
+      <button>
+        <fa-icon [icon]="faMessage" />
+        Message Seller
+      </button>
+    </div>
+    <p>Owner</p>
+    <div class="car-detail-car-owner-container">
+      <img
+        class="car-detail-car-owner-avatar-image"
+        [src]="car.owner.avatarUrl"
+        alt="Car owner's profile image"
+      />
+      <div>
+        <p>{{ car.owner.firstName }} {{ car.owner.lastName }}</p>
+        <p>{{ car.owner.email }}</p>
+      </div>
+    </div>
+
+    <p>Colour: {{ car.colour }}</p>
+
+    <p>Doors: {{ car.doors }} doors</p>
+
+    <p>Seats: {{ car.seats }} seats</p>
+
+    <p>Drive Type: {{ car.driveType }}</p>
+
+    <p>Engine Size: {{ car.engineSizeTotal }} {{ car.engineSizeUnit }}</p>
+
+    <p>Fuel Type: {{ car.fuelType }}</p>
+
+    <p>Gearbox: {{ car.gearbox }}</p>
+
+    <p>
+      Mileage: {{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}
+    </p>
+
+    <p>Description</p>
+    <p>{{ car.description }}</p>
   </div>
 </div>
 <!-- <div *ngIf="loading">
