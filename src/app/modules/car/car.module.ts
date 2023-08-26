@@ -15,6 +15,7 @@ import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.compon
 import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
 import { CarCardComponent } from './components/car-card/car-card.component';
 import { DateDistanceToNowFormatPipe } from 'src/app/pipes/dateDistanceToNowFormat/date-distance-to-now-format.pipe';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { DateDistanceToNowFormatPipe } from 'src/app/pipes/dateDistanceToNowForm
     CarCardComponent,
     DateDistanceToNowFormatPipe,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
     CarsViewComponent,
     CarViewComponent,
