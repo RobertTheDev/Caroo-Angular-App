@@ -1,0 +1,27 @@
+<div class="car-images-container">
+  <div class="car-image-container">
+    <img
+      [src]="carMainImage?.url"
+      [alt]="carMainImage?.alt"
+      class="car-image"
+    />
+  </div>
+</div>
+<div class="car-thumbnails-container">
+  <div
+    *ngFor="let carImage of car.images; let index = index"
+    [class]="
+      index === carMainImageIndex
+        ? 'car-thumbnail-container-active'
+        : 'car-thumbnail-container'
+    "
+  >
+    <input
+      type="image"
+      [src]="carImage.url"
+      [alt]="carImage.alt"
+      class="car-thumbnail-image"
+      (click)="selectIndex(index)"
+    />
+  </div>
+</div>
