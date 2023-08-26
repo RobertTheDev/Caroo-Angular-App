@@ -42,6 +42,15 @@ export class CarService {
     return await this.prisma.car.findUnique({
       include: {
         images: true,
+        owner: {
+          select: {
+            id: true,
+            email: true,
+            firstName: true,
+            lastName: true,
+            avatarUrl: true,
+          },
+        },
       },
       where: {
         id,
