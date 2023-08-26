@@ -1,20 +1,7 @@
 <div *ngIf="!loading && car" class="car-detail-container">
   <div class="car-detail-images-container">
-    <div class="car-images-container">
-      <div *ngFor="let carImage of car.images" class="car-image-container">
-        <img [src]="carImage.url" [alt]="carImage.alt" class="car-image" />
-      </div>
-    </div>
-    <div class="car-thumbnails-container">
-      <div *ngFor="let carImage of car.images" class="car-thumbnail-container">
-        <input
-          type="image"
-          [src]="carImage.url"
-          [alt]="carImage.alt"
-          class="car-thumbnail-image"
-        />
-      </div>
-    </div>
+    <!-- <app-car-detail-images [car]="car" /> -->
+    <app-car-detail-images-mobile [car]="car" />
   </div>
   <div class="car-detail-content-container">
     <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>

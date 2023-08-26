@@ -16,6 +16,8 @@ import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-vi
 import { CarCardComponent } from './components/car-card/car-card.component';
 import { DateDistanceToNowFormatPipe } from 'src/app/pipes/dateDistanceToNowFormat/date-distance-to-now-format.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CarDetailImagesComponent } from './components/car-detail-images/car-detail-images.component';
+import { CarDetailImagesMobileComponent } from './components/car-detail-images-mobile/car-detail-images-mobile.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     FilterCarsViewComponent,
     CarCardComponent,
     DateDistanceToNowFormatPipe,
+    CarDetailImagesComponent,
+    CarDetailImagesMobileComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [
