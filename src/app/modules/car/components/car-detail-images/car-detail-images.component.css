@@ -3,6 +3,11 @@
     border-radius: 1.6rem;
     overflow: hidden;
     width: 100%;
+    display: none;
+
+    @media (width > 640px) {
+        display: flex;
+    }
 }
 
 .car-image-container {
@@ -39,9 +44,13 @@
 .car-thumbnails-container {
     align-items: center;
     width: 100%;
-    display: flex;
     gap: 1.6rem;
     padding: 1.6rem 0;
+    display: none;
+
+    @media (width > 640px) {
+        display: flex;
+    }
 }
 
 .car-detail-container {

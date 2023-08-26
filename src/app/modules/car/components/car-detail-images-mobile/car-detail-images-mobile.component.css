@@ -9,6 +9,9 @@
     position: relative;
     -ms-overflow-style: none;
     scrollbar-width: none;
+
+
+
 }
 
 .car-images-mobile-container::-webkit-scrollbar {
@@ -44,4 +47,8 @@
     height: 100%;
     position: relative;
     z-index: 22;
+
+    @media (width > 640px) {
+        display: none;
+    }
 }
