@@ -21,6 +21,7 @@ import { AboutViewComponent } from './modules/info/views/about-view/about-view.c
 import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-view/privacy-policy-view.component';
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
+import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
@@ -31,6 +32,7 @@ const routes: Routes = [
   { path: 'cars', component: CarsViewComponent },
   { path: 'cars/:id', component: CarViewComponent },
   { path: 'cars/:id/edit', component: EditCarViewComponent },
+  { path: 'chat', component: ChatViewComponent },
   { path: 'profile', component: AccountProfileViewComponent },
   { path: 'profile/change-email', component: ChangeEmailViewComponent },
   { path: 'profile/change-password', component: ChangePasswordViewComponent },
