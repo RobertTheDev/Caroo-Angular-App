@@ -1,0 +1,11 @@
+<div class="car-images-content-mobile-container">
+  <div class="car-images-mobile-container" #carImagesContainer>
+    <div
+      *ngFor="let carImage of car.images; let i = index"
+      class="car-image-mobile-container"
+    >
+      <img [src]="carImage.url" [alt]="carImage.alt" class="car-image-mobile" />
+    </div>
+  </div>
+  <div class="car-image-mobile-counter-container"></div>
+</div>
