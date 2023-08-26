@@ -47,18 +47,19 @@ model CarImage {
 }
 
 model User {
-  id        String     @unique @default(uuid())
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  firstName String
-  lastName  String
-  email     String     @unique
-  password  String
-  carsSaved Int        @default(0)
-  carsOwned Int        @default(0)
-  savedCars SavedCar[]
-  ownedCars Car[]
-  avatarUrl String?
+  id           String        @unique @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  firstName    String
+  lastName     String
+  email        String        @unique
+  password     String
+  carsSaved    Int           @default(0)
+  carsOwned    Int           @default(0)
+  savedCars    SavedCar[]
+  ownedCars    Car[]
+  avatarUrl    String?
+  chatMessages ChatMessage[]
 }
 
 model SavedCar {
@@ -69,4 +70,31 @@ model SavedCar {
   carId     String
   user      User     @relation(fields: [userId], references: [id])
   userId    String
+}
+
+model Chat {
+  id           String        @unique @default(uuid())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  chatMember   ChatMember[]
+  chatMessages ChatMessage[]
+}
+
+model ChatMember {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  chat      Chat?    @relation(fields: [chatId], references: [id])
+  chatId    String?
+}
+
+model ChatMessage {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  chat      Chat?    @relation(fields: [chatId], references: [id])
+  chatId    String?
+  content   String
+  user      User?    @relation(fields: [userId], references: [id])
+  userId    String?
 }
