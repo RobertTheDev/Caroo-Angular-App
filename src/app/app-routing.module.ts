@@ -13,7 +13,6 @@ import { SignUpViewComponent } from './modules/auth/views/sign-up-view/sign-up-v
 import { SavedCarsViewComponent } from './modules/saved-car/views/saved-cars-view/saved-cars-view.component';
 import { CarViewComponent } from './modules/car/views/car-view/car-view.component';
 import { CarsViewComponent } from './modules/car/views/cars-view/cars-view.component';
-import { CreateCarViewComponent } from './modules/car/views/create-car-view/create-car-view.component';
 import { EditCarViewComponent } from './modules/car/views/edit-car-view/edit-car-view.component';
 import { FilterCarsViewComponent } from './modules/car/views/filter-cars-view/filter-cars-view.component';
 import { AccessibilityStatementViewComponent } from './modules/info/views/accessibility-statement-view/accessibility-statement-view.component';
@@ -22,6 +21,7 @@ import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
+import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },

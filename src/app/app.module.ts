@@ -13,6 +13,7 @@ import { NotFoundModule } from './modules/not-found/not-found.module';
 import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { CreateCarModule } from './modules/create-car/create-car.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +22,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
+    CreateCarModule,
     CarModule,
     LayoutModule,
     AccountModule,
