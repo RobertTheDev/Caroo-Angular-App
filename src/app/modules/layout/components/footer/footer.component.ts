@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import footerLinks from 'src/app/lib/links/footerLinks';
+import socialLinks from 'src/app/lib/links/socialLinks';
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +12,6 @@ export class FooterComponent {
   companyName = 'Caroo';
 
   footerLinks = footerLinks;
+
+  socialLinks = socialLinks;
 }

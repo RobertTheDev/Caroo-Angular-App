@@ -10,4 +10,13 @@
       >{{ footerLink.name }}</a
     >
   </div>
+  <div class="footer-social-links-container">
+    <a
+      *ngFor="let socialLink of socialLinks"
+      [href]="socialLink.url"
+      target="_blank"
+    >
+      <fa-icon class="footer-social-link-icon" [icon]="socialLink.icon"
+    /></a>
+  </div>
 </footer>

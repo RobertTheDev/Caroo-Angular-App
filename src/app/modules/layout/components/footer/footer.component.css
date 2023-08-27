@@ -49,3 +49,11 @@
 .footer-copyright-text {
     font-size: 1.4rem;
 }
+
+.footer-social-links-container {
+    align-items: center;
+    display: flex;
+    flex: 1;
+    gap: 1.6rem;
+    justify-content: flex-end;
+}
