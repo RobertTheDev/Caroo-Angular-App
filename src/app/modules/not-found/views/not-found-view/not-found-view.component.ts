@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-not-found-view',
@@ -10,7 +11,12 @@ export class NotFoundViewComponent implements OnInit {
   constructor(
     private meta: Meta,
     private title: Title,
+    private router: Router,
   ) {}
+
+  goHome() {
+    this.router.navigateByUrl('/');
+  }
 
   ngOnInit(): void {
     this.title.setTitle('Not Found | Caroo');
