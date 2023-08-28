@@ -12,6 +12,8 @@
       class="header-link-text"
       *ngFor="let headerLink of headerLinks"
       [routerLink]="headerLink.path"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
       >{{ headerLink.name }}</a
     >
   </div>
