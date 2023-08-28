@@ -19,19 +19,54 @@
   </div>
 
   <!-- CONTROLS -->
-  <div class="header-controls-container">
-    <!-- <button class="header-control-button">
-      <fa-icon [icon]="faHeart"></fa-icon>
-    </button>
-    <button class="header-control-button">
-      <fa-icon [icon]="faUser"></fa-icon>
-    </button>
-    <button class="header-control-button">
-      <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
-    </button> -->
-    <!-- <a routerLink="/profile">Profile</a> -->
+  <div *ngIf="!userSignedIn" class="header-controls-container">
     <button class="primary-button" (click)="navigateTo('/auth/sign-up')">
       Login or Sign Up
+    </button>
+  </div>
+
+  <div *ngIf="userSignedIn" class="header-controls-container">
+    <div
+      *ngFor="let headerControl of headerControls"
+      class="header-control-container"
+    >
+      <input
+        *ngIf="avatarUrl && headerControl.name === 'Profile'"
+        (mouseover)="handleControlMouseOver('Profile')"
+        (mouseout)="handleControlMouseOut()"
+        (click)="navigateTo('/profile')"
+        class="avatar-image"
+        type="image"
+        [src]="avatarUrl"
+      />
+      <button
+        *ngIf="
+          headerControl.name !== 'Profile' ||
+          (headerControl.name === 'Profile' && !avatarUrl)
+        "
+        (click)="navigateTo(headerControl.url)"
+        (mouseover)="handleControlMouseOver(headerControl.name)"
+        (mouseout)="handleControlMouseOut()"
+        class="header-control-button"
+      >
+        <fa-icon [icon]="headerControl.icon"></fa-icon>
+        <div
+          *ngIf="headerControl.name === 'Messages'"
+          class="counter-container"
+        >
+          <p class="counter-text">6</p>
+        </div>
+      </button>
+      <div
+        *ngIf="controlMouseOverActiveName === headerControl.name"
+        class="header-control-name-container"
+      >
+        <p>{{ headerControl.name }}</p>
+      </div>
+    </div>
+
+    <button class="header-control-button">
+      <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
     </button>
   </div>
 </header>
