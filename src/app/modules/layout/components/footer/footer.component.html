@@ -7,6 +7,8 @@
       class="footer-link"
       *ngFor="let footerLink of footerLinks"
       [routerLink]="footerLink.path"
+      [routerLinkActive]="['active']"
+      [routerLinkActiveOptions]="{ exact: true }"
       >{{ footerLink.name }}</a
     >
   </div>
