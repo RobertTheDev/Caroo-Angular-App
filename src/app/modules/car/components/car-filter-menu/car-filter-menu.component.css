@@ -16,15 +16,18 @@
     left: 0;
     padding: 1.6rem;
     padding-top: 6rem;
-    padding-bottom: 4rem;
     box-sizing: border-box;
     z-index: 10;
     display: none;
+    flex-direction: column;
+
 
     @media (width >=640px) {
-        display: inline;
+        display: flex;
     }
 }
+
+
 
 .colour-filter-container {
     align-items: center;
