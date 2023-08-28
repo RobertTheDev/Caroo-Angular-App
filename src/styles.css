@@ -323,3 +323,8 @@ select {
 .link:hover {
     color: royalblue;
 }
+
+img {
+    aspect-ratio: 16/9;
+    width: 100%;
+}

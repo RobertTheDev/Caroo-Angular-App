@@ -14,6 +14,8 @@ Navigating the world of car buying can be overwhelming, which is why we've desig
 
 Selling your car has never been easier. Caroo provides you with a platform to showcase your vehicle to a wide audience of potential buyers. Create a detailed listing that highlights your car's features, specifications, and history. Our user-friendly interface guides you through the process, allowing you to upload high-quality photos and provide all the information buyers need to make an informed decision.
 
+![Unsplash Image](https://images.unsplash.com/photo-1603803669776-ae2317cf3c97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80)
+
 ## Connecting Sellers and Buyers
 
 Caroo is more than just a car marketplace; it's a dynamic community that connects sellers and buyers. Our platform bridges the gap between individuals looking for their dream car and those wanting to find a new owner for their vehicle. We ensure that your listings reach a wide audience, giving buyers the chance to discover the car that suits their needs while providing sellers with the exposure they deserve.
@@ -27,3 +29,5 @@ Trust and safety are at the core of our platform. We take your security and priv
 Our dedicated team is here to support you every step of the way. Whether you have questions, feedback, or partnership inquiries, we're ready to assist. Your input is invaluable to us as we continuously strive to enhance your experience on Caroo. Reach out to us through our website or email us at [contact email address](mailto:contact@caroo.com).
 
 Thank you for choosing Caroo as your trusted platform for buying and selling cars. Together, we're driving the future of the automotive industry.
+
+![Unsplash Image](https://images.unsplash.com/photo-1621523027246-a5c3eae0382d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2940&q=80)

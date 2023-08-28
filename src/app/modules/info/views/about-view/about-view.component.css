@@ -1,0 +1,34 @@
+.about-banner-image-container {
+    width: 100%;
+    height: 60vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+}
+
+.about-banner-image {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+
+}
+
+.about-banner-text-container {
+    position: relative;
+    z-index: 22;
+    padding-top: 5rem;
+}
+
+.about-banner-text {
+    color: white;
+    font-size: 4rem;
+    line-height: 5.6rem;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    @media (width >=640px) {
+        font-size: 7rem;
+        line-height: 8.4rem;
+    }
+}
