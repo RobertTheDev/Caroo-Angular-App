@@ -22,6 +22,7 @@ import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
 import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
+import { VerifyEmailViewComponent } from './modules/account/views/verify-email-view/verify-email-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
@@ -55,7 +56,6 @@ const routes: Routes = [
   },
   {
     path: 'profile',
-
     children: [
       { path: '', component: AccountProfileViewComponent },
       { path: 'change-email', component: ChangeEmailViewComponent },
@@ -63,6 +63,7 @@ const routes: Routes = [
       { path: 'close-account', component: CloseAccountViewComponent },
       { path: 'edit-profile', component: EditProfileViewComponent },
       { path: 'my-car-listings', component: CarOwnerListComponent },
+      { path: 'verify-email', component: VerifyEmailViewComponent },
     ],
   },
   { path: 'saved-cars', component: SavedCarsViewComponent },

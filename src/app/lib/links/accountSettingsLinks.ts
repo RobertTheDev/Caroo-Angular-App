@@ -10,6 +10,10 @@ const accountSettingsLinks: Link[] = [
     path: '/profile/edit-profile',
   },
   {
+    name: 'Verify Email',
+    path: '/profile/verify-email',
+  },
+  {
     name: 'Change Email',
     path: '/profile/change-email',
   },

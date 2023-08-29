@@ -16,6 +16,8 @@ import { ChangePasswordViewComponent } from './views/change-password-view/change
 import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { VerifyEmailViewComponent } from './views/verify-email-view/verify-email-view.component';
+import { VerifyEmailFormComponent } from './components/verify-email-form/verify-email-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
     ChangeEmailViewComponent,
     ChangePasswordViewComponent,
     CloseAccountViewComponent,
+    VerifyEmailViewComponent,
+    VerifyEmailFormComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
