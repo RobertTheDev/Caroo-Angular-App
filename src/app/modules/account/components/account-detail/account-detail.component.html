@@ -1,1 +1,12 @@
-<p>account-detail works!</p>
+<div *ngIf="user | async as userData">
+  <div>Welcome, {{ userData.firstName }} {{ userData.lastName }}</div>
+  <div>Email: {{ userData.email }}</div>
+  <div>Avatar: {{ userData.avatarUrl }}</div>
+  <div>{{ userData.createdAt }}</div>
+  <div>
+    <p>{{ userData.firstName }} {{ userData.lastName }}</p>
+  </div>
+
+  <div>Cars Saved: {{ userData.carsSaved }}</div>
+  <div>Cars Owned: {{ userData.carsOwned }}</div>
+</div>
