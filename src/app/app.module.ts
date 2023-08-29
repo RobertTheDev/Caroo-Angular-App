@@ -14,6 +14,7 @@ import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CreateCarModule } from './modules/create-car/create-car.module';
+import { ChatModule } from './modules/chat/chat.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { CreateCarModule } from './modules/create-car/create-car.module';
     CreateCarModule,
     CarModule,
     LayoutModule,
+    ChatModule,
     AccountModule,
     CarOwnerModule,
     NotFoundModule,

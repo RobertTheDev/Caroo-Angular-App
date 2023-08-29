@@ -14,10 +14,10 @@ import { CreateCarViewComponent } from './views/create-car-view/create-car-view.
 import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.component';
 import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
 import { CarCardComponent } from './components/car-card/car-card.component';
-import { DateDistanceToNowFormatPipe } from 'src/app/pipes/dateDistanceToNowFormat/date-distance-to-now-format.pipe';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CarDetailImagesComponent } from './components/car-detail-images/car-detail-images.component';
 import { CarDetailImagesMobileComponent } from './components/car-detail-images-mobile/car-detail-images-mobile.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -33,11 +33,10 @@ import { CarDetailImagesMobileComponent } from './components/car-detail-images-m
     EditCarViewComponent,
     FilterCarsViewComponent,
     CarCardComponent,
-    DateDistanceToNowFormatPipe,
     CarDetailImagesComponent,
     CarDetailImagesMobileComponent,
   ],
-  imports: [CommonModule, RouterModule, FontAwesomeModule],
+  imports: [CommonModule, RouterModule, FontAwesomeModule, SharedModule],
   exports: [
     CarsViewComponent,
     CarViewComponent,
