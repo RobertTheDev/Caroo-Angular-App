@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,7 +9,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class LoginFormComponent {
   // Use the angular form builder.
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) {}
 
   // Login form to handle sign up fields.
   loginForm = this.fb.group({
@@ -24,14 +28,21 @@ export class LoginFormComponent {
   // Handle login after fields are compelete and form submission.
   handleLogin() {
     // If profile form is valid.
+
     if (this.loginForm.valid) {
-      alert(
-        'Form submitted successfully:\n' + JSON.stringify(this.loginForm.value),
-      );
+      const data = this.loginForm.value;
+
+      return this.authService.logIn(data).subscribe({
+        next: (user) => {
+          console.log('user', user);
+          window.location.reload();
+        },
+        error: (error) => console.error(error.error.error),
+      });
     }
-    // If login form is invalid.
+    // If profile form is invalid.
     else {
-      alert('Please correct the errors in the form.');
+      return alert('Please correct the errors in the form.');
     }
   }
 }
