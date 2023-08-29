@@ -9,6 +9,7 @@ import { CarPriceInputComponent } from './components/form-inputs/car-price-input
 import { CarFeaturesInputComponent } from './components/form-inputs/car-features-input/car-features-input.component';
 import { CarDescriptionInputComponent } from './components/form-inputs/car-description-input/car-description-input.component';
 import { CarAboutInputComponent } from './components/form-inputs/car-about-input/car-about-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,6 @@ import { CarAboutInputComponent } from './components/form-inputs/car-about-input
     CarDescriptionInputComponent,
     CarAboutInputComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
 })
 export class CreateCarModule {}
