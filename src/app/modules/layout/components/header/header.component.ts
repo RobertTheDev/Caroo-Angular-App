@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {
   faHeart,
@@ -6,27 +6,58 @@ import {
   faUser,
 } from '@fortawesome/free-regular-svg-icons';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { User } from '@prisma/client';
+import { Observable, of } from 'rxjs';
 import companyName from 'src/app/lib/constants/companyName';
 import headerLinks from 'src/app/lib/links/headerLinks';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   headerLinks = headerLinks;
   companyName = companyName;
   faBars = faBars;
   faHeart = faHeart;
   faUser = faUser;
   faMessage = faMessage;
-  avatarUrl =
-    'https://lh3.googleusercontent.com/a/AAcHTtc7om1QDN6eGEuyZGQ4OxXiq8sehpW5JXbhhj0QRZSMBg=s576-c-no';
   controlMouseOverActiveName: string | null = null;
   userSignedIn = false;
+  user: Observable<User> | null = null;
 
-  constructor(private router: Router) {}
+  // Use the angular form builder.
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+  ) {}
+
+  ngOnInit() {
+    const authenticatedUser = this.authService.getAuthenticatedUser();
+
+    if (authenticatedUser) {
+      authenticatedUser.subscribe({
+        next: (response) => {
+          if (response.data) {
+            this.userSignedIn = true;
+            this.user = of(response.data); // Assuming you're using rxjs `of` function
+          } else {
+            this.userSignedIn = false;
+            this.user = null;
+          }
+        },
+        error: (error) => {
+          console.error(error);
+          this.userSignedIn = false;
+          this.user = null;
+        },
+      });
+    } else {
+      this.user = null;
+    }
+  }
 
   handleControlMouseOver(name: string) {
     this.controlMouseOverActiveName = name;

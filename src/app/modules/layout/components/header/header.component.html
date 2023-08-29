@@ -25,24 +25,24 @@
     </button>
   </div>
 
-  <div *ngIf="userSignedIn" class="header-controls-container">
+  <div *ngIf="user | async as userData" class="header-controls-container">
     <div
       *ngFor="let headerControl of headerControls"
       class="header-control-container"
     >
       <input
-        *ngIf="avatarUrl && headerControl.name === 'Profile'"
+        *ngIf="userData.avatarUrl && headerControl.name === 'Profile'"
         (mouseover)="handleControlMouseOver('Profile')"
         (mouseout)="handleControlMouseOut()"
         (click)="navigateTo('/profile')"
         class="avatar-image"
         type="image"
-        [src]="avatarUrl"
+        [src]="userData.avatarUrl"
       />
       <button
         *ngIf="
           headerControl.name !== 'Profile' ||
-          (headerControl.name === 'Profile' && !avatarUrl)
+          (headerControl.name === 'Profile' && !userData.avatarUrl)
         "
         (click)="navigateTo(headerControl.url)"
         (mouseover)="handleControlMouseOver(headerControl.name)"
