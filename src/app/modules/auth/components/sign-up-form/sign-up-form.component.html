@@ -5,88 +5,96 @@
   (ngSubmit)="handleSignUp()"
 >
   <!-- EMAIL INPUT -->
-  <label for="email">
-    <input
-      class="form-input"
-      id="email"
-      type="email"
-      formControlName="email"
-      placeholder="Email address"
-    />
-  </label>
+  <div>
+    <label for="email">
+      <input
+        class="form-input"
+        id="email"
+        type="email"
+        formControlName="email"
+        placeholder="Email address"
+      />
+    </label>
 
-  <!-- EMAIL VALIDATORS -->
-  <div *ngIf="formControls.email.invalid && formControls.email.touched">
-    <!-- EMAIL REQUIRED VALIDATOR -->
-    <p class="danger" *ngIf="formControls.email.errors?.['required']">
-      Email is required.
-    </p>
-    <!-- EMAIL FORMAT VALIDATOR -->
-    <p class="danger" *ngIf="formControls.email.errors?.['email']">
-      Invalid email format.
-    </p>
+    <!-- EMAIL VALIDATORS -->
+    <div *ngIf="formControls.email.invalid && formControls.email.touched">
+      <!-- EMAIL REQUIRED VALIDATOR -->
+      <p class="danger" *ngIf="formControls.email.errors?.['required']">
+        Email is required.
+      </p>
+      <!-- EMAIL FORMAT VALIDATOR -->
+      <p class="danger" *ngIf="formControls.email.errors?.['email']">
+        Invalid email format.
+      </p>
+    </div>
   </div>
-
   <!-- FIRST NAME INPUT -->
-  <label for="first-name">
-    <input
-      class="form-input"
-      id="first-name"
-      type="text"
-      formControlName="firstName"
-      placeholder="First name"
-    />
-  </label>
+  <div>
+    <label for="first-name">
+      <input
+        class="form-input"
+        id="first-name"
+        type="text"
+        formControlName="firstName"
+        placeholder="First name"
+      />
+    </label>
 
-  <!-- FIRST NAME VALIDATORS -->
-  <div *ngIf="formControls.firstName.invalid && formControls.firstName.touched">
-    <!-- FIRST NAME REQUIRED VALIDATOR -->
-    <p class="danger" *ngIf="formControls.firstName.errors?.['required']">
-      First name is required.
-    </p>
+    <!-- FIRST NAME VALIDATORS -->
+    <div
+      *ngIf="formControls.firstName.invalid && formControls.firstName.touched"
+    >
+      <!-- FIRST NAME REQUIRED VALIDATOR -->
+      <p class="danger" *ngIf="formControls.firstName.errors?.['required']">
+        First name is required.
+      </p>
+    </div>
   </div>
 
   <!-- LAST NAME INPUT -->
-  <label for="last-name">
-    <input
-      class="form-input"
-      id="last-name"
-      type="text"
-      formControlName="lastName"
-      placeholder="Last name"
-    />
-  </label>
+  <div>
+    <label for="last-name">
+      <input
+        class="form-input"
+        id="last-name"
+        type="text"
+        formControlName="lastName"
+        placeholder="Last name"
+      />
+    </label>
 
-  <!-- LAST NAME VALIDATORS -->
-  <div *ngIf="formControls.lastName.invalid && formControls.lastName.touched">
-    <!-- LAST NAME REQUIRED VALIDATOR -->
-    <p class="danger" *ngIf="formControls.lastName.errors?.['required']">
-      Last name is required.
-    </p>
+    <!-- LAST NAME VALIDATORS -->
+    <div *ngIf="formControls.lastName.invalid && formControls.lastName.touched">
+      <!-- LAST NAME REQUIRED VALIDATOR -->
+      <p class="danger" *ngIf="formControls.lastName.errors?.['required']">
+        Last name is required.
+      </p>
+    </div>
   </div>
-
   <!-- PASSWORD INPUT -->
-  <label for="password">
-    <input
-      class="form-input"
-      id="password"
-      type="password"
-      formControlName="password"
-      minlength="8"
-      placeholder="Password"
-    />
-  </label>
+  <div>
+    <label for="password">
+      <input
+        class="form-input"
+        id="password"
+        type="password"
+        formControlName="password"
+        minlength="8"
+        placeholder="Password"
+      />
+    </label>
 
-  <!-- PASSWORD VALIDATORS -->
-  <div *ngIf="formControls.password.invalid && formControls.password.touched">
-    <!-- PASSWORD REQUIRED VALIDATOR -->
-    <p class="danger" *ngIf="formControls.password.errors?.['required']">
-      Password is required.
-    </p>
-    <!-- PASSWORD MIN LENGTH VALIDATOR -->
-    <p class="danger" *ngIf="formControls.password.errors?.['minlength']">
-      Password must be at least 8 characters long.
-    </p>
+    <!-- PASSWORD VALIDATORS -->
+    <div *ngIf="formControls.password.invalid && formControls.password.touched">
+      <!-- PASSWORD REQUIRED VALIDATOR -->
+      <p class="danger" *ngIf="formControls.password.errors?.['required']">
+        Password is required.
+      </p>
+      <!-- PASSWORD MIN LENGTH VALIDATOR -->
+      <p class="danger" *ngIf="formControls.password.errors?.['minlength']">
+        Password must be at least 8 characters long.
+      </p>
+    </div>
   </div>
 
   <a class="link" routerLink="/auth/login">Login?</a>

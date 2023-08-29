@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-sign-up-form',
@@ -8,7 +9,10 @@ import { FormBuilder, Validators } from '@angular/forms';
 })
 export class SignUpFormComponent {
   // Use the angular form builder.
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+  ) {}
 
   // Sign up form to handle sign up fields.
   signUpForm = this.fb.group({
@@ -27,14 +31,19 @@ export class SignUpFormComponent {
   handleSignUp() {
     // If profile form is valid.
     if (this.signUpForm.valid) {
-      alert(
-        'Form submitted successfully:\n' +
-          JSON.stringify(this.signUpForm.value),
-      );
+      const data = this.signUpForm.value;
+
+      return this.authService.signUp(data).subscribe({
+        next: (data) => {
+          console.log(data);
+          window.location.reload();
+        },
+        error: (error) => console.error(error),
+      });
     }
     // If profile form is invalid.
     else {
-      alert('Please correct the errors in the form.');
+      return alert('Please correct the errors in the form.');
     }
   }
 }
