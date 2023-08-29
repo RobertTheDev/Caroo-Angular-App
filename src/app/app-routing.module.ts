@@ -22,14 +22,12 @@ import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
 import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
-import { SignedInGuard } from './guards/signedIn/signed-in.guard';
-import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
   {
     path: 'auth',
-    canActivate: [AuthGuard],
+
     children: [
       {
         path: 'forgot-password',
