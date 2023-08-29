@@ -62,6 +62,7 @@ export function app(): express.Express {
     cors({
       origin: ['http://localhost:4401'],
       methods: ['DELETE', 'GET', 'PATCH', 'PUT', 'POST'],
+      credentials: true,
     }),
   );
 
@@ -79,13 +80,19 @@ export function app(): express.Express {
     prefix: 'myapp:',
   });
 
+  const oneDay = 1000 * 60 * 60 * 24;
   server.use(
     session({
       store: redisStore,
       secret: 'keyboard cat',
-      resave: true,
+      resave: false,
       saveUninitialized: true,
-      cookie: { secure: false },
+      cookie: {
+        path: '/',
+        secure: false,
+        httpOnly: false,
+        maxAge: oneDay,
+      },
     }),
   );
 
