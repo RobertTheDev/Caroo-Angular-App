@@ -1,6 +1,8 @@
-<a
-  *ngFor="let accountSettingsLink of accountSettingsLinks"
-  [routerLink]="accountSettingsLink.path"
-  >{{ accountSettingsLink.name }}</a
->
-<button (click)="signOut()">Log out</button>
+<div class="account-settings-menu-container">
+  <a
+    *ngFor="let accountSettingsLink of accountSettingsLinks"
+    [routerLink]="accountSettingsLink.path"
+    >{{ accountSettingsLink.name }}</a
+  >
+  <button (click)="signOut()">Log out</button>
+</div>

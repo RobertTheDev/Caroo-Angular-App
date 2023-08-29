@@ -1,0 +1,9 @@
+.account-settings-menu-container {
+    border-radius: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1.6rem;
+    gap: 1.6rem;
+    background-color: white;
+    width: 24rem;
+}
