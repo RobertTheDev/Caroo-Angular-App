@@ -22,37 +22,70 @@ import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
 import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
+import { SignedInGuard } from './guards/signedIn/signed-in.guard';
+import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
-  { path: 'auth/forgot-password', component: ForgotPasswordViewComponent },
-  { path: 'auth/login', component: LoginViewComponent },
-  { path: 'auth/sign-up', component: SignUpViewComponent },
+  {
+    path: 'auth',
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordViewComponent,
+      },
+      {
+        path: 'login',
+        component: LoginViewComponent,
+      },
+      {
+        path: 'sign-up',
+        component: SignUpViewComponent,
+      },
+    ],
+  },
   { path: 'sell-a-car', component: CreateCarViewComponent },
-  { path: 'cars', component: CarsViewComponent },
-  { path: 'cars/:id', component: CarViewComponent },
-  { path: 'cars/:id/edit', component: EditCarViewComponent },
   { path: 'chat', component: ChatViewComponent },
-  { path: 'profile', component: AccountProfileViewComponent },
-  { path: 'profile/change-email', component: ChangeEmailViewComponent },
-  { path: 'profile/change-password', component: ChangePasswordViewComponent },
-  { path: 'profile/close-account', component: CloseAccountViewComponent },
-  { path: 'profile/edit-profile', component: EditProfileViewComponent },
-  { path: 'profile/my-car-listings', component: CarOwnerListComponent },
+  {
+    path: 'cars',
+    children: [
+      { path: '', component: CarsViewComponent },
+      { path: ':id', component: CarViewComponent },
+      { path: ':id/edit', component: EditCarViewComponent },
+    ],
+  },
+  {
+    path: 'profile',
+
+    children: [
+      { path: '', component: AccountProfileViewComponent },
+      { path: 'change-email', component: ChangeEmailViewComponent },
+      { path: 'change-password', component: ChangePasswordViewComponent },
+      { path: 'close-account', component: CloseAccountViewComponent },
+      { path: 'edit-profile', component: EditProfileViewComponent },
+      { path: 'my-car-listings', component: CarOwnerListComponent },
+    ],
+  },
   { path: 'saved-cars', component: SavedCarsViewComponent },
-  { path: 'info/about', component: AboutViewComponent },
   {
-    path: 'info/accessibility-statement',
-    component: AccessibilityStatementViewComponent,
-  },
-  {
-    path: 'info/cookie-policy',
-    component: CookiePolicyViewComponent,
-  },
-  { path: 'info/privacy-policy', component: PrivacyPolicyViewComponent },
-  {
-    path: 'info/terms-and-conditions',
-    component: TermsAndConditionsViewComponent,
+    path: 'info',
+    children: [
+      { path: 'about', component: AboutViewComponent },
+      {
+        path: 'accessibility-statement',
+        component: AccessibilityStatementViewComponent,
+      },
+      {
+        path: 'cookie-policy',
+        component: CookiePolicyViewComponent,
+      },
+      { path: 'privacy-policy', component: PrivacyPolicyViewComponent },
+      {
+        path: 'terms-and-conditions',
+        component: TermsAndConditionsViewComponent,
+      },
+    ],
   },
   { path: '**', component: NotFoundViewComponent },
 ];
