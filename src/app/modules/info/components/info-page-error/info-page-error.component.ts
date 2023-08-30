@@ -4,7 +4,6 @@ import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-info-page-error',
   templateUrl: './info-page-error.component.html',
-  styleUrls: ['./info-page-error.component.css'],
 })
 export class InfoPageErrorComponent {
   faRotateRight = faRotateRight;

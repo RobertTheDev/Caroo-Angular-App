@@ -4,7 +4,6 @@ import { NavigationService } from 'src/app/services/navigation/navigation.servic
 @Component({
   selector: 'app-car-description-input',
   templateUrl: './car-description-input.component.html',
-  styleUrls: ['./car-description-input.component.css'],
 })
 export class CarDescriptionInputComponent {
   constructor(private navigationService: NavigationService) {}

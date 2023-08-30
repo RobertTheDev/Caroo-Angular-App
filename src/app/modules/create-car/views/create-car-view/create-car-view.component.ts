@@ -4,7 +4,6 @@ import { NavigationService } from 'src/app/services/navigation/navigation.servic
 @Component({
   selector: 'app-create-car-view',
   templateUrl: './create-car-view.component.html',
-  styleUrls: ['./create-car-view.component.css'],
 })
 export class CreateCarViewComponent {
   constructor(private navigationService: NavigationService) {}
