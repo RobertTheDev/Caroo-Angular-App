@@ -30,7 +30,6 @@ export class CarsListComponent implements OnInit {
       next: (data) => {
         this.loading = false;
         this.cars = data.data;
-        console.log('cars', data.data);
       },
       error: (error) => {
         this.loading = false;
