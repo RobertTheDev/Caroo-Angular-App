@@ -1,34 +1,30 @@
 import { Component } from '@angular/core';
 
+interface Image {
+  url: string;
+  file: File;
+}
+
 @Component({
   selector: 'app-car-images-input',
   templateUrl: './car-images-input.component.html',
   styleUrls: ['./car-images-input.component.css'],
 })
 export class CarImagesInputComponent {
-  images: string[] = new Array(6).fill('');
+  selectedImages: Image[] = [];
 
-  replaceImage(index: number) {
-    // Handle replacing the image at the specified index
-    const newImageUrl = prompt('Enter image URL:');
-    if (newImageUrl) {
-      this.images[index] = newImageUrl;
-    }
+  placeholderArray(): any[] {
+    return new Array(6);
   }
 
-  deleteImage(index: number) {
-    // Handle deleting the image at the specified index
-    this.images[index] = '';
+  onFileSelected(event: any, index: number): void {
+    const file: File = event.target.files[0];
+    const imageUrl = URL.createObjectURL(file);
+    this.selectedImages[index] = { url: imageUrl, file };
   }
 
-  uploadImage(event: any, index: number) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.images[index] = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
+  deleteImage(index: number): void {
+    const deletedImage = this.selectedImages.splice(index, 1)[0];
+    URL.revokeObjectURL(deletedImage.url);
   }
 }

@@ -1,1 +1,21 @@
-<p>car-images-input works!</p>
+<div class="image-grid">
+  <div *ngFor="let _ of placeholderArray(); let i = index">
+    <label [class.active]="i < selectedImages.length">
+      <input
+        type="file"
+        (change)="onFileSelected($event, i)"
+        [disabled]="i < selectedImages.length || selectedImages.length >= 6"
+        accept="image/*"
+      />
+      <div class="image-item">
+        <img
+          *ngIf="selectedImages[i]"
+          [src]="selectedImages[i].url"
+          alt="Selected Image"
+        />
+        <button (click)="deleteImage(i)">Delete</button>
+      </div>
+      <span *ngIf="!selectedImages[i]">Placeholder</span>
+    </label>
+  </div>
+</div>
