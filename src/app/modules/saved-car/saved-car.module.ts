@@ -5,7 +5,7 @@ import { SavedCarsViewComponent } from './views/saved-cars-view/saved-cars-view.
 
 @NgModule({
   declarations: [SavedCarsListComponent, SavedCarsViewComponent],
-  imports: [CommonModule],
+  imports: [CommonModule, SavedCarsListComponent],
   exports: [SavedCarsViewComponent],
 })
 export class SavedCarModule {}
