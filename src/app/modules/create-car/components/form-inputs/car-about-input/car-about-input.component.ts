@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import makeInputOptions from 'src/app/lib/carInputOptions/makeInputOptions';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-car-about-input',
@@ -7,6 +8,8 @@ import makeInputOptions from 'src/app/lib/carInputOptions/makeInputOptions';
   styleUrls: ['./car-about-input.component.css'],
 })
 export class CarAboutInputComponent implements OnInit {
+  constructor(private navigationService: NavigationService) {}
+
   years: number[] = [];
 
   makeInputOptions = makeInputOptions;
@@ -16,5 +19,13 @@ export class CarAboutInputComponent implements OnInit {
     for (let year = currentYear; year >= 1990; year--) {
       this.years.push(year);
     }
+  }
+
+  navigateNext() {
+    this.navigationService.navigateTo('/sell-a-car/add-features');
+  }
+
+  navigateBack(): void {
+    this.navigationService.navigateBack();
   }
 }

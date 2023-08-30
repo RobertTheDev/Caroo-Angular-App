@@ -19,6 +19,7 @@ import { AddCarImagesViewComponent } from './views/add-car-images-view/add-car-i
 import { AddCarPriceViewComponent } from './views/add-car-price-view/add-car-price-view.component';
 import { AddCarLocationViewComponent } from './views/add-car-location-view/add-car-location-view.component';
 import { CarLocationInputComponent } from './components/form-inputs/car-location-input/car-location-input.component';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @NgModule({
   declarations: [
@@ -42,5 +43,6 @@ import { CarLocationInputComponent } from './components/form-inputs/car-location
     CarLocationInputComponent,
   ],
   imports: [CommonModule, FormsModule],
+  providers: [NavigationService],
 })
 export class CreateCarModule {}

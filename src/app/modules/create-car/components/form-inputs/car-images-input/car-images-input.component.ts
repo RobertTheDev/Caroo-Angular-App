@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 interface Image {
   url: string;
@@ -11,6 +12,16 @@ interface Image {
   styleUrls: ['./car-images-input.component.css'],
 })
 export class CarImagesInputComponent {
+  constructor(private navigationService: NavigationService) {}
+
+  navigateNext() {
+    this.navigationService.navigateTo('sell-a-car/add-description');
+  }
+
+  navigateBack(): void {
+    this.navigationService.navigateBack();
+  }
+
   selectedImages: Image[] = [];
 
   placeholderArray(): any[] {

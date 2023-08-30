@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import colourInputOptions from 'src/app/lib/carInputOptions/colourInputOptions';
+import { NavigationService } from 'src/app/services/navigation/navigation.service';
 
 @Component({
   selector: 'app-car-features-input',
@@ -7,6 +8,16 @@ import colourInputOptions from 'src/app/lib/carInputOptions/colourInputOptions';
   styleUrls: ['./car-features-input.component.css'],
 })
 export class CarFeaturesInputComponent {
+  constructor(private navigationService: NavigationService) {}
+
+  navigateNext() {
+    this.navigationService.navigateTo('sell-a-car/add-details');
+  }
+
+  navigateBack(): void {
+    this.navigationService.navigateBack();
+  }
+
   colourInputOptions = colourInputOptions;
 
   generateDoorOptions(start: number, end: number) {
