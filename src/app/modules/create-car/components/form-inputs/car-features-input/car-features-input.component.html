@@ -1,1 +1,39 @@
-<p>car-features-input works!</p>
+<div>
+  <p>Vehicle appearance and features</p>
+  <p>
+    Add more about what your vehicle looks like and the features that it has.
+  </p>
+  <!-- COLOURS -->
+  <div>
+    <p>Colours</p>
+    <select>
+      <option *ngFor="let colourInputOption of colourInputOptions">
+        {{ colourInputOption.name }}
+      </option>
+    </select>
+  </div>
+  <!-- DOORS -->
+  <div>
+    <p>Doors</p>
+    <select>
+      <option
+        *ngFor="let doorOption of generateDoorOptions(2, 8)"
+        [value]="doorOption.value"
+      >
+        {{ doorOption.name }}
+      </option>
+    </select>
+  </div>
+  <!-- SEATS -->
+  <div>
+    <p>Seats</p>
+    <select>
+      <option
+        *ngFor="let seatOption of generateSeatOptions(2, 10)"
+        [value]="seatOption.value"
+      >
+        {{ seatOption.name }}
+      </option>
+    </select>
+  </div>
+</div>
