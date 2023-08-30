@@ -4,7 +4,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-close-account-form',
   templateUrl: './close-account-form.component.html',
-  styleUrls: ['./close-account-form.component.css'],
 })
 export class CloseAccountFormComponent {
   // Use the angular form builder.

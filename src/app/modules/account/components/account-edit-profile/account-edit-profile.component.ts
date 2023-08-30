@@ -4,7 +4,6 @@ import { FormBuilder } from '@angular/forms';
 @Component({
   selector: 'app-account-edit-profile',
   templateUrl: './account-edit-profile.component.html',
-  styleUrls: ['./account-edit-profile.component.css'],
 })
 export class AccountEditProfileComponent {
   // Use the angular form builder.

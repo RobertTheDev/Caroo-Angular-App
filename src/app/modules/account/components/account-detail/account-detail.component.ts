@@ -6,7 +6,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 @Component({
   selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
-  styleUrls: ['./account-detail.component.css'],
 })
 export class AccountDetailComponent implements OnInit {
   user: Observable<User> | null = null;
