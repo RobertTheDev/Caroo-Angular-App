@@ -23,6 +23,14 @@ import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-vi
 import { ChatViewComponent } from './modules/chat/views/chat-view/chat-view.component';
 import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
 import { VerifyEmailViewComponent } from './modules/account/views/verify-email-view/verify-email-view.component';
+import { PreviewCarViewComponent } from './modules/create-car/views/preview-car-view/preview-car-view.component';
+import { AddCarPriceViewComponent } from './modules/create-car/views/add-car-price-view/add-car-price-view.component';
+import { AddCarLocationViewComponent } from './modules/create-car/views/add-car-location-view/add-car-location-view.component';
+import { AddCarImagesViewComponent } from './modules/create-car/views/add-car-images-view/add-car-images-view.component';
+import { AddCarFeaturesViewComponent } from './modules/create-car/views/add-car-features-view/add-car-features-view.component';
+import { AddCarDetailsViewComponent } from './modules/create-car/views/add-car-details-view/add-car-details-view.component';
+import { AddCarDescriptionViewComponent } from './modules/create-car/views/add-car-description-view/add-car-description-view.component';
+import { AddCarAboutViewComponent } from './modules/create-car/views/add-car-about-view/add-car-about-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
@@ -44,7 +52,20 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'sell-a-car', component: CreateCarViewComponent },
+  {
+    path: 'sell-a-car',
+    children: [
+      { path: '', component: CreateCarViewComponent },
+      { path: 'add-about', component: AddCarAboutViewComponent },
+      { path: 'add-description', component: AddCarDescriptionViewComponent },
+      { path: 'add-details', component: AddCarDetailsViewComponent },
+      { path: 'add-features', component: AddCarFeaturesViewComponent },
+      { path: 'add-images', component: AddCarImagesViewComponent },
+      { path: 'add-location', component: AddCarLocationViewComponent },
+      { path: 'add-price', component: AddCarPriceViewComponent },
+      { path: 'preview', component: PreviewCarViewComponent },
+    ],
+  },
   { path: 'chat', component: ChatViewComponent },
   {
     path: 'cars',
