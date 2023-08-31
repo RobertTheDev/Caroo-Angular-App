@@ -20,7 +20,7 @@ export class CarsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('Caroo | Cars');
+    this.title.setTitle('Cars | Caroo');
     this.meta.updateTag({
       name: 'description',
       content: 'This is the cars page.',
