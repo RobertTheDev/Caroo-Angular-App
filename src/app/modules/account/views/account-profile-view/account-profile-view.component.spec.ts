@@ -8,9 +8,8 @@ describe('AccountProfileViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccountProfileViewComponent ]
-    })
-    .compileComponents();
+      declarations: [AccountProfileViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccountProfileViewComponent);
     component = fixture.componentInstance;

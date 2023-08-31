@@ -8,9 +8,8 @@ describe('ChangePasswordViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ChangePasswordViewComponent ]
-    })
-    .compileComponents();
+      declarations: [ChangePasswordViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ChangePasswordViewComponent);
     component = fixture.componentInstance;
