@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CarOwnerListComponent } from './modules/car-owner/components/car-owner-list/car-owner-list.component';
 import { NotFoundViewComponent } from './modules/not-found/views/not-found-view/not-found-view.component';
 import { AccountProfileViewComponent } from './modules/account/views/account-profile-view/account-profile-view.component';
 import { CloseAccountViewComponent } from './modules/account/views/close-account-view/close-account-view.component';
@@ -31,6 +30,7 @@ import { AddCarFeaturesViewComponent } from './modules/create-car/views/add-car-
 import { AddCarDetailsViewComponent } from './modules/create-car/views/add-car-details-view/add-car-details-view.component';
 import { AddCarDescriptionViewComponent } from './modules/create-car/views/add-car-description-view/add-car-description-view.component';
 import { AddCarAboutViewComponent } from './modules/create-car/views/add-car-about-view/add-car-about-view.component';
+import { AccountCarListingsViewComponent } from './modules/account/views/account-car-listings-view/account-car-listings-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
@@ -83,7 +83,7 @@ const routes: Routes = [
       { path: 'change-password', component: ChangePasswordViewComponent },
       { path: 'close-account', component: CloseAccountViewComponent },
       { path: 'edit-profile', component: EditProfileViewComponent },
-      { path: 'my-car-listings', component: CarOwnerListComponent },
+      { path: 'my-car-listings', component: AccountCarListingsViewComponent },
       { path: 'verify-email', component: VerifyEmailViewComponent },
     ],
   },
