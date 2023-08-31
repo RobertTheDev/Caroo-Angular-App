@@ -8,9 +8,8 @@ describe('InfoPageErrorComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InfoPageErrorComponent ]
-    })
-    .compileComponents();
+      declarations: [InfoPageErrorComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InfoPageErrorComponent);
     component = fixture.componentInstance;

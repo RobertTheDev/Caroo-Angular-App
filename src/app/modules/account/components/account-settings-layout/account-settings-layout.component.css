@@ -1,6 +1,6 @@
 .account-settings-menu-layout {
-    box-sizing: border-box;
-    display: flex;
-    gap: 1.6rem;
-    padding: 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  gap: 1.6rem;
+  padding: 1.6rem;
 }

@@ -3,7 +3,6 @@
     <label [class.active]="i < selectedImages.length">
       <input
         type="file"
-        (change)="onFileSelected($event, i)"
         [disabled]="i < selectedImages.length || selectedImages.length >= 6"
         accept="image/*"
       />

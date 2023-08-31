@@ -8,9 +8,6 @@
       (click)="replaceImage(i)"
       (contextmenu)="deleteImage(i)"
     />
-    <div *ngIf="!image" class="placeholder">
-      <input type="file" (change)="uploadImage($event, i)" />
-    </div>
   </div>
 </div>
 <!-- MAKE -->

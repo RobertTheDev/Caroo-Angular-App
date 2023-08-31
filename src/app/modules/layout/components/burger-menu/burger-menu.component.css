@@ -1,17 +1,17 @@
 .burger-menu-wrapper {
-    background-color: rgb(0 0 0 / 20%);
-    left: 0;
-    min-height: 100vh;
-    position: fixed;
-    top: 0;
-    width: 100vw;
-    z-index: 400;
+  background-color: rgb(0 0 0 / 20%);
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 400;
 }
 
 .burger-menu-container {
-    background-color: white;
-    left: 0;
-    min-height: 100vh;
-    position: fixed;
-    width: 35rem
+  background-color: white;
+  left: 0;
+  min-height: 100vh;
+  position: fixed;
+  width: 35rem;
 }

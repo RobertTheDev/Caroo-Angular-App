@@ -1,62 +1,58 @@
 .car-filter-menu-component {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
 }
 
 .car-filter-menu-sidebar {
-    height: 100%;
-    width: 34rem;
-    background: white;
-    border-right: 1px solid lightgray;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 1.6rem;
-    padding-top: 6rem;
-    box-sizing: border-box;
-    z-index: 10;
-    display: none;
-    flex-direction: column;
+  height: 100%;
+  width: 34rem;
+  background: white;
+  border-right: 1px solid lightgray;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 1.6rem;
+  padding-top: 6rem;
+  box-sizing: border-box;
+  z-index: 10;
+  display: none;
+  flex-direction: column;
 
-
-    @media (width >=640px) {
-        display: flex;
-    }
+  @media (width >=640px) {
+    display: flex;
+  }
 }
 
-
-
 .colour-filter-container {
-    align-items: center;
-    display: flex;
-    gap: 1.6rem;
+  align-items: center;
+  display: flex;
+  gap: 1.6rem;
 }
 
 .colour-filter-colour-container {
-    border-radius: 100%;
-
+  border-radius: 100%;
 }
 
 .checkbox-container {
-    align-items: center;
-    display: flex;
-    gap: 1rem;
+  align-items: center;
+  display: flex;
+  gap: 1rem;
 }
 
 .checkbox {
-    height: 2.4rem;
-    width: 2.4rem;
+  height: 2.4rem;
+  width: 2.4rem;
 }
 
 select {
-    /* Styles for the select element itself */
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: white;
-    color: #333;
-    padding: 1rem;
+  /* Styles for the select element itself */
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  color: #333;
+  padding: 1rem;
 }

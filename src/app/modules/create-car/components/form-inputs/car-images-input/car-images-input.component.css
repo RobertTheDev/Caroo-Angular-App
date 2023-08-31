@@ -1,52 +1,51 @@
 .image-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    height: auto;
-    background: red;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  height: auto;
+  background: red;
 }
 
-
 .image-item {
-    position: relative;
-    height: 8rem;
-    width: 8rem;
+  position: relative;
+  height: 8rem;
+  width: 8rem;
 }
 
 img {
-    max-width: 100%;
-    height: auto;
+  max-width: 100%;
+  height: auto;
 }
 
 button {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
 }
 
 .image-placeholder {
-    display: block;
-    border: 2px dashed #ccc;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
+  display: block;
+  border: 2px dashed #ccc;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
 }
 
 .image-placeholder.active {
-    border-color: #999;
+  border-color: #999;
 }
 
 .image-placeholder img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .image-placeholder span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

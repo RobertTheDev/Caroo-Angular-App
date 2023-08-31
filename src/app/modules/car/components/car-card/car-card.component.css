@@ -1,12 +1,14 @@
 .car-card-container {
-    width: 100%;
-    background-color: white;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0 0 0 / 20%), 0 6px 20px rgba(0 0 0 / 10%);
+  width: 100%;
+  background-color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow:
+    0 4px 8px rgba(0 0 0 / 20%),
+    0 6px 20px rgba(0 0 0 / 10%);
 }
 
 .car-card-image-container {
-    aspect-ratio: 4/3;
-    width: 100%;
+  aspect-ratio: 4/3;
+  width: 100%;
 }

@@ -1,325 +1,391 @@
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font-style: inherit;
-    vertical-align: baseline;
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font-style: inherit;
+  vertical-align: baseline;
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-    display: block;
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
 }
 
-
-
-ol, ul {
-    list-style: none;
+ol,
+ul {
+  list-style: none;
 }
 
-blockquote, q {
-    quotes: none;
+blockquote,
+q {
+  quotes: none;
 }
 
-blockquote::before, blockquote::after,
-q::before, q::after {
-    content: '';
-    content: none;
+blockquote::before,
+blockquote::after,
+q::before,
+q::after {
+  content: '';
+  content: none;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-
-
 
 img {
-    object-fit: cover;
+  object-fit: cover;
 }
 
-*, html {
-    font-size: 10px;
-    font-family: Poppins, sans-serif;
+*,
+html {
+  font-size: 10px;
+  font-family: Poppins, sans-serif;
 }
-
-
-
 
 .headline-xxl {
-    font-size: 3.5rem;
-    line-height: 4.2rem;
+  font-size: 3.5rem;
+  line-height: 4.2rem;
 
-    @media (width >=640px) {
-        font-size: 4.8rem;
-        line-height: 5.8rem;
-    }
+  @media (width >=640px) {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
 }
 
 .headline-xl {
-    font-size: 4.8rem;
-    line-height: 5.8rem;
+  font-size: 4.8rem;
+  line-height: 5.8rem;
 
-    @media (width >=640px) {
-        font-size: 2.9rem;
-        line-height: 3.5rem;
-    }
+  @media (width >=640px) {
+    font-size: 2.9rem;
+    line-height: 3.5rem;
+  }
 }
 
 .headline-lg {
-    font-size: 2.6rem;
-    line-height: 3.4rem;
+  font-size: 2.6rem;
+  line-height: 3.4rem;
 
-    @media (width >=640px) {
-        font-size: 3.6rem;
-        line-height: 4.7rem;
-    }
+  @media (width >=640px) {
+    font-size: 3.6rem;
+    line-height: 4.7rem;
+  }
 }
 
 .headline-md {
-    font-size: 2.4rem;
-    line-height: 3.1rem;
+  font-size: 2.4rem;
+  line-height: 3.1rem;
 
-    @media (width >=640px) {
-        font-size: 2.8rem;
-        line-height: 3.7rem;
-    }
+  @media (width >=640px) {
+    font-size: 2.8rem;
+    line-height: 3.7rem;
+  }
 }
 
 .headline-sm {
-    font-size: 2rem;
-    line-height: 2.6rem;
+  font-size: 2rem;
+  line-height: 2.6rem;
 
-    @media (width >=640px) {
-        font-size: 2.4rem;
-        line-height: 3.1rem;
-    }
+  @media (width >=640px) {
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+  }
 }
 
 .headline-xs {
-    font-size: 1.8rem;
-    line-height: 2.7rem;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
 
-    @media (width >=640px) {
-        font-size: 2rem;
-        line-height: 3rem;
-    }
+  @media (width >=640px) {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
 
-
-
-
-
 .body-copy-xl {
-    font-size: 1.8rem;
-    line-height: 2.7rem;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
 
-    @media (width >=640px) {
-        font-size: 2rem;
-        line-height: 3rem;
-    }
+  @media (width >=640px) {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
 
 .body-copy-lg {
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 
-    @media (width >=640px) {
-        font-size: 1.8rem;
-        line-height: 2.7rem;
-    }
+  @media (width >=640px) {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+  }
 }
 
 .body-copy-md {
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 .body-copy-sm {
-    font-size: 1.4rem;
-    line-height: 2.1rem;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
 }
 
 .body-copy-xs {
-    font-size: 1.2rem;
-    line-height: 1.8rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 
 a {
-    color: inherit;
-    font-size: 1.6rem;
-    text-decoration: none;
-    cursor: pointer;
+  color: inherit;
+  font-size: 1.6rem;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 a:hover {
-    color: red;
+  color: red;
 }
 
 body {
-    display: block;
-    line-height: 1;
-    margin: 0;
+  display: block;
+  line-height: 1;
+  margin: 0;
 }
 
 p {
-    display: block;
-    margin: 1em 0;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+  display: block;
+  margin: 1em 0;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
 ul {
-    display: block;
-    list-style-type: disc;
-    margin: 1em 0;
-    padding-left: 40px;
+  display: block;
+  list-style-type: disc;
+  margin: 1em 0;
+  padding-left: 40px;
 }
 
 li {
-    display: list-item;
-    margin: 1em 0;
-    font-size: 1.6rem;
-    line-height: 2.4rem;
+  display: list-item;
+  margin: 1em 0;
+  font-size: 1.6rem;
+  line-height: 2.4rem;
 }
 
-
 h1 {
-    display: block;
-    margin: 0.67em 0;
-    font-weight: bold;
-    font-size: 3.5rem;
-    line-height: 4.2rem;
+  display: block;
+  margin: 0.67em 0;
+  font-weight: bold;
+  font-size: 3.5rem;
+  line-height: 4.2rem;
 
-    @media (width >=640px) {
-        font-size: 4.8rem;
-        line-height: 5.8rem;
-    }
-
-
+  @media (width >=640px) {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+  }
 }
 
 h2 {
-    display: block;
-    margin: 0.67em 0;
-    font-weight: bold;
-    font-size: 1.8rem;
-    line-height: 2.7rem;
+  display: block;
+  margin: 0.67em 0;
+  font-weight: bold;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
 
-    @media (width >=640px) {
-        font-size: 2rem;
-        line-height: 3rem;
-    }
+  @media (width >=640px) {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
 }
 
-
-
-
 .page-container {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .content-container {
-    align-items: flex-start;
-    display: flex;
-    flex-direction: column;
-    padding: 1.6rem;
-    width: 100%;
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  padding: 1.6rem;
+  width: 100%;
 
-    @media (width >=640px) {
-        width: 70%;
-    }
+  @media (width >=640px) {
+    width: 70%;
+  }
 
-    @media (width >=1024px) {
-        width: 50%;
-    }
+  @media (width >=1024px) {
+    width: 50%;
+  }
 }
 
 button {
-    border: none;
-    font-size: 1.4rem;
-    font-weight: 400;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: 400;
 }
 
 button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 input {
-    font-size: 1.4rem;
-    line-height: 2.1rem;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
 }
 
 select {
-    font-size: 1.4rem;
-    line-height: 2.1rem;
+  font-size: 1.4rem;
+  line-height: 2.1rem;
 }
 
 .primary-button {
-    background-color: royalblue;
-    border-radius: 0.8rem;
-    color: white;
-    padding: 1rem;
-    transition-duration: 500ms;
+  background-color: royalblue;
+  border-radius: 0.8rem;
+  color: white;
+  padding: 1rem;
+  transition-duration: 500ms;
 }
 
 .primary-button:hover {
-    background-color: darkblue;
+  background-color: darkblue;
 }
 
 .primary-button-icon {
-    font-size: 1.6rem;
+  font-size: 1.6rem;
 }
 
-
 .form-container {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0 0 0 / 20%), 0 6px 20px rgba(0 0 0 / 10%);
-    padding: 1.6rem;
-    width: 100%;
-    gap: 2.4rem;
-    border-radius: 0.8rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  box-shadow:
+    0 4px 8px rgba(0 0 0 / 20%),
+    0 6px 20px rgba(0 0 0 / 10%);
+  padding: 1.6rem;
+  width: 100%;
+  gap: 2.4rem;
+  border-radius: 0.8rem;
 }
 
 .form-input {
-    box-sizing: border-box;
-    height: 4rem;
-    padding: 0 1rem;
-    width: 100%;
-    border-radius: 0.4rem;
-    border: 1px solid lightgray;
+  box-sizing: border-box;
+  height: 4rem;
+  padding: 0 1rem;
+  width: 100%;
+  border-radius: 0.4rem;
+  border: 1px solid lightgray;
 }
 
 .danger {
-    font-size: 1.6rem;
-    color: red;
+  font-size: 1.6rem;
+  color: red;
 }
 
 .link {
-    font-size: 1.6rem;
-    font-weight: 400;
+  font-size: 1.6rem;
+  font-weight: 400;
 }
 
 .link:hover {
-    color: royalblue;
+  color: royalblue;
 }

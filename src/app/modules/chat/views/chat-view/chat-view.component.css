@@ -1,68 +1,67 @@
 .chat-sidebar {
-    width: 35vw;
-    min-height: 100vh;
-    background: white;
+  width: 35vw;
+  min-height: 100vh;
+  background: white;
 }
 
 .chat-page-container {
-    align-items: center;
-    display: flex;
+  align-items: center;
+  display: flex;
 }
 
 .chat-preview-cards-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 1.6rem;
-    padding: 1.6rem;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.6rem;
+  padding: 1.6rem;
+  box-sizing: border-box;
 }
 
 .chat-interface-container {
-    background: lemonchiffon;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
+  background: lemonchiffon;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
 .chat-input-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    min-height: 5rem;
-    background: gold;
-    padding: 1.6rem;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  min-height: 5rem;
+  background: gold;
+  padding: 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .chat-input {
-    flex: 1;
+  flex: 1;
 }
 
-.chat-input-button {}
 
 .chat-preview-container {
-    background: green;
-    width: 100%;
-    padding: 1.6rem;
-    box-sizing: border-box;
-    display: flex;
-    gap: 1.6rem;
+  background: green;
+  width: 100%;
+  padding: 1.6rem;
+  box-sizing: border-box;
+  display: flex;
+  gap: 1.6rem;
 }
 
-.chat-chatee-message-container {}
+
 
 .card-preview-avatar-image {
-    height: 6rem;
-    width: 6rem;
-    border-radius: 100%;
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
 }
 
 .card-preview-content-container {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }

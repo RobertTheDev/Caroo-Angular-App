@@ -8,9 +8,8 @@ describe('AccessibilityStatementViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccessibilityStatementViewComponent ]
-    })
-    .compileComponents();
+      declarations: [AccessibilityStatementViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AccessibilityStatementViewComponent);
     component = fixture.componentInstance;

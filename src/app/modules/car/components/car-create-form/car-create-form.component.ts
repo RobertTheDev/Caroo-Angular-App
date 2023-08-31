@@ -25,17 +25,6 @@ export class CarCreateFormComponent {
     this.images[index] = '';
   }
 
-  uploadImage(event: any, index: number) {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.images[index] = e.target.result;
-      };
-      reader.readAsDataURL(file);
-    }
-  }
-
   // Form fields.
   form = this.fb.group({
     make: [null, [Validators.required]],

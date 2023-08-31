@@ -8,9 +8,8 @@ describe('InfoPageLoaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InfoPageLoaderComponent ]
-    })
-    .compileComponents();
+      declarations: [InfoPageLoaderComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(InfoPageLoaderComponent);
     component = fixture.componentInstance;

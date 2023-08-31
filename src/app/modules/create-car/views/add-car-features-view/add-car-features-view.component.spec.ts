@@ -8,9 +8,8 @@ describe('AddCarFeaturesViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCarFeaturesViewComponent ]
-    })
-    .compileComponents();
+      declarations: [AddCarFeaturesViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddCarFeaturesViewComponent);
     component = fixture.componentInstance;

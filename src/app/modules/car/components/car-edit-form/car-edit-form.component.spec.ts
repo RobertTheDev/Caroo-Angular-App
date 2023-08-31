@@ -8,9 +8,8 @@ describe('CarEditFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CarEditFormComponent ]
-    })
-    .compileComponents();
+      declarations: [CarEditFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CarEditFormComponent);
     component = fixture.componentInstance;

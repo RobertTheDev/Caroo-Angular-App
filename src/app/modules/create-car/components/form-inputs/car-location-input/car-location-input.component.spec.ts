@@ -8,9 +8,8 @@ describe('CarLocationInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CarLocationInputComponent ]
-    })
-    .compileComponents();
+      declarations: [CarLocationInputComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CarLocationInputComponent);
     component = fixture.componentInstance;

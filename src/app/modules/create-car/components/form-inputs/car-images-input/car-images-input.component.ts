@@ -24,14 +24,8 @@ export class CarImagesInputComponent {
 
   selectedImages: Image[] = [];
 
-  placeholderArray(): any[] {
+  placeholderArray(): Image[] {
     return new Array(6);
-  }
-
-  onFileSelected(event: any, index: number): void {
-    const file: File = event.target.files[0];
-    const imageUrl = URL.createObjectURL(file);
-    this.selectedImages[index] = { url: imageUrl, file };
   }
 
   deleteImage(index: number): void {
