@@ -14,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CreateCarModule } from './modules/create-car/create-car.module';
 import { ChatModule } from './modules/chat/chat.module';
+import { SavedCarModule } from './modules/saved-car/saved-car.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,6 +25,7 @@ import { ChatModule } from './modules/chat/chat.module';
     AuthModule,
     CreateCarModule,
     CarModule,
+    SavedCarModule,
     LayoutModule,
     ChatModule,
     AccountModule,
