@@ -18,6 +18,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { VerifyEmailViewComponent } from './views/verify-email-view/verify-email-view.component';
 import { VerifyEmailFormComponent } from './components/verify-email-form/verify-email-form.component';
+import { AccountCarListingsListComponent } from './components/account-car-listings-list/account-car-listings-list.component';
+import { AccountCarListingsViewComponent } from './views/account-car-listings-view/account-car-listings-view.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { VerifyEmailFormComponent } from './components/verify-email-form/verify-
     CloseAccountViewComponent,
     VerifyEmailViewComponent,
     VerifyEmailFormComponent,
+    AccountCarListingsListComponent,
+    AccountCarListingsViewComponent,
   ],
   imports: [CommonModule, RouterModule, ReactiveFormsModule],
   exports: [
