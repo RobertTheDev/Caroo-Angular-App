@@ -36,7 +36,7 @@ export class TermsAndConditionsViewComponent implements OnInit {
   ngOnInit(): void {
     this.loadMarkdownContent();
 
-    this.title.setTitle('Terms and Conditions| Caroo');
+    this.title.setTitle('Terms and Conditions | Caroo');
 
     this.meta.updateTag({
       name: 'description',
