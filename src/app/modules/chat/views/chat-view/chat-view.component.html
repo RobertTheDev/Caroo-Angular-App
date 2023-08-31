@@ -1,28 +1,4 @@
 <div class="chat-page-container">
-  <div class="chat-sidebar">
-    <div class="chat-preview-cards-container">
-      <div
-        class="chat-preview-container"
-        *ngFor="let chatPreview of chatPreviews"
-      >
-        <img
-          class="card-preview-avatar-image"
-          [src]="chatPreview.user.avatarUrl"
-        />
-        <div class="card-preview-content-container">
-          <p>
-            {{ chatPreview.user.firstName }} {{ chatPreview.user.lastName }}
-          </p>
-          <p>{{ chatPreview.message.createdAt | dateDistanceToNowFormat }}</p>
-          <p>{{ chatPreview.message.content }}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="chat-interface-container">
-    <div class="chat-input-container">
-      <input class="chat-input" placeholder="Send message..." />
-      <button class="chat-input-button">Send</button>
-    </div>
-  </div>
+  <app-chat-cards-list />
+  <app-chat-message-input />
 </div>

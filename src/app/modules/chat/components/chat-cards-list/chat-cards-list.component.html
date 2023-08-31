@@ -1,1 +1,18 @@
-<p>chat-cards-list works!</p>
+<div class="chat-sidebar">
+  <div class="chat-preview-cards-container">
+    <div
+      class="chat-preview-container"
+      *ngFor="let chatPreview of chatPreviews"
+    >
+      <img
+        class="card-preview-avatar-image"
+        [src]="chatPreview.user.avatarUrl"
+      />
+      <div class="card-preview-content-container">
+        <p>{{ chatPreview.user.firstName }} {{ chatPreview.user.lastName }}</p>
+        <p>{{ chatPreview.message.createdAt | dateDistanceToNowFormat }}</p>
+        <p>{{ chatPreview.message.content }}</p>
+      </div>
+    </div>
+  </div>
+</div>

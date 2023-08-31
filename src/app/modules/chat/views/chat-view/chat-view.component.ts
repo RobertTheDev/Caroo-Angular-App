@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
-import chatPreviews from './chatPreviews';
-
 @Component({
   selector: 'app-chat-view',
   templateUrl: './chat-view.component.html',
@@ -21,6 +19,4 @@ export class ChatViewComponent implements OnInit {
       content: '',
     });
   }
-
-  chatPreviews = chatPreviews;
 }
