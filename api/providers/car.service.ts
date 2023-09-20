@@ -1,6 +1,6 @@
 import { Car, Prisma, PrismaClient } from '@prisma/client';
-import { CreateCarSchemaType } from 'models/cars/validators/createCar.schema';
-import { UpdateCarSchemaType } from 'models/cars/validators/updateCar.schema';
+import { CreateCarSchemaType } from 'models/car/validators/createCar.schema';
+import { UpdateCarSchemaType } from 'models/car/validators/updateCar.schema';
 
 export class CarService {
   // Define the prisma client.
