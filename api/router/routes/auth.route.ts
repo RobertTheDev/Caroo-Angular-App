@@ -7,7 +7,6 @@ import getAuthenticatedUser from 'api/controllers/auth/getAuthenticatedUser';
 import login from 'api/controllers/auth/login';
 import logout from 'api/controllers/auth/logout';
 import signUp from 'api/controllers/auth/signUp';
-import updateUserById from 'api/controllers/users/updateUserById';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import isUserNotSignedIn from 'api/middlewares/auth/isUserNotSignedIn';
 
@@ -32,7 +31,5 @@ authRouter.put('/change-email', isAuthenticated, changeEmail);
 authRouter.put('/change-password', isAuthenticated, changePassword);
 
 authRouter.put('/forgot-password', isUserNotSignedIn, forgotPassword);
-
-authRouter.put('/update-account', isAuthenticated, updateUserById);
 
 export default authRouter;
