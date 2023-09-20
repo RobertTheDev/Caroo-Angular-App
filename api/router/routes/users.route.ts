@@ -1,12 +1,13 @@
 import getUserByEmail from 'api/controllers/users/getUserByEmail';
 import getUserById from 'api/controllers/users/getUserById';
 import getUsers from 'api/controllers/users/getUsers';
-import * as express from 'express';
+import { Router } from 'express';
 
 // User router defines all the routes used in modifying users data.
 // User router is exported into the app router file.
 
-const usersRouter = express.Router();
+// Define users router using the express router.
+const usersRouter = Router();
 
 usersRouter.get('/', getUsers);
 

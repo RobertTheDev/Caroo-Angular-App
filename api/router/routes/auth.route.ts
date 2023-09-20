@@ -1,3 +1,4 @@
+import { Router } from 'express';
 import changeEmail from 'api/controllers/auth/changeEmail';
 import changePassword from 'api/controllers/auth/changePassword';
 import closeAccount from 'api/controllers/auth/closeAccount';
@@ -10,28 +11,27 @@ import updateUserById from 'api/controllers/users/updateUserById';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import isUserNotSignedIn from 'api/middlewares/auth/isUserNotSignedIn';
 
-import * as express from 'express';
-
-const authRouter = express.Router();
+// Define auth router using the express router.
+const authRouter = Router();
 
 // Auth router defines all the routes used in modifying user authentication.
 // Auth router is exported into the app router file.
 
-authRouter.put('/change-email', isAuthenticated, changeEmail);
-
-authRouter.put('/change-password', isAuthenticated, changePassword);
-
 authRouter.delete('/close-account', isAuthenticated, closeAccount);
 
-authRouter.put('/forgot-password', isUserNotSignedIn, forgotPassword);
+authRouter.delete('/logout', isAuthenticated, logout);
 
 authRouter.get('/authenticated-user', isAuthenticated, getAuthenticatedUser);
 
 authRouter.post('/login', isUserNotSignedIn, login);
 
-authRouter.get('/logout', isAuthenticated, logout);
-
 authRouter.post('/sign-up', isUserNotSignedIn, signUp);
+
+authRouter.put('/change-email', isAuthenticated, changeEmail);
+
+authRouter.put('/change-password', isAuthenticated, changePassword);
+
+authRouter.put('/forgot-password', isUserNotSignedIn, forgotPassword);
 
 authRouter.put('/update-account', isAuthenticated, updateUserById);
 
