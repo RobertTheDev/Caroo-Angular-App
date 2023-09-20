@@ -11,90 +11,101 @@ datasource db {
 }
 
 model Car {
-  id              String     @unique @default(uuid())
-  createdAt       DateTime   @default(now())
-  updatedAt       DateTime   @updatedAt
-  description     String?
-  driveType       String
-  doors           Int
-  gearbox         String
-  year            Int
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
   colour          String
+  description     String?
+  doors           Int
+  driveType       String
   engineSizeTotal Int
-  engineSizeUnit  String     @default("litres")
+  engineSizeUnit  String
   fuelType        String
+  gearbox         String
   make            String
   mileageTotal    Int
-  mileageUnit     String     @default("miles")
+  mileageUnit     String
   model           String
-  owner           User?      @relation(fields: [ownerId], references: [id])
   ownerId         String
+  priceCurrency   String
   priceTotal      Int
-  priceCurrency   String     @default("GBP")
   seats           Int
-  usersSaved      SavedCar[]
-  images          CarImage[]
+  year            Int
+
+  images     CarImage[]
+  owners     CarOwner[]
+  requests   CarRequest[]
+  usersSaved SavedCar[]
 }
 
 model CarImage {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  url       String
-  alt       String
-  car       Car?     @relation(fields: [carId], references: [id])
-  carId     String?
+
+  alt   String
+  carId String?
+  url   String
+
+  car Car? @relation(fields: [carId], references: [id])
 }
 
-model User {
-  id           String        @unique @default(uuid())
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  firstName    String
-  lastName     String
-  email        String        @unique
-  password     String
-  carsSaved    Int           @default(0)
-  carsOwned    Int           @default(0)
-  savedCars    SavedCar[]
-  ownedCars    Car[]
-  avatarUrl    String?
-  chatMessages ChatMessage[]
+model CarOwner {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  carId  String
+  userId String
+
+  car  Car  @relation(fields: [carId], references: [id])
+  user User @relation(fields: [userId], references: [id])
+}
+
+model CarRequest {
+  id        String   @unique @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  carId   String
+  message String?
+  status  String
+  userId  String
+
+  car  Car  @relation(fields: [carId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 model SavedCar {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  car       Car      @relation(fields: [carId], references: [id])
-  carId     String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
+
+  carId  String
+  userId String
+
+  car  Car  @relation(fields: [carId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
-model Chat {
-  id           String        @unique @default(uuid())
-  createdAt    DateTime      @default(now())
-  updatedAt    DateTime      @updatedAt
-  chatMember   ChatMember[]
-  chatMessages ChatMessage[]
-}
-
-model ChatMember {
+model User {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  chat      Chat?    @relation(fields: [chatId], references: [id])
-  chatId    String?
-}
 
-model ChatMessage {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  chat      Chat?    @relation(fields: [chatId], references: [id])
-  chatId    String?
-  content   String
-  user      User?    @relation(fields: [userId], references: [id])
-  userId    String?
+  avatar                   String?
+  emailAddress             String    @unique
+  emailVerified            DateTime?
+  firstName                String
+  lastName                 String
+  password                 String
+  passwordResetToken       String?   @unique
+  passwordResetTokenExpiry DateTime?
+  verifyEmailToken         String?   @unique
+  verifyEmailTokenExpiry   DateTime?
+
+  carRequests CarRequest[]
+  ownedCars   CarOwner[]
+  savedCars   SavedCar[]
 }
