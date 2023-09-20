@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import createCarOwnerSchema from 'api/validators/carOwners/createCarOwner.schema';
+import createCarOwnerSchema from 'models/carOwner/validators/createCarOwner.schema';
 import { SavedCarService } from 'api/providers/savedCar.service';
 
 // This controller creates a saved car.

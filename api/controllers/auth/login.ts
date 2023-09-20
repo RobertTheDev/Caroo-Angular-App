@@ -1,6 +1,6 @@
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import loginSchema from 'api/validators/auth/login.schema';
+import loginSchema from 'models/auth/login.schema';
 import { UserService } from 'api/providers/user.service';
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import { User } from '@prisma/client';

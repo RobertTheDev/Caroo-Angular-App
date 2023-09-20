@@ -1,6 +1,4 @@
 import { CarOwner, Prisma, PrismaClient } from '@prisma/client';
-import { CreateCarOwnerSchemaType } from 'api/validators/carOwners/createCarOwner.schema';
-import { UpdateCarOwnerSchemaType } from 'api/validators/carOwners/updateCarOwner.schema';
 
 export class CarOwnerService {
   // Define the prisma client.

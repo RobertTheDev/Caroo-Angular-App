@@ -1,8 +1,8 @@
 import { Prisma, PrismaClient, User } from '@prisma/client';
-import { ChangeEmailSchemaType } from 'api/validators/auth/changeEmail.schema';
-import { ChangePasswordSchemaType } from 'api/validators/auth/changePassword.schema';
-import { SignUpSchemaType } from 'api/validators/auth/signUp.schema';
-import { UpdateUserSchemaType } from 'api/validators/users/updateUser.schema';
+import { ChangeEmailSchemaType } from 'models/auth/validators/changeEmail.schema';
+import { ChangePasswordSchemaType } from 'models/auth/changePassword.schema';
+import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
+import { UpdateUserSchemaType } from 'models/users/validators/updateUser.schema';
 
 export class UserService {
   // Define the prisma client.

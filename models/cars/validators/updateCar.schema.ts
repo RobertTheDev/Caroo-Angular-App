@@ -1,4 +1,4 @@
-import carColours from '../../lib/constants/carColours';
+import carColours from '../../../api/lib/constants/carColours';
 import { number, object, string } from 'zod';
 
 // Update car schema is a validation schema defining the acceptable fields required.

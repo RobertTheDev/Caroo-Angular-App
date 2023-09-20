@@ -1,4 +1,4 @@
-import signUpSchema from '../../validators/auth/signUp.schema';
+import signUpSchema from '../../../models/auth/validators/signUp.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { User } from '@prisma/client';

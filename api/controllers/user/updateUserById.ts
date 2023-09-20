@@ -1,5 +1,5 @@
 import { UserService } from 'api/providers/user.service';
-import updateUserSchema from 'api/validators/users/updateUser.schema';
+import updateUserSchema from 'models/users/validators/updateUser.schema';
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 

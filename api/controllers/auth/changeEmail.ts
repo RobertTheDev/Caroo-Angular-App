@@ -1,6 +1,6 @@
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import { UserService } from 'api/providers/user.service';
-import changeEmailSchema from 'api/validators/auth/changeEmail.schema';
+import changeEmailSchema from 'models/auth/validators/changeEmail.schema';
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 

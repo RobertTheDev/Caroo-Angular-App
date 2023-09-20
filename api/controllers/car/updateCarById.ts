@@ -1,5 +1,5 @@
 import { CarService } from 'api/providers/car.service';
-import updateCarSchema from 'api/validators/cars/updateCar.schema';
+import updateCarSchema from 'models/cars/validators/updateCar.schema';
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
