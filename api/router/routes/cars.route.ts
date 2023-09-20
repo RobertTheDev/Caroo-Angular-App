@@ -1,5 +1,5 @@
-import getCarById from 'api/controllers/cars/getCarById';
-import getCars from 'api/controllers/cars/getCars';
+import getCarById from 'api/controllers/car/getCarById';
+import getCars from 'api/controllers/car/getCars';
 import { Router } from 'express';
 
 // Cars router defines all the routes used in modifying cars data.

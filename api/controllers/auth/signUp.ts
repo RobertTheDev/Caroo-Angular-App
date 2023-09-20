@@ -1,15 +1,12 @@
 import signUpSchema from '../../validators/auth/signUp.schema';
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { User } from '@prisma/client';
 import { UserService } from 'api/providers/user.service';
 
 // This controller creates a user and signs it into session.
 
-export default async function signUp(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function signUp(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req;

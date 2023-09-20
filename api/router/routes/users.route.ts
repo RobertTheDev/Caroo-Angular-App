@@ -1,6 +1,6 @@
-import getUserByEmail from 'api/controllers/users/getUserByEmail';
-import getUserById from 'api/controllers/users/getUserById';
-import getUsers from 'api/controllers/users/getUsers';
+import getUserByEmail from 'api/controllers/user/getUserByEmail';
+import getUserById from 'api/controllers/user/getUserById';
+import getUsers from 'api/controllers/user/getUsers';
 import { Router } from 'express';
 
 // User router defines all the routes used in modifying users data.
