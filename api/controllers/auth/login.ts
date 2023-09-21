@@ -2,9 +2,8 @@ import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import UserPrismaService from 'api/providers/prisma/user.service';
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
-import { User } from '@prisma/client';
 import loginSchema from 'models/auth/validators/login.schema';
-
+import winstonLogger from 'api/utils/winstonLogger';
 export default async function login(req: Request, res: Response) {
   try {
     // Get the request body.
@@ -15,7 +14,18 @@ export default async function login(req: Request, res: Response) {
 
     const validation = await loginSchema.safeParseAsync(body);
 
-    const findUser = await userPrismaService.findOneByEmailAddress(body.email);
+    if (!validation.success) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        message: ReasonPhrases.BAD_REQUEST,
+        error: validation.error,
+      });
+    }
+
+    const { emailAddress } = validation.data;
+
+    const findUser = await userPrismaService.findOneByEmailAddress(
+      emailAddress,
+    );
 
     if (!findUser) {
       return res.status(StatusCodes.NOT_FOUND).send({
@@ -28,36 +38,26 @@ export default async function login(req: Request, res: Response) {
 
     if (!checkPassword) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: ReasonPhrases.BAD_REQUEST,
-        error: `Password not successful.`,
+        message: `Password not successful.`,
       });
     }
 
-    if (validation.success) {
-      const loggedInUser = await userPrismaService.findOneByEmailAddress(
-        body.email,
-      );
+    // Seperate password from create user response.
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...data } = findUser;
 
-      // Seperate password from create user response.
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...data } = loggedInUser as User;
+    req.session.user = data;
 
-      req.session.user = data;
-
-      return res.status(StatusCodes.OK).send({
-        message: `Successfully logged in.`,
-        data,
-      });
-    }
-
-    return res.status(StatusCodes.BAD_REQUEST).send({
-      message: ReasonPhrases.BAD_REQUEST,
-      error: validation.error,
+    return res.status(StatusCodes.OK).send({
+      message: `Successfully logged in.`,
+      data,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error during user sign up:`, error);
+    // If an error occurs - catch and send the error.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       message: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      error,
     });
   }
 }
