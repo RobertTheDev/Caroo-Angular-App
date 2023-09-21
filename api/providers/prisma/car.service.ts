@@ -2,7 +2,7 @@ import { Car, Prisma, PrismaClient } from '@prisma/client';
 import { CreateCarSchemaType } from 'models/car/validators/createCar.schema';
 import { UpdateCarSchemaType } from 'models/car/validators/updateCar.schema';
 
-export class CarService {
+export class CarPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 
@@ -11,7 +11,7 @@ export class CarService {
     this.prisma = new PrismaClient();
   }
 
-  // Create and return a car.
+  // Create and return a new car.
   async createOne(data: CreateCarSchemaType): Promise<Car> {
     return await this.prisma.car.create({
       data,
@@ -27,30 +27,11 @@ export class CarService {
     });
   }
 
-  // Return all cars by owner id.
-  async findAllByOwnerId(ownerId: string): Promise<Car[]> {
-    return await this.prisma.car.findMany({
-      include: {
-        images: true,
-      },
-      where: { ownerId },
-    });
-  }
-
   // Find and return a car by id.
   async findOneById(id: string): Promise<Car | null> {
     return await this.prisma.car.findUnique({
       include: {
         images: true,
-        owner: {
-          select: {
-            id: true,
-            email: true,
-            firstName: true,
-            lastName: true,
-            avatarUrl: true,
-          },
-        },
       },
       where: {
         id,
@@ -71,15 +52,6 @@ export class CarService {
   // Delete all cars.
   async deleteAll(): Promise<Prisma.BatchPayload> {
     return await this.prisma.car.deleteMany();
-  }
-
-  // Delete all cars by id.
-  async deleteAllByOwnerId(ownerId: string): Promise<Prisma.BatchPayload> {
-    return await this.prisma.car.deleteMany({
-      where: {
-        ownerId,
-      },
-    });
   }
 
   // Delete a car by id.

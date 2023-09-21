@@ -2,7 +2,7 @@ import { CarImage, Prisma, PrismaClient } from '@prisma/client';
 import { CreateCarImageSchemaType } from 'models/carImage/validators/createCarImage.schema';
 import { UpdateCarImageSchemaType } from 'models/carImage/validators/updateCarImage.schema';
 
-export class CarImageService {
+export class CarImagePrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 
@@ -18,48 +18,7 @@ export class CarImageService {
     });
   }
 
-  // Return all car images.
-  async findAll(): Promise<CarImage[]> {
-    return await this.prisma.carImage.findMany();
-  }
-
-  // Return all car images by car id.
-  async findAllByCarId(carId: string): Promise<CarImage[]> {
-    return await this.prisma.carImage.findMany({
-      where: {
-        carId,
-      },
-    });
-  }
-
-  // Find and return a car image by id.
-  async findOneById(id: string): Promise<CarImage | null> {
-    return await this.prisma.carImage.findUnique({
-      where: {
-        id,
-      },
-    });
-  }
-
-  // Update and return a car image by id.
-  async updateOneById(
-    data: UpdateCarImageSchemaType,
-    id: string,
-  ): Promise<CarImage> {
-    return await this.prisma.carImage.update({
-      data,
-      where: {
-        id,
-      },
-    });
-  }
-
-  // Delete all car images.
-  async deleteAll(): Promise<Prisma.BatchPayload> {
-    return await this.prisma.carImage.deleteMany();
-  }
-
-  // Delete all car images by car id.
+  // Delete all car images by matching car id.
   async deleteAllByCarId(carId: string): Promise<Prisma.BatchPayload> {
     return await this.prisma.carImage.deleteMany({
       where: {
@@ -71,6 +30,64 @@ export class CarImageService {
   // Delete a car image by id.
   async deleteOneById(id: string): Promise<CarImage> {
     return await this.prisma.carImage.delete({
+      where: {
+        id,
+      },
+    });
+  }
+
+  // Return all car images.
+  async findAll(): Promise<CarImage[]> {
+    return await this.prisma.carImage.findMany({
+      include: {
+        car: {
+          include: {
+            images: true,
+          },
+        },
+      },
+    });
+  }
+
+  // Find and return all car images by matching car id.
+  async findAllByCarId(carId: string): Promise<CarImage[]> {
+    return await this.prisma.carImage.findMany({
+      where: {
+        carId,
+      },
+      include: {
+        car: {
+          include: {
+            images: true,
+          },
+        },
+      },
+    });
+  }
+
+  // Find and return car image by id.
+  async findOneById(id: string): Promise<CarImage | null> {
+    return await this.prisma.carImage.findUnique({
+      include: {
+        car: {
+          include: {
+            images: true,
+          },
+        },
+      },
+      where: {
+        id,
+      },
+    });
+  }
+
+  // Delete all saved cars by matching user id.
+  async updateCarRequestById(
+    data: UpdateCarImageSchemaType,
+    id: string,
+  ): Promise<CarImage> {
+    return await this.prisma.carImage.update({
+      data,
       where: {
         id,
       },

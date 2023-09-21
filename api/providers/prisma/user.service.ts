@@ -1,10 +1,10 @@
 import { Prisma, PrismaClient, User } from '@prisma/client';
 import { ChangeEmailSchemaType } from 'models/settings/validators/changeEmail.schema';
-import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 import { ChangePasswordSchemaType } from 'models/settings/validators/changePassword.schema';
+import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 
-export class UserService {
+export class UserPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 
@@ -13,9 +13,25 @@ export class UserService {
     this.prisma = new PrismaClient();
   }
 
-  // Create and return a user after sign up.
+  // Creates a user during sign up.
   async createUser(data: SignUpSchemaType): Promise<User> {
-    return await this.prisma.user.create({ data });
+    return await this.prisma.user.create({
+      data,
+    });
+  }
+
+  // Delete all users.
+  async deleteAll(): Promise<Prisma.BatchPayload> {
+    return await this.prisma.user.deleteMany();
+  }
+
+  // Update and return a user by id.
+  async deleteOneById(id: string): Promise<User> {
+    return await this.prisma.user.delete({
+      where: {
+        id,
+      },
+    });
   }
 
   // Return all users.
@@ -23,8 +39,8 @@ export class UserService {
     return await this.prisma.user.findMany();
   }
 
-  // Find and return a user by email.
-  async findOneByEmail(emailAddress: string): Promise<User | null> {
+  // Find and return a user by email address.
+  async findOneByEmailAddress(emailAddress: string): Promise<User | null> {
     return await this.prisma.user.findUnique({
       where: {
         emailAddress,
@@ -41,17 +57,7 @@ export class UserService {
     });
   }
 
-  // Update and return a user by id.
-  async updateOneById(data: UpdateUserSchemaType, id: string): Promise<User> {
-    return await this.prisma.user.update({
-      data,
-      where: {
-        id,
-      },
-    });
-  }
-
-  // Update and return a user by id.
+  // Update a user email by id.
   async updateEmailById(
     data: ChangeEmailSchemaType,
     id: string,
@@ -65,10 +71,7 @@ export class UserService {
   }
 
   // Update and return a user by id.
-  async updatePasswordById(
-    data: ChangePasswordSchemaType,
-    id: string,
-  ): Promise<User> {
+  async updateOneById(data: UpdateUserSchemaType, id: string): Promise<User> {
     return await this.prisma.user.update({
       data,
       where: {
@@ -77,14 +80,13 @@ export class UserService {
     });
   }
 
-  // Delete all users.
-  async deleteAll(): Promise<Prisma.BatchPayload> {
-    return await this.prisma.user.deleteMany();
-  }
-
-  // Update and return a user by id.
-  async deleteOneById(id: string): Promise<User> {
-    return await this.prisma.user.delete({
+  // Update a password by id.
+  async updatePasswordById(
+    data: ChangePasswordSchemaType,
+    id: string,
+  ): Promise<User> {
+    return await this.prisma.user.update({
+      data,
       where: {
         id,
       },
