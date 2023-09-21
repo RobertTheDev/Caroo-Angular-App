@@ -1,5 +1,5 @@
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
-import { UserPrismaService } from 'api/providers/prisma/user.service';
+import UserPrismaService from 'api/providers/prisma/user.service';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import changePasswordSchema from 'models/settings/validators/changePassword.schema';
@@ -29,7 +29,9 @@ export default async function closeAccount(req: Request, res: Response) {
     if (validation.success) {
       // Check password is correct.
 
-      const findUser = await userService.findOneByEmailAddress(user.email);
+      const findUser = await userService.findOneByEmailAddress(
+        user.emailAddress,
+      );
 
       if (!findUser) {
         return res.status(StatusCodes.NOT_FOUND).send({
