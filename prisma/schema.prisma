@@ -25,10 +25,10 @@ model Car {
   gearbox         String
   make            String
   mileageTotal    Int
-  mileageUnit     String
+  mileageUnit     String  @default("L")
   model           String
   ownerId         String
-  priceCurrency   String
+  priceCurrency   String  @default("GBP")
   priceTotal      Int
   seats           Int
   year            Int
