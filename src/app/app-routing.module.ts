@@ -1,11 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundViewComponent } from './modules/not-found/views/not-found-view/not-found-view.component';
-import { AccountProfileViewComponent } from './modules/account/views/account-profile-view/account-profile-view.component';
-import { CloseAccountViewComponent } from './modules/account/views/close-account-view/close-account-view.component';
-import { ChangePasswordViewComponent } from './modules/account/views/change-password-view/change-password-view.component';
-import { ChangeEmailViewComponent } from './modules/account/views/change-email-view/change-email-view.component';
-import { EditProfileViewComponent } from './modules/account/views/edit-profile-view/edit-profile-view.component';
 import { LoginViewComponent } from './modules/auth/views/login-view/login-view.component';
 import { SignUpViewComponent } from './modules/auth/views/sign-up-view/sign-up-view.component';
 import { SavedCarsViewComponent } from './modules/saved-car/views/saved-cars-view/saved-cars-view.component';
@@ -19,7 +14,6 @@ import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
-import { VerifyEmailViewComponent } from './modules/account/views/verify-email-view/verify-email-view.component';
 import { PreviewCarViewComponent } from './modules/create-car/views/preview-car-view/preview-car-view.component';
 import { AddCarPriceViewComponent } from './modules/create-car/views/add-car-price-view/add-car-price-view.component';
 import { AddCarLocationViewComponent } from './modules/create-car/views/add-car-location-view/add-car-location-view.component';
@@ -28,7 +22,6 @@ import { AddCarFeaturesViewComponent } from './modules/create-car/views/add-car-
 import { AddCarDetailsViewComponent } from './modules/create-car/views/add-car-details-view/add-car-details-view.component';
 import { AddCarDescriptionViewComponent } from './modules/create-car/views/add-car-description-view/add-car-description-view.component';
 import { AddCarAboutViewComponent } from './modules/create-car/views/add-car-about-view/add-car-about-view.component';
-import { AccountCarListingsViewComponent } from './modules/account/views/account-car-listings-view/account-car-listings-view.component';
 import { SendPasswordResetPageComponent } from './modules/auth/views/send-password-reset-page/send-password-reset-page.component';
 import { ResetPasswordViewComponent } from './modules/auth/views/reset-password-view/reset-password-view.component';
 
@@ -78,18 +71,7 @@ const routes: Routes = [
       { path: ':id/edit', component: EditCarViewComponent },
     ],
   },
-  {
-    path: 'profile',
-    children: [
-      { path: '', component: AccountProfileViewComponent },
-      { path: 'change-email', component: ChangeEmailViewComponent },
-      { path: 'change-password', component: ChangePasswordViewComponent },
-      { path: 'close-account', component: CloseAccountViewComponent },
-      { path: 'edit-profile', component: EditProfileViewComponent },
-      { path: 'my-car-listings', component: AccountCarListingsViewComponent },
-      { path: 'verify-email', component: VerifyEmailViewComponent },
-    ],
-  },
+
   { path: 'saved-cars', component: SavedCarsViewComponent },
   {
     path: 'info',
