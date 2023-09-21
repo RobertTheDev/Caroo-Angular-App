@@ -9,6 +9,8 @@ import { LoginViewComponent } from './views/login-view/login-view.component';
 import { RouterModule } from '@angular/router';
 import { SendPasswordResetFormComponent } from './components/send-password-reset-form/send-password-reset-form.component';
 import { SendPasswordResetPageComponent } from './views/send-password-reset-page/send-password-reset-page.component';
+import { ResetPasswordFormComponent } from './components/reset-password-form/reset-password-form.component';
+import { ResetPasswordViewComponent } from './views/reset-password-view/reset-password-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { SendPasswordResetPageComponent } from './views/send-password-reset-page
     LoginViewComponent,
     SendPasswordResetFormComponent,
     SendPasswordResetPageComponent,
+    ResetPasswordFormComponent,
+    ResetPasswordViewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [SignUpViewComponent, LoginViewComponent],
