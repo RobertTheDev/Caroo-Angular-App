@@ -3,6 +3,8 @@ import { ChangeEmailSchemaType } from 'models/settings/validators/changeEmail.sc
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 import { ChangePasswordSchemaType } from 'models/settings/validators/changePassword.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
+import { SendPasswordResetTokenSchemaType } from 'models/auth/validators/sendPasswordResetToken.schema';
+import { ResetPasswordWithTokenSchemaType } from 'models/auth/validators/resetPasswordWithToken.schema';
 
 export default class UserPrismaService {
   // Define the prisma client.
@@ -76,6 +78,31 @@ export default class UserPrismaService {
       data,
       where: {
         id,
+      },
+    });
+  }
+
+  // Update user with reset password token by email address.
+  async updateOneWithResetPasswordToken(
+    data: SendPasswordResetTokenSchemaType,
+  ): Promise<User> {
+    return await this.prisma.user.update({
+      data,
+      where: {
+        emailAddress: data.emailAddress,
+      },
+    });
+  }
+
+  // Update user with reset password token by email address.
+  async updatePasswordWithResetPasswordToken(
+    passwordResetToken: string,
+    data: ResetPasswordWithTokenSchemaType,
+  ): Promise<User> {
+    return await this.prisma.user.update({
+      data,
+      where: {
+        passwordResetToken,
       },
     });
   }
