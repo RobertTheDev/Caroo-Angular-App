@@ -18,6 +18,11 @@ export default class CarRequestPrismaService {
     });
   }
 
+  // Delete all car requests.
+  async deleteAll(): Promise<Prisma.BatchPayload> {
+    return await this.prisma.carRequest.deleteMany();
+  }
+
   // Delete all car requests by matching car id.
   async deleteAllByCarId(carId: string): Promise<Prisma.BatchPayload> {
     return await this.prisma.carRequest.deleteMany({
