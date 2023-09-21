@@ -18,12 +18,10 @@ declare module 'express-session' {
     user: {
       id: string;
       createdAt: Date;
-      updatedAt: Date;
+      updatedAt?: Date;
       firstName: string;
       lastName: string;
-      email: string;
-      carsSaved: number;
-      carsOwned: number;
+      emailAddress: string;
     } | null;
   }
 }
