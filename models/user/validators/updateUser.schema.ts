@@ -1,27 +1,27 @@
-import { number, object, string } from 'zod';
+import { object, string, z } from 'zod';
 
-// Update user schema is a validation schema defining the acceptable fields required.
-
+// Zod validation schema defines fields required for updating a user.
 const updateUserSchema = object({
+  avatar: string({
+    invalid_type_error: 'First name must be a string.',
+  })
+    .url('Avatar must be in valid URL format.')
+    .nonempty('Avatar cannot be empty.')
+    .nullable()
+    .optional(),
   firstName: string({
     invalid_type_error: 'First name must be a string.',
-  }),
-
+  })
+    .nonempty('First name cannot be empty.')
+    .optional(),
   lastName: string({
     invalid_type_error: 'Last name must be a string.',
-  }),
-
-  companiesFollowed: number({
-    invalid_type_error: 'Companies followed must be a number.',
-  }),
-
-  carsOwned: number({
-    invalid_type_error: 'Cars owned must be a number.',
-  }),
-
-  carSaved: number({
-    invalid_type_error: 'Cars saved must be a number.',
-  }),
+  })
+    .nonempty('Last name cannot be empty.')
+    .optional(),
 });
+
+// Create a TypeScript type from the schema.
+export type UpdateUserSchemaType = z.infer<typeof updateUserSchema>;
 
 export default updateUserSchema;
