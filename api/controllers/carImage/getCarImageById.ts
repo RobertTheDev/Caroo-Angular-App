@@ -1,22 +1,19 @@
-import { CarImageService } from 'api/providers/carImage.service';
-import * as express from 'express';
+import CarImagePrismaService from 'api/providers/prisma/carImage.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets a car image by its id.
 
-export default async function getCarImageById(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function getCarImageById(req: Request, res: Response) {
   try {
     // Get id from params.
     const { id } = req.params;
 
     // Declare and use car image service.
-    const carImageService = new CarImageService();
+    const carImagePrismaService = new CarImagePrismaService();
 
     // Find car image by id.
-    const data = await carImageService.findOneById(id);
+    const data = await carImagePrismaService.findOneById(id);
 
     // If no car image found return a not found error.
     if (!data) {

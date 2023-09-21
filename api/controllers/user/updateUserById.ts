@@ -1,14 +1,11 @@
-import { UserService } from 'api/providers/prisma/user.service';
+import UserPrismaService from 'api/providers/prisma/user.service';
 import updateUserSchema from 'models/user/validators/updateUser.schema';
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller updates a user by its id.
 
-export default async function updateUserById(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function updateUserById(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req.body;
@@ -17,7 +14,7 @@ export default async function updateUserById(
     const { id } = req.params;
 
     // Declare and use user service.
-    const userService = new UserService();
+    const userPrismaService = new UserPrismaService();
 
     // Validate the body.
     const validation = await updateUserSchema.safeParseAsync(body);
@@ -25,7 +22,10 @@ export default async function updateUserById(
     // If validation is successful then update the user.
     if (validation.success) {
       // Update the user by id.
-      const updatedUser = await userService.updateOneById(validation.data, id);
+      const updatedUser = await userPrismaService.updateOneById(
+        validation.data,
+        id,
+      );
 
       // Return the newly updated user.
       return res.status(StatusCodes.ACCEPTED).send(updatedUser);

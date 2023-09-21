@@ -1,22 +1,22 @@
-import { CarOwnerService } from 'api/providers/carOwner.service';
-import * as express from 'express';
+import CarOwnerPrismaService from 'api/providers/prisma/carOwner.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets car owners by their user id.
 
 export default async function getCarOwnersByUserId(
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
 ) {
   try {
     // Get user id from params.
     const { userId } = req.params;
 
     // Declare and user car owner service.
-    const carOwnerService = new CarOwnerService();
+    const carOwnerPrismaService = new CarOwnerPrismaService();
 
     // Get car owners by user id.
-    const data = await carOwnerService.findAllByUserId(userId);
+    const data = await carOwnerPrismaService.findAllByUserId(userId);
 
     // Return car owners.
     return res.status(StatusCodes.OK).send({

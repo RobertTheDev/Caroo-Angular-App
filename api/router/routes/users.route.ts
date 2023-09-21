@@ -1,4 +1,4 @@
-import getUserByEmail from 'api/controllers/user/getUserByEmail';
+import getUserByEmail from 'api/controllers/user/getUserByEmailAddress';
 import getUserById from 'api/controllers/user/getUserById';
 import getUsers from 'api/controllers/user/getUsers';
 import { Router } from 'express';

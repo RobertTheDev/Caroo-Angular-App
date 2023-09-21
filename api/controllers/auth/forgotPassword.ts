@@ -1,10 +1,7 @@
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
-export default async function forgotPassword(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function forgotPassword(_req: Request, res: Response) {
   try {
     return res.status(StatusCodes.OK).send({
       message: ReasonPhrases.OK,

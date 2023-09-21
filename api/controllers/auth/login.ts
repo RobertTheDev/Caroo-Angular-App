@@ -1,24 +1,21 @@
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import loginSchema from 'models/auth/login.schema';
-import { UserService } from 'api/providers/prisma/user.service';
+import UserPrismaService from 'api/providers/prisma/user.service';
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import { User } from '@prisma/client';
+import loginSchema from 'models/auth/validators/login.schema';
 
-export default async function login(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function login(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req;
 
     // Declare and use user service.
-    const userService = new UserService();
+    const userPrismaService = new UserPrismaService();
 
     const validation = await loginSchema.safeParseAsync(body);
 
-    const findUser = await userService.findOneByEmail(body.email);
+    const findUser = await userPrismaService.findOneByEmailAddress(body.email);
 
     if (!findUser) {
       return res.status(StatusCodes.NOT_FOUND).send({
@@ -37,7 +34,9 @@ export default async function login(
     }
 
     if (validation.success) {
-      const loggedInUser = await userService.findOneByEmail(body.email);
+      const loggedInUser = await userPrismaService.findOneByEmailAddress(
+        body.email,
+      );
 
       // Seperate password from create user response.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars

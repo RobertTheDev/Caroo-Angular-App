@@ -1,16 +1,13 @@
-import { UserService } from 'api/providers/prisma/user.service';
-import * as express from 'express';
+import UserPrismaService from 'api/providers/prisma/user.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets all users.
 
-export default async function getUsers(
-  _req: express.Request,
-  res: express.Response,
-) {
+export default async function getUsers(_req: Request, res: Response) {
   try {
     // Declare and use user service.
-    const userService = new UserService();
+    const userService = new UserPrismaService();
 
     // Find users.
     const data = await userService.findAll();

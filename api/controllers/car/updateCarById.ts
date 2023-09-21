@@ -1,12 +1,9 @@
-import { CarService } from 'api/providers/car.service';
+import CarPrismaService from 'api/providers/prisma/car.service';
 import updateCarSchema from 'models/car/validators/updateCar.schema';
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
-export default async function updateCarById(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function updateCarById(req: Request, res: Response) {
   try {
     // Get request body.
     const { body } = req.body;
@@ -15,7 +12,7 @@ export default async function updateCarById(
     const { id } = req.params;
 
     // Declare and use car service.
-    const carService = new CarService();
+    const carPrismaService = new CarPrismaService();
 
     // Validate the body.
     const validation = await updateCarSchema.safeParseAsync(body);
@@ -23,7 +20,7 @@ export default async function updateCarById(
     // If validation is successful update a car by id.
     if (validation.success) {
       // Update car by id.
-      const data = await carService.updateOneById(validation.data, id);
+      const data = await carPrismaService.updateOneById(validation.data, id);
 
       // Return updated car.
       return res

@@ -1,17 +1,14 @@
-import * as express from 'express';
+import SavedCarPrismaService from 'api/providers/prisma/savedCar.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import createCarOwnerSchema from 'models/carOwner/validators/createCarOwner.schema';
-import { SavedCarService } from 'api/providers/savedCar.service';
+import createCarOwnerSchema from 'models/carOwner/createCarOwner.schema';
 
 // This controller creates a saved car.
 
-export default async function createSavedCar(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function createSavedCar(req: Request, res: Response) {
   try {
     // Declare and use saved car service.
-    const savedCarService = new SavedCarService();
+    const savedCarPrismaService = new SavedCarPrismaService();
 
     // Validate the body.
     const validation = await createCarOwnerSchema.safeParseAsync(req.body);
@@ -19,7 +16,7 @@ export default async function createSavedCar(
     // If validation is successful then create a saved car.
     if (validation.success) {
       // Create saved car.
-      const data = await savedCarService.createOne(validation.data);
+      const data = await savedCarPrismaService.createOne(validation.data);
 
       // Send response with the saved car.
       return res.status(StatusCodes.ACCEPTED).send({ data });

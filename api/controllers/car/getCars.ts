@@ -1,19 +1,16 @@
-import { CarService } from 'api/providers/car.service';
-import * as express from 'express';
+import CarPrismaService from 'api/providers/prisma/car.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets all cars.
 
-export default async function getCars(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function getCars(req: Request, res: Response) {
   try {
     // Declare and use car service.
-    const carService = new CarService();
+    const carPrismaService = new CarPrismaService();
 
     // Find all cars.
-    const data = await carService.findAll();
+    const data = await carPrismaService.findAll();
 
     // Return cars.
     return res.status(StatusCodes.OK).send({

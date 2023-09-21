@@ -1,14 +1,11 @@
-import { CarImageService } from 'api/providers/carImage.service';
 import updateCarImageSchema from 'models/carImage/validators/updateCarImage.schema';
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import CarImagePrismaService from 'api/providers/prisma/carImage.service';
 
 // This controller updates a car image by its id.
 
-export default async function updateCarImageById(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function updateCarImageById(req: Request, res: Response) {
   try {
     // Get request body.
     const { body } = req.body;
@@ -17,7 +14,7 @@ export default async function updateCarImageById(
     const { id } = req.params;
 
     // Declare and use car image service.
-    const carImageService = new CarImageService();
+    const carImagePrismaService = new CarImagePrismaService();
 
     // Validate the body.
     const validation = await updateCarImageSchema.safeParseAsync(body);
@@ -25,7 +22,10 @@ export default async function updateCarImageById(
     // If validation is successful update the car image by id.
     if (validation.success) {
       // Update the car image by id.
-      const data = await carImageService.updateOneById(validation.data, id);
+      const data = await carImagePrismaService.updateOneById(
+        validation.data,
+        id,
+      );
 
       // Return the updated car image.
       return res.status(StatusCodes.OK).send({ data });

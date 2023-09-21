@@ -1,22 +1,22 @@
-import { UserService } from 'api/providers/prisma/user.service';
-import * as express from 'express';
+import UserPrismaService from 'api/providers/prisma/user.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets a user by its email.
 
-export default async function getUserByEmail(
-  req: express.Request,
-  res: express.Response,
+export default async function getUserByEmailAddress(
+  req: Request,
+  res: Response,
 ) {
   try {
     // Get email from the params.
     const { email } = req.params;
 
     // Declare and use user service.
-    const userService = new UserService();
+    const userPrismaService = new UserPrismaService();
 
     // Find the user by email.
-    const data = await userService.findOneByEmail(email);
+    const data = await userPrismaService.findOneByEmailAddress(email);
 
     // If user not found return a not found error.
     if (!data) {

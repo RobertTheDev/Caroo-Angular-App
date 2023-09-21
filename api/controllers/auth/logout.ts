@@ -1,10 +1,7 @@
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
-export default async function logout(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function logout(req: Request, res: Response) {
   try {
     req.session.user = null;
 

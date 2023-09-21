@@ -1,22 +1,22 @@
-import { CarImageService } from 'api/providers/carImage.service';
-import * as express from 'express';
+import CarImagePrismaService from 'api/providers/prisma/carImage.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller deletes car images by their car id.
 
 export default async function deleteCarImagesByCarId(
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
 ) {
   try {
     // Get car id from params.
     const { carId } = req.params;
 
     // Declare and use car image service.
-    const carImageService = new CarImageService();
+    const carImagePrismaService = new CarImagePrismaService();
 
     // Delete all car images by matching car id.
-    await carImageService.deleteAllByCarId(carId);
+    await carImagePrismaService.deleteAllByCarId(carId);
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({

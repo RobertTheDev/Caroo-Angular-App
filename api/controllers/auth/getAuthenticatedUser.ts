@@ -1,9 +1,9 @@
-import * as express from 'express';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 export default async function getAuthenticatedUser(
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
 ) {
   try {
     const data = req.session.user;

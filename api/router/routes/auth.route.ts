@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import changeEmail from 'api/controllers/auth/changeEmail';
-import changePassword from 'api/controllers/auth/changePassword';
-import closeAccount from 'api/controllers/auth/closeAccount';
+import changeEmail from 'api/controllers/settings/changeEmail';
+import changePassword from 'api/controllers/settings/changePassword';
+import closeAccount from 'api/controllers/settings/closeAccount';
 import forgotPassword from 'api/controllers/auth/forgotPassword';
 import getAuthenticatedUser from 'api/controllers/auth/getAuthenticatedUser';
 import login from 'api/controllers/auth/login';

@@ -1,25 +1,22 @@
-import * as express from 'express';
+import CarOwnerPrismaService from 'api/providers/prisma/carOwner.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import createCarOwnerSchema from 'models/carOwner/validators/createCarOwner.schema';
-import { CarOwnerService } from 'api/providers/carOwner.service';
+import createCarOwnerSchema from 'models/carOwner/createCarOwner.schema';
 
 // This controller creates a new car owner.
 
-export default async function createCarOwner(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function createCarOwner(req: Request, res: Response) {
   try {
     // Validate the body.
     const validation = await createCarOwnerSchema.safeParseAsync(req.body);
 
     // Declare and user car owner service.
-    const carOwnerService = new CarOwnerService();
+    const carOwnerPrismaService = new CarOwnerPrismaService();
 
     // If validation is successful then create a car owner.
     if (validation.success) {
       // Create car owner.
-      const data = await carOwnerService.createOne(validation.data);
+      const data = await carOwnerPrismaService.createOne(validation.data);
 
       // Send response with the created car owner.
       return res.status(StatusCodes.ACCEPTED).send({

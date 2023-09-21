@@ -1,22 +1,19 @@
-import { CarImageService } from 'api/providers/carImage.service';
-import * as express from 'express';
+import CarImagePrismaService from 'api/providers/prisma/carImage.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller creates car images.
 
-export default async function createCarImages(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function createCarImages(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req;
 
     // Declare and use car image service.
-    const carImageService = new CarImageService();
+    const carImagePrismaService = new CarImagePrismaService();
 
     // Create the car images.
-    const data = await carImageService.createOne(body);
+    const data = await carImagePrismaService.createOne(body);
 
     // Return the car images.
     return res.status(StatusCodes.CREATED).send({

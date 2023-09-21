@@ -1,19 +1,16 @@
-import { CarService } from 'api/providers/car.service';
-import * as express from 'express';
+import CarPrismaService from 'api/providers/prisma/car.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller deletes all cars.
 
-export default async function deleteCars(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function deleteCars(req: Request, res: Response) {
   try {
     // Declare and use car service.
-    const carService = new CarService();
+    const carPrismaService = new CarPrismaService();
 
     // Delete all cars.
-    await carService.deleteAll();
+    await carPrismaService.deleteAll();
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({

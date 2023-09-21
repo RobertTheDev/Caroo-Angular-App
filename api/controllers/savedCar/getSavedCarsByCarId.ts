@@ -1,22 +1,19 @@
-import { SavedCarService } from 'api/providers/savedCar.service';
-import * as express from 'express';
+import SavedCarPrismaService from 'api/providers/prisma/savedCar.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller gets saved cars by their car id.
 
-export default async function getSavedCarsByCarId(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function getSavedCarsByCarId(req: Request, res: Response) {
   try {
     // Get car id from params.
     const { carId } = req.params;
 
     // Declare and use saved car service.
-    const savedCarService = new SavedCarService();
+    const savedCarPrismaService = new SavedCarPrismaService();
 
     // Get saved cars by car id.
-    const data = await savedCarService.findAllByCarId(carId);
+    const data = await savedCarPrismaService.findAllByCarId(carId);
 
     // Return the saved cars.
     return res.status(StatusCodes.OK).send({

@@ -1,22 +1,22 @@
-import { CarOwnerService } from 'api/providers/carOwner.service';
-import * as express from 'express';
+import CarOwnerPrismaService from 'api/providers/prisma/carOwner.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller deletes a car owners by their car id.
 
 export default async function deleteCarOwnersByCarId(
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
 ) {
   try {
     // Get car id from params.
     const { carId } = req.params;
 
     // Declare and user car owner service.
-    const carOwnerService = new CarOwnerService();
+    const carOwnerPrismaService = new CarOwnerPrismaService();
 
     // Delete cars owners by car id.
-    await carOwnerService.deleteAllByCarId(carId);
+    await carOwnerPrismaService.deleteAllByCarId(carId);
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({

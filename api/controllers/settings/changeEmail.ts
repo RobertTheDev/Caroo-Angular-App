@@ -1,13 +1,10 @@
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
-import { UserService } from 'api/providers/prisma/user.service';
-import changePasswordSchema from 'models/auth/changePassword.schema';
-import * as express from 'express';
+import changeEmailSchema from 'models/settings/validators/changeEmail.schema';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import UserPrismaService from 'api/providers/prisma/user.service';
 
-export default async function closeAccount(
-  req: express.Request,
-  res: express.Response,
-) {
+export default async function changeEmail(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req;
@@ -16,7 +13,7 @@ export default async function closeAccount(
     const { user } = req.session;
 
     // Declare and use user service.
-    const userService = new UserService();
+    const userPrismaService = new UserPrismaService();
 
     // If no user found return a bad request error.
     if (!user) {
@@ -27,12 +24,14 @@ export default async function closeAccount(
     }
 
     // Validate the request body.
-    const validation = await changePasswordSchema.safeParseAsync(body);
+    const validation = await changeEmailSchema.safeParseAsync(body);
 
     if (validation.success) {
       // Check password is correct.
 
-      const findUser = await userService.findOneByEmail(user.email);
+      const findUser = await userPrismaService.findOneByEmailAddress(
+        user.email,
+      );
 
       if (!findUser) {
         return res.status(StatusCodes.NOT_FOUND).send({
@@ -42,13 +41,16 @@ export default async function closeAccount(
       }
 
       const checkPasswordCorrect = isPasswordCorrect(
-        validation.data.currentPassword,
+        validation.data.password,
         findUser.password,
       );
 
       if (checkPasswordCorrect) {
         // Change password.
-        const data = await userService.deleteOneById(user.id);
+        const data = await userPrismaService.updateEmailById(
+          validation.data,
+          user.id,
+        );
 
         return res.status(StatusCodes.OK).send({
           message: ReasonPhrases.OK,

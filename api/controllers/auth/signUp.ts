@@ -2,7 +2,7 @@ import signUpSchema from '../../../models/auth/validators/signUp.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { User } from '@prisma/client';
-import { UserService } from 'api/providers/prisma/user.service';
+import { UserPrismaService } from 'api/providers/prisma/user.service';
 
 // This controller creates a user and signs it into session.
 
@@ -12,7 +12,7 @@ export default async function signUp(req: Request, res: Response) {
     const { body } = req;
 
     // Declare and use user service.
-    const userService = new UserService();
+    const userPrismaService = new UserPrismaService();
 
     // Validate the body.
     const validation = await signUpSchema.safeParseAsync(body);
@@ -20,21 +20,22 @@ export default async function signUp(req: Request, res: Response) {
     // If validation is successful then create a new user.
     if (validation.success) {
       // Check email is available by checking a user does not exist in database.
-      const checkEmailIsAvailable = await userService.findOneByEmail(
-        validation.data.email,
-      );
+      const checkEmailIsAvailable =
+        await userPrismaService.findOneByEmailAddress(
+          validation.data.emailAddress,
+        );
 
       // If not user exists with the email address then continue.
       if (checkEmailIsAvailable) {
         // If user exists throw a bad request error.
         return res.status(StatusCodes.BAD_REQUEST).send({
           message: ReasonPhrases.BAD_REQUEST,
-          error: `The user with email ${validation.data.email} already exists. Please use a different email address.`,
+          error: `The user with email ${validation.data.emailAddress} already exists. Please use a different email address.`,
         });
       }
 
       // Create new user.
-      const signedUpUser = await userService.createUser(validation.data);
+      const signedUpUser = await userPrismaService.createUser(validation.data);
 
       // Seperate password from create user response.
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -45,7 +46,7 @@ export default async function signUp(req: Request, res: Response) {
 
       // Send response with the signed up user.
       return res.status(StatusCodes.ACCEPTED).send({
-        message: `Successfully signed up user with email ${validation.data.email}`,
+        message: `Successfully signed up user with email ${validation.data.emailAddress}`,
         data,
       });
     }

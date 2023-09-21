@@ -1,22 +1,22 @@
-import { SavedCarService } from 'api/providers/savedCar.service';
-import * as express from 'express';
+import SavedCarPrismaService from 'api/providers/prisma/savedCar.service';
+import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
 // This controller deletes saved cars by their car id.
 
 export default async function deleteSavedCarsByCarId(
-  req: express.Request,
-  res: express.Response,
+  req: Request,
+  res: Response,
 ) {
   try {
     // Get car id from params.
     const { carId } = req.params;
 
     // Declare and use saved car service.
-    const savedCarService = new SavedCarService();
+    const savedCarPrismaService = new SavedCarPrismaService();
 
     // Delete saved cars by car id.
-    await savedCarService.deleteAllByCarId(carId);
+    await savedCarPrismaService.deleteAllByCarId(carId);
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({
