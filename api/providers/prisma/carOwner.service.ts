@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient, CarOwner } from '@prisma/client';
 import { CreateSavedCarSchemaType } from 'models/savedCar/createSavedCar.schema';
 
-export class CarOwnerPrismaService {
+export default class CarOwnerPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 

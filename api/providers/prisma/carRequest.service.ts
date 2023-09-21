@@ -2,7 +2,7 @@ import { CarRequest, Prisma, PrismaClient } from '@prisma/client';
 import { CreateCarRequestSchemaType } from 'models/carRequest/validators/createCarRequest.schema';
 import { UpdateCarRequestSchemaType } from 'models/carRequest/validators/updateCarRequest.schema';
 
-export class CarRequestPrismaService {
+export default class CarRequestPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 

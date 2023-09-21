@@ -4,7 +4,7 @@ import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 import { ChangePasswordSchemaType } from 'models/settings/validators/changePassword.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 
-export class UserPrismaService {
+export default class UserPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 

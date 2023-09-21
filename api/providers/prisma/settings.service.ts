@@ -1,7 +1,7 @@
 import { PrismaClient, User } from '@prisma/client';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 
-export class SettingsPrismaService {
+export default class SettingsPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 
