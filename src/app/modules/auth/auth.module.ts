@@ -7,6 +7,8 @@ import { UserService } from '../../services/user/user.service';
 import { SignUpViewComponent } from './views/sign-up-view/sign-up-view.component';
 import { LoginViewComponent } from './views/login-view/login-view.component';
 import { RouterModule } from '@angular/router';
+import { SendPasswordResetFormComponent } from './components/send-password-reset-form/send-password-reset-form.component';
+import { SendPasswordResetPageComponent } from './views/send-password-reset-page/send-password-reset-page.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { RouterModule } from '@angular/router';
 
     SignUpViewComponent,
     LoginViewComponent,
+    SendPasswordResetFormComponent,
+    SendPasswordResetPageComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [SignUpViewComponent, LoginViewComponent],
