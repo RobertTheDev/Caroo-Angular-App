@@ -99,9 +99,9 @@ model User {
   lastName                 String
   password                 String
   passwordResetToken       String?   @unique
-  passwordResetTokenExpiry DateTime?
+  passwordResetTokenExpiry Int?
   verifyEmailToken         String?   @unique
-  verifyEmailTokenExpiry   DateTime?
+  verifyEmailTokenExpiry   Int?
 
   carRequests CarRequest[]
   ownedCars   CarOwner[]
