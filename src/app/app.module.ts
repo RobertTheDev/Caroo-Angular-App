@@ -15,6 +15,10 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CreateCarModule } from './modules/create-car/create-car.module';
 import { SavedCarModule } from './modules/saved-car/saved-car.module';
 import { CarRequestModule } from './modules/car-request/car-request.module';
+import { CarOwnerModule } from './modules/car-owner/car-owner.module';
+import { ProfileModule } from './modules/profile/profile.module';
+import { UserModule } from './modules/user/user.module';
+import { UserSettingsModule } from './modules/user-settings/user-settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +30,10 @@ import { CarRequestModule } from './modules/car-request/car-request.module';
     CreateCarModule,
     CarModule,
     CarRequestModule,
+    CarOwnerModule,
+    ProfileModule,
+    UserModule,
+    UserSettingsModule,
     SavedCarModule,
     LayoutModule,
     AccountModule,
