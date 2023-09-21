@@ -1,4 +1,4 @@
-import { UserService } from 'api/providers/user.service';
+import { UserService } from 'api/providers/prisma/user.service';
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 

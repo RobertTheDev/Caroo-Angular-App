@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import loginSchema from 'models/auth/login.schema';
-import { UserService } from 'api/providers/user.service';
+import { UserService } from 'api/providers/prisma/user.service';
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import { User } from '@prisma/client';
 

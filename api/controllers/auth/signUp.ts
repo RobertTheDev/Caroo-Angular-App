@@ -2,7 +2,7 @@ import signUpSchema from '../../../models/auth/validators/signUp.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { User } from '@prisma/client';
-import { UserService } from 'api/providers/user.service';
+import { UserService } from 'api/providers/prisma/user.service';
 
 // This controller creates a user and signs it into session.
 
