@@ -30,7 +30,7 @@ export default async function changePassword(req: Request, res: Response) {
       // Check password is correct.
 
       const findUser = await userPrismaService.findOneByEmailAddress(
-        user.email,
+        user.emailAddress,
       );
       if (!findUser) {
         return res.status(StatusCodes.NOT_FOUND).send({
