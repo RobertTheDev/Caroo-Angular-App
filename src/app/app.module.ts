@@ -7,7 +7,6 @@ import { AuthModule } from './modules/auth/auth.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CarModule } from './modules/car/car.module';
 import { LayoutModule } from './modules/layout/layout.module';
-import { AccountModule } from './modules/account/account.module';
 import { NotFoundModule } from './modules/not-found/not-found.module';
 import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -36,7 +35,6 @@ import { UserSettingsModule } from './modules/user-settings/user-settings.module
     UserSettingsModule,
     SavedCarModule,
     LayoutModule,
-    AccountModule,
     NotFoundModule,
     InfoModule,
     FontAwesomeModule,

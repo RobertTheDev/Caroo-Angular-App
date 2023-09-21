@@ -31,18 +31,18 @@
       class="header-control-container"
     >
       <input
-        *ngIf="userData.avatarUrl && headerControl.name === 'Profile'"
+        *ngIf="userData.avatar && headerControl.name === 'Profile'"
         (mouseover)="handleControlMouseOver('Profile')"
         (mouseout)="handleControlMouseOut()"
         (click)="navigateTo('/profile')"
         class="avatar-image"
         type="image"
-        [src]="userData.avatarUrl"
+        [src]="userData.avatar"
       />
       <button
         *ngIf="
           headerControl.name !== 'Profile' ||
-          (headerControl.name === 'Profile' && !userData.avatarUrl)
+          (headerControl.name === 'Profile' && !userData.avatar)
         "
         (click)="navigateTo(headerControl.url)"
         (mouseover)="handleControlMouseOver(headerControl.name)"
