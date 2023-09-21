@@ -1,12 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-
+import { CarRequestCardComponent } from './components/car-request-card/car-request-card.component';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule
-  ]
+  declarations: [CarRequestCardComponent],
+  imports: [CommonModule],
 })
-export class CarRequestModule { }
+export class CarRequestModule {}
