@@ -1,8 +1,8 @@
 import { Prisma, PrismaClient, User } from '@prisma/client';
-import { ChangeEmailSchemaType } from 'models/auth/validators/changeEmail.schema';
-import { ChangePasswordSchemaType } from 'models/auth/changePassword.schema';
+import { ChangeEmailSchemaType } from 'models/settings/validators/changeEmail.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
+import { ChangePasswordSchemaType } from 'models/settings/validators/changePassword.schema';
 
 export class UserService {
   // Define the prisma client.
@@ -24,10 +24,10 @@ export class UserService {
   }
 
   // Find and return a user by email.
-  async findOneByEmail(email: string): Promise<User | null> {
+  async findOneByEmail(emailAddress: string): Promise<User | null> {
     return await this.prisma.user.findUnique({
       where: {
-        email,
+        emailAddress,
       },
     });
   }
