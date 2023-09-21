@@ -39,7 +39,7 @@ const createCarSchema = object({
     .refine((value) => carDriveTypeValues.includes(value), {
       message: `Car drive type must be one of ${carDriveTypeValues}.`,
     }),
-  engineSizeTotal: string({
+  engineSize: string({
     required_error:
       'A car engine size is required. Please provide a car engine size for the car you are selling.',
     invalid_type_error: 'Car engine size must be a string.',
@@ -48,6 +48,7 @@ const createCarSchema = object({
     .refine((value) => carEngineSizeValues.includes(value), {
       message: `Car engine size must be one of ${carEngineSizeValues}.`,
     }),
+
   fuelType: string({
     required_error:
       'A car fuel type is required. Please provide a car fuel type for the car you are selling.',
