@@ -9,6 +9,7 @@ import logout from 'api/controllers/auth/logout';
 import signUp from 'api/controllers/auth/signUp';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import isUserNotSignedIn from 'api/middlewares/auth/isUserNotSignedIn';
+import isEmailAvailable from 'api/middlewares/auth/isEmailAvailable';
 
 // Define auth router using the express router.
 const authRouter = Router();
@@ -24,7 +25,7 @@ authRouter.get('/authenticated-user', isAuthenticated, getAuthenticatedUser);
 
 authRouter.post('/login', isUserNotSignedIn, login);
 
-authRouter.post('/sign-up', isUserNotSignedIn, signUp);
+authRouter.post('/sign-up', isUserNotSignedIn, isEmailAvailable, signUp);
 
 authRouter.put('/change-email', isAuthenticated, changeEmail);
 
