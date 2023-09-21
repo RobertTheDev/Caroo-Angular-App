@@ -43,7 +43,8 @@ export default async function resetPasswordWithToken(
     winstonLogger.error(`Error during user sign up:`, error);
     // If an error occurs - catch and send the error.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,
     });
   }
 }

@@ -26,8 +26,8 @@ export default async function deleteCarOwnersByCarId(
   } catch (error) {
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      message: ReasonPhrases.INTERNAL_SERVER_ERROR,
-      error,
+      statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,
     });
   }
 }
