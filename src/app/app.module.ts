@@ -13,7 +13,6 @@ import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CreateCarModule } from './modules/create-car/create-car.module';
-import { ChatModule } from './modules/chat/chat.module';
 import { SavedCarModule } from './modules/saved-car/saved-car.module';
 
 @NgModule({
@@ -27,7 +26,6 @@ import { SavedCarModule } from './modules/saved-car/saved-car.module';
     CarModule,
     SavedCarModule,
     LayoutModule,
-    ChatModule,
     AccountModule,
     NotFoundModule,
     InfoModule,
