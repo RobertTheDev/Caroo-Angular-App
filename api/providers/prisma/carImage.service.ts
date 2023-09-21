@@ -18,6 +18,11 @@ export default class CarImagePrismaService {
     });
   }
 
+  // Delete all car images.
+  async deleteAll(): Promise<Prisma.BatchPayload> {
+    return await this.prisma.carImage.deleteMany();
+  }
+
   // Delete all car images by matching car id.
   async deleteAllByCarId(carId: string): Promise<Prisma.BatchPayload> {
     return await this.prisma.carImage.deleteMany({
