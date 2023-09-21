@@ -15,23 +15,21 @@ model Car {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  colour          String
-  description     String?
-  doors           Int
-  driveType       String
-  engineSizeTotal Int
-  engineSizeUnit  String
-  fuelType        String
-  gearbox         String
-  make            String
-  mileageTotal    Int
-  mileageUnit     String  @default("L")
-  model           String
-  ownerId         String
-  priceCurrency   String  @default("GBP")
-  priceTotal      Int
-  seats           Int
-  year            Int
+  colour        String
+  description   String?
+  doors         Int
+  driveType     String
+  engineSize    String
+  fuelType      String
+  gearbox       String
+  make          String
+  mileageTotal  Int
+  mileageUnit   String  @default("litres")
+  model         String
+  priceCurrency String  @default("GBP")
+  priceTotal    Int
+  seats         Int
+  year          Int
 
   images     CarImage[]
   owners     CarOwner[]
