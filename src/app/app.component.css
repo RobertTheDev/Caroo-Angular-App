@@ -1,8 +1,8 @@
 .form-input {
-    box-sizing: border-box;
-    height: 4rem;
-    padding: 0 1rem;
-    width: 100%;
-    border-radius: 0.4rem;
-    border: 1px solid lightgray;
+  box-sizing: border-box;
+  height: 4rem;
+  padding: 0 1rem;
+  width: 100%;
+  border-radius: 0.4rem;
+  border: 1px solid lightgray;
 }

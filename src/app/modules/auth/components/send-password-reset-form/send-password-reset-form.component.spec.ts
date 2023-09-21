@@ -8,9 +8,8 @@ describe('SendPasswordResetFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SendPasswordResetFormComponent ]
-    })
-    .compileComponents();
+      declarations: [SendPasswordResetFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SendPasswordResetFormComponent);
     component = fixture.componentInstance;
