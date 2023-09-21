@@ -1,4 +1,5 @@
 import CarImagePrismaService from 'api/providers/prisma/carImage.service';
+import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 
@@ -21,6 +22,9 @@ export default async function getCarImagesByCarId(req: Request, res: Response) {
       data,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error getting car images by car id:`, error);
+
     // Catch and return an error if found.
     res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

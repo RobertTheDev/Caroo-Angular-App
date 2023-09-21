@@ -1,4 +1,5 @@
 import CarPrismaService from 'api/providers/prisma/car.service';
+import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import createCarSchema from 'models/car/validators/createCar.schema';
@@ -28,6 +29,9 @@ export default async function createCar(req: Request, res: Response) {
       });
     }
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error creating car:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

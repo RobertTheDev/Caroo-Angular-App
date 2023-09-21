@@ -2,6 +2,7 @@ import CarPrismaService from 'api/providers/prisma/car.service';
 import updateCarSchema from 'models/car/validators/updateCar.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import winstonLogger from 'api/utils/winstonLogger';
 
 export default async function updateCarById(req: Request, res: Response) {
   try {
@@ -33,6 +34,9 @@ export default async function updateCarById(req: Request, res: Response) {
       error: validation.error,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error updating car by id:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

@@ -1,4 +1,5 @@
 import CarOwnerPrismaService from 'api/providers/prisma/carOwner.service';
+import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import createCarOwnerSchema from 'models/carOwner/createCarOwner.schema';
@@ -30,6 +31,9 @@ export default async function createCarOwner(req: Request, res: Response) {
       error: validation.error,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error creating car owner:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

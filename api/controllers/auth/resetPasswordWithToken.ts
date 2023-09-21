@@ -40,7 +40,8 @@ export default async function resetPasswordWithToken(
     });
   } catch (error) {
     // Log the error.
-    winstonLogger.error(`Error during user sign up:`, error);
+    winstonLogger.error(`Error resetting password with token:`, error);
+
     // If an error occurs - catch and send the error.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

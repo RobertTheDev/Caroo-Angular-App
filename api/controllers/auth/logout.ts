@@ -13,7 +13,8 @@ export default async function logout(req: Request, res: Response) {
       .send({ message: 'Successfully logged out.', data: null });
   } catch (error) {
     // Log the error.
-    winstonLogger.error(`Error during user sign up:`, error);
+    winstonLogger.error(`Error during user sign out:`, error);
+
     // If an error occurs - catch and send the error.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

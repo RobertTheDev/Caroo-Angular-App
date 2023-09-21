@@ -1,5 +1,6 @@
 import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import UserPrismaService from 'api/providers/prisma/user.service';
+import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import changePasswordSchema from 'models/settings/validators/changePassword.schema';
@@ -68,6 +69,10 @@ export default async function changePassword(req: Request, res: Response) {
       error: validation.error,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error changing password:`, error);
+
+    // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,

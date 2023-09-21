@@ -42,8 +42,9 @@ export default async function sendEmailVerificationToken(
     });
   } catch (error) {
     // Log the error.
-    winstonLogger.error(`Error during user sign up:`, error);
-    // If an error occurs - catch and send the error.
+    winstonLogger.error(`Error sending email verification token:`, error);
+
+    // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,

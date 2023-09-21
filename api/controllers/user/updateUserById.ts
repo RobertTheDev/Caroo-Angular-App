@@ -2,6 +2,7 @@ import UserPrismaService from 'api/providers/prisma/user.service';
 import updateUserSchema from 'models/user/validators/updateUser.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import winstonLogger from 'api/utils/winstonLogger';
 
 // This controller updates a user by its id.
 
@@ -37,6 +38,9 @@ export default async function updateUserById(req: Request, res: Response) {
       error: validation.error,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error updating user by id:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,

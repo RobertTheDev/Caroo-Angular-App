@@ -1,8 +1,8 @@
-import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import changeEmailSchema from 'models/settings/validators/changeEmail.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import UserPrismaService from 'api/providers/prisma/user.service';
+import winstonLogger from 'api/utils/winstonLogger';
 
 export default async function changeEmail(req: Request, res: Response) {
   try {
@@ -39,36 +39,17 @@ export default async function changeEmail(req: Request, res: Response) {
           error: `No user was found.`,
         });
       }
-
-      const checkPasswordCorrect = isPasswordCorrect(
-        validation.data.password,
-        findUser.password,
-      );
-
-      if (checkPasswordCorrect) {
-        // Change password.
-        const data = await userPrismaService.updateEmailById(
-          validation.data,
-          user.id,
-        );
-
-        return res.status(StatusCodes.OK).send({
-          message: ReasonPhrases.OK,
-          data,
-        });
-      } else {
-        return res.status(StatusCodes.UNAUTHORIZED).send({
-          message: ReasonPhrases.UNAUTHORIZED,
-          error: `The password entered is incorrect`,
-        });
-      }
     }
 
     return res.status(StatusCodes.BAD_REQUEST).send({
       message: ReasonPhrases.BAD_REQUEST,
-      error: validation.error,
+      error: validation,
     });
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error changing email address:`, error);
+
+    // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
       statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,

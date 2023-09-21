@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import CarRequestPrismaService from 'api/providers/prisma/carRequest.service';
 import updateCarRequestSchema from 'models/carRequest/validators/updateCarRequest.schema';
+import winstonLogger from 'api/utils/winstonLogger';
 
 // This controller updates a car request by its id.
 
@@ -40,6 +41,9 @@ export default async function updateCarRequestById(
       });
     }
   } catch (error) {
+    // Log the error.
+    winstonLogger.error(`Error updating car request by id:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
       statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
