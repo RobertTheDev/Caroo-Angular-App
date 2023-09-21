@@ -82,7 +82,7 @@ export class CarImagePrismaService {
   }
 
   // Delete all saved cars by matching user id.
-  async updateCarRequestById(
+  async updateOneById(
     data: UpdateCarImageSchemaType,
     id: string,
   ): Promise<CarImage> {

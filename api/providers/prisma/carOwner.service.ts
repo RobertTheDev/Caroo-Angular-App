@@ -18,6 +18,11 @@ export class CarOwnerPrismaService {
   }
 
   // Delete all car owners by matching car id.
+  async deleteAll(): Promise<Prisma.BatchPayload> {
+    return await this.prisma.carOwner.deleteMany();
+  }
+
+  // Delete all car owners by matching car id.
   async deleteAllByCarId(carId: string): Promise<Prisma.BatchPayload> {
     return await this.prisma.carOwner.deleteMany({
       where: {
