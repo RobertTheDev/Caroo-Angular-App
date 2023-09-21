@@ -1,4 +1,5 @@
 import { PrismaClient, User } from '@prisma/client';
+import { SendEmailVerificationTokenSchemaType } from 'models/settings/validators/sendEmailVerificationToken.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 
 export default class SettingsPrismaService {
@@ -41,19 +42,6 @@ export default class SettingsPrismaService {
     });
   }
 
-  // Update a user by email verification token.
-  async updateUserByEmailVerificationToken(
-    verifyEmailToken: string,
-    data: UpdateUserSchemaType,
-  ): Promise<User | null> {
-    return await this.prisma.user.update({
-      where: {
-        verifyEmailToken,
-      },
-      data,
-    });
-  }
-
   // Update a user by id.
   async updateUserById(
     data: UpdateUserSchemaType,
@@ -64,6 +52,28 @@ export default class SettingsPrismaService {
         id,
       },
       data,
+    });
+  }
+
+  // Update a user's verification token.
+  async updateEmailVerificationTokenWithEmailAddress(
+    data: SendEmailVerificationTokenSchemaType,
+    emailAddress: string,
+  ): Promise<User> {
+    return await this.prisma.user.update({
+      data,
+      where: {
+        emailAddress,
+      },
+    });
+  }
+
+  // Verify a user's email with a token.
+  async verifyEmailWithToken(verifyEmailToken: string): Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        verifyEmailToken,
+      },
     });
   }
 }

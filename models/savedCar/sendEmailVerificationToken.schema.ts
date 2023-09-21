@@ -2,7 +2,7 @@ import { number, object, string, z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
 
 // Zod validation schema defines fields required for sending a password reset email.
-const sendEmailVerificationTokenSchema = object({
+const sendEmailVerificationToken = object({
   emailAddress: string({
     required_error: 'Email address is required.',
     invalid_type_error: 'Email address must be a string.',
@@ -18,8 +18,8 @@ const sendEmailVerificationTokenSchema = object({
 });
 
 // Create a TypeScript type from the schema.
-export type SendEmailVerificationTokenSchemaType = z.infer<
-  typeof sendEmailVerificationTokenSchema
+export type SendEmailVerificationTokenType = z.infer<
+  typeof sendEmailVerificationToken
 >;
 
-export default sendEmailVerificationTokenSchema;
+export default sendEmailVerificationToken;

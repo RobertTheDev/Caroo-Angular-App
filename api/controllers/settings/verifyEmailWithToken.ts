@@ -1,20 +1,22 @@
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
-import sendPasswordResetTokenSchema from 'models/auth/validators/sendPasswordResetToken.schema';
-import UserPrismaService from 'api/providers/prisma/user.service';
+import SettingsPrismaService from 'api/providers/prisma/settings.service';
+import verifyEmailWithTokenSchema from 'models/settings/validators/verifyEmailWithToken.schema';
 
-export default async function sendResetPasswordToken(
+export default async function verifyEmailWithToken(
   req: Request,
   res: Response,
 ) {
   try {
     // Get the request body.
-    const { body } = req;
+    const { params } = req;
 
-    const userPrismaService = new UserPrismaService();
+    const { verifyEmailToken } = params;
 
-    const validation = await sendPasswordResetTokenSchema.safeParseAsync(body);
+    const validation = await verifyEmailWithTokenSchema.safeParseAsync(
+      verifyEmailToken,
+    );
 
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
@@ -25,13 +27,15 @@ export default async function sendResetPasswordToken(
 
     const { data } = validation;
 
+    const settingsPrismaService = new SettingsPrismaService();
+
     // Create new user.
-    const updatedUser = await userPrismaService.updateOneWithResetPasswordToken(
-      data,
+    const updatedUser = await settingsPrismaService.verifyEmailWithToken(
+      data.verifyEmailToken,
     );
 
     return res.status(StatusCodes.OK).send({
-      message: `Successfully updated user reset password token with email address ${updatedUser.emailAddress}.`,
+      message: `Successfully updated user reset password token with email address.`,
       data: updatedUser,
     });
   } catch (error) {
