@@ -31,7 +31,7 @@ const updateCarSchema = object({
     .refine((value) => carDriveTypeValues.includes(value), {
       message: `Car drive type must be one of ${carDriveTypeValues}.`,
     }),
-  engineSizeTotal: string({
+  engineSize: string({
     invalid_type_error: 'Car engine size must be a string.',
   })
     .nonempty('Car engine size cannot be empty.')
