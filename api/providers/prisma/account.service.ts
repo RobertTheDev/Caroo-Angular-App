@@ -1,8 +1,8 @@
 import { PrismaClient, User } from '@prisma/client';
-import { SendEmailVerificationTokenSchemaType } from 'models/settings/validators/sendEmailVerificationToken.schema';
+import { SendEmailVerificationTokenSchemaType } from 'models/account/validators/sendEmailVerificationToken.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 
-export default class SettingsPrismaService {
+export default class AccountPrismaService {
   // Define the prisma client.
   private readonly prisma: PrismaClient;
 
@@ -55,24 +55,52 @@ export default class SettingsPrismaService {
     });
   }
 
-  // Update a user's verification token.
-  async updateEmailVerificationTokenWithEmailAddress(
+  // Update user with email verification token.
+  async updateOneWithEmailVerificationToken(
     data: SendEmailVerificationTokenSchemaType,
-    emailAddress: string,
   ): Promise<User> {
     return await this.prisma.user.update({
       data,
       where: {
-        emailAddress,
+        emailAddress: data.emailAddress,
       },
     });
   }
 
-  // Verify a user's email with a token.
-  async verifyEmailWithToken(verifyEmailToken: string): Promise<User | null> {
+  // Verify user email address with email verification token.
+  async verifyEmailAddressWithEmailVerificationToken(
+    emailVerificationToken: string,
+  ): Promise<User> {
+    return await this.prisma.user.update({
+      data: {
+        emailVerified: new Date(),
+        emailVerificationToken: null,
+        emailVerificationTokenExpiry: null,
+      },
+      where: {
+        emailVerificationToken,
+      },
+    });
+  }
+
+  // Find a user by their reset password token.
+  async findUserByResetPasswordToken(
+    passwordResetToken: string,
+  ): Promise<User | null> {
     return await this.prisma.user.findUnique({
       where: {
-        verifyEmailToken,
+        passwordResetToken,
+      },
+    });
+  }
+
+  // Find a user by their email verification token.
+  async findUserByEmailVerificationToken(
+    emailVerificationToken: string,
+  ): Promise<User | null> {
+    return await this.prisma.user.findUnique({
+      where: {
+        emailVerificationToken,
       },
     });
   }
