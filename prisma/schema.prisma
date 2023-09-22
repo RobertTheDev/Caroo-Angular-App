@@ -92,16 +92,16 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  avatar                   String?
-  emailAddress             String    @unique
-  emailVerified            DateTime?
-  firstName                String
-  lastName                 String
-  password                 String
-  passwordResetToken       String?   @unique
-  passwordResetTokenExpiry DateTime?
-  verifyEmailToken         String?   @unique
-  verifyEmailTokenExpiry   DateTime?
+  avatar                       String?
+  emailAddress                 String    @unique
+  emailVerified                DateTime?
+  firstName                    String
+  lastName                     String
+  password                     String
+  passwordResetToken           String?   @unique
+  passwordResetTokenExpiry     DateTime?
+  emailVerificationToken       String?   @unique
+  emailVerificationTokenExpiry DateTime?
 
   carRequests CarRequest[]
   ownedCars   CarOwner[]
