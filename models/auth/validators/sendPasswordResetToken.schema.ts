@@ -1,5 +1,6 @@
-import { number, object, string, z } from 'zod';
+import { object, string, z } from 'zod';
 import { v4 as uuidv4 } from 'uuid';
+
 // Zod validation schema defines fields required for sending a password reset email.
 const sendPasswordResetTokenSchema = object({
   emailAddress: string({
@@ -9,10 +10,10 @@ const sendPasswordResetTokenSchema = object({
     .email('Email address must be a valid email format.')
     .nonempty('Email address cannot be empty.'),
   passwordResetToken: string().default(() => uuidv4()),
-  passwordResetTokenExpiry: number().default(() => {
-    // Set the expiry time to 10 minutes from the current time
-    const currentTimeInMS = new Date().getTime();
-    return currentTimeInMS + 10 * 60 * 1000;
+  passwordResetTokenExpiry: string().default(() => {
+    const currentTime = new Date();
+    currentTime.setMinutes(currentTime.getMinutes() + 10);
+    return currentTime.toISOString();
   }),
 });
 
