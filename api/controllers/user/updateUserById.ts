@@ -9,7 +9,7 @@ import winstonLogger from 'api/utils/winstonLogger';
 export default async function updateUserById(req: Request, res: Response) {
   try {
     // Get the request body.
-    const { body } = req.body;
+    const { body } = req;
 
     // Get the id from params.
     const { id } = req.params;
@@ -21,21 +21,25 @@ export default async function updateUserById(req: Request, res: Response) {
     const validation = await updateUserSchema.safeParseAsync(body);
 
     // If validation is successful then update the user.
-    if (validation.success) {
-      // Update the user by id.
-      const updatedUser = await userPrismaService.updateOneById(
-        validation.data,
-        id,
-      );
-
-      // Return the newly updated user.
-      return res.status(StatusCodes.ACCEPTED).send(updatedUser);
+    if (!validation.success) {
+      // Return a bad request error if there is a validation error.
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.errors[0].message,
+      });
     }
 
-    // Return a bad request error if there is a validation error.
-    return res.status(StatusCodes.BAD_REQUEST).send({
-      message: ReasonPhrases.BAD_REQUEST,
-      error: validation.error,
+    // Update the user by id.
+    const updatedUser = await userPrismaService.updateOneById(
+      validation.data,
+      id,
+    );
+
+    // Return the newly updated user.
+    return res.status(StatusCodes.ACCEPTED).send({
+      statusCode: StatusCodes.ACCEPTED,
+      statusMessage: `Successfully updated user with id ${id}`,
+      data: updatedUser,
     });
   } catch (error) {
     // Log the error.

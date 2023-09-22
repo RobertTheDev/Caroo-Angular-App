@@ -15,7 +15,8 @@ export default async function getUsers(_req: Request, res: Response) {
 
     // Return the users.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found all users.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found all users.`,
       data,
     });
   } catch (error) {

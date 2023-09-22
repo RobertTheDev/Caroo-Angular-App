@@ -22,14 +22,16 @@ export default async function getUserByEmailAddress(
     // If user not found return a not found error.
     if (!data) {
       return res.status(StatusCodes.NOT_FOUND).send({
-        message: `User with email ${email} not found.`,
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `User with email ${email} not found.`,
         data,
       });
     }
 
     // Return the user.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found user with email ${email}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found user with email ${email}.`,
       data,
     });
   } catch (error) {
