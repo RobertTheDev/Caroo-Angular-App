@@ -4,6 +4,7 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import { User } from '@prisma/client';
 import UserPrismaService from 'api/providers/prisma/user.service';
 import winstonLogger from 'api/utils/winstonLogger';
+import { hashPassword } from 'api/lib/passwordManagement';
 
 // This controller creates a user and signs them into session.
 
@@ -12,7 +13,7 @@ export default async function signUp(req: Request, res: Response) {
     // Get the request body.
     const { body } = req;
 
-    // Declare and use user service.
+    // Declare and use user service to get access to user handlers.
     const userPrismaService = new UserPrismaService();
 
     // Validate the body.
@@ -21,24 +22,31 @@ export default async function signUp(req: Request, res: Response) {
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: validation.error.issues[0].message,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.issues[0].message,
       });
     }
 
-    // Create new user.
-    const signedUpUser = await userPrismaService.createUser(validation.data);
+    // Seperate the password from the validation data.
+    const { password, ...userWithoutPassword } = validation.data as User;
 
-    // Seperate password from create user response.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...data } = signedUpUser as User;
+    // Hash the password.
+    const hashedPassword = await hashPassword(password);
+
+    // Create new user.
+    await userPrismaService.createUser({
+      ...userWithoutPassword,
+      password: hashedPassword,
+    });
 
     // Save user into session.
-    req.session.user = data;
+    req.session.user = userWithoutPassword;
 
     // Send response with the signed up user.
     return res.status(StatusCodes.ACCEPTED).send({
-      message: `Successfully signed up user with email ${validation.data.emailAddress}`,
-      data,
+      statusCode: StatusCodes.ACCEPTED,
+      statusMessage: `Successfully signed up user with email ${validation.data.emailAddress}`,
+      data: userWithoutPassword,
     });
   } catch (error) {
     // Log the error.

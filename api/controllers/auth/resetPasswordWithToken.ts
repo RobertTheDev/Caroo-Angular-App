@@ -3,6 +3,9 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
 import resetPasswordWithTokenSchema from 'models/auth/validators/resetPasswordWithToken.schema';
 import UserPrismaService from 'api/providers/prisma/user.service';
+import { hashPassword } from 'api/lib/passwordManagement';
+
+// This controller resets password with password reset token.
 
 export default async function resetPasswordWithToken(
   req: Request,
@@ -12,30 +15,40 @@ export default async function resetPasswordWithToken(
     // Get the request body.
     const { body, params } = req;
 
+    // Get the reset password token from the request params.
     const { resetPasswordToken } = params;
 
+    // Declare and use user service to get access to user handlers.
+    const userPrismaService = new UserPrismaService();
+
+    // Declare and use user service to get access to user handlers.
     const validation = await resetPasswordWithTokenSchema.safeParseAsync(body);
 
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: validation.error.issues[0].message,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.issues[0].message,
       });
     }
 
+    // Get data from the validation.
     const { data } = validation;
 
-    const userPrismaService = new UserPrismaService();
+    // Hash the password.
+    const hashedPassword = await hashPassword(data.password);
 
-    // Create new user.
+    // Update user password using the reset password token.
     const updatedUser =
       await userPrismaService.updatePasswordWithResetPasswordToken(
         resetPasswordToken,
-        data,
+        { password: hashedPassword },
       );
 
+    // Return the updated user.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully updated user reset password token with email address ${updatedUser.emailAddress}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully updated user reset password token with email address ${updatedUser.emailAddress}.`,
       data: updatedUser,
     });
   } catch (error) {

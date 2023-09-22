@@ -1,4 +1,4 @@
-import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
+// import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
 import UserPrismaService from 'api/providers/prisma/user.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
@@ -40,33 +40,33 @@ export default async function changePassword(req: Request, res: Response) {
         });
       }
 
-      const checkPasswordCorrect = isPasswordCorrect(
-        validation.data.currentPassword,
-        findUser.password,
-      );
+      // const checkPasswordCorrect = isPasswordCorrect(
+      //   validation.data.currentPassword,
+      //   findUser.password,
+      // );
 
-      if (checkPasswordCorrect) {
-        // Change password.
-        const data = await userPrismaService.updatePasswordById(
-          validation.data,
-          user.id,
-        );
+      // if (checkPasswordCorrect) {
+      //   // Change password.
+      //   const data = await userPrismaService.updatePasswordById(
+      //     validation.data,
+      //     user.id,
+      //   );
 
-        return res.status(StatusCodes.OK).send({
-          message: ReasonPhrases.OK,
-          data,
-        });
-      } else {
-        return res.status(StatusCodes.UNAUTHORIZED).send({
-          message: ReasonPhrases.UNAUTHORIZED,
-          error: `The password entered is incorrect`,
-        });
-      }
+      //   return res.status(StatusCodes.OK).send({
+      //     message: ReasonPhrases.OK,
+      //     data,
+      //   });
+      // } else {
+      //   return res.status(StatusCodes.UNAUTHORIZED).send({
+      //     message: ReasonPhrases.UNAUTHORIZED,
+      //     error: `The password entered is incorrect`,
+      //   });
+      // }
     }
 
     return res.status(StatusCodes.BAD_REQUEST).send({
       message: ReasonPhrases.BAD_REQUEST,
-      error: validation.error,
+      // error: validation.error,
     });
   } catch (error) {
     // Log the error.

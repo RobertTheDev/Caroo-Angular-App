@@ -4,6 +4,8 @@ import winstonLogger from 'api/utils/winstonLogger';
 import sendPasswordResetTokenSchema from 'models/auth/validators/sendPasswordResetToken.schema';
 import UserPrismaService from 'api/providers/prisma/user.service';
 
+// This controller sends reset password token.
+
 export default async function sendResetPasswordToken(
   req: Request,
   res: Response,
@@ -12,26 +14,32 @@ export default async function sendResetPasswordToken(
     // Get the request body.
     const { body } = req;
 
+    // Declare and use user service to get access to user handlers.
     const userPrismaService = new UserPrismaService();
 
+    // Validate the body with send password reset token schema.
     const validation = await sendPasswordResetTokenSchema.safeParseAsync(body);
 
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: validation.error.issues[0].message,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.issues[0].message,
       });
     }
 
+    // Get data from validation.
     const { data } = validation;
 
-    // Create new user.
+    // Update user with reset password token.
     const updatedUser = await userPrismaService.updateOneWithResetPasswordToken(
       data,
     );
 
+    // Return the updated user.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully updated user reset password token with email address ${updatedUser.emailAddress}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully updated user reset password token with email address ${updatedUser.emailAddress}.`,
       data: updatedUser,
     });
   } catch (error) {

@@ -3,33 +3,41 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import UserPrismaService from 'api/providers/prisma/user.service';
 import loginSchema from 'models/auth/validators/login.schema';
 import winstonLogger from 'api/utils/winstonLogger';
+
+// This controller handles user login.
+
 export default async function login(req: Request, res: Response) {
   try {
     // Get the request body.
     const { body } = req;
 
-    // Declare and use user service.
+    // Declare and use user service to get access to user handlers.
     const userPrismaService = new UserPrismaService();
 
+    // Validate the body using login schema.
     const validation = await loginSchema.safeParseAsync(body);
 
+    // If validation fails then return a bad request error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: ReasonPhrases.BAD_REQUEST,
-        error: validation.error,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.errors[0].message,
       });
     }
 
+    // Get email address from validation body.
     const { emailAddress } = validation.data;
 
+    // Get user by email address.
     const findUser = await userPrismaService.findOneByEmailAddress(
       emailAddress,
     );
 
+    // If user not found return a not found error.
     if (!findUser) {
       return res.status(StatusCodes.NOT_FOUND).send({
-        message: ReasonPhrases.NOT_FOUND,
-        error: `User with email ${body.email} could not be found.`,
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `User with email ${body.email} could not be found.`,
       });
     }
 
@@ -37,10 +45,13 @@ export default async function login(req: Request, res: Response) {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { password, ...data } = findUser;
 
+    // Save user into session.
     req.session.user = data;
 
+    // Return the logged in user.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully logged in.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully logged in.`,
       data,
     });
   } catch (error) {
