@@ -1,7 +1,7 @@
 import { Prisma, PrismaClient, User } from '@prisma/client';
-import { ChangeEmailSchemaType } from 'models/settings/validators/changeEmail.schema';
+import { ChangeEmailSchemaType } from 'models/account/validators/changeEmail.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
-import { ChangePasswordSchemaType } from 'models/settings/validators/changePassword.schema';
+import { ChangePasswordSchemaType } from 'models/account/validators/changePassword.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 import { SendPasswordResetTokenSchemaType } from 'models/auth/validators/sendPasswordResetToken.schema';
 import { ResetPasswordWithTokenSchemaType } from 'models/auth/validators/resetPasswordWithToken.schema';
