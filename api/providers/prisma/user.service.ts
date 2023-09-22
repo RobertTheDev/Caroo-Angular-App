@@ -100,7 +100,22 @@ export default class UserPrismaService {
     data: ResetPasswordWithTokenSchemaType,
   ): Promise<User> {
     return await this.prisma.user.update({
-      data,
+      data: {
+        password: data.password,
+        passwordResetToken: null,
+        passwordResetTokenExpiry: null,
+      },
+      where: {
+        passwordResetToken,
+      },
+    });
+  }
+
+  // Find a user by their reset password token.
+  async findUserByResetPasswordToken(
+    passwordResetToken: string,
+  ): Promise<User | null> {
+    return await this.prisma.user.findUnique({
       where: {
         passwordResetToken,
       },
