@@ -29,11 +29,13 @@ model Car {
   priceCurrency String  @default("GBP")
   priceTotal    Int
   seats         Int
+  status        String
   year          Int
 
   images     CarImage[]
-  owners     CarOwner[]
   requests   CarRequest[]
+  user       User?        @relation(fields: [userId], references: [id])
+  userId     String?
   usersSaved SavedCar[]
 }
 
@@ -47,18 +49,6 @@ model CarImage {
   url   String
 
   car Car? @relation(fields: [carId], references: [id])
-}
-
-model CarOwner {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  carId  String
-  userId String
-
-  car  Car  @relation(fields: [carId], references: [id])
-  user User @relation(fields: [userId], references: [id])
 }
 
 model CarRequest {
@@ -104,6 +94,6 @@ model User {
   emailVerificationTokenExpiry DateTime?
 
   carRequests CarRequest[]
-  ownedCars   CarOwner[]
+  ownedCars   Car[]
   savedCars   SavedCar[]
 }
