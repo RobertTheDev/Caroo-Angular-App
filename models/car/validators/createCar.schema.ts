@@ -4,6 +4,7 @@ import carGearboxValues from '../values/carGearboxValues';
 import carFuelTypeValues from '../values/carFuelTypeValues';
 import carDriveTypeValues from '../values/carDriveTypeValues';
 import carEngineSizeValues from '../values/carEngineSizeValues';
+import carStatusValues from '../values/carStatusValues';
 
 // Zod validation schema defines fields required for creating a car.
 const createCarSchema = object({
@@ -100,6 +101,14 @@ const createCarSchema = object({
   })
     .min(2, 'Car must have at least two seats.')
     .max(8, 'Car must have at least eight seats.'),
+  status: string({
+    invalid_type_error: 'Car status must be a string.',
+  })
+    .nonempty('Car status cannot be empty.')
+    .refine((value) => carStatusValues.includes(value), {
+      message: `Car status must be one of ${carStatusValues}.`,
+    })
+    .default('LISTED'),
   year: number({
     required_error:
       'A car year is required. Please provide a year for the car you are selling.',

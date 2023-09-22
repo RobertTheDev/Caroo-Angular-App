@@ -4,6 +4,7 @@ import carGearboxValues from '../values/carGearboxValues';
 import carFuelTypeValues from '../values/carFuelTypeValues';
 import carDriveTypeValues from '../values/carDriveTypeValues';
 import carEngineSizeValues from '../values/carEngineSizeValues';
+import carStatusValues from '../values/carStatusValues';
 
 // Zod validation schema defines fields required for updating a car.
 const updateCarSchema = object({
@@ -73,6 +74,14 @@ const updateCarSchema = object({
   })
     .min(2, 'Car must have at least two seats.')
     .max(8, 'Car must have at least eight seats.'),
+  status: string({
+    invalid_type_error: 'Car status must be a string.',
+  })
+    .nonempty('Car status cannot be empty.')
+    .refine((value) => carStatusValues.includes(value), {
+      message: `Car status must be one of ${carStatusValues}.`,
+    })
+    .default('LISTED'),
   year: number({
     invalid_type_error: 'Car year must be a number.',
   }).refine((value) => value >= 2000 && value <= new Date().getFullYear(), {
