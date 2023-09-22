@@ -21,6 +21,7 @@ export default async function isEmailAvailable(
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
         message: validation.error.issues[0].message,
       });
     }
@@ -43,14 +44,17 @@ export default async function isEmailAvailable(
 
     // If user exists throw a bad request error.
     return res.status(StatusCodes.BAD_REQUEST).send({
-      message: `The user with email ${emailAddress} already exists. Please use a different email address.`,
+      statusCode: StatusCodes.BAD_REQUEST,
+      statusMessage: `The user with email address ${emailAddress} already exists. Please use a different email address.`,
     });
   } catch (error) {
     // Log the error.
     winstonLogger.error(`Error checking if email address is available:`, error);
+
     // Catch and return an error if found.
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      message: ReasonPhrases.INTERNAL_SERVER_ERROR,
+      statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+      statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,
     });
   }
 }
