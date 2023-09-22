@@ -15,10 +15,6 @@ const resetPasswordWithTokenSchema = object({
       /[!@#$%^&*(),.?":{}|<>]/,
       'Password must contain at least one special character.',
     ),
-  passwordResetToken: string({
-    required_error: 'Password reset token is required.',
-    invalid_type_error: 'Password reset token must be a string.',
-  }).nonempty('Password reset token cannot be empty.'),
 });
 
 // Create a TypeScript type from the schema.
