@@ -18,20 +18,22 @@ export default async function updateCarById(req: Request, res: Response) {
     // Validate the body.
     const validation = await updateCarSchema.safeParseAsync(body);
 
-    // If validation is successful update a car by id.
-    if (validation.success) {
-      // Update car by id.
-      const data = await carPrismaService.updateOneById(validation.data, id);
-
-      // Return updated car.
-      return res
-        .status(StatusCodes.OK)
-        .send({ message: `Successfully updated car with id ${id}`, data });
-    }
     // If validation is unsuccessful return a bad request error.
-    return res.status(StatusCodes.BAD_REQUEST).send({
-      message: ReasonPhrases.BAD_REQUEST,
-      error: validation.error,
+    if (!validation.success) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.errors[0].message,
+      });
+    }
+
+    // Update car by id.
+    const data = await carPrismaService.updateOneById(validation.data, id);
+
+    // Return updated car.
+    return res.status(StatusCodes.OK).send({
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully updated car with id ${id}`,
+      data,
     });
   } catch (error) {
     // Log the error.

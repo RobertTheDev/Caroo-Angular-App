@@ -14,20 +14,23 @@ export default async function createCar(req: Request, res: Response) {
     // Validate the body.
     const validation = await createCarSchema.safeParseAsync(req.body);
 
-    // If validation is successful then create a new car.
-    if (validation.success) {
-      // Create new car.
-      const data = await carPrismaService.createOne(validation.data);
-
-      // Send response with the created car.
-      return res.status(StatusCodes.ACCEPTED).send({ data });
-    } else {
-      // If validation is unsuccessful send an error response with validation error.
+    // If validation is unsuccessful return a bad request error.
+    if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: ReasonPhrases.BAD_REQUEST,
-        error: validation.error,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.errors[0].message,
       });
     }
+
+    // Create new car.
+    const data = await carPrismaService.createOne(validation.data);
+
+    // Send response with the created car.
+    return res.status(StatusCodes.ACCEPTED).send({
+      statusCode: StatusCodes.ACCEPTED,
+      statusMessage: `Successfully created car with id ${data.id}`,
+      data,
+    });
   } catch (error) {
     // Log the error.
     winstonLogger.error(`Error creating car:`, error);

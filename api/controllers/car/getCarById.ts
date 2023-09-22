@@ -18,7 +18,8 @@ export default async function getCarById(req: Request, res: Response) {
 
     // Return car.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found car with id ${id}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car with id ${id}.`,
       data,
     });
   } catch (error) {

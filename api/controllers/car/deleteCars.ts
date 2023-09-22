@@ -15,7 +15,8 @@ export default async function deleteCars(req: Request, res: Response) {
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully deleted all cars.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully deleted all cars.`,
       data: null,
     });
   } catch (error) {
