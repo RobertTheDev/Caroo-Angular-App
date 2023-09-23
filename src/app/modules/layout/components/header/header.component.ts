@@ -71,6 +71,16 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
+  logout() {
+    return this.authService.logOut().subscribe({
+      next: (data) => {
+        console.log(data);
+        window.location.reload();
+      },
+      error: (error) => console.error(error),
+    });
+  }
+
   headerControls = [
     {
       icon: faHeart,
