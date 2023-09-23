@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import minimumCapitalLettersValidator from 'src/app/lib/formValidationRules/password/minimumCapitalLetters';
+import minimumNumbersValidator from 'src/app/lib/formValidationRules/password/minimumNumbers';
+import minimumSpecialCharactersValidator from 'src/app/lib/formValidationRules/password/minimumSpecialCharacters';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -7,42 +12,88 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './sign-up-form.component.html',
 })
 export class SignUpFormComponent {
-  // Use the angular form builder.
-  constructor(
-    private fb: FormBuilder,
-    private authService: AuthService,
-  ) {}
+  // Variables are used for handling form states - submitted, loading and errors.
+  formErrorMessage: string | null = null;
+  formLoading = false;
+  formSubmitted = false;
 
-  // Sign up form to handle sign up fields.
-  signUpForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    firstName: ['', Validators.required],
+  constructor(
+    // Angular form builder is used to build forms in Angular with less code.
+    private formBuilder: FormBuilder,
+    // Calls our auth service to get access to our auth function helpers.
+    private authService: AuthService,
+    // Angular router used for routing and navigation in the app.
+    private router: Router,
+  ) {}
+  // Defines the form fields with their validators.
+  signUpForm = this.formBuilder.group({
+    emailAddress: [
+      '',
+      [
+        // Email address cannnot be empty and must be in valid email format.
+        Validators.required,
+        Validators.email,
+      ],
+    ],
+    firstName: [
+      '',
+      // First name cannnot be empty.
+      Validators.required,
+    ],
+    // Last name cannnot be empty.
     lastName: ['', Validators.required],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+    password: [
+      '',
+      [
+        // Password cannnot be empty.
+        Validators.required,
+        // Password must be at least eight characters in length.
+        Validators.minLength(8),
+        // Password must contain a capital letter.
+        minimumCapitalLettersValidator,
+        // Password must contain a number.
+        minimumNumbersValidator,
+        // Password must contain a special character.
+        minimumSpecialCharactersValidator,
+      ],
+    ],
   });
 
-  // Helper function to access sign up form controls.
+  // Return the form controls to be used in validation messagin in HTML.
   get formControls() {
     return this.signUpForm.controls;
   }
 
-  // Handle sign up after fields are compelete and form submission.
-  handleSignUp() {
-    // If profile form is valid.
-    if (this.signUpForm.valid) {
-      const data = this.signUpForm.value;
+  // Sign up function call the sign up handler from our auth service to handle sign ups.
+  // The function handles validation and wont submit until fields are valid.
+  // The function handles errors and displays error response messages.
+  handleSignUp(): Subscription | undefined {
+    // When function is called set form submitted to true and error message to null.
+    this.formSubmitted = true;
+    this.formErrorMessage = null;
 
-      return this.authService.signUp(data).subscribe({
-        next: (data) => {
-          console.log(data);
-          window.location.reload();
-        },
-        error: (error) => console.error(error),
-      });
+    // If form is invalid do not continue and return nothing.
+    if (this.signUpForm.invalid) {
+      return;
     }
-    // If profile form is invalid.
-    else {
-      return alert('Please correct the errors in the form.');
-    }
+
+    // Get the value data from the sign up form.
+    const { value } = this.signUpForm;
+
+    // Start loading while form is being processed.
+    this.formLoading = true;
+
+    return this.authService.signUp(value).subscribe({
+      // If form has successfully handled sign up - stop for loading and navigate to home page.
+      next: () => {
+        this.formLoading = false;
+        this.router.navigate(['/']);
+      },
+      // If an error contain the error message in the variable. Stop form loading.
+      error: (error) => {
+        this.formLoading = false;
+        this.formErrorMessage = error.error.statusMessage;
+      },
+    });
   }
 }
