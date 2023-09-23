@@ -15,9 +15,11 @@ import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
 import { SendPasswordResetPageComponent } from './modules/auth/views/send-password-reset-page/send-password-reset-page.component';
 import { ResetPasswordViewComponent } from './modules/auth/views/reset-password-view/reset-password-view.component';
+import { CreateCarViewComponent } from './modules/car/views/create-car-view/create-car-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
+  { path: 'sell-a-car', component: CreateCarViewComponent },
   {
     path: 'auth',
 
