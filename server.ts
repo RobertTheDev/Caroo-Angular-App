@@ -12,6 +12,8 @@ import * as session from 'express-session';
 import { createClient } from 'redis';
 import RedisStore from 'connect-redis';
 import * as cors from 'cors';
+import * as compression from 'compression';
+import helmet from 'helmet';
 
 declare module 'express-session' {
   interface SessionData {
@@ -55,6 +57,9 @@ export function app(): express.Express {
     }),
   );
 
+  // Enable helmet.
+  server.use(helmet());
+
   // Allow cors origin for dev local host.
   server.use(
     cors({
@@ -63,6 +68,9 @@ export function app(): express.Express {
       credentials: true,
     }),
   );
+
+  // Enable compression.
+  server.use(compression());
 
   // Allow JSON to be used.
   server.use(express.json());
