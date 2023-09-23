@@ -16,6 +16,12 @@ export class AuthService {
 
   private authSignUpUrl = 'http://localhost:4200/api/auth/sign-up';
 
+  private authSendPasswordResetTokenUrl =
+    'http://localhost:4200/api/auth/send-password-reset-token';
+
+  private resetPasswordWithTokenUrl =
+    'http://localhost:4200/api/auth/send-password-reset-token';
+
   constructor(private http: HttpClient) {}
 
   private options = { withCredentials: true };
@@ -27,17 +33,38 @@ export class AuthService {
     );
   }
 
+  sendPasswordResetToken(data: Partial<{ emailAddress: string | null }>) {
+    return this.http.post<void>(
+      this.authSendPasswordResetTokenUrl,
+      data,
+      this.options,
+    );
+  }
+
+  resetPasswordWithToken(
+    token: string,
+    data: Partial<{ password: string | null }>,
+  ) {
+    return this.http.put<void>(
+      `${this.resetPasswordWithTokenUrl}/${token}`,
+      data,
+      this.options,
+    );
+  }
+
   logOut() {
     return this.http.delete<void>(this.authLogOutUrl, this.options);
   }
 
-  logIn(data: Partial<{ email: string | null; password: string | null }>) {
+  logIn(
+    data: Partial<{ emailAddress: string | null; password: string | null }>,
+  ) {
     return this.http.post<void>(this.authLogInUrl, data, this.options);
   }
 
   signUp(
     data: Partial<{
-      email: string | null;
+      emailAddress: string | null;
       firstName: string | null;
       lastName: string | null;
       password: string | null;
