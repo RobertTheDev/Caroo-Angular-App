@@ -28,7 +28,7 @@ export class AuthService {
   }
 
   logOut() {
-    return this.http.get<void>(this.authLogOutUrl, this.options);
+    return this.http.delete<void>(this.authLogOutUrl, this.options);
   }
 
   logIn(data: Partial<{ email: string | null; password: string | null }>) {
