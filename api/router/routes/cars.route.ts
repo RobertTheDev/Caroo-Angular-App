@@ -1,5 +1,10 @@
+import createCar from 'api/controllers/car/createCar';
+import deleteCarsByUserId from 'api/controllers/car/deleteCarsByUserId';
 import getCarById from 'api/controllers/car/getCarById';
 import getCars from 'api/controllers/car/getCars';
+import getCarsByUserId from 'api/controllers/car/getCarsByUserId';
+import updateCarById from 'api/controllers/car/updateCarById';
+import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import { Router } from 'express';
 
 // Cars router defines all the routes used in modifying cars data.
@@ -8,8 +13,20 @@ import { Router } from 'express';
 // Define cars router using the express router.
 const carsRouter = Router();
 
+carsRouter.delete('/:userId', isAuthenticated, updateCarById);
+
+carsRouter.delete('/owner/:userId', isAuthenticated, deleteCarsByUserId);
+
 carsRouter.get('/', getCars);
 
 carsRouter.get('/:id', getCarById);
+
+carsRouter.get('/owner/:userId', getCarsByUserId);
+
+carsRouter.get('/:id', getCarById);
+
+carsRouter.post('/create-car', isAuthenticated, createCar);
+
+carsRouter.put('/:id', isAuthenticated, updateCarById);
 
 export default carsRouter;
