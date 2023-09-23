@@ -18,7 +18,8 @@ export default async function getSavedCarById(req: Request, res: Response) {
 
     // Return a response message confirming deletion.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully deleted saved car with id ${id}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully deleted saved car with id ${id}.`,
       data: null,
     });
   } catch (error) {

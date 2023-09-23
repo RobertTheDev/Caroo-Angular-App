@@ -21,7 +21,8 @@ export default async function getCarRequestsByCarId(
 
     // Return car requests.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found car requests with car id ${carId}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car requests with car id ${carId}.`,
       data,
     });
   } catch (error) {

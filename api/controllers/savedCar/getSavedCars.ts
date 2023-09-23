@@ -15,7 +15,8 @@ export default async function getSavedCars(req: Request, res: Response) {
 
     // Return the saved cars.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found all saved cars.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found all saved cars.`,
       data,
     });
   } catch (error) {

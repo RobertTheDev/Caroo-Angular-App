@@ -15,7 +15,8 @@ export default async function getCarRequests(_req: Request, res: Response) {
 
     // Return car requests.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found car requests.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car requests.`,
       data,
     });
   } catch (error) {

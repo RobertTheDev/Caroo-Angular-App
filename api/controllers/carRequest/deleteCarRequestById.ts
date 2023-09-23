@@ -21,7 +21,8 @@ export default async function deleteCarRequestById(
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully deleted car request with id ${id}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully deleted car request with id ${id}.`,
       data: null,
     });
   } catch (error) {

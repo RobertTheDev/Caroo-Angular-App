@@ -19,14 +19,16 @@ export default async function getCarRequestById(req: Request, res: Response) {
     // Return not found error if no car request found.
     if (!data) {
       return res.status(StatusCodes.NOT_FOUND).send({
-        message: `Car request with id ${id} not found.`,
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `Car request with id ${id} not found.`,
         data: null,
       });
     }
 
     // Return car owner by id.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully found car request with id ${id}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car request with id ${id}.`,
       data,
     });
   } catch (error) {

@@ -32,11 +32,16 @@ export default async function updateCarRequestById(
       );
 
       // Return the updated car request.
-      return res.status(StatusCodes.OK).send({ data });
+      return res.status(StatusCodes.OK).send({
+        statusCode: StatusCodes.OK,
+        statusMessage: `Successfully updated car request with id ${id}.`,
+        data,
+      });
     } else {
       // If validation is unsuccessful return an error.
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: ReasonPhrases.BAD_REQUEST,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: ReasonPhrases.BAD_REQUEST,
         error: `The email you have entered does not have a match in our records.`,
       });
     }

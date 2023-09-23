@@ -18,7 +18,8 @@ export default async function createCarImages(req: Request, res: Response) {
 
     // Return the car images.
     return res.status(StatusCodes.CREATED).send({
-      message: 'Successfully created car images.',
+      statusCode: StatusCodes.CREATED,
+      statusMessage: 'Successfully created car images.',
       data,
     });
   } catch (error) {

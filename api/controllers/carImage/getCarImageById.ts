@@ -19,14 +19,16 @@ export default async function getCarImageById(req: Request, res: Response) {
     // If no car image found return a not found error.
     if (!data) {
       res.status(StatusCodes.NOT_FOUND).send({
-        message: `Could not find car image with id ${id}.`,
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `Could not find car image with id ${id}.`,
         data: null,
       });
     }
 
     // Return car image.
     res.status(StatusCodes.OK).send({
-      message: `Successfully found car image with id ${id}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car image with id ${id}.`,
       data,
     });
   } catch (error) {

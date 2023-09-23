@@ -33,8 +33,8 @@ export default async function updateCarImageById(req: Request, res: Response) {
     } else {
       // If validation is unsuccessful return an error.
       return res.status(StatusCodes.BAD_REQUEST).send({
-        message: ReasonPhrases.BAD_REQUEST,
-        error: `The email you have entered does not have a match in our records.`,
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: validation.error.errors[0].message,
       });
     }
   } catch (error) {

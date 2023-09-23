@@ -15,7 +15,8 @@ export default async function deleteCarImages(_req: Request, res: Response) {
 
     // Return car image.
     res.status(StatusCodes.OK).send({
-      message: `Successfully deleted car images.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully deleted car images.`,
     });
   } catch (error) {
     // Log the error.

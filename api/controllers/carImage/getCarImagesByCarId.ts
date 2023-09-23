@@ -18,7 +18,8 @@ export default async function getCarImagesByCarId(req: Request, res: Response) {
 
     // Return car images.
     res.status(StatusCodes.OK).send({
-      message: `Successfully found car images with car id ${carId}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully found car images with car id ${carId}.`,
       data,
     });
   } catch (error) {

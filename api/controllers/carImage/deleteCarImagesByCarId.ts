@@ -21,7 +21,8 @@ export default async function deleteCarImagesByCarId(
 
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({
-      message: `Successfully deleted car images with car id ${carId}.`,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Successfully deleted car images with car id ${carId}.`,
       data: null,
     });
   } catch (error) {

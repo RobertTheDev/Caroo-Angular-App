@@ -21,13 +21,15 @@ export default async function createCarRequest(req: Request, res: Response) {
 
       // Send response with the created car request.
       return res.status(StatusCodes.ACCEPTED).send({
-        message: `A car request has been successfully created with id ${data.id}`,
+        statusCode: StatusCodes.ACCEPTED,
+        statusMessage: `A car request has been successfully created with id ${data.id}`,
         data,
       });
     }
     // If validation is unsuccessful send an error response with validation error.
     return res.status(StatusCodes.BAD_REQUEST).send({
-      message: ReasonPhrases.BAD_REQUEST,
+      statusCode: StatusCodes.BAD_REQUEST,
+      statusMessage: validation.error.errors[0].message,
       error: validation.error,
     });
   } catch (error) {
