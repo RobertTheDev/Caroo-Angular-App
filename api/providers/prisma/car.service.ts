@@ -27,6 +27,18 @@ export default class CarPrismaService {
     });
   }
 
+  // Return all cars by matching user id.
+  async findAllByUserId(userId: string): Promise<Car[]> {
+    return await this.prisma.car.findMany({
+      where: {
+        userId,
+      },
+      include: {
+        images: true,
+      },
+    });
+  }
+
   // Find and return a car by id.
   async findOneById(id: string): Promise<Car | null> {
     return await this.prisma.car.findUnique({
@@ -52,6 +64,15 @@ export default class CarPrismaService {
   // Delete all cars.
   async deleteAll(): Promise<Prisma.BatchPayload> {
     return await this.prisma.car.deleteMany();
+  }
+
+  // Delete all cars by matching user id.
+  async deleteAllByUserId(userId: string): Promise<Prisma.BatchPayload> {
+    return await this.prisma.car.deleteMany({
+      where: {
+        userId,
+      },
+    });
   }
 
   // Delete a car by id.
