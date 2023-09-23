@@ -11,13 +11,9 @@ import { NotFoundModule } from './modules/not-found/not-found.module';
 import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
-import { CreateCarModule } from './modules/create-car/create-car.module';
-import { SavedCarModule } from './modules/saved-car/saved-car.module';
 import { CarRequestModule } from './modules/car-request/car-request.module';
-import { CarOwnerModule } from './modules/car-owner/car-owner.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { UserModule } from './modules/user/user.module';
-import { UserSettingsModule } from './modules/user-settings/user-settings.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,14 +22,10 @@ import { UserSettingsModule } from './modules/user-settings/user-settings.module
     AppRoutingModule,
     HttpClientModule,
     AuthModule,
-    CreateCarModule,
     CarModule,
     CarRequestModule,
-    CarOwnerModule,
     ProfileModule,
     UserModule,
-    UserSettingsModule,
-    SavedCarModule,
     LayoutModule,
     NotFoundModule,
     InfoModule,

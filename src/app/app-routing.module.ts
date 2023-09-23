@@ -13,15 +13,6 @@ import { AboutViewComponent } from './modules/info/views/about-view/about-view.c
 import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-view/privacy-policy-view.component';
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
-import { CreateCarViewComponent } from './modules/create-car/views/create-car-view/create-car-view.component';
-import { PreviewCarViewComponent } from './modules/create-car/views/preview-car-view/preview-car-view.component';
-import { AddCarPriceViewComponent } from './modules/create-car/views/add-car-price-view/add-car-price-view.component';
-import { AddCarLocationViewComponent } from './modules/create-car/views/add-car-location-view/add-car-location-view.component';
-import { AddCarImagesViewComponent } from './modules/create-car/views/add-car-images-view/add-car-images-view.component';
-import { AddCarFeaturesViewComponent } from './modules/create-car/views/add-car-features-view/add-car-features-view.component';
-import { AddCarDetailsViewComponent } from './modules/create-car/views/add-car-details-view/add-car-details-view.component';
-import { AddCarDescriptionViewComponent } from './modules/create-car/views/add-car-description-view/add-car-description-view.component';
-import { AddCarAboutViewComponent } from './modules/create-car/views/add-car-about-view/add-car-about-view.component';
 import { SendPasswordResetPageComponent } from './modules/auth/views/send-password-reset-page/send-password-reset-page.component';
 import { ResetPasswordViewComponent } from './modules/auth/views/reset-password-view/reset-password-view.component';
 
@@ -49,20 +40,7 @@ const routes: Routes = [
       },
     ],
   },
-  {
-    path: 'sell-a-car',
-    children: [
-      { path: '', component: CreateCarViewComponent },
-      { path: 'add-about', component: AddCarAboutViewComponent },
-      { path: 'add-description', component: AddCarDescriptionViewComponent },
-      { path: 'add-details', component: AddCarDetailsViewComponent },
-      { path: 'add-features', component: AddCarFeaturesViewComponent },
-      { path: 'add-images', component: AddCarImagesViewComponent },
-      { path: 'add-location', component: AddCarLocationViewComponent },
-      { path: 'add-price', component: AddCarPriceViewComponent },
-      { path: 'preview', component: PreviewCarViewComponent },
-    ],
-  },
+
   {
     path: 'cars',
     children: [
