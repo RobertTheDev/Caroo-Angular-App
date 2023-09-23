@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -7,41 +8,75 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   templateUrl: './login-form.component.html',
 })
 export class LoginFormComponent {
-  // Use the angular form builder.
   constructor(
-    private fb: FormBuilder,
+    // Angular form builder is used to build forms in Angular with less code.
+    private formBuilder: FormBuilder,
+    // Calls our auth service to get access to our auth function helpers.
     private authService: AuthService,
+    // Angular router used for routing and navigation in the app.
+    private router: Router,
   ) {}
 
-  // Login form to handle sign up fields.
-  loginForm = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8)]],
+  // Variables are used for handling form states - submitted, loading and errors.
+  formErrorMessage: string | null = null;
+  formLoading = false;
+  formSubmitted = false;
+
+  // Defines the form fields with their validators.
+  loginForm = this.formBuilder.group({
+    emailAddress: [
+      '',
+      [
+        // Email address cannnot be empty and must be in valid email format.
+        Validators.required,
+        Validators.email,
+      ],
+    ],
+    password: [
+      '',
+      [
+        // Password cannnot be empty.
+        Validators.required,
+        // Password must be at least eight characters in length.
+        Validators.minLength(8),
+      ],
+    ],
   });
 
-  // Helper function to access sign up form controls.
+  // Get access to the the form controls to be used in validation messagin in HTML.
   get formControls() {
     return this.loginForm.controls;
   }
 
-  // Handle login after fields are compelete and form submission.
+  // Login function calls the sign up handler from our auth service to handle user login.
+  // The function handles validation and wont submit until fields are valid.
+  // The function handles errors and displays error response messages.
   handleLogin() {
-    // If profile form is valid.
+    // When function is called set form submitted to true and error message to null.
+    this.formSubmitted = true;
+    this.formErrorMessage = null;
 
+    // If form is invalid do not continue and return nothing.
     if (this.loginForm.valid) {
-      const data = this.loginForm.value;
+      return;
+    }
+    // Get the value data from the login form.
+    const { value } = this.loginForm;
 
-      return this.authService.logIn(data).subscribe({
-        next: (user) => {
-          console.log('user', user);
-          window.location.reload();
-        },
-        error: (error) => console.error(error.error.error),
-      });
-    }
-    // If profile form is invalid.
-    else {
-      return alert('Please correct the errors in the form.');
-    }
+    // Start loading while form is being processed.
+    this.formLoading = true;
+
+    return this.authService.logIn(value).subscribe({
+      // If form has successfully handled login - stop the form loading and navigate to home page.
+      next: () => {
+        this.formLoading = false;
+        this.router.navigate(['/']);
+      },
+      // If an error contain the error message in the variable. Stop form loading.
+      error: (error) => {
+        this.formLoading = false;
+        this.formErrorMessage = error.error.statusMessage;
+      },
+    });
   }
 }
