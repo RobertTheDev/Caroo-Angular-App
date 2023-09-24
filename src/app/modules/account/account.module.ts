@@ -9,6 +9,8 @@ import { SendEmailVerificationTokenViewComponent } from './views/send-email-veri
 import { UpdatePasswordViewComponent } from './views/update-password-view/update-password-view.component';
 import { UpdateEmailViewComponent } from './views/update-email-view/update-email-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AccountProfileViewComponent } from './views/account-profile-view/account-profile-view.component';
+import { UpdateAccountProfileViewComponent } from './views/update-account-profile-view/update-account-profile-view.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SendEmailVerificationTokenViewComponent,
     UpdatePasswordViewComponent,
     UpdateEmailViewComponent,
+    AccountProfileViewComponent,
+    UpdateAccountProfileViewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [],
