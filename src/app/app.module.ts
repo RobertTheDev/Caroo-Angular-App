@@ -12,7 +12,6 @@ import { InfoModule } from './modules/info/info.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CarRequestModule } from './modules/car-request/car-request.module';
-import { ProfileModule } from './modules/profile/profile.module';
 import { AccountModule } from './modules/account/account.module';
 
 @NgModule({
@@ -25,7 +24,6 @@ import { AccountModule } from './modules/account/account.module';
     AuthModule,
     CarModule,
     CarRequestModule,
-    ProfileModule,
     LayoutModule,
     NotFoundModule,
     InfoModule,
