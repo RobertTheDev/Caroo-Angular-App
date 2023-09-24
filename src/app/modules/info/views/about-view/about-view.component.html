@@ -15,6 +15,10 @@
     <!-- ERROR - If markdown returns an error show the error view. -->
     <app-info-page-error *ngIf="!loading && !markdownContent" />
     <!-- DATA - If markdown returns content show the markdown. -->
-    <markdown *ngIf="!loading && markdownContent" [data]="markdownContent" />
+    <markdown
+      class="content-body-container"
+      *ngIf="!loading && markdownContent"
+      [data]="markdownContent"
+    />
   </div>
 </div>

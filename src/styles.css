@@ -127,6 +127,14 @@ table {
 
 img {
   object-fit: cover;
+  width: 100%;
+  height: 240px;
+  border-radius: 3.2rem;
+
+  @media (width >=640px) {
+    height: 440px;
+  }
+
 }
 
 *,
@@ -167,6 +175,58 @@ html {
   --tertiary-700: #186752;
   --tertiary-800: #0f3e31;
   --tertiary-900: #051510;
+  --black: black;
+  --white: white;
+  --neutral-050: #eaeffa;
+  --neutral-100: #c1cef0;
+  --neutral-200: #98ade7;
+  --neutral-300: #6f8cdd;
+  --neutral-400: #466bd3;
+  --neutral-500: #2c52b9;
+  --neutral-600: #224090;
+  --neutral-700: #182d67;
+  --neutral-800: #0f1b3e;
+  --neutral-900: #050915;
+  --dark-neutral-050: #eaeffa;
+  --dark-neutral-100: #c1cef0;
+  --dark-neutral-200: #98ade7;
+  --dark-neutral-300: #6f8cdd;
+  --dark-neutral-400: #466bd3;
+  --dark-neutral-500: #2c52b9;
+  --dark-neutral-600: #224090;
+  --dark-neutral-700: #182d67;
+  --dark-neutral-800: #0f1b3e;
+  --dark-neutral-900: #050915;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3.2rem;
+  min-width: 100%;
+}
+
+input {
+  background: white;
+  border: 1px solid lightgray;
+  height: 4.8rem;
+  padding: 0 0.8rem;
+  min-width: 100%;
+  border-radius: 0.8rem;
+}
+
+input:focus {
+  outline: 1px solid var(--primary-500);
+}
+
+select {
+  background: white;
+  border: 1px solid lightgray;
+  height: 4.8rem;
+  padding: 0 0.8rem;
+  width: 200px;
+  border-radius: 0.8rem;
 }
 
 
@@ -280,6 +340,7 @@ body {
   display: block;
   line-height: 1;
   margin: 0;
+  background-color: var(--primary-900);
 }
 
 p {
@@ -362,7 +423,7 @@ button:hover {
   cursor: pointer;
 }
 
-input {
+/* input {
   font-size: 1.4rem;
   line-height: 2.1rem;
 }
@@ -370,18 +431,18 @@ input {
 select {
   font-size: 1.4rem;
   line-height: 2.1rem;
-}
+} */
 
 .primary-button {
-  background-color: royalblue;
-  border-radius: 0.8rem;
+  background-color: var(--secondary-400);
+  border-radius: 0.4rem;
   color: white;
-  padding: 1rem;
+  padding: 1.2rem;
   transition-duration: 500ms;
 }
 
 .primary-button:hover {
-  background-color: darkblue;
+  background-color: var(--secondary-600);
 }
 
 .primary-button-icon {
@@ -423,4 +484,15 @@ select {
 
 .link:hover {
   color: royalblue;
+}
+
+input {
+  font-size: 1.4rem;
+  min-width: 100%;
+  height: 5.5rem;
+  padding: 1.6rem;
+}
+
+label {
+  min-width: 100%;
 }

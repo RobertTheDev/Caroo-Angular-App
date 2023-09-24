@@ -2,13 +2,29 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100%;
+  min-width: 100%;
+  background-color: whitesmoke;
+  color: black;
 }
 
+
+@media (prefers-color-scheme: dark) {
+  .page-layout-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-width: 100%;
+    background-color: #090515;
+    color: white;
+  }
+}
+
+
 .page-layout-body-container {
-  background-color: whitesmoke;
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 7rem;
+  min-width: 100%;
+  padding: 3.2rem 0;
+  padding-top: 7rem;
 }

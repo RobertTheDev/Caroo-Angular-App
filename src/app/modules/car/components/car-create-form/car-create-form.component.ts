@@ -13,7 +13,6 @@ import { CarService } from 'src/app/services/car/car.service';
 @Component({
   selector: 'app-car-create-form',
   templateUrl: './car-create-form.component.html',
-  styleUrls: ['./car-create-form.component.css'],
 })
 export class CarCreateFormComponent {
   // Use the angular form builder.
