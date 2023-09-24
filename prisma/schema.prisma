@@ -11,10 +11,10 @@ datasource db {
 }
 
 model Car {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id            String       @unique @default(uuid())
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
+  carRequests   CarRequest[]
   colour        String
   description   String?
   doors         Int
@@ -22,78 +22,68 @@ model Car {
   engineSize    String
   fuelType      String
   gearbox       String
+  images        CarImage[]
   make          String
   mileageTotal  Int
-  mileageUnit   String  @default("litres")
+  mileageUnit   String       @default("litres")
   model         String
-  priceCurrency String  @default("GBP")
+  owner         User?        @relation(fields: [ownerId], references: [id])
+  ownerId       String?
+  priceCurrency String       @default("GBP")
   priceTotal    Int
   seats         Int
   status        String
+  usersSaved    SavedCar[]
   year          Int
-
-  images     CarImage[]
-  requests   CarRequest[]
-  user       User?        @relation(fields: [userId], references: [id])
-  userId     String?
-  usersSaved SavedCar[]
 }
 
 model CarImage {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  alt   String
-  carId String?
-  url   String
-
-  car Car? @relation(fields: [carId], references: [id])
+  alt       String
+  car       Car?     @relation(fields: [carId], references: [id])
+  carId     String?
+  url       String
 }
 
 model CarRequest {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  carId   String
-  message String?
-  status  String
-  userId  String
-
-  car  Car  @relation(fields: [carId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  message   String?
+  car       Car      @relation(fields: [carId], references: [id])
+  carId     String
+  status    String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model SavedCar {
   id        String   @unique @default(uuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  carId  String
-  userId String
-
-  car  Car  @relation(fields: [carId], references: [id])
-  user User @relation(fields: [userId], references: [id])
+  car       Car      @relation(fields: [carId], references: [id])
+  carId     String
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
 }
 
 model User {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
+  id                           String       @unique @default(uuid())
+  createdAt                    DateTime     @default(now())
+  updatedAt                    DateTime     @updatedAt
   avatar                       String?
-  emailAddress                 String    @unique
+  carRequests                  CarRequest[]
+  emailAddress                 String       @unique
   emailVerified                DateTime?
   firstName                    String
   lastName                     String
+  ownedCars                    Car[]
   password                     String
-  passwordResetToken           String?   @unique
+  passwordResetToken           String?      @unique
   passwordResetTokenExpiry     DateTime?
-  emailVerificationToken       String?   @unique
+  emailVerificationToken       String?      @unique
   emailVerificationTokenExpiry DateTime?
-
-  carRequests CarRequest[]
-  ownedCars   Car[]
-  savedCars   SavedCar[]
+  savedCars                    SavedCar[]
 }
