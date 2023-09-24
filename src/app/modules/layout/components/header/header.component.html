@@ -50,12 +50,6 @@
         class="header-control-button"
       >
         <fa-icon [icon]="headerControl.icon"></fa-icon>
-        <div
-          *ngIf="headerControl.name === 'Messages'"
-          class="counter-container"
-        >
-          <p class="counter-text">6</p>
-        </div>
       </button>
       <div
         *ngIf="controlMouseOverActiveName === headerControl.name"
