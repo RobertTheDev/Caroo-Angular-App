@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundViewComponent } from './modules/not-found/views/not-found-view/not-found-view.component';
 import { SavedCarsViewComponent } from './modules/saved-car/views/saved-cars-view/saved-cars-view.component';
-import { FilterCarsViewComponent } from './modules/car/views/filter-cars-view/filter-cars-view.component';
+import { CarsViewComponent } from './modules/car/views/cars-view/cars-view.component';
 
 const routes: Routes = [
-  { path: '', component: FilterCarsViewComponent },
+  { path: '', component: CarsViewComponent },
   {
     path: '',
     loadChildren: () =>
