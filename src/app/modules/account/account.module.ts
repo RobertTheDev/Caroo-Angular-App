@@ -11,6 +11,8 @@ import { UpdateEmailViewComponent } from './views/update-email-view/update-email
 import { ReactiveFormsModule } from '@angular/forms';
 import { AccountProfileViewComponent } from './views/account-profile-view/account-profile-view.component';
 import { UpdateAccountProfileViewComponent } from './views/update-account-profile-view/update-account-profile-view.component';
+import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
+import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { UpdateAccountProfileViewComponent } from './views/update-account-profil
     UpdateEmailViewComponent,
     AccountProfileViewComponent,
     UpdateAccountProfileViewComponent,
+    UpdateProfileFormComponent,
+    ProfileDetailComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule],
   exports: [],
