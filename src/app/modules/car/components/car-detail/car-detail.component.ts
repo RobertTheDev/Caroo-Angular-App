@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CarService } from 'src/app/services/car/car.service';
-import CarWithImage from 'src/app/types/CarWithImages';
 import { formatDistanceToNow } from 'date-fns';
 import priceUnits from 'src/app/lib/units/priceUnits';
 import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
+import { Car } from '@prisma/client';
 
 @Component({
   selector: 'app-car-detail',
@@ -13,7 +13,7 @@ import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  car: CarWithImage | null = null;
+  car: Car | null = null;
   loading = true;
   errorMessage: string | null = null;
   priceUnits = priceUnits;

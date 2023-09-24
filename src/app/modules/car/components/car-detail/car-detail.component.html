@@ -1,8 +1,4 @@
 <div *ngIf="!loading && car" class="car-detail-container">
-  <div class="car-detail-images-container">
-    <app-car-detail-images [car]="car" />
-    <app-car-detail-images-mobile [car]="car" />
-  </div>
   <div class="car-detail-content-container">
     <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
     <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
@@ -18,18 +14,6 @@
         <fa-icon [icon]="faMessage" />
         Message Seller
       </button>
-    </div>
-    <p>Owner</p>
-    <div class="car-detail-car-owner-container">
-      <img
-        class="car-detail-car-owner-avatar-image"
-        [src]="car.owner.avatarUrl"
-        alt="Car owner's profile image"
-      />
-      <div>
-        <p>{{ car.owner.firstName }} {{ car.owner.lastName }}</p>
-        <p>{{ car.owner.email }}</p>
-      </div>
     </div>
 
     <p>Colour: {{ car.colour }}</p>
