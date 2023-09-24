@@ -1,25 +1,134 @@
-<!-- IMAGES -->
-<p>Images</p>
-<div class="grid-container">
-  <div class="grid-item" *ngFor="let image of images; let i = index">
-    <img
-      *ngIf="image"
-      [src]="image"
-      (click)="replaceImage(i)"
-      (contextmenu)="deleteImage(i)"
-    />
-  </div>
-</div>
 <!-- MAKE -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="make">
+  <select id="make" formControlName="make" (change)="onMakeChange($event)">
+    <option value="" disabled selected>Select Make</option>
+    <option
+      *ngFor="let carMakeAndModelsValue of carMakeAndModelsValues"
+      [value]="carMakeAndModelsValue.make"
+    >
+      {{ carMakeAndModelsValue.make }}
+    </option>
+  </select>
+</label>
+<p>{{ selectedMake }}</p>
+
 <!-- MODEL -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="model" *ngIf="selectedMake">
+  <select id="model" formControlName="model">
+    <option value="" disabled selected>Select Model</option>
+    <option *ngFor="let model of getModelOptions(selectedMake)" [value]="model">
+      {{ model }}
+    </option>
+  </select>
+</label>
+
 <!-- COLOUR -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="colour">
+  <select>
+    <option value="" disabled selected>Select Colour</option>
+    <option *ngFor="let carColourValue of carColourValues">
+      {{ carColourValue }}
+    </option>
+  </select>
+</label>
+
 <!-- YEAR -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="year">
+  <select>
+    <option value="" disabled selected>Select Year</option>
+    <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+  </select>
+</label>
+
 <!-- FUEL TYPE -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="fuelType">
+  <select>
+    <option value="" disabled selected>Select Fuel Type</option>
+    <option *ngFor="let carFuelTypeValue of carFuelTypeValues">
+      {{ carFuelTypeValue }}
+    </option>
+  </select>
+</label>
+
 <!-- GEARBOX -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="gearbox">
+  <select>
+    <option value="" disabled selected>Select Gearbox</option>
+    <option *ngFor="let carGearboxValue of carGearboxValues">
+      {{ carGearboxValue }}
+    </option>
+  </select>
+</label>
+
 <!-- DRIVE TYPE -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="driveType">
+  <select>
+    <option value="" disabled selected>Select Drive Type</option>
+    <option *ngFor="let carDriveTypeValue of carDriveTypeValues">
+      {{ carDriveTypeValue }}
+    </option>
+  </select>
+</label>
+
 <!-- MILEAGE -->
+<!-- Input is wrapped in a label for accessibility. -->
+<label for="mileageTotal">
+  <input
+    id="mileageTotal"
+    type="number"
+    formControlName="mileageTotal"
+    placeholder="Mileage"
+  />
+</label>
+
 <!-- PRICE -->
+<!-- Input is wrapped in a label for accessibility. -->
+<label for="priceTotal">
+  <input
+    id="priceTotal"
+    type="number"
+    formControlName="priceTotal"
+    placeholder="Price"
+  />
+</label>
+
 <!-- ENGINE SIZE -->
+<!-- Select is wrapped in a label for accessibility. -->
+<label for="engineSize">
+  <select>
+    <option value="" disabled selected>Select Engine Size</option>
+    <option *ngFor="let carEngineSizeValue of carEngineSizeValues">
+      {{ carEngineSizeValue }}
+    </option>
+  </select>
+</label>
+
 <!-- DOORS -->
+<!-- Input is wrapped in a label for accessibility. -->
+<label for="doors">
+  <input id="doors" type="number" formControlName="doors" placeholder="Doors" />
+</label>
+
 <!-- SEATS -->
+<!-- Input is wrapped in a label for accessibility. -->
+<label for="seats">
+  <input id="seats" type="number" formControlName="seats" placeholder="Seats" />
+</label>
+
 <!-- DESCRIPTION -->
+<!-- Input is wrapped in a label for accessibility. -->
+<label for="description">
+  <input
+    id="description"
+    type="text"
+    formControlName="description"
+    placeholder="Description"
+  />
+</label>
