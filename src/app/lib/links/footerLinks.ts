@@ -1,4 +1,4 @@
-import Link from '../../types/Link';
+import Link from 'models/config/types/Link';
 
 const footerLinks: Link[] = [
   { name: 'About', path: 'about' },
