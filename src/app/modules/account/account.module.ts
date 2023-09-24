@@ -22,5 +22,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     UpdateEmailViewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule],
+  exports: [],
 })
 export class AccountModule {}

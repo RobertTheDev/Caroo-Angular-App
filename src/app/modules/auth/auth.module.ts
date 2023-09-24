@@ -24,7 +24,7 @@ import { ResetPasswordViewComponent } from './views/reset-password-view/reset-pa
     ResetPasswordViewComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [SignUpViewComponent, LoginViewComponent],
+  exports: [],
   providers: [UserService],
 })
 export class AuthModule {}

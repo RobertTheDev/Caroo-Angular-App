@@ -13,7 +13,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CarRequestModule } from './modules/car-request/car-request.module';
 import { ProfileModule } from './modules/profile/profile.module';
-import { UserModule } from './modules/user/user.module';
+import { AccountModule } from './modules/account/account.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -21,11 +21,11 @@ import { UserModule } from './modules/user/user.module';
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     HttpClientModule,
+    AccountModule,
     AuthModule,
     CarModule,
     CarRequestModule,
     ProfileModule,
-    UserModule,
     LayoutModule,
     NotFoundModule,
     InfoModule,
