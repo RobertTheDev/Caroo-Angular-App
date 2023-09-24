@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarService } from '../../services/car/car.service';
 import { RouterModule } from '@angular/router';
@@ -17,7 +16,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
-    CarsListComponent,
     CarDetailComponent,
     CarCreateFormComponent,
     CarEditFormComponent,

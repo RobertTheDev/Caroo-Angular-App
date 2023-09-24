@@ -1,1 +1,11 @@
-<app-cars-list />
+<div *ngIf="loading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!loading && cars">
+  <ul class="cars-list-grid-container">
+    <app-car-card *ngFor="let car of cars" [car]="car" />
+  </ul>
+</div>
+<div *ngIf="!loading && errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
