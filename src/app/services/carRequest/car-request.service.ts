@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CarRequest } from '@prisma/client';
+import ICarRequest from 'models/carRequest/types/CarRequest';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -37,22 +37,22 @@ export class CarRequestService {
     return this.http.delete<void>(`${this.apiUrl}/car/${carId}`, this.options);
   }
 
-  getCarRequestById(id: string): Observable<{ data: CarRequest | null }> {
-    return this.http.get<{ data: CarRequest | null }>(
+  getCarRequestById(id: string): Observable<{ data: ICarRequest | null }> {
+    return this.http.get<{ data: ICarRequest | null }>(
       `${this.apiUrl}/${id}`,
       this.options,
     );
   }
 
-  getCarRequestsByCarId(carId: string): Observable<{ data: CarRequest[] }> {
-    return this.http.get<{ data: CarRequest[] }>(
+  getCarRequestsByCarId(carId: string): Observable<{ data: ICarRequest[] }> {
+    return this.http.get<{ data: ICarRequest[] }>(
       `${this.apiUrl}/car/${carId}`,
       this.options,
     );
   }
 
-  getCarRequestsByUserId(userId: string): Observable<{ data: CarRequest[] }> {
-    return this.http.get<{ data: CarRequest[] }>(
+  getCarRequestsByUserId(userId: string): Observable<{ data: ICarRequest[] }> {
+    return this.http.get<{ data: ICarRequest[] }>(
       `${this.apiUrl}/user/${userId}`,
       this.options,
     );

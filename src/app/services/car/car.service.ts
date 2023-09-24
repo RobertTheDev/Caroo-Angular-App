@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import ICar from 'models/car/types/Car';
 import { Observable } from 'rxjs';
-import CarWithImage from 'src/app/types/CarWithImages';
 
 @Injectable({
   providedIn: 'root',
@@ -31,18 +31,16 @@ export class CarService {
     return this.http.delete(`${this.apiUrl}/user/${userId}`);
   }
 
-  getCarById(id: string): Observable<{ data: CarWithImage }> {
-    return this.http.get<{ data: CarWithImage }>(`${this.apiUrl}/${id}`);
+  getCarById(id: string): Observable<{ data: ICar }> {
+    return this.http.get<{ data: ICar }>(`${this.apiUrl}/${id}`);
   }
 
-  getCars(): Observable<{ data: CarWithImage[] }> {
-    return this.http.get<{ data: CarWithImage[] }>(this.apiUrl);
+  getCars(): Observable<{ data: ICar[] }> {
+    return this.http.get<{ data: ICar[] }>(this.apiUrl);
   }
 
-  getCarsByUserId(userId: string): Observable<{ data: CarWithImage }> {
-    return this.http.get<{ data: CarWithImage }>(
-      `${this.apiUrl}/user/${userId}`,
-    );
+  getCarsByUserId(userId: string): Observable<{ data: ICar }> {
+    return this.http.get<{ data: ICar }>(`${this.apiUrl}/user/${userId}`);
   }
 
   updateCarById(

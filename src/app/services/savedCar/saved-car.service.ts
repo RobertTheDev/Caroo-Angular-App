@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SavedCar } from '@prisma/client';
+import ISavedCar from 'models/savedCar/types/SavedCar';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -37,22 +37,22 @@ export class SavedCarService {
     return this.http.delete<void>(`${this.apiUrl}/car/${carId}`, this.options);
   }
 
-  getSavedCarById(id: string): Observable<{ data: SavedCar | null }> {
-    return this.http.get<{ data: SavedCar | null }>(
+  getSavedCarById(id: string): Observable<{ data: ISavedCar | null }> {
+    return this.http.get<{ data: ISavedCar | null }>(
       `${this.apiUrl}/${id}`,
       this.options,
     );
   }
 
-  getSavedCarsByUserId(userId: string): Observable<{ data: SavedCar[] }> {
-    return this.http.get<{ data: SavedCar[] }>(
+  getSavedCarsByUserId(userId: string): Observable<{ data: ISavedCar[] }> {
+    return this.http.get<{ data: ISavedCar[] }>(
       `${this.apiUrl}/user/${userId}`,
       this.options,
     );
   }
 
-  getSavedCarsByCarId(carId: string): Observable<{ data: SavedCar[] }> {
-    return this.http.get<{ data: SavedCar[] }>(
+  getSavedCarsByCarId(carId: string): Observable<{ data: ISavedCar[] }> {
+    return this.http.get<{ data: ISavedCar[] }>(
       `${this.apiUrl}/car/${carId}`,
       this.options,
     );

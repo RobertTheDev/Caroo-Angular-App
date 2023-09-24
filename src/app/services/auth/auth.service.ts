@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '@prisma/client';
+import IUser from 'models/user/types/User';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,8 +26,8 @@ export class AuthService {
 
   private options = { withCredentials: true };
 
-  getAuthenticatedUser(): Observable<{ data: User }> | null {
-    return this.http.get<{ data: User }>(
+  getAuthenticatedUser(): Observable<{ data: IUser }> | null {
+    return this.http.get<{ data: IUser }>(
       this.authenticatedUserUrl,
       this.options,
     );

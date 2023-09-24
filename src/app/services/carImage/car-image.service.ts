@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CarImage } from '@prisma/client';
+import ICarImage from 'models/carImage/types/CarImage';
+
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -32,15 +33,15 @@ export class CarImageService {
     );
   }
 
-  getCarImageById(id: string): Observable<{ data: CarImage | null }> {
-    return this.http.get<{ data: CarImage | null }>(
+  getCarImageById(id: string): Observable<{ data: ICarImage | null }> {
+    return this.http.get<{ data: ICarImage | null }>(
       `${this.apiUrl}/${id}`,
       this.options,
     );
   }
 
-  getCarImagesByCarId(carId: string): Observable<{ data: CarImage[] }> {
-    return this.http.get<{ data: CarImage[] }>(
+  getCarImagesByCarId(carId: string): Observable<{ data: ICarImage[] }> {
+    return this.http.get<{ data: ICarImage[] }>(
       `${this.apiUrl}/car/${carId}`,
       this.options,
     );

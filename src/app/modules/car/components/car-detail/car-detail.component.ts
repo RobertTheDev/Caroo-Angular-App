@@ -5,7 +5,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { formatDistanceToNow } from 'date-fns';
 import priceUnits from 'src/app/lib/units/priceUnits';
 import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
-import CarWithImage from 'src/app/types/CarWithImages';
+import ICar from 'models/car/types/Car';
 
 @Component({
   selector: 'app-car-detail',
@@ -13,7 +13,7 @@ import CarWithImage from 'src/app/types/CarWithImages';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  car: CarWithImage | null = null;
+  car: ICar | null = null;
   loading = true;
   errorMessage: string | null = null;
   priceUnits = priceUnits;

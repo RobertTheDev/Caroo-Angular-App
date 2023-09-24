@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from '@prisma/client';
+import IUser from 'models/user/types/User';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,8 +13,8 @@ export class ProfileService {
 
   constructor(private http: HttpClient) {}
 
-  getProfile(): Observable<{ data: User | null }> {
-    return this.http.get<{ data: User | null }>(this.apiUrl, this.options);
+  getProfile(): Observable<{ data: IUser | null }> {
+    return this.http.get<{ data: IUser | null }>(this.apiUrl, this.options);
   }
 
   updateProfile(

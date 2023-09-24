@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
+import ICar from 'models/car/types/Car';
 import { CarService } from 'src/app/services/car/car.service';
-import CarWithImage from 'src/app/types/CarWithImages';
 
 @Component({
   selector: 'app-cars-list',
@@ -9,7 +9,7 @@ import CarWithImage from 'src/app/types/CarWithImages';
   styleUrls: ['./cars-list.component.css'],
 })
 export class CarsListComponent implements OnInit {
-  cars: CarWithImage[] = [];
+  cars: ICar[] = [];
   loading = true;
   errorMessage: string | null = null;
 

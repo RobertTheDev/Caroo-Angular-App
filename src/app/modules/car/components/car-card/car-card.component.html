@@ -1,7 +1,7 @@
 <li *ngIf="car" class="car-card-container">
   <a [routerLink]="'cars/' + car.id" class="car-link">
     <div>
-      <img [src]="car.images[0].url" [alt]="car.images[0].alt" />
+      <!-- <img [src]="car.images[0].url" [alt]="car.images[0].alt" /> -->
     </div>
     <p>{{ car.year }} {{ car.make }} {{ car.model }}</p>
     <p>{{ car.mileageTotal.toLocaleString() }} miles</p>

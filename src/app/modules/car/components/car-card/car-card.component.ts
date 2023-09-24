@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import CarWithImage from 'src/app/types/CarWithImages';
+import ICar from 'models/car/types/Car';
 
 @Component({
   selector: 'app-car-card',
@@ -7,5 +7,5 @@ import CarWithImage from 'src/app/types/CarWithImages';
   styleUrls: ['./car-card.component.css'],
 })
 export class CarCardComponent {
-  @Input() car: CarWithImage | undefined = undefined;
+  @Input() car: ICar | undefined = undefined;
 }
