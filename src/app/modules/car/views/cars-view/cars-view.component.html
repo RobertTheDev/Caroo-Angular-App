@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="!loading && cars">
   <ul class="cars-list-grid-container">
-    <p *ngFor="let car of cars">{{ car.make }}</p>
+    <app-car-card *ngFor="let car of cars" [car]="car" />
   </ul>
 </div>
 <div *ngIf="!loading && errorMessage">
