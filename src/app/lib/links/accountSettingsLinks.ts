@@ -7,27 +7,27 @@ const accountSettingsLinks: Link[] = [
   },
   {
     name: 'Edit Profile',
-    path: '/profile/edit-profile',
+    path: '/edit-profile',
   },
   {
     name: 'Verify Email',
-    path: '/profile/verify-email',
+    path: '/verify-email',
   },
   {
     name: 'Change Email',
-    path: '/profile/change-email',
+    path: '/change-email',
   },
   {
     name: 'Change Password',
-    path: '/profile/change-password',
+    path: '/change-password',
   },
   {
     name: 'My Car Listings',
-    path: '/profile/my-car-listings',
+    path: '/my-car-listings',
   },
   {
     name: 'Close Account',
-    path: '/profile/close-account',
+    path: '/close-account',
   },
 ];
 
