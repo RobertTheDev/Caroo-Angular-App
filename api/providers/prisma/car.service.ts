@@ -28,10 +28,10 @@ export default class CarPrismaService {
   }
 
   // Return all cars by matching user id.
-  async findAllByUserId(userId: string): Promise<Car[]> {
+  async findAllByUserId(ownerId: string): Promise<Car[]> {
     return await this.prisma.car.findMany({
       where: {
-        userId,
+        ownerId,
       },
       include: {
         images: true,
@@ -67,10 +67,10 @@ export default class CarPrismaService {
   }
 
   // Delete all cars by matching user id.
-  async deleteAllByUserId(userId: string): Promise<Prisma.BatchPayload> {
+  async deleteAllByUserId(ownerId: string): Promise<Prisma.BatchPayload> {
     return await this.prisma.car.deleteMany({
       where: {
-        userId,
+        ownerId,
       },
     });
   }

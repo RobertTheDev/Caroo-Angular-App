@@ -27,8 +27,8 @@ export class CarService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`, this.options);
   }
 
-  deleteCarsByUserId(userId: string) {
-    return this.http.delete(`${this.apiUrl}/user/${userId}`);
+  deleteCarsByUserId(ownerId: string) {
+    return this.http.delete(`${this.apiUrl}/user/${ownerId}`);
   }
 
   getCarById(id: string): Observable<{ data: ICar }> {
@@ -39,8 +39,8 @@ export class CarService {
     return this.http.get<{ data: ICar[] }>(this.apiUrl);
   }
 
-  getCarsByUserId(userId: string): Observable<{ data: ICar }> {
-    return this.http.get<{ data: ICar }>(`${this.apiUrl}/user/${userId}`);
+  getCarsByUserId(ownerId: string): Observable<{ data: ICar }> {
+    return this.http.get<{ data: ICar }>(`${this.apiUrl}/user/${ownerId}`);
   }
 
   updateCarById(
