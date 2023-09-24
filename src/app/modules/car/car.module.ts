@@ -4,8 +4,6 @@ import { CarsListComponent } from './components/cars-list/cars-list.component';
 import { CarDetailComponent } from './components/car-detail/car-detail.component';
 import { CarService } from '../../services/car/car.service';
 import { RouterModule } from '@angular/router';
-import { CarFilterMenuComponent } from './components/car-filter-menu/car-filter-menu.component';
-import { CarFilterListComponent } from './components/car-filter-list/car-filter-list.component';
 import { CarCreateFormComponent } from './components/car-create-form/car-create-form.component';
 import { CarEditFormComponent } from './components/car-edit-form/car-edit-form.component';
 import { CarsViewComponent } from './views/cars-view/cars-view.component';
@@ -15,16 +13,12 @@ import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.compon
 import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
 import { CarCardComponent } from './components/car-card/car-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CarDetailImagesComponent } from './components/car-detail-images/car-detail-images.component';
-import { CarDetailImagesMobileComponent } from './components/car-detail-images-mobile/car-detail-images-mobile.component';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     CarsListComponent,
     CarDetailComponent,
-    CarFilterMenuComponent,
-    CarFilterListComponent,
     CarCreateFormComponent,
     CarEditFormComponent,
     CarsViewComponent,
@@ -33,8 +27,6 @@ import { SharedModule } from '../shared/shared.module';
     EditCarViewComponent,
     FilterCarsViewComponent,
     CarCardComponent,
-    CarDetailImagesComponent,
-    CarDetailImagesMobileComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, SharedModule],
   exports: [
