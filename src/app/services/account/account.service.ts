@@ -12,9 +12,10 @@ export class AccountService {
 
   constructor(private http: HttpClient) {}
 
-  changeEmailAddress(
+  updateEmailAddress(
     data: Partial<{
-      emailAddress: string;
+      emailAddress: string | null;
+      password: string | null;
     }>,
   ): Observable<void> {
     return this.http.put<void>(
@@ -24,7 +25,7 @@ export class AccountService {
     );
   }
 
-  changePassword(
+  updatePassword(
     data: Partial<{
       password: string;
     }>,
