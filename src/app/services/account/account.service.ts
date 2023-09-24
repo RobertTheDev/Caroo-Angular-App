@@ -27,7 +27,7 @@ export class AccountService {
 
   updatePassword(
     data: Partial<{
-      password: string;
+      password: string | null;
     }>,
   ): Observable<void> {
     return this.http.put<void>(
@@ -51,7 +51,7 @@ export class AccountService {
 
   sendEmailVerificationToken(
     data: Partial<{
-      emailAddress: string;
+      emailAddress: string | null;
     }>,
   ): Observable<void> {
     return this.http.put<void>(
@@ -61,15 +61,9 @@ export class AccountService {
     );
   }
 
-  verifyEmailWithToken(
-    token: string,
-    data: Partial<{
-      emailAddress: string;
-    }>,
-  ): Observable<void> {
+  verifyEmailWithToken(token: string): Observable<void> {
     return this.http.put<void>(
       `${this.apiUrl}/verify-email/${token}`,
-      data,
       this.options,
     );
   }
