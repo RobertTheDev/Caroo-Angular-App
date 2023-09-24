@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Car } from '@prisma/client';
 import { Observable } from 'rxjs';
-import CarWithImages from 'src/app/types/CarWithImages';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +23,34 @@ export class CarService {
     return this.http.post<void>(this.apiUrl, data, this.options);
   }
 
-  getCars(): Observable<{ data: CarWithImages[] }> {
-    return this.http.get<{ data: CarWithImages[] }>(this.apiUrl);
+  deleteCarById(id: string) {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`, this.options);
   }
 
-  getCarById(id: string): Observable<{ data: CarWithImages }> {
-    return this.http.get<{ data: CarWithImages }>(`${this.apiUrl}/${id}`);
+  deleteCarsByUserId(userId: string) {
+    return this.http.delete(`${this.apiUrl}/user/${userId}`);
+  }
+
+  getCarById(id: string): Observable<{ data: Car }> {
+    return this.http.get<{ data: Car }>(`${this.apiUrl}/${id}`);
+  }
+
+  getCars(): Observable<{ data: Car[] }> {
+    return this.http.get<{ data: Car[] }>(this.apiUrl);
+  }
+
+  getCarsByUserId(userId: string): Observable<{ data: Car }> {
+    return this.http.get<{ data: Car }>(`${this.apiUrl}/user/${userId}`);
+  }
+
+  updateCarById(
+    id: string,
+    data: Partial<{
+      make: string | null;
+      model: string | null;
+      colour: string | null;
+    }>,
+  ) {
+    return this.http.put<void>(`${this.apiUrl}/${id}`, data, this.options);
   }
 }
