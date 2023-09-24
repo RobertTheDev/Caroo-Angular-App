@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundViewComponent } from './modules/not-found/views/not-found-view/not-found-view.component';
-import { LoginViewComponent } from './modules/auth/views/login-view/login-view.component';
-import { SignUpViewComponent } from './modules/auth/views/sign-up-view/sign-up-view.component';
 import { SavedCarsViewComponent } from './modules/saved-car/views/saved-cars-view/saved-cars-view.component';
 import { CarViewComponent } from './modules/car/views/car-view/car-view.component';
 import { CarsViewComponent } from './modules/car/views/cars-view/cars-view.component';
@@ -13,34 +11,17 @@ import { AboutViewComponent } from './modules/info/views/about-view/about-view.c
 import { PrivacyPolicyViewComponent } from './modules/info/views/privacy-policy-view/privacy-policy-view.component';
 import { TermsAndConditionsViewComponent } from './modules/info/views/terms-and-conditions-view/terms-and-conditions-view.component';
 import { CookiePolicyViewComponent } from './modules/info/views/cookie-policy-view/cookie-policy-view.component';
-import { SendPasswordResetPageComponent } from './modules/auth/views/send-password-reset-page/send-password-reset-page.component';
-import { ResetPasswordViewComponent } from './modules/auth/views/reset-password-view/reset-password-view.component';
 import { CreateCarViewComponent } from './modules/car/views/create-car-view/create-car-view.component';
 
 const routes: Routes = [
   { path: '', component: FilterCarsViewComponent },
   { path: 'sell-a-car', component: CreateCarViewComponent },
   {
-    path: 'auth',
-
-    children: [
-      {
-        path: 'forgot-password',
-        component: SendPasswordResetPageComponent,
-      },
-      {
-        path: 'login',
-        component: LoginViewComponent,
-      },
-      {
-        path: 'reset-password',
-        component: ResetPasswordViewComponent,
-      },
-      {
-        path: 'sign-up',
-        component: SignUpViewComponent,
-      },
-    ],
+    path: '',
+    loadChildren: () =>
+      import('./modules/auth/auth-routing.module').then(
+        (m) => m.AuthRoutingModule,
+      ),
   },
 
   {
@@ -53,25 +34,22 @@ const routes: Routes = [
   },
 
   { path: 'saved-cars', component: SavedCarsViewComponent },
+
+  { path: 'about', component: AboutViewComponent },
   {
-    path: 'info',
-    children: [
-      { path: 'about', component: AboutViewComponent },
-      {
-        path: 'accessibility-statement',
-        component: AccessibilityStatementViewComponent,
-      },
-      {
-        path: 'cookie-policy',
-        component: CookiePolicyViewComponent,
-      },
-      { path: 'privacy-policy', component: PrivacyPolicyViewComponent },
-      {
-        path: 'terms-and-conditions',
-        component: TermsAndConditionsViewComponent,
-      },
-    ],
+    path: 'accessibility-statement',
+    component: AccessibilityStatementViewComponent,
   },
+  {
+    path: 'cookie-policy',
+    component: CookiePolicyViewComponent,
+  },
+  { path: 'privacy-policy', component: PrivacyPolicyViewComponent },
+  {
+    path: 'terms-and-conditions',
+    component: TermsAndConditionsViewComponent,
+  },
+
   { path: '**', component: NotFoundViewComponent },
 ];
 

@@ -16,7 +16,6 @@ import { ResetPasswordViewComponent } from './views/reset-password-view/reset-pa
   declarations: [
     SignUpFormComponent,
     LoginFormComponent,
-
     SignUpViewComponent,
     LoginViewComponent,
     SendPasswordResetFormComponent,
