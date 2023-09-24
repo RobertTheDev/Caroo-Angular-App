@@ -5,7 +5,7 @@ import { CarService } from 'src/app/services/car/car.service';
 import { formatDistanceToNow } from 'date-fns';
 import priceUnits from 'src/app/lib/units/priceUnits';
 import { faHeart, faMessage } from '@fortawesome/free-regular-svg-icons';
-import { Car } from '@prisma/client';
+import CarWithImage from 'src/app/types/CarWithImages';
 
 @Component({
   selector: 'app-car-detail',
@@ -13,7 +13,7 @@ import { Car } from '@prisma/client';
   styleUrls: ['./car-detail.component.css'],
 })
 export class CarDetailComponent implements OnInit {
-  car: Car | null = null;
+  car: CarWithImage | null = null;
   loading = true;
   errorMessage: string | null = null;
   priceUnits = priceUnits;

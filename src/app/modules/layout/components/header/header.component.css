@@ -69,7 +69,6 @@
   color: var(--primary-400);
   font-size: 3rem;
   font-weight: 600;
-
 }
 
 @media (prefers-color-scheme: dark) {

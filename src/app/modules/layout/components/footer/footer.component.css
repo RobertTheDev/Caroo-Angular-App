@@ -28,7 +28,6 @@
     border-top-left-radius: 4rem;
     border-top-right-radius: 4rem;
   }
-
 }
 
 .footer-links-container {
@@ -42,13 +41,11 @@
   @media (width >=1024px) {
     flex-direction: row;
   }
-
 }
 
 .footer-link {
   text-decoration: underline;
   font-size: 1.4rem;
-
 }
 
 .footer-link:hover {

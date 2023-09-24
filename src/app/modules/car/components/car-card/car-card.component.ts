@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Car } from '@prisma/client';
+import CarWithImage from 'src/app/types/CarWithImages';
 
 @Component({
   selector: 'app-car-card',
@@ -7,5 +7,5 @@ import { Car } from '@prisma/client';
   styleUrls: ['./car-card.component.css'],
 })
 export class CarCardComponent {
-  @Input() car: Car | undefined = undefined;
+  @Input() car: CarWithImage | undefined = undefined;
 }

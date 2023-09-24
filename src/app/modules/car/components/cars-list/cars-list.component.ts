@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
-import { Car } from '@prisma/client';
 import { CarService } from 'src/app/services/car/car.service';
+import CarWithImage from 'src/app/types/CarWithImages';
 
 @Component({
   selector: 'app-cars-list',
@@ -9,7 +9,7 @@ import { CarService } from 'src/app/services/car/car.service';
   styleUrls: ['./cars-list.component.css'],
 })
 export class CarsListComponent implements OnInit {
-  cars: Car[] = [];
+  cars: CarWithImage[] = [];
   loading = true;
   errorMessage: string | null = null;
 

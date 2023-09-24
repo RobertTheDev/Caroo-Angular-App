@@ -8,9 +8,8 @@ describe('UpdateEmailViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UpdateEmailViewComponent ]
-    })
-    .compileComponents();
+      declarations: [UpdateEmailViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(UpdateEmailViewComponent);
     component = fixture.componentInstance;

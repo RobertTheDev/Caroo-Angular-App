@@ -1,6 +1,6 @@
-<div *ngIf="!loading && car" class="car-detail-container">
-  <div class="car-detail-content-container">
-    <h2>{{ car.year }} {{ car.make }} {{ car.model }}</h2>
+<div *ngIf="!loading && car" class="page-container">
+  <div class="page-content-container">
+    <h1>{{ car.year }} {{ car.make }} {{ car.model }}</h1>
     <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
     <p>
       {{ priceUnits[car.priceCurrency] }}{{ car.priceTotal.toLocaleString() }}
@@ -10,12 +10,19 @@
         <fa-icon [icon]="faHeart" />
         Save Car
       </button>
-      <button>
-        <fa-icon [icon]="faMessage" />
-        Message Seller
-      </button>
     </div>
 
+    <img [src]="car.images[0].url" />
+    <div>
+      <div>
+        <input
+          *ngFor="let image of car.images"
+          type="image"
+          [src]="image.url"
+          [alt]="image.alt"
+        />
+      </div>
+    </div>
     <p>Colour: {{ car.colour }}</p>
 
     <p>Doors: {{ car.doors }} doors</p>
