@@ -1,37 +1,48 @@
 <!-- Sign up form contains inputs and validators to handle user sign up. -->
 <!-- Form will only sibmit once the fields are valid. -->
-<form [formGroup]="signUpForm" (ngSubmit)="handleSignUp()">
+<form
+  class="form-container"
+  [formGroup]="signUpForm"
+  (ngSubmit)="handleSignUp()"
+>
   <!-- EMAIL ADDRESS -->
   <!-- Input is wrapped in a label for accessibility. -->
   <label for="emailAddress">
+    <p>Email address</p>
     <input
       id="emailAddress"
       type="email"
       formControlName="emailAddress"
       placeholder="Email address"
     />
+
+    <!-- Email address validators. -->
+    <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+    <div
+      class="form-validator-container"
+      *ngIf="
+        (formControls.emailAddress.touched &&
+          formControls.emailAddress.invalid) ||
+        formSubmitted
+      "
+    >
+      <!-- Show this if email address is empty. -->
+      <p
+        class="form-validator-text"
+        *ngIf="formControls.emailAddress.errors?.['required']"
+      >
+        Email is required.
+      </p>
+      <!-- Show this If email address not in valid email format. -->
+      <p *ngIf="formControls.emailAddress.errors?.['email']">
+        Invalid email format.
+      </p>
+    </div>
   </label>
-  <!-- Email address validators. -->
-  <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
-  <div
-    *ngIf="
-      (formControls.emailAddress.touched &&
-        formControls.emailAddress.invalid) ||
-      formSubmitted
-    "
-  >
-    <!-- Show this if email address is empty. -->
-    <p *ngIf="formControls.emailAddress.errors?.['required']">
-      Email is required.
-    </p>
-    <!-- Show this If email address not in valid email format. -->
-    <p *ngIf="formControls.emailAddress.errors?.['email']">
-      Invalid email format.
-    </p>
-  </div>
   <!-- FIRST NAME -->
   <!-- Input is wrapped in a label for accessibility. -->
   <label for="first-name">
+    <p>First name</p>
     <input
       id="first-name"
       type="text"
@@ -55,6 +66,7 @@
   <!-- LAST NAME -->
   <!-- Input is wrapped in a label for accessibility. -->
   <label for="last-name">
+    <p>Last name</p>
     <input
       id="last-name"
       type="text"
@@ -121,7 +133,7 @@
   <p *ngIf="formErrorMessage">{{ formErrorMessage }}</p>
 
   <!-- If the form is loading show a loading indicator. Otherwise show the form submit button.  -->
-  <button type="submit" [disabled]="formLoading">
+  <button class="primary-button" type="submit" [disabled]="formLoading">
     {{ formLoading ? 'Loading' : 'Sign Up' }}
   </button>
 </form>

@@ -1,24 +1,19 @@
-<div class="page-container">
-  <div *ngIf="!loading && markdownContent" class="about-banner-image-container">
-    <div class="about-banner-text-container">
-      <h1 class="about-banner-text">Find your next car on Caroo</h1>
-    </div>
-    <img
-      class="about-banner-image"
-      src="https://images.unsplash.com/photo-1626100585171-e73444ee0e50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2559&q=80"
-    />
+<div *ngIf="!loading && markdownContent" class="about-banner-image-container">
+  <div class="about-banner-text-container">
+    <h1 class="about-banner-text">Find your next car on Caroo</h1>
   </div>
-
+  <img
+    class="about-banner-image"
+    src="https://images.unsplash.com/photo-1626100585171-e73444ee0e50?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2559&q=80"
+  />
+</div>
+<div class="page-container">
   <!-- LOADING - If markdown is loading show the loading view. -->
   <app-info-page-loader *ngIf="loading" />
-  <div class="content-container">
+  <div class="page-content-container">
     <!-- ERROR - If markdown returns an error show the error view. -->
     <app-info-page-error *ngIf="!loading && !markdownContent" />
     <!-- DATA - If markdown returns content show the markdown. -->
-    <markdown
-      class="content-body-container"
-      *ngIf="!loading && markdownContent"
-      [data]="markdownContent"
-    />
+    <markdown *ngIf="!loading && markdownContent" [data]="markdownContent" />
   </div>
 </div>

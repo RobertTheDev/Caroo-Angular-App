@@ -4,7 +4,6 @@ import { Meta, Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-sign-up-view',
   templateUrl: './sign-up-view.component.html',
-  styleUrls: ['./sign-up-view.component.css'],
 })
 export class SignUpViewComponent implements OnInit {
   constructor(

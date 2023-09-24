@@ -1,7 +1,7 @@
 <div class="page-container">
   <!-- LOADING - If markdown is loading show the loading view. -->
   <app-info-page-loader *ngIf="loading" />
-  <div class="content-container">
+  <div class="page-content-container">
     <!-- ERROR - If markdown returns an error show the error view. -->
     <app-info-page-error *ngIf="!loading && !markdownContent" />
     <!-- DATA - If markdown returns content show the markdown. -->

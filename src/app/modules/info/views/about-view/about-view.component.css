@@ -47,11 +47,4 @@
   @media (width >=640px) {
     width: 60%;
   }
-
-}
-
-img {
-  object-fit: cover;
-  width: 100%;
-  border-radius: 0;
 }
