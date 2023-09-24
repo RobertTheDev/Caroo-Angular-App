@@ -1,1 +1,68 @@
-<p>update-email-form works!</p>
+<!-- Sign up form contains inputs and validators to handle user login. -->
+<!-- Form will only submit once the fields are valid. -->
+<form [formGroup]="updateEmailForm" (ngSubmit)="handleUpdateEmail()">
+  <!-- EMAIL ADDRESS -->
+  <!-- Input is wrapped in a label for accessibility. -->
+  <label for="emailAddress">
+    <input
+      id="emailAddress"
+      type="email"
+      formControlName="emailAddress"
+      placeholder="Email address"
+    />
+  </label>
+
+  <!-- Email address validators. -->
+  <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+  <div
+    *ngIf="
+      (formControls.emailAddress.touched &&
+        formControls.emailAddress.invalid) ||
+      formSubmitted
+    "
+  >
+    <!-- Show this if email address is empty. -->
+    <p *ngIf="formControls.emailAddress.errors?.['required']">
+      Email is required.
+    </p>
+    <!-- Show this If email address not in valid email format. -->
+    <p *ngIf="formControls.emailAddress.errors?.['email']">
+      Invalid email format.
+    </p>
+  </div>
+
+  <!-- PASSWORD -->
+  <!-- Input is wrapped in a label for accessibility. -->
+  <label for="password">
+    <input
+      id="password"
+      type="password"
+      formControlName="password"
+      placeholder="Password"
+    />
+  </label>
+  <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+  <div
+    *ngIf="
+      (formControls.password.touched && formControls.password.invalid) ||
+      formSubmitted
+    "
+  >
+    <!-- Show this validator error if input is empty. -->
+    <p *ngIf="formControls.password.errors?.['required']">
+      Password is required.
+    </p>
+    <!-- Show this validator error if input has less than eight characters. -->
+    <p *ngIf="formControls.password.errors?.['minlength']">
+      Password must be at least 8 characters long.
+    </p>
+  </div>
+
+  <!-- If the server response returns an error display it here. -->
+  <p *ngIf="formErrorMessage">{{ formErrorMessage }}</p>
+
+  <!-- If the form is loading show a loading indicator. Otherwise show the form submit button.  -->
+  <button type="submit" [disabled]="formLoading">
+    {{ formLoading ? 'Loading' : 'Update Email Address' }}
+  </button>
+</form>

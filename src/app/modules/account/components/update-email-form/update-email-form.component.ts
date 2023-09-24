@@ -48,7 +48,7 @@ export class UpdateEmailFormComponent {
   // Login function calls the sign up handler from our auth service to handle user login.
   // The function handles validation and wont submit until fields are valid.
   // The function handles errors and displays error response messages.
-  handleLogin() {
+  handleUpdateEmail() {
     // When function is called set form submitted to true and error message to null.
     this.formSubmitted = true;
     this.formErrorMessage = null;

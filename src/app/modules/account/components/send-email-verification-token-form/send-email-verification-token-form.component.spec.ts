@@ -8,9 +8,8 @@ describe('SendEmailVerificationTokenFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SendEmailVerificationTokenFormComponent ]
-    })
-    .compileComponents();
+      declarations: [SendEmailVerificationTokenFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SendEmailVerificationTokenFormComponent);
     component = fixture.componentInstance;
