@@ -1,0 +1,94 @@
+.headline-xxl {
+    font-size: 3.5rem;
+    line-height: 4.2rem;
+
+    @media (width >=640px) {
+        font-size: 4.8rem;
+        line-height: 5.8rem;
+    }
+}
+
+.headline-xl {
+    font-size: 4.8rem;
+    line-height: 5.8rem;
+
+    @media (width >=640px) {
+        font-size: 2.9rem;
+        line-height: 3.5rem;
+    }
+}
+
+.headline-lg {
+    font-size: 2.6rem;
+    line-height: 3.4rem;
+
+    @media (width >=640px) {
+        font-size: 3.6rem;
+        line-height: 4.7rem;
+    }
+}
+
+.headline-md {
+    font-size: 2.4rem;
+    line-height: 3.1rem;
+
+    @media (width >=640px) {
+        font-size: 2.8rem;
+        line-height: 3.7rem;
+    }
+}
+
+.headline-sm {
+    font-size: 2rem;
+    line-height: 2.6rem;
+
+    @media (width >=640px) {
+        font-size: 2.4rem;
+        line-height: 3.1rem;
+    }
+}
+
+.headline-xs {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+
+    @media (width >=640px) {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+}
+
+.body-copy-xl {
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+
+    @media (width >=640px) {
+        font-size: 2rem;
+        line-height: 3rem;
+    }
+}
+
+.body-copy-lg {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+
+    @media (width >=640px) {
+        font-size: 1.8rem;
+        line-height: 2.7rem;
+    }
+}
+
+.body-copy-md {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+}
+
+.body-copy-sm {
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+.body-copy-xs {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}

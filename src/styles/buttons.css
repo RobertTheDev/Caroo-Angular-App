@@ -1,0 +1,41 @@
+.button-icon {
+    font-size: 1.6rem;
+}
+
+.primary-button {
+    background-color: var(--primary-400);
+    border-radius: 0.4rem;
+    color: white;
+    padding: 1.2rem;
+    transition-duration: 500ms;
+}
+
+.primary-button:hover {
+    background-color: var(--primary-600);
+}
+
+
+
+.secondary-button {
+    background-color: var(--secondary-400);
+    border-radius: 0.4rem;
+    color: white;
+    padding: 1.2rem;
+    transition-duration: 500ms;
+}
+
+.secondary-button:hover {
+    background-color: var(--secondary-600);
+}
+
+.tertiary-button {
+    background-color: var(--tertiary-400);
+    border-radius: 0.4rem;
+    color: white;
+    padding: 1.2rem;
+    transition-duration: 500ms;
+}
+
+.tertiary-button:hover {
+    background-color: var(--tertiary-600);
+}
