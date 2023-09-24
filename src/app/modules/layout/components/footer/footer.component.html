@@ -1,6 +1,5 @@
 <footer class="footer-container">
   <div class="footer-links-container">
-    <p class="footer-copyright-text">© {{ currentYear }} {{ companyName }}</p>
     <a
       class="footer-link"
       *ngFor="let footerLink of footerLinks"
@@ -10,4 +9,5 @@
       >{{ footerLink.name }}</a
     >
   </div>
+  <p class="footer-copyright-text">© {{ currentYear }} {{ companyName }}</p>
 </footer>
