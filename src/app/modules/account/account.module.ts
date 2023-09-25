@@ -9,10 +9,6 @@ import { SendEmailVerificationTokenViewComponent } from './views/send-email-veri
 import { UpdatePasswordViewComponent } from './views/update-password-view/update-password-view.component';
 import { UpdateEmailViewComponent } from './views/update-email-view/update-email-view.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AccountProfileViewComponent } from './views/account-profile-view/account-profile-view.component';
-import { UpdateAccountProfileViewComponent } from './views/update-account-profile-view/update-account-profile-view.component';
-import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
-import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
 import { AccountSettingsMenuComponent } from './components/account-settings-menu/account-settings-menu.component';
 import { RouterModule } from '@angular/router';
 import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
@@ -27,10 +23,6 @@ import { CloseAccountViewComponent } from './views/close-account-view/close-acco
     SendEmailVerificationTokenViewComponent,
     UpdatePasswordViewComponent,
     UpdateEmailViewComponent,
-    AccountProfileViewComponent,
-    UpdateAccountProfileViewComponent,
-    UpdateProfileFormComponent,
-    ProfileDetailComponent,
     AccountSettingsMenuComponent,
     CloseAccountViewComponent,
   ],
