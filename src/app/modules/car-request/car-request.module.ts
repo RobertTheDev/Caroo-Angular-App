@@ -8,6 +8,7 @@ import { CarRequestViewComponent } from './views/car-request-view/car-request-vi
 import { CreateCarRequestViewComponent } from './views/create-car-request-view/create-car-request-view.component';
 import { UpdateCarRequestViewComponent } from './views/update-car-request-view/update-car-request-view.component';
 import { CarRequestDetailsComponent } from './components/car-request-details/car-request-details.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,6 @@ import { CarRequestDetailsComponent } from './components/car-request-details/car
     UpdateCarRequestViewComponent,
     CarRequestDetailsComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
 })
 export class CarRequestModule {}
