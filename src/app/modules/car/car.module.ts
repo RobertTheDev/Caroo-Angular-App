@@ -9,7 +9,6 @@ import { CarsViewComponent } from './views/cars-view/cars-view.component';
 import { CarViewComponent } from './views/car-view/car-view.component';
 import { CreateCarViewComponent } from './views/create-car-view/create-car-view.component';
 import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.component';
-import { FilterCarsViewComponent } from './views/filter-cars-view/filter-cars-view.component';
 import { CarCardComponent } from './components/car-card/car-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
@@ -23,7 +22,6 @@ import { SharedModule } from '../shared/shared.module';
     CarViewComponent,
     CreateCarViewComponent,
     EditCarViewComponent,
-    FilterCarsViewComponent,
     CarCardComponent,
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule, SharedModule],
@@ -32,7 +30,6 @@ import { SharedModule } from '../shared/shared.module';
     CarViewComponent,
     CreateCarViewComponent,
     EditCarViewComponent,
-    FilterCarsViewComponent,
   ],
   providers: [CarService],
 })
