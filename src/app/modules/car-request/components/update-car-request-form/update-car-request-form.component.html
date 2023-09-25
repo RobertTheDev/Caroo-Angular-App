@@ -1,1 +1,39 @@
-<p>update-car-request-form works!</p>
+<!-- Sign up form contains inputs and validators to handle user sign up. -->
+<!-- Form will only sibmit once the fields are valid. -->
+<form
+  class="form-container"
+  [formGroup]="createCarRequestForm"
+  (ngSubmit)="handleCreateCarRequest()"
+>
+  <!-- EMAIL ADDRESS -->
+  <!-- Input is wrapped in a label for accessibility. -->
+  <label for="message">
+    <p>Message</p>
+    <input
+      id="message"
+      type="text"
+      formControlName="message"
+      placeholder="Enter message"
+    />
+
+    <!-- Email address validators. -->
+    <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+    <div
+      class="form-validator-container"
+      *ngIf="
+        (formControls.message.touched && formControls.message.invalid) ||
+        formSubmitted
+      "
+    >
+      <p>Message is required.</p>
+    </div>
+  </label>
+
+  <!-- If the server response returns an error display it here. -->
+  <p *ngIf="formErrorMessage">{{ formErrorMessage }}</p>
+
+  <!-- If the form is loading show a loading indicator. Otherwise show the form submit button.  -->
+  <button class="primary-button" type="submit" [disabled]="formLoading">
+    {{ formLoading ? 'Loading' : 'Request Car' }}
+  </button>
+</form>
