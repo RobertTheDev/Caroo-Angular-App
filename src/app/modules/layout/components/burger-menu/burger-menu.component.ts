@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import headerLinks from 'src/app/lib/links/headerLinks';
+import { LayoutService } from 'src/app/services/layout/layout.service';
 
 @Component({
   selector: 'app-burger-menu',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./burger-menu.component.css'],
 })
 export class BurgerMenuComponent {
-  active = false;
+  constructor(private layoutService: LayoutService) {}
+
+  headerLinks = headerLinks;
+
+  get burgerMenuActive(): boolean {
+    return this.layoutService.burgerMenuActive;
+  }
+
+  toggleBurgerMenu() {
+    this.layoutService.toggleBurgerMenu();
+  }
 }

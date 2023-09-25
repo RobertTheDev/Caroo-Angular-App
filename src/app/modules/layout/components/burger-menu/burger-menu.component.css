@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   width: 100vw;
-  z-index: 400;
+  z-index: 4000;
 }
 
 .burger-menu-container {
@@ -14,4 +14,5 @@
   min-height: 100vh;
   position: fixed;
   width: 35rem;
+  z-index: 5000;
 }

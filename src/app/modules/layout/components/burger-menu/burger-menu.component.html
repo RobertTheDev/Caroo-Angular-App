@@ -1,5 +1,8 @@
-<div *ngIf="active" class="burger-menu-wrapper">
+<div *ngIf="burgerMenuActive" class="burger-menu-wrapper">
   <div class="burger-menu-container">
-    <button>Close</button>
+    <button (click)="toggleBurgerMenu()">Close</button>
+    <a *ngFor="let headerLink of headerLinks" [routerLink]="headerLink.path">{{
+      headerLink.name
+    }}</a>
   </div>
 </div>
