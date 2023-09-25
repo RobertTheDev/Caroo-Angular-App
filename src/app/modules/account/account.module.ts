@@ -13,6 +13,9 @@ import { AccountProfileViewComponent } from './views/account-profile-view/accoun
 import { UpdateAccountProfileViewComponent } from './views/update-account-profile-view/update-account-profile-view.component';
 import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
 import { ProfileDetailComponent } from './components/profile-detail/profile-detail.component';
+import { AccountSettingsMenuComponent } from './components/account-settings-menu/account-settings-menu.component';
+import { RouterModule } from '@angular/router';
+import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +31,10 @@ import { ProfileDetailComponent } from './components/profile-detail/profile-deta
     UpdateAccountProfileViewComponent,
     UpdateProfileFormComponent,
     ProfileDetailComponent,
+    AccountSettingsMenuComponent,
+    CloseAccountViewComponent,
   ],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [],
 })
 export class AccountModule {}
