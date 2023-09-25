@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ProfileService {
-  private apiUrl = 'http://localhost:4200/api/profile/';
+  private apiUrl = 'http://localhost:4200/api/auth/authenticated-user';
 
   private options = { withCredentials: true };
 
