@@ -3,19 +3,19 @@ import Link from 'models/config/types/Link';
 const profileMenuLinks: Link[] = [
   {
     name: 'View Profile',
-    path: '/verify-email-address',
+    path: '/profile',
   },
   {
     name: 'Edit Profile',
-    path: '/update-email',
+    path: '/edit-profile',
   },
   {
     name: 'My Requests',
-    path: '/close-account',
+    path: '/my-car-requests',
   },
   {
     name: 'My Car Listings',
-    path: '/close-account',
+    path: '/my-car-listings',
   },
   {
     name: 'Account Settings',
