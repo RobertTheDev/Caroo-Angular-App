@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AccountSettingsMenuComponent } from './components/account-settings-menu/account-settings-menu.component';
 import { RouterModule } from '@angular/router';
 import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
+import { CloseAccountFormComponent } from './components/close-account-form/close-account-form.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { CloseAccountViewComponent } from './views/close-account-view/close-acco
     UpdateEmailViewComponent,
     AccountSettingsMenuComponent,
     CloseAccountViewComponent,
+    CloseAccountFormComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   exports: [],
