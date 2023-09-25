@@ -1,21 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { MetaService } from 'src/app/services/meta/meta.service';
 
 @Component({
   selector: 'app-saved-cars-view',
   templateUrl: './saved-cars-view.component.html',
 })
 export class SavedCarsViewComponent implements OnInit {
-  constructor(
-    private meta: Meta,
-    private title: Title,
-  ) {}
-  ngOnInit(): void {
-    this.title.setTitle('Saved Cars | Caroo');
+  constructor(private metaService: MetaService) {}
 
-    this.meta.updateTag({
-      name: 'description',
-      content: '',
-    });
+  ngOnInit() {
+    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
   }
 }

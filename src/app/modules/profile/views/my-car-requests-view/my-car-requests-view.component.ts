@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MetaService } from 'src/app/services/meta/meta.service';
 
 @Component({
   selector: 'app-my-car-requests-view',
   templateUrl: './my-car-requests-view.component.html',
-  styleUrls: ['./my-car-requests-view.component.css']
 })
-export class MyCarRequestsViewComponent {
+export class MyCarRequestsViewComponent implements OnInit {
+  constructor(private metaService: MetaService) {}
 
+  ngOnInit() {
+    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+  }
 }
