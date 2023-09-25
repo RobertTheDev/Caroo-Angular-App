@@ -87,6 +87,10 @@ export class HeaderComponent implements OnInit {
     this.layoutService.toggleBurgerMenu();
   }
 
+  toggleProfileMenu() {
+    this.layoutService.toggleProfileMenu();
+  }
+
   headerControls = [
     {
       icon: faHeart,
