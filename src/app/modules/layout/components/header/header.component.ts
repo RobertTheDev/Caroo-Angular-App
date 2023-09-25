@@ -73,16 +73,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
-  logout() {
-    return this.authService.logOut().subscribe({
-      next: (data) => {
-        console.log(data);
-        window.location.reload();
-      },
-      error: (error) => console.error(error),
-    });
-  }
-
   toggleBurgerMenu() {
     this.layoutService.toggleBurgerMenu();
   }
@@ -90,22 +80,4 @@ export class HeaderComponent implements OnInit {
   toggleProfileMenu() {
     this.layoutService.toggleProfileMenu();
   }
-
-  headerControls = [
-    {
-      icon: faHeart,
-      name: 'Saved',
-      url: '/saved-cars',
-    },
-    {
-      icon: faMessage,
-      name: 'Messages',
-      url: '/chat',
-    },
-    {
-      icon: faUser,
-      name: 'Profile',
-      url: '/profile',
-    },
-  ];
 }
