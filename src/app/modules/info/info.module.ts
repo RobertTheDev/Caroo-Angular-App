@@ -9,6 +9,7 @@ import { CookiePolicyViewComponent } from './views/cookie-policy-view/cookie-pol
 import { InfoPageLoaderComponent } from './components/info-page-loader/info-page-loader.component';
 import { InfoPageErrorComponent } from './components/info-page-error/info-page-error.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HowItWorksViewComponent } from './views/how-it-works-view/how-it-works-view.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CookiePolicyViewComponent,
     InfoPageLoaderComponent,
     InfoPageErrorComponent,
+    HowItWorksViewComponent,
   ],
   imports: [CommonModule, MarkdownModule.forRoot(), FontAwesomeModule],
   exports: [

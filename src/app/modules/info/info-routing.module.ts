@@ -5,6 +5,7 @@ import { AccessibilityStatementViewComponent } from './views/accessibility-state
 import { CookiePolicyViewComponent } from './views/cookie-policy-view/cookie-policy-view.component';
 import { PrivacyPolicyViewComponent } from './views/privacy-policy-view/privacy-policy-view.component';
 import { TermsAndConditionsViewComponent } from './views/terms-and-conditions-view/terms-and-conditions-view.component';
+import { HowItWorksViewComponent } from './views/how-it-works-view/how-it-works-view.component';
 
 const routes: Routes = [
   { path: 'about', component: AboutViewComponent },
@@ -15,6 +16,10 @@ const routes: Routes = [
   {
     path: 'cookie-policy',
     component: CookiePolicyViewComponent,
+  },
+  {
+    path: 'how-it-works',
+    component: HowItWorksViewComponent,
   },
   { path: 'privacy-policy', component: PrivacyPolicyViewComponent },
   {
