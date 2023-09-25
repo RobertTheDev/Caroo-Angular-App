@@ -8,9 +8,8 @@ describe('CloseAccountFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CloseAccountFormComponent ]
-    })
-    .compileComponents();
+      declarations: [CloseAccountFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CloseAccountFormComponent);
     component = fixture.componentInstance;

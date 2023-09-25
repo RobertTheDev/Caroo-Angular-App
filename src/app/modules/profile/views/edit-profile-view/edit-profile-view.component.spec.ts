@@ -8,9 +8,8 @@ describe('EditProfileViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EditProfileViewComponent ]
-    })
-    .compileComponents();
+      declarations: [EditProfileViewComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EditProfileViewComponent);
     component = fixture.componentInstance;

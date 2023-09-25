@@ -1,12 +1,12 @@
 .cars-list-grid-container {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    width: 100%;
-    box-sizing: border-box;
-    gap: 3.2rem;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+  box-sizing: border-box;
+  gap: 3.2rem;
 
-    @media (width >=640px) {
-        grid-template-columns: repeat(3, 1fr);
-        padding-left: 34rem;
-    }
+  @media (width >=640px) {
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 34rem;
+  }
 }
