@@ -15,7 +15,7 @@ export class MetaService {
     title: string,
     description: string,
     keywords: string,
-    canonicalUrlPath: string,
+    canonicalUrlPath?: string | null,
   ) {
     this.titleService.setTitle(`${title} | ${companyName}`);
     this.metaService.updateTag({ name: 'description', content: description });
