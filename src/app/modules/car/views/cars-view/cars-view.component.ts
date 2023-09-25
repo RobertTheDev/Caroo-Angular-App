@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import ICar from 'models/car/types/Car';
 import { CarService } from 'src/app/services/car/car.service';
 import { MetaService } from 'src/app/services/meta/meta.service';
@@ -17,7 +16,6 @@ export class CarsViewComponent implements OnInit {
   constructor(
     private carService: CarService,
     private metaService: MetaService,
-    private title: Title,
   ) {}
 
   ngOnInit() {
