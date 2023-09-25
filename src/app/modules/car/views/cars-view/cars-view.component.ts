@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
+import { Title } from '@angular/platform-browser';
 import ICar from 'models/car/types/Car';
 import { CarService } from 'src/app/services/car/car.service';
+import { MetaService } from 'src/app/services/meta/meta.service';
 
 @Component({
   selector: 'app-cars-view',
@@ -15,16 +16,17 @@ export class CarsViewComponent implements OnInit {
 
   constructor(
     private carService: CarService,
-    private meta: Meta,
+    private metaService: MetaService,
     private title: Title,
   ) {}
 
   ngOnInit() {
-    this.title.setTitle('Cars | Caroo');
-    this.meta.updateTag({
-      name: 'description',
-      content: 'This is the cars page.',
-    });
+    this.metaService.setMeta(
+      'Find Cars Near You',
+      'This is the cars page.',
+      'cars, vehicles, automotive, find cars',
+      'cars',
+    );
 
     this.carService.getCars().subscribe({
       next: (data) => {
