@@ -23,6 +23,10 @@ export class ProfileService {
       lastName: string | null;
     }>,
   ): Observable<void> {
-    return this.http.put<void>(this.apiUrl, data, this.options);
+    return this.http.put<void>(
+      'http://localhost:4200/api/account/update-profile',
+      data,
+      this.options,
+    );
   }
 }

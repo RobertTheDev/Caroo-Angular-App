@@ -1,1 +1,63 @@
-<p>update-profile-form works!</p>
+<!-- Sign up form contains inputs and validators to handle user sign up. -->
+<!-- Form will only sibmit once the fields are valid. -->
+<form
+  class="form-container"
+  [formGroup]="updateProfileForm"
+  (ngSubmit)="handleUpdateProfile()"
+>
+  <!-- FIRST NAME -->
+  <!-- Input is wrapped in a label for accessibility. -->
+  <label for="first-name">
+    <p>First name</p>
+    <input
+      id="first-name"
+      type="text"
+      formControlName="firstName"
+      placeholder="First name"
+    />
+  </label>
+  <!-- First name validators. -->
+  <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+  <div
+    *ngIf="
+      (formControls.firstName.touched && formControls.firstName.invalid) ||
+      formSubmitted
+    "
+  >
+    <!-- Show this validator error if first name input is empty. -->
+    <p *ngIf="formControls.firstName.errors?.['required']">
+      First name is required.
+    </p>
+  </div>
+  <!-- LAST NAME -->
+  <!-- Input is wrapped in a label for accessibility. -->
+  <label for="last-name">
+    <p>Last name</p>
+    <input
+      id="last-name"
+      type="text"
+      formControlName="lastName"
+      placeholder="Last name"
+    />
+  </label>
+  <!-- Show validation if form is invalid and this input has been touched or form has been submitted. -->
+  <div
+    *ngIf="
+      (formControls.lastName.touched && formControls.lastName.invalid) ||
+      formSubmitted
+    "
+  >
+    <!-- Show this validator error if input is empty. -->
+    <p *ngIf="formControls.lastName.errors?.['required']">
+      Last name is required.
+    </p>
+  </div>
+
+  <!-- If the server response returns an error display it here. -->
+  <p *ngIf="formErrorMessage">{{ formErrorMessage }}</p>
+
+  <!-- If the form is loading show a loading indicator. Otherwise show the form submit button.  -->
+  <button class="primary-button" type="submit" [disabled]="formLoading">
+    {{ formLoading ? 'Loading' : 'Update Profile' }}
+  </button>
+</form>

@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProfileService } from 'src/app/services/profile/profile.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
     UpdateProfileFormComponent,
     ProfileDetailsComponent,
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule],
   providers: [ProfileService],
 })
 export class ProfileModule {}
