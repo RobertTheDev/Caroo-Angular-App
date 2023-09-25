@@ -44,6 +44,7 @@ export default class CarPrismaService {
     return await this.prisma.car.findUnique({
       include: {
         images: true,
+        owner: true,
       },
       where: {
         id,
