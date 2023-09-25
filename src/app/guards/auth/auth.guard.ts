@@ -12,10 +12,10 @@ export class AuthGuard {
   ) {}
 
   canActivate(): boolean {
-    if (!this.authService.getAuthenticatedUser()) {
-      this.router.navigateByUrl('/');
+    if (this.authService.getAuthenticatedUser()) {
       return true;
     } else {
+      this.router.navigateByUrl('/');
       return false;
     }
   }
