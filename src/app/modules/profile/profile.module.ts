@@ -7,6 +7,7 @@ import { MyCarListingsViewComponent } from './views/my-car-listings-view/my-car-
 import { RouterModule } from '@angular/router';
 import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
+import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @NgModule({
   declarations: [
@@ -18,5 +19,6 @@ import { ProfileDetailsComponent } from './components/profile-details/profile-de
     ProfileDetailsComponent,
   ],
   imports: [CommonModule, RouterModule],
+  providers: [ProfileService],
 })
 export class ProfileModule {}

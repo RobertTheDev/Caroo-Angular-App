@@ -1,1 +1,13 @@
-<p>profile-view works!</p>
+<div>
+  <div *ngIf="loading">
+    <p>Loading...</p>
+  </div>
+
+  <div *ngIf="!loading">
+    <div *ngIf="profile">
+      <p>{{ profile.emailAddress }}</p>
+      <p>{{ profile.firstName }} {{ profile.lastName }}</p>
+    </div>
+    <div *ngIf="!profile">No profile</div>
+  </div>
+</div>
