@@ -25,6 +25,10 @@
     </button>
   </div>
 
+  <button (click)="navigateTo('/saved-cars')" class="header-control-button">
+    <fa-icon class="header-control-icon" [icon]="faHeart"></fa-icon>
+  </button>
+
   <!-- <div *ngIf="user | async as userData" class="header-controls-container"> -->
   <button (click)="toggleBurgerMenu()" class="header-control-button">
     <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
