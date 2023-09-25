@@ -1,18 +1,18 @@
 <div *ngIf="!loading && car" class="page-container">
   <div class="page-content-container">
-    <!-- <h1>{{ car.year }} {{ car.make }} {{ car.model }}</h1>
+    <h1>{{ car.year }} {{ car.make }} {{ car.model }}</h1>
     <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
     <p>
       {{ priceUnits[car.priceCurrency] }}{{ car.priceTotal.toLocaleString() }}
-    </p> -->
+    </p>
     <div class="car-detail-action-buttons-container">
       <button>
-        <!-- <fa-icon [icon]="faHeart" /> -->
+        <fa-icon [icon]="faHeart" />
         Save Car
       </button>
     </div>
     <div *ngIf="car.images">
-      <!-- <img *ngIf="car.images[0].url" [src]="car.images[0].url" /> -->
+      <img *ngIf="car.images[0].url" [src]="car.images[0].url" />
       <div>
         <div>
           <input
@@ -24,38 +24,37 @@
         </div>
       </div>
     </div>
-    <!-- <p>Colour: {{ car.colour }}</p> -->
+    <a [routerLink]="'/' + car.id + '/request-car'">Request To Owner</a>
+    <p>Colour: {{ car.colour }}</p>
 
-    <!-- <p>Doors: {{ car.doors }} doors</p> -->
+    <p>Doors: {{ car.doors }} doors</p>
 
-    <!-- <p>Seats: {{ car.seats }} seats</p> -->
+    <p>Seats: {{ car.seats }} seats</p>
 
-    <!-- <p>Drive Type: {{ car.driveType }}</p> -->
+    <p>Drive Type: {{ car.driveType }}</p>
 
-    <!-- <p>Engine Size: {{ car.engineSize }} {{ car.engineSize }}</p> -->
+    <p>Engine Size: {{ car.engineSize }} {{ car.engineSize }}</p>
 
-    <!-- <p>Fuel Type: {{ car.fuelType }}</p> -->
+    <p>Fuel Type: {{ car.fuelType }}</p>
 
-    <!-- <p>Gearbox: {{ car.gearbox }}</p> -->
+    <p>Gearbox: {{ car.gearbox }}</p>
 
     <p>
-      <!-- Mileage: {{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }} -->
+      Mileage: {{ car.mileageTotal.toLocaleString() }} {{ car.mileageUnit }}
     </p>
 
     <p>Description</p>
-    <!-- <p>{{ car.description }}</p> -->
+    <p>{{ car.description }}</p>
   </div>
 </div>
-<!-- <div *ngIf="loading">
+<div *ngIf="loading">
   <p>Loading...</p>
 </div>
 <div *ngIf="!loading && errorMessage">
   <p>{{ errorMessage }}</p>
 </div>
 
- -->
-
-<!-- <div *ngIf="!loading && car" class="car-detail-container">
+<div *ngIf="!loading && car" class="car-detail-container">
   <div>
     <div class="car-detail-images-container">
       <div
@@ -98,7 +97,7 @@
 
     <p>{{ car.driveType }}</p>
 
-    <p>{{ car.engineSizeTotal }} {{ car.engineSizeUnit }}</p>
+    <p>{{ car.engineSize }}</p>
 
     <p>{{ car.fuelType }}</p>
 
@@ -108,10 +107,10 @@
 
     <p>{{ car.priceCurrency }} {{ car.priceTotal }}</p>
   </div>
-</div> -->
-
-<!-- <div> -->
-<!-- <div class="car-detail-images-container">
+</div>
+<div *ngIf="car">
+  <div *ngIf="car.images">
+    <div class="car-detail-images-container">
       <div
         *ngFor="let carImage of car.images"
         class="car-detail-image-container"
@@ -137,6 +136,4 @@
       </div>
     </div>
   </div>
-  <div>
- 
-  </div> -->
+</div>
