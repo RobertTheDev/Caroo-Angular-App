@@ -9,6 +9,11 @@ export class HowItWorksViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'How It Works',
+      'Description.',
+      'Keywords',
+      'how-it-works',
+    );
   }
 }
