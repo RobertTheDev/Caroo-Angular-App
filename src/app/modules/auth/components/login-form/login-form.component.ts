@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -51,13 +52,13 @@ export class LoginFormComponent {
   // Login function calls the sign up handler from our auth service to handle user login.
   // The function handles validation and wont submit until fields are valid.
   // The function handles errors and displays error response messages.
-  handleLogin() {
+  handleLogin(): Subscription | undefined {
     // When function is called set form submitted to true and error message to null.
     this.formSubmitted = true;
     this.formErrorMessage = null;
 
     // If form is invalid do not continue and return nothing.
-    if (this.loginForm.valid) {
+    if (this.loginForm.invalid) {
       return;
     }
     // Get the value data from the login form.
@@ -68,12 +69,14 @@ export class LoginFormComponent {
 
     return this.authService.logIn(value).subscribe({
       // If form has successfully handled login - stop the form loading and navigate to home page.
-      next: () => {
+      next: (data) => {
+        console.log(data);
         this.formLoading = false;
         this.router.navigate(['/']);
       },
       // If an error contain the error message in the variable. Stop form loading.
       error: (error) => {
+        console.log(error.error);
         this.formLoading = false;
         this.formErrorMessage = error.error.statusMessage;
       },
