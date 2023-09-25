@@ -29,6 +29,5 @@ import { CloseAccountFormComponent } from './components/close-account-form/close
     CloseAccountFormComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  exports: [],
 })
 export class AccountModule {}
