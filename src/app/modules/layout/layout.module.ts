@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { PageLayoutComponent } from './components/page-layout/page-layout.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BurgerMenuComponent } from './components/burger-menu/burger-menu.component';
+import { LayoutService } from 'src/app/services/layout/layout.service';
 
 @NgModule({
   declarations: [
@@ -16,5 +17,6 @@ import { BurgerMenuComponent } from './components/burger-menu/burger-menu.compon
   ],
   imports: [CommonModule, RouterModule, FontAwesomeModule],
   exports: [PageLayoutComponent],
+  providers: [LayoutService],
 })
 export class LayoutModule {}
