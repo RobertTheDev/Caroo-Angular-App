@@ -25,44 +25,11 @@
     </button>
   </div>
 
-  <div *ngIf="user | async as userData" class="header-controls-container">
-    <div
-      *ngFor="let headerControl of headerControls"
-      class="header-control-container"
-    >
-      <input
-        *ngIf="userData.avatar && headerControl.name === 'Profile'"
-        (mouseover)="handleControlMouseOver('Profile')"
-        (mouseout)="handleControlMouseOut()"
-        (click)="navigateTo('/profile')"
-        class="avatar-image"
-        type="image"
-        [src]="userData.avatar"
-      />
-      <button
-        *ngIf="
-          headerControl.name !== 'Profile' ||
-          (headerControl.name === 'Profile' && !userData.avatar)
-        "
-        (click)="navigateTo(headerControl.url)"
-        (mouseover)="handleControlMouseOver(headerControl.name)"
-        (mouseout)="handleControlMouseOut()"
-        class="header-control-button"
-      >
-        <fa-icon [icon]="headerControl.icon"></fa-icon>
-      </button>
-      <div
-        *ngIf="controlMouseOverActiveName === headerControl.name"
-        class="header-control-name-container"
-      >
-        <p>{{ headerControl.name }}</p>
-      </div>
-    </div>
+  <!-- <div *ngIf="user | async as userData" class="header-controls-container"> -->
+  <button (click)="toggleBurgerMenu()" class="header-control-button">
+    <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
+  </button>
 
-    <button class="header-control-button">
-      <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
-    </button>
-
-    <button (click)="logout()">Log out</button>
-  </div>
+  <button (click)="logout()">Log out</button>
+  <!-- </div> -->
 </header>

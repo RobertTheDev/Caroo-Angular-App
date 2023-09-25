@@ -11,6 +11,7 @@ import { Observable, of } from 'rxjs';
 import companyName from 'src/app/lib/constants/companyName';
 import headerLinks from 'src/app/lib/links/headerLinks';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LayoutService } from 'src/app/services/layout/layout.service';
 
 @Component({
   selector: 'app-header',
@@ -32,6 +33,7 @@ export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthService,
+    private layoutService: LayoutService,
   ) {}
 
   ngOnInit() {
@@ -79,6 +81,10 @@ export class HeaderComponent implements OnInit {
       },
       error: (error) => console.error(error),
     });
+  }
+
+  toggleBurgerMenu() {
+    this.layoutService.toggleBurgerMenu();
   }
 
   headerControls = [
