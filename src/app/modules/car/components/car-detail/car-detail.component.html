@@ -25,6 +25,13 @@
       </div>
     </div>
     <a [routerLink]="'/' + car.id + '/request-car'">Request To Owner</a>
+
+    <div *ngIf="car.owner">
+      <p>{{ car.owner.emailAddress }}</p>
+      <a [routerLink]="'/sellers/' + car.owner.emailAddress"
+        >Request To Owner</a
+      >
+    </div>
     <p>Colour: {{ car.colour }}</p>
 
     <p>Doors: {{ car.doors }} doors</p>
