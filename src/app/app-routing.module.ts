@@ -30,6 +30,13 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
+      import('./modules/car-request/car-request-routing.module').then(
+        (m) => m.CarRequestRoutingModule,
+      ),
+  },
+  {
+    path: '',
+    loadChildren: () =>
       import('./modules/car/car-routing.module').then(
         (m) => m.CarRoutingModule,
       ),
