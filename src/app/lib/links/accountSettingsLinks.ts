@@ -2,28 +2,16 @@ import Link from 'models/config/types/Link';
 
 const accountSettingsLinks: Link[] = [
   {
-    name: 'View Profile',
-    path: '/profile',
-  },
-  {
-    name: 'Edit Profile',
-    path: '/edit-profile',
-  },
-  {
     name: 'Verify Email',
-    path: '/verify-email',
+    path: '/verify-email-address',
   },
   {
     name: 'Change Email',
-    path: '/change-email',
+    path: '/update-email',
   },
   {
     name: 'Change Password',
-    path: '/change-password',
-  },
-  {
-    name: 'My Car Listings',
-    path: '/my-car-listings',
+    path: '/update-password',
   },
   {
     name: 'Close Account',
