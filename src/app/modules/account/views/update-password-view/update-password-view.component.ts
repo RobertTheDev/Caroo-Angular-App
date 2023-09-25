@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { MetaService } from 'src/app/services/meta/meta.service';
 
 @Component({
   selector: 'app-update-password-view',
   templateUrl: './update-password-view.component.html',
 })
-export class UpdatePasswordViewComponent {}
+export class UpdatePasswordViewComponent {
+  constructor(metaService: MetaService) {}
+}
