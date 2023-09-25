@@ -1,4 +1,4 @@
-<div *ngIf="!loading && car" class="page-container">
+<div *ngIf="car" class="page-container">
   <div class="page-content-container">
     <h1>{{ car.year }} {{ car.make }} {{ car.model }}</h1>
     <p>Uploaded {{ car.createdAt | dateDistanceToNowFormat }}</p>
