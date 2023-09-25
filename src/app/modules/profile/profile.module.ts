@@ -6,6 +6,7 @@ import { MyCarRequestsViewComponent } from './views/my-car-requests-view/my-car-
 import { MyCarListingsViewComponent } from './views/my-car-listings-view/my-car-listings-view.component';
 import { RouterModule } from '@angular/router';
 import { UpdateProfileFormComponent } from './components/update-profile-form/update-profile-form.component';
+import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { UpdateProfileFormComponent } from './components/update-profile-form/upd
     MyCarRequestsViewComponent,
     MyCarListingsViewComponent,
     UpdateProfileFormComponent,
+    ProfileDetailsComponent,
   ],
   imports: [CommonModule, RouterModule],
 })
