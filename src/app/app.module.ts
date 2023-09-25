@@ -16,6 +16,7 @@ import { AccountModule } from './modules/account/account.module';
 import { SellerModule } from './modules/seller/seller.module';
 import { MetaService } from './services/meta/meta.service';
 import { SavedCarModule } from './modules/saved-car/saved-car.module';
+import { ProfileModule } from './modules/profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -32,6 +33,7 @@ import { SavedCarModule } from './modules/saved-car/saved-car.module';
     LayoutModule,
     NotFoundModule,
     InfoModule,
+    ProfileModule,
     FontAwesomeModule,
     LoggerModule.forRoot({
       serverLoggingUrl: '/api/logs',
