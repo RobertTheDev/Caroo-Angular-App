@@ -6,8 +6,13 @@ import { VerifyEmailWithTokenViewComponent } from './views/verify-email-with-tok
 import { SendEmailVerificationTokenViewComponent } from './views/send-email-verification-token-view/send-email-verification-token-view.component';
 import { AccountProfileViewComponent } from './views/account-profile-view/account-profile-view.component';
 import { UpdateAccountProfileViewComponent } from './views/update-account-profile-view/update-account-profile-view.component';
+import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
 
 const routes: Routes = [
+  {
+    path: 'close-account',
+    component: CloseAccountViewComponent,
+  },
   {
     path: 'profile',
     component: AccountProfileViewComponent,
