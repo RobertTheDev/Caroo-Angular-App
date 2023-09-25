@@ -6,5 +6,9 @@ import { MetaService } from 'src/app/services/meta/meta.service';
   templateUrl: './sign-up-view.component.html',
 })
 export class SignUpViewComponent implements OnInit {
-  constructor(metaService: MetaService) {}
+  constructor(private metaService: MetaService) {}
+
+  ngOnInit() {
+    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+  }
 }
