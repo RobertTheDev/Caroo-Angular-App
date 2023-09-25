@@ -14,6 +14,7 @@ import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 import { CarRequestModule } from './modules/car-request/car-request.module';
 import { AccountModule } from './modules/account/account.module';
 import { SellerModule } from './modules/seller/seller.module';
+import { MetaService } from './services/meta/meta.service';
 
 @NgModule({
   declarations: [AppComponent],
@@ -37,5 +38,6 @@ import { SellerModule } from './modules/seller/seller.module';
     }),
   ],
   bootstrap: [AppComponent],
+  providers: [MetaService],
 })
 export class AppModule {}
