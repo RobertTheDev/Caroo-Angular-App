@@ -9,6 +9,10 @@ export class VerifyEmailWithTokenViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Verify Email Address With Token',
+      'Description.',
+      'Keywords',
+    );
   }
 }

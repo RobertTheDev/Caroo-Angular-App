@@ -9,6 +9,11 @@ export class SavedCarsViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Saved Cars',
+      'Description.',
+      'Keywords',
+      'saved-cars',
+    );
   }
 }

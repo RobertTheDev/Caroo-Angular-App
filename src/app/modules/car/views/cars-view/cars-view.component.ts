@@ -23,7 +23,7 @@ export class CarsViewComponent implements OnInit {
       'Find Cars Near You',
       'This is the cars page.',
       'cars, vehicles, automotive, find cars',
-      'cars',
+      '',
     );
 
     this.carService.getCars().subscribe({

@@ -9,6 +9,6 @@ export class CarRequestViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta('Car Request', 'Description.', 'Keywords', 'Path');
   }
 }

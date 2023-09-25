@@ -12,6 +12,11 @@ export class CreateCarViewComponent implements OnInit {
   companyName = companyName;
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Sell A Car',
+      'Description.',
+      'Keywords',
+      'sell-a-car',
+    );
   }
 }

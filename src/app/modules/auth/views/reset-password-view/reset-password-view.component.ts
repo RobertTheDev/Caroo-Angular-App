@@ -9,6 +9,11 @@ export class ResetPasswordViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Reset Password',
+      'Description.',
+      'Keywords',
+      'reset-password',
+    );
   }
 }

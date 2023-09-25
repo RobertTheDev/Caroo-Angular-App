@@ -9,6 +9,11 @@ export class CloseAccountViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Close Account',
+      'Description.',
+      'Keywords',
+      'close-account',
+    );
   }
 }

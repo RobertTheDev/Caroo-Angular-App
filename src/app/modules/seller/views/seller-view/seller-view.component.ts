@@ -9,6 +9,6 @@ export class SellerViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta('Seller', 'Description.', 'Keywords', 'Path');
   }
 }

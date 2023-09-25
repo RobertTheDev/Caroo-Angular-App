@@ -9,6 +9,11 @@ export class UpdatePasswordViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Update Password',
+      'Description.',
+      'Keywords',
+      'update-password',
+    );
   }
 }

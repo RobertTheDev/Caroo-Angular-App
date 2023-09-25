@@ -9,6 +9,6 @@ export class SignUpViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta('Sign Up', 'Description.', 'Keywords', 'sign-up');
   }
 }

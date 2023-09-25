@@ -9,6 +9,11 @@ export class UpdateEmailViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Update Email Address',
+      'Description.',
+      'Keywords',
+      'update-email-address',
+    );
   }
 }

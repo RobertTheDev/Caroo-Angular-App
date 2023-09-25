@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { MetaService } from 'src/app/services/meta/meta.service';
 
 @Component({
   selector: 'app-not-found-view',
@@ -8,8 +8,7 @@ import { Router } from '@angular/router';
 })
 export class NotFoundViewComponent implements OnInit {
   constructor(
-    private meta: Meta,
-    private title: Title,
+    private metaService: MetaService,
     private router: Router,
   ) {}
 
@@ -17,13 +16,12 @@ export class NotFoundViewComponent implements OnInit {
     this.router.navigateByUrl('/');
   }
 
-  ngOnInit(): void {
-    this.title.setTitle('Not Found | Caroo');
-
-    this.meta.updateTag({
-      name: 'description',
-      content:
-        "Lost in the journey? Unfortunately, the page you sought isn't here. Discover Caroo's world of vehicles and connections as you explore our platform.",
-    });
+  ngOnInit() {
+    this.metaService.setMeta(
+      '404 - Not Found',
+      'Description.',
+      'Keywords',
+      '404',
+    );
   }
 }

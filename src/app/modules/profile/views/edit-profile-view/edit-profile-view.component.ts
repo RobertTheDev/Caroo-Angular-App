@@ -9,6 +9,11 @@ export class EditProfileViewComponent implements OnInit {
   constructor(private metaService: MetaService) {}
 
   ngOnInit() {
-    this.metaService.setMeta('Title', 'Description.', 'Keywords', 'Path');
+    this.metaService.setMeta(
+      'Edit Profile',
+      'Description.',
+      'Keywords',
+      'edit-profile',
+    );
   }
 }
