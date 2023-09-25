@@ -7,6 +7,7 @@ import { CarRequestListComponent } from './components/car-request-list/car-reque
 import { CarRequestViewComponent } from './views/car-request-view/car-request-view.component';
 import { CreateCarRequestViewComponent } from './views/create-car-request-view/create-car-request-view.component';
 import { UpdateCarRequestViewComponent } from './views/update-car-request-view/update-car-request-view.component';
+import { CarRequestDetailsComponent } from './components/car-request-details/car-request-details.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { UpdateCarRequestViewComponent } from './views/update-car-request-view/u
     CarRequestViewComponent,
     CreateCarRequestViewComponent,
     UpdateCarRequestViewComponent,
+    CarRequestDetailsComponent,
   ],
   imports: [CommonModule],
 })
