@@ -42,6 +42,13 @@ const routes: Routes = [
         (m) => m.CarRoutingModule,
       ),
   },
+  {
+    path: '',
+    loadChildren: () =>
+      import('./modules/profile/profile-routing.module').then(
+        (m) => m.ProfileRoutingModule,
+      ),
+  },
   { path: 'saved-cars', component: SavedCarsViewComponent },
   { path: 'sellers/:emailAddress', component: SellerViewComponent },
   { path: '**', component: NotFoundViewComponent },
