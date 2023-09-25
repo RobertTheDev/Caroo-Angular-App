@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
 import sendPasswordResetTokenSchema from 'models/auth/validators/sendPasswordResetToken.schema';
-import UserPrismaService from 'api/providers/prisma/user.service';
+import AuthPrismaService from 'api/providers/prisma/auth.service';
 
 // This controller sends reset password token.
 
@@ -15,7 +15,7 @@ export default async function sendResetPasswordToken(
     const { body } = req;
 
     // Declare and use user service to get access to user handlers.
-    const userPrismaService = new UserPrismaService();
+    const authPrismaService = new AuthPrismaService();
 
     // Validate the body with send password reset token schema.
     const validation = await sendPasswordResetTokenSchema.safeParseAsync(body);
@@ -32,7 +32,8 @@ export default async function sendResetPasswordToken(
     const { data } = validation;
 
     // Update user with reset password token.
-    const updatedUser = await userPrismaService.updateOneWithResetPasswordToken(
+    const updatedUser = await authPrismaService.sendPasswordResetByEmailAddress(
+      data.emailAddress,
       data,
     );
 

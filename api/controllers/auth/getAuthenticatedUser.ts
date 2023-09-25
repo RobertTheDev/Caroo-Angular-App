@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
+import AuthPrismaService from 'api/providers/prisma/auth.service';
 
-// This controller finds and returns the authenticated user from session.
+// This controller uses the user id from session to query db.
 
 export default async function getAuthenticatedUser(
   req: Request,
@@ -10,9 +11,36 @@ export default async function getAuthenticatedUser(
 ) {
   try {
     // Get the user from session.
-    const data = req.session.user;
+    const { user } = req.session;
 
-    // Return the user.
+    // Call the auth service to get access to auth handlers.
+    const authService = new AuthPrismaService();
+
+    // If no user is sessio return unauthorized error.
+    if (!user) {
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: ReasonPhrases.UNAUTHORIZED,
+        data: null,
+      });
+    }
+
+    // Get the id from user.
+    const { id } = user;
+
+    // Call auth service get authenticated user handler to get the user.
+    const data = await authService.getAuthenticatedUserById(id);
+
+    // Return not found error if no user is found in db.
+    if (!data) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: ReasonPhrases.NOT_FOUND,
+        data: null,
+      });
+    }
+
+    // Return the data.
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: ReasonPhrases.OK,

@@ -1,12 +1,11 @@
 import signUpSchema from '../../../models/auth/validators/signUp.schema';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import { User } from '@prisma/client';
-import UserPrismaService from 'api/providers/prisma/user.service';
+import AuthPrismaService from 'api/providers/prisma/auth.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { hashPassword } from 'api/lib/passwordManagement';
 
-// This controller creates a user and signs them into session.
+// This controller signs up a user and signs them into session.
 
 export default async function signUp(req: Request, res: Response) {
   try {
@@ -14,7 +13,7 @@ export default async function signUp(req: Request, res: Response) {
     const { body } = req;
 
     // Declare and use user service to get access to user handlers.
-    const userPrismaService = new UserPrismaService();
+    const authPrismaService = new AuthPrismaService();
 
     // Validate the body.
     const validation = await signUpSchema.safeParseAsync(body);
@@ -28,19 +27,19 @@ export default async function signUp(req: Request, res: Response) {
     }
 
     // Seperate the password from the validation data.
-    const { password, ...userWithoutPassword } = validation.data as User;
+    const { password, ...userWithoutPassword } = validation.data;
 
     // Hash the password.
     const hashedPassword = await hashPassword(password);
 
     // Create new user.
-    await userPrismaService.createUser({
+    const signedUpUser = await authPrismaService.signUp({
       ...userWithoutPassword,
       password: hashedPassword,
     });
 
     // Save user into session.
-    req.session.user = userWithoutPassword;
+    req.session.user = signedUpUser;
 
     // Send response with the signed up user.
     return res.status(StatusCodes.ACCEPTED).send({

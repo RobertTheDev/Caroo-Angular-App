@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
 import resetPasswordWithTokenSchema from 'models/auth/validators/resetPasswordWithToken.schema';
-import UserPrismaService from 'api/providers/prisma/user.service';
 import { hashPassword } from 'api/lib/passwordManagement';
+import AuthPrismaService from 'api/providers/prisma/auth.service';
 
 // This controller resets password with password reset token.
 
@@ -19,7 +19,7 @@ export default async function resetPasswordWithToken(
     const { resetPasswordToken } = params;
 
     // Declare and use user service to get access to user handlers.
-    const userPrismaService = new UserPrismaService();
+    const authPrismaService = new AuthPrismaService();
 
     // Declare and use user service to get access to user handlers.
     const validation = await resetPasswordWithTokenSchema.safeParseAsync(body);
@@ -39,11 +39,10 @@ export default async function resetPasswordWithToken(
     const hashedPassword = await hashPassword(data.password);
 
     // Update user password using the reset password token.
-    const updatedUser =
-      await userPrismaService.updatePasswordWithResetPasswordToken(
-        resetPasswordToken,
-        { password: hashedPassword },
-      );
+    const updatedUser = await authPrismaService.resetPasswordWithToken(
+      resetPasswordToken,
+      { password: hashedPassword },
+    );
 
     // Return the updated user.
     return res.status(StatusCodes.OK).send({

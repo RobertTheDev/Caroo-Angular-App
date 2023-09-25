@@ -1,8 +1,9 @@
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import UserPrismaService from 'api/providers/prisma/user.service';
+
 import loginSchema from 'models/auth/validators/login.schema';
 import winstonLogger from 'api/utils/winstonLogger';
+import AuthPrismaService from 'api/providers/prisma/auth.service';
 
 // This controller handles user login.
 
@@ -12,7 +13,7 @@ export default async function login(req: Request, res: Response) {
     const { body } = req;
 
     // Declare and use user service to get access to user handlers.
-    const userPrismaService = new UserPrismaService();
+    const authPrismaService = new AuthPrismaService();
 
     // Validate the body using login schema.
     const validation = await loginSchema.safeParseAsync(body);
@@ -29,21 +30,15 @@ export default async function login(req: Request, res: Response) {
     const { emailAddress } = validation.data;
 
     // Get user by email address.
-    const findUser = await userPrismaService.findOneByEmailAddress(
-      emailAddress,
-    );
+    const data = await authPrismaService.login(emailAddress);
 
     // If user not found return a not found error.
-    if (!findUser) {
+    if (!data) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
         statusMessage: `User with email ${body.email} could not be found.`,
       });
     }
-
-    // Seperate password from create user response.
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    const { password, ...data } = findUser;
 
     // Save user into session.
     req.session.user = data;
