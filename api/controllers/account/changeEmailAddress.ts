@@ -1,48 +1,43 @@
-import changeEmailSchema from 'models/account/validators/changeEmail.schema';
+import AccountPrismaService from 'api/providers/prisma/account.service';
+import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import UserPrismaService from 'api/providers/prisma/user.service';
-import winstonLogger from 'api/utils/winstonLogger';
+import changeEmailSchema from 'models/account/validators/updateEmail.schema';
 
 export default async function changeEmailAddress(req: Request, res: Response) {
   try {
-    // Get the user from the session.
+    //     // Get the user id from the session.
     const { user } = req.session;
-
-    // Get the request body.
-    const { body } = req;
-
-    // Use the user prisma service to get the user handlers.
-    const userPrismaService = new UserPrismaService();
 
     // If no user is found return a not found error.
     if (!user) {
-      return res.status(StatusCodes.NOT_FOUND).send({
-        statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: 'No user was found in the session.',
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: 'You are not authorized.',
       });
     }
 
-    // Validate the request body.
+    const { id } = user;
+
+    const accountService = new AccountPrismaService();
+
+    const { body } = req;
+
     const validation = await changeEmailSchema.safeParseAsync(body);
 
-    // If validation is not successful return a bad request error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
-        statusMessage: validation.error.issues[0].message,
+        statusMessage: validation.error.errors[0].message,
       });
     }
 
-    // Get data from validated body.
-    const { data } = validation;
-
-    const findUser = await userPrismaService.updateEmailById(data, user.id);
+    const data = await accountService.updateEmailAddress(id, validation.data);
 
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
-      statusMessage: ReasonPhrases.OK,
-      data: findUser,
+      statusMessage: `Succesfully updates user email to ${validation.data.emailAddress}`,
+      data,
     });
   } catch (error) {
     // Log the error.

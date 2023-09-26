@@ -5,32 +5,16 @@ import sendEmailVerificationToken from 'api/controllers/account/sendEmailVerific
 import verifyEmailWithToken from 'api/controllers/account/verifyEmailWithToken';
 import isEmailVerificationTokenExpired from 'api/middlewares/account/isEmailVerificationTokenExpired';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
-import isPasswordCorrect from 'api/middlewares/auth/isPasswordCorrect';
 import { Router } from 'express';
 
 // Define account router using the express router.
 const accountRouter = Router();
 
-accountRouter.put(
-  '/change-email-address',
-  isAuthenticated,
-  isPasswordCorrect,
-  changeEmailAddress,
-);
+accountRouter.delete('/close-account', isAuthenticated, closeAccount);
 
-accountRouter.put(
-  '/change-password',
-  isAuthenticated,
-  isPasswordCorrect,
-  changePassword,
-);
+accountRouter.put('/update-email-address', isAuthenticated, changeEmailAddress);
 
-accountRouter.delete(
-  '/close-account',
-  isAuthenticated,
-  isPasswordCorrect,
-  closeAccount,
-);
+accountRouter.put('/update-password', isAuthenticated, changePassword);
 
 accountRouter.put(
   '/verify-email-address/:emailVerificationToken',
@@ -40,7 +24,7 @@ accountRouter.put(
 );
 
 accountRouter.post(
-  '/verify-email-address/send-token',
+  '/send-email-verification-token',
   isAuthenticated,
   sendEmailVerificationToken,
 );

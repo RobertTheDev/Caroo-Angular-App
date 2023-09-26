@@ -1,4 +1,4 @@
-import UserPrismaService from 'api/providers/prisma/user.service';
+import AccountPrismaService from 'api/providers/prisma/account.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
@@ -14,7 +14,7 @@ export default async function closeAccount(req: Request, res: Response) {
     const { body } = req;
 
     // Use the user prisma service to get the user handlers.
-    const userPrismaService = new UserPrismaService();
+    const accountPrismaService = new AccountPrismaService();
 
     // If no user is found return a not found error.
     if (!user) {
@@ -36,7 +36,7 @@ export default async function closeAccount(req: Request, res: Response) {
     }
 
     // Update the user with the id from session and data from validated body.
-    const deletedUser = await userPrismaService.deleteOneById(user.id);
+    const deletedUser = await accountPrismaService.closeAccount(user.id);
 
     // Remove user from session.
     req.session.user = null;

@@ -13,6 +13,7 @@ import { AccountSettingsMenuComponent } from './components/account-settings-menu
 import { RouterModule } from '@angular/router';
 import { CloseAccountViewComponent } from './views/close-account-view/close-account-view.component';
 import { CloseAccountFormComponent } from './components/close-account-form/close-account-form.component';
+import { AccountService } from 'src/app/services/account/account.service';
 
 @NgModule({
   declarations: [
@@ -29,5 +30,6 @@ import { CloseAccountFormComponent } from './components/close-account-form/close
     CloseAccountFormComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  providers: [AccountService],
 })
 export class AccountModule {}

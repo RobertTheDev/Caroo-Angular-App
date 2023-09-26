@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AccountService {
-  private apiUrl = 'http://localhost:4200/api/account/';
+  private apiUrl = 'http://localhost:4200/api/account';
 
   private options = { withCredentials: true };
 
@@ -19,7 +19,7 @@ export class AccountService {
     }>,
   ): Observable<void> {
     return this.http.put<void>(
-      `${this.apiUrl}/change-email-adddress`,
+      `${this.apiUrl}/update-email-address`,
       data,
       this.options,
     );
@@ -27,11 +27,12 @@ export class AccountService {
 
   updatePassword(
     data: Partial<{
-      password: string | null;
+      currentPassword: string | null;
+      newPassword: string | null;
     }>,
   ): Observable<void> {
     return this.http.put<void>(
-      `${this.apiUrl}/change-password`,
+      `${this.apiUrl}/update-password`,
       data,
       this.options,
     );
@@ -49,14 +50,9 @@ export class AccountService {
     );
   }
 
-  sendEmailVerificationToken(
-    data: Partial<{
-      emailAddress: string | null;
-    }>,
-  ): Observable<void> {
-    return this.http.put<void>(
-      `${this.apiUrl}/verify-email/send-token`,
-      data,
+  sendEmailVerificationToken(): Observable<void> {
+    return this.http.post<void>(
+      `${this.apiUrl}/send-email-verification-token`,
       this.options,
     );
   }

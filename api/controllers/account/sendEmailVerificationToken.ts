@@ -12,21 +12,30 @@ export default async function sendEmailVerificationToken(
   res: Response,
 ) {
   try {
-    // Get the request body.
-    const { body } = req;
+    // Get the user from the session.
+    const { user } = req.session;
 
-    // Declare and use user service to get access to user handlers.
     const accountPrismaService = new AccountPrismaService();
 
+    if (!user) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: 'No user was found in the session.',
+      });
+    }
+
+    const { id, emailAddress } = user;
+
     // Validate the body with send email verification token schema.
-    const validation = await sendEmailVerificationTokenSchema.safeParseAsync(
-      body,
-    );
+    const validation = await sendEmailVerificationTokenSchema.safeParseAsync({
+      emailAddress,
+    });
 
     // If validation is unsuccessful send an error response with validation error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
+        m: 'd',
         statusMessage: validation.error.issues[0].message,
       });
     }
@@ -36,7 +45,7 @@ export default async function sendEmailVerificationToken(
 
     // Update user with email verification token.
     const updatedUser =
-      await accountPrismaService.updateOneWithEmailVerificationToken(data);
+      await accountPrismaService.updateOneWithEmailVerificationToken(id, data);
 
     // Return the updated user.
     return res.status(StatusCodes.OK).send({

@@ -53,27 +53,25 @@ export class UpdatePasswordFormComponent {
     this.formErrorMessage = null;
 
     // If form is invalid do not continue and return nothing.
-    if (this.updatePasswordForm.valid) {
+    if (this.updatePasswordForm.invalid) {
       return;
     }
     // Get the value data from the login form.
     const { value } = this.updatePasswordForm;
 
-    alert(JSON.stringify(value));
+    // Start loading while form is being processed.
+    this.formLoading = true;
 
-    // // Start loading while form is being processed.
-    // this.formLoading = true;
-
-    // return this.accountService.updatePassword(value).subscribe({
-    //   // If form has successfully handled login - stop the form loading and navigate to home page.
-    //   next: () => {
-    //     this.formLoading = false;
-    //   },
-    //   // If an error contain the error message in the variable. Stop form loading.
-    //   error: (error) => {
-    //     this.formLoading = false;
-    //     this.formErrorMessage = error.error.statusMessage;
-    //   },
-    // });
+    return this.accountService.updatePassword(value).subscribe({
+      // If form has successfully handled login - stop the form loading and navigate to home page.
+      next: () => {
+        this.formLoading = false;
+      },
+      // If an error contain the error message in the variable. Stop form loading.
+      error: (error) => {
+        this.formLoading = false;
+        this.formErrorMessage = error.error.statusMessage;
+      },
+    });
   }
 }

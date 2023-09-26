@@ -1,7 +1,5 @@
 import { Prisma, PrismaClient, User } from '@prisma/client';
-import { ChangeEmailSchemaType } from 'models/account/validators/changeEmail.schema';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
-import { ChangePasswordSchemaType } from 'models/account/validators/changePassword.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 import { SendPasswordResetTokenSchemaType } from 'models/auth/validators/sendPasswordResetToken.schema';
 import { ResetPasswordWithTokenSchemaType } from 'models/auth/validators/resetPasswordWithToken.schema';
@@ -59,19 +57,6 @@ export default class UserPrismaService {
     });
   }
 
-  // Update a user email by id.
-  async updateEmailById(
-    data: ChangeEmailSchemaType,
-    id: string,
-  ): Promise<User> {
-    return await this.prisma.user.update({
-      data,
-      where: {
-        id,
-      },
-    });
-  }
-
   // Update and return a user by id.
   async updateOneById(data: UpdateUserSchemaType, id: string): Promise<User> {
     return await this.prisma.user.update({
@@ -118,19 +103,6 @@ export default class UserPrismaService {
     return await this.prisma.user.findUnique({
       where: {
         passwordResetToken,
-      },
-    });
-  }
-
-  // Update a password by id.
-  async updatePasswordById(
-    data: ChangePasswordSchemaType,
-    id: string,
-  ): Promise<User> {
-    return await this.prisma.user.update({
-      data,
-      where: {
-        id,
       },
     });
   }

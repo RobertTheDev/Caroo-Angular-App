@@ -2,10 +2,10 @@ import { object, string, z } from 'zod';
 
 // Zod validation schema defines fields required for sending a password reset email.
 const verifyEmailWithTokenSchema = object({
-  verifyEmailToken: string({
-    required_error: 'Password reset token is required.',
-    invalid_type_error: 'Password reset token must be a string.',
-  }).nonempty('Password reset token cannot be empty.'),
+  emailVerificationToken: string({
+    required_error: 'Email verification token is required.',
+    invalid_type_error: 'Email verification token must be a string.',
+  }).nonempty('Email verification token cannot be empty.'),
 });
 
 // Create a TypeScript type from the schema.

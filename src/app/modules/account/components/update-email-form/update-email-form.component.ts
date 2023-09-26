@@ -54,7 +54,7 @@ export class UpdateEmailFormComponent {
     this.formErrorMessage = null;
 
     // If form is invalid do not continue and return nothing.
-    if (this.updateEmailForm.valid) {
+    if (this.updateEmailForm.invalid) {
       return;
     }
     // Get the value data from the login form.

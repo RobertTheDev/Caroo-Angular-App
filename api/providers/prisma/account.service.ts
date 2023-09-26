@@ -1,6 +1,6 @@
 import { PrismaClient, User } from '@prisma/client';
+import { UpdateEmailSchemaType } from 'models/account/validators/updateEmail.schema';
 import { SendEmailVerificationTokenSchemaType } from 'models/account/validators/sendEmailVerificationToken.schema';
-import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 
 export default class AccountPrismaService {
   // Define the prisma client.
@@ -11,30 +11,8 @@ export default class AccountPrismaService {
     this.prisma = new PrismaClient();
   }
 
-  // Delete a user by email address.
-  async deleteUserByEmailAddress(emailAddress: string): Promise<User | null> {
-    return await this.prisma.user.delete({
-      where: {
-        emailAddress,
-      },
-    });
-  }
-
-  // Update a user by email address.
-  async updateUserByEmailAddress(
-    emailAddress: string,
-    data: UpdateUserSchemaType,
-  ): Promise<User | null> {
-    return await this.prisma.user.update({
-      where: {
-        emailAddress,
-      },
-      data,
-    });
-  }
-
-  // Delete a user by id.
-  async deleteUserById(id: string): Promise<User | null> {
+  // Closes and deletes a user account by email address.
+  async closeAccount(id: string): Promise<User> {
     return await this.prisma.user.delete({
       where: {
         id,
@@ -43,26 +21,45 @@ export default class AccountPrismaService {
   }
 
   // Update a user by id.
-  async updateUserById(
-    data: UpdateUserSchemaType,
+  async updateEmailAddress(
     id: string,
+    data: UpdateEmailSchemaType,
   ): Promise<User | null> {
     return await this.prisma.user.update({
       where: {
         id,
       },
-      data,
+      data: {
+        emailAddress: data.emailAddress,
+        emailVerified: null,
+      },
+    });
+  }
+
+  // Update a user by id.
+  async updatePassword(id: string, password: string): Promise<User | null> {
+    return await this.prisma.user.update({
+      where: {
+        id,
+      },
+      data: {
+        password,
+      },
     });
   }
 
   // Update user with email verification token.
   async updateOneWithEmailVerificationToken(
+    id: string,
     data: SendEmailVerificationTokenSchemaType,
   ): Promise<User> {
     return await this.prisma.user.update({
-      data,
+      data: {
+        emailVerificationToken: data.emailVerificationToken,
+        emailVerificationTokenExpiry: data.emailVerificationTokenExpiry,
+      },
       where: {
-        emailAddress: data.emailAddress,
+        id,
       },
     });
   }
@@ -79,17 +76,6 @@ export default class AccountPrismaService {
       },
       where: {
         emailVerificationToken,
-      },
-    });
-  }
-
-  // Find a user by their reset password token.
-  async findUserByResetPasswordToken(
-    passwordResetToken: string,
-  ): Promise<User | null> {
-    return await this.prisma.user.findUnique({
-      where: {
-        passwordResetToken,
       },
     });
   }

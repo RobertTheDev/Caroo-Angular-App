@@ -1,22 +1,18 @@
 // import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
-import UserPrismaService from 'api/providers/prisma/user.service';
+import { hashPassword } from 'api/lib/passwordManagement';
+import AccountPrismaService from 'api/providers/prisma/account.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
-import changePasswordSchema from 'models/account/validators/changePassword.schema';
+import changePasswordSchema from 'models/account/validators/updatePassword.schema';
 
 export default async function changePassword(req: Request, res: Response) {
   try {
     // Get the user from the session.
     const { user } = req.session;
 
-    // Get the request body.
-    const { body } = req;
+    const accountService = new AccountPrismaService();
 
-    // Use the user prisma service to get the user handlers.
-    const userPrismaService = new UserPrismaService();
-
-    // If no user is found return a not found error.
     if (!user) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
@@ -24,32 +20,27 @@ export default async function changePassword(req: Request, res: Response) {
       });
     }
 
-    // Validate the request body.
+    const { id } = user;
+
+    // Get the request body.
+    const { body } = req;
+
     const validation = await changePasswordSchema.safeParseAsync(body);
 
-    // If validation is not successful return a bad request error.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
-        statusMessage: validation.error.issues[0].message,
+        statusMessage: validation.error.errors[0].message,
       });
     }
 
-    // Get data from validated body.
-    const { data } = validation;
+    const hashedPassword = await hashPassword(validation.data.newPassword);
 
-    const findUser = await userPrismaService.findOneByEmailAddress(
-      user.emailAddress,
-    );
-    if (!findUser) {
-      return res.status(StatusCodes.NOT_FOUND).send({
-        message: ReasonPhrases.NOT_FOUND,
-        error: `No user was found.`,
-      });
-    }
+    const data = await accountService.updatePassword(id, hashedPassword);
 
     return res.status(StatusCodes.OK).send({
-      message: ReasonPhrases.OK,
+      statusCode: StatusCodes.OK,
+      statusMessage: `Succesfully updated user password.`,
       data,
     });
   } catch (error) {
