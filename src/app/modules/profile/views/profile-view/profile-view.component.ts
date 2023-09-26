@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import IUser from 'models/user/types/User';
-
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { MetaService } from 'src/app/services/meta/meta.service';
-import { ProfileService } from 'src/app/services/profile/profile.service';
 
 @Component({
   selector: 'app-profile-view',
@@ -11,7 +10,7 @@ import { ProfileService } from 'src/app/services/profile/profile.service';
 export class ProfileViewComponent implements OnInit {
   constructor(
     private metaService: MetaService,
-    private profileService: ProfileService,
+    private authService: AuthService,
   ) {}
 
   profile: IUser | null = null;
@@ -20,7 +19,7 @@ export class ProfileViewComponent implements OnInit {
   ngOnInit() {
     this.metaService.setMeta('Profile', 'Description.', 'Keywords', 'profile');
 
-    this.profileService.getProfile().subscribe({
+    this.authService.getAuthenticatedUser().subscribe({
       next: (value) => {
         this.profile = value.data;
         this.loading = false;
