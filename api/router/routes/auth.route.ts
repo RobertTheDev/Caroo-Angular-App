@@ -17,7 +17,7 @@ const authRouter = Router();
 // Auth router defines all the routes used in modifying user authentication.
 // Auth router is exported into the app router file.
 
-authRouter.get('/authenticated-user', isAuthenticated, getAuthenticatedUser);
+authRouter.get('/authenticated-user', getAuthenticatedUser);
 
 authRouter.post('/login', isUserNotSignedIn, isPasswordCorrect, login);
 
