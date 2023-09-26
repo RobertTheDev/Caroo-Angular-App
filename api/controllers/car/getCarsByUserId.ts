@@ -6,15 +6,24 @@ import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 // This controller gets all cars by matching user id.
 
 export default async function getCarsByUserId(req: Request, res: Response) {
-  try {
-    // Get user id from the params.
-    const { userId } = req.params;
+  // Get user id from the params.
 
+  const { user } = req.session;
+
+  // If no user is session return unauthorized error.
+  if (!user) {
+    return res.status(StatusCodes.UNAUTHORIZED).send({
+      statusCode: StatusCodes.UNAUTHORIZED,
+      statusMessage: 'You are not authorised to perform this action.',
+      data: null,
+    });
+  }
+  try {
     // Declare and use car service.
     const carPrismaService = new CarPrismaService();
 
     // Find all cars.
-    const data = await carPrismaService.findAllByUserId(userId);
+    const data = await carPrismaService.findAllByUserId(user.id);
 
     // Return cars.
     return res.status(StatusCodes.OK).send({

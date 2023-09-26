@@ -13,6 +13,35 @@ export default async function deleteCarById(req: Request, res: Response) {
     // Declare and use car service.
     const carPrismaService = new CarPrismaService();
 
+    const { user } = req.session;
+
+    // If no user is session return unauthorized error.
+    if (!user) {
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: 'You are not authorised to perform this action.',
+        data: null,
+      });
+    }
+
+    const findCar = await carPrismaService.findOneById(id);
+
+    if (!findCar) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: 'You are not authorised to perform this action.',
+        data: null,
+      });
+    }
+
+    if (findCar.ownerId === user.id) {
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: 'You are not authorised to perform this action.',
+        data: null,
+      });
+    }
+
     // Delete car by id.
     await carPrismaService.deleteOneById(id);
 

@@ -11,8 +11,22 @@ export default async function createCar(req: Request, res: Response) {
     // Declare and use car service.
     const carPrismaService = new CarPrismaService();
 
+    const { user } = req.session;
+
+    // If no user is session return unauthorized error.
+    if (!user) {
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: 'You are not authorised to perform this action.',
+        data: null,
+      });
+    }
+
     // Validate the body.
-    const validation = await createCarSchema.safeParseAsync(req.body);
+    const validation = await createCarSchema.safeParseAsync({
+      ...req.body,
+      ownerId: user.id,
+    });
 
     // If validation is unsuccessful return a bad request error.
     if (!validation.success) {

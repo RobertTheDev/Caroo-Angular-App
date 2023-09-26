@@ -30,10 +30,10 @@ export default async function login(req: Request, res: Response) {
     const { emailAddress } = validation.data;
 
     // Get user by email address.
-    const data = await authPrismaService.login(emailAddress);
+    const user = await authPrismaService.login(emailAddress);
 
     // If user not found return a not found error.
-    if (!data) {
+    if (!user) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
         statusMessage: `User with email ${body.email} could not be found.`,
@@ -41,13 +41,13 @@ export default async function login(req: Request, res: Response) {
     }
 
     // Save user into session.
-    req.session.user = data;
+    req.session.user = user;
 
     // Return the logged in user.
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully logged in.`,
-      data,
+      data: user,
     });
   } catch (error) {
     // Log the error.
