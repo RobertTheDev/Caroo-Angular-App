@@ -48,15 +48,27 @@ model CarImage {
 }
 
 model CarRequest {
-  id        String   @unique @default(uuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  message   String?
-  car       Car      @relation(fields: [carId], references: [id])
-  carId     String
-  status    String
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String
+  id                 String              @unique @default(uuid())
+  createdAt          DateTime            @default(now())
+  updatedAt          DateTime            @updatedAt
+  message            String?
+  car                Car                 @relation(fields: [carId], references: [id])
+  carId              String
+  status             String
+  user               User                @relation(fields: [userId], references: [id])
+  userId             String
+  carRequestResponse CarRequestResponse?
+}
+
+model CarRequestResponse {
+  id           String     @unique @default(uuid())
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  message      String?
+  user         User       @relation(fields: [userId], references: [id])
+  userId       String
+  carRequest   CarRequest @relation(fields: [carRequestId], references: [id])
+  carRequestId String     @unique
 }
 
 model SavedCar {
@@ -70,20 +82,21 @@ model SavedCar {
 }
 
 model User {
-  id                           String       @unique @default(uuid())
-  createdAt                    DateTime     @default(now())
-  updatedAt                    DateTime     @updatedAt
+  id                           String               @unique @default(uuid())
+  createdAt                    DateTime             @default(now())
+  updatedAt                    DateTime             @updatedAt
   avatar                       String?
   carRequests                  CarRequest[]
-  emailAddress                 String       @unique
+  emailAddress                 String               @unique
   emailVerified                DateTime?
   firstName                    String
   lastName                     String
   ownedCars                    Car[]
   password                     String
-  passwordResetToken           String?      @unique
+  passwordResetToken           String?              @unique
   passwordResetTokenExpiry     DateTime?
-  emailVerificationToken       String?      @unique
+  emailVerificationToken       String?              @unique
   emailVerificationTokenExpiry DateTime?
   savedCars                    SavedCar[]
+  carRequestResponses          CarRequestResponse[]
 }
