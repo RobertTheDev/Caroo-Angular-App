@@ -4,7 +4,6 @@ import { NotFoundViewComponent } from './modules/not-found/views/not-found-view/
 import { SavedCarsViewComponent } from './modules/saved-car/views/saved-cars-view/saved-cars-view.component';
 import { CarsViewComponent } from './modules/car/views/cars-view/cars-view.component';
 import { SellerViewComponent } from './modules/seller/views/seller-view/seller-view.component';
-import { AuthGuard } from './guards/auth/auth.guard';
 
 const routes: Routes = [
   { path: '', component: CarsViewComponent },
@@ -18,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    canActivate: [AuthGuard],
+
     loadChildren: () =>
       import('./modules/account/account-routing.module').then(
         (m) => m.AccountRoutingModule,

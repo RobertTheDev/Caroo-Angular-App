@@ -11,12 +11,19 @@ export class SignedInGuard {
     private router: Router,
   ) {}
 
-  canActivate(): boolean {
-    if (this.authService.getAuthenticatedUser()) {
-      return true;
-    } else {
-      this.router.navigateByUrl('/');
-      return false;
-    }
+  canActivate() {
+    this.authService.getAuthenticatedUser().subscribe({
+      next: (data) => {
+        if (!data) {
+          return true;
+        }
+        this.router.navigateByUrl('/');
+        return false;
+      },
+      error: () => {
+        this.router.navigateByUrl('/');
+        return false;
+      },
+    });
   }
 }
