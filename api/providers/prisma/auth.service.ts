@@ -5,7 +5,7 @@ import { SendPasswordResetTokenSchemaType } from 'models/auth/validators/sendPas
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 
 // Defines the fields the user data should return. Avoids displaying sensitive data.
-const userReturnFields = {
+export const userReturnFields = {
   id: true,
   createdAt: true,
   updatedAt: true,
