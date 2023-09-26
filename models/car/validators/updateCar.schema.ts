@@ -1,13 +1,19 @@
-import { number, object, string, z } from 'zod';
+import { array, number, object, string, z } from 'zod';
 import carColourValues from '../values/carColourValues';
 import carGearboxValues from '../values/carGearboxValues';
 import carFuelTypeValues from '../values/carFuelTypeValues';
 import carDriveTypeValues from '../values/carDriveTypeValues';
 import carEngineSizeValues from '../values/carEngineSizeValues';
 import carStatusValues from '../values/carStatusValues';
+import createCarImageSchema from 'models/carImage/validators/createCarImage.schema';
 
 // Zod validation schema defines fields required for updating a car.
 const updateCarSchema = object({
+  images: array(createCarImageSchema, {
+    invalid_type_error: 'Car images must be in array format.',
+  })
+    .min(1, 'A car listing must have at least one image.')
+    .max(6, 'A car listing must have no more than six images.'),
   colour: string({
     invalid_type_error: 'Car colour must be a string.',
   })
