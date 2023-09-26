@@ -1,109 +1,105 @@
-import { Prisma, PrismaClient, User } from '@prisma/client';
+import { Prisma, User } from '@prisma/client';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
 import { SignUpSchemaType } from 'models/auth/validators/signUp.schema';
 import { SendPasswordResetTokenSchemaType } from 'models/auth/validators/sendPasswordResetToken.schema';
 import { ResetPasswordWithTokenSchemaType } from 'models/auth/validators/resetPasswordWithToken.schema';
+import prisma from 'api/utils/prisma';
 
-export default class UserPrismaService {
-  // Define the prisma client.
-  private readonly prisma: PrismaClient;
+// Creates a user during sign up.
+export async function createUser(data: SignUpSchemaType): Promise<User> {
+  return await prisma.user.create({
+    data,
+  });
+}
 
-  constructor() {
-    // Initialise the PrismaClient
-    this.prisma = new PrismaClient();
-  }
+// Delete all users.
+export async function deleteAllUsers(): Promise<Prisma.BatchPayload> {
+  return await prisma.user.deleteMany();
+}
 
-  // Creates a user during sign up.
-  async createUser(data: SignUpSchemaType): Promise<User> {
-    return await this.prisma.user.create({
-      data,
-    });
-  }
+// Update and return a user by id.
+export async function deleteUserById(id: string): Promise<User> {
+  return await prisma.user.delete({
+    where: {
+      id,
+    },
+  });
+}
 
-  // Delete all users.
-  async deleteAll(): Promise<Prisma.BatchPayload> {
-    return await this.prisma.user.deleteMany();
-  }
+// Return all users.
+export async function findAllUsers(): Promise<User[]> {
+  return await prisma.user.findMany();
+}
 
-  // Update and return a user by id.
-  async deleteOneById(id: string): Promise<User> {
-    return await this.prisma.user.delete({
-      where: {
-        id,
-      },
-    });
-  }
+// Find and return a user by email address.
+export async function findUserByEmailAddress(
+  emailAddress: string,
+): Promise<User | null> {
+  return await prisma.user.findUnique({
+    where: {
+      emailAddress,
+    },
+  });
+}
 
-  // Return all users.
-  async findAll(): Promise<User[]> {
-    return await this.prisma.user.findMany();
-  }
+// Find and return a user by id.
+export async function findUserById(id: string): Promise<User | null> {
+  return await prisma.user.findUnique({
+    where: {
+      id,
+    },
+  });
+}
 
-  // Find and return a user by email address.
-  async findOneByEmailAddress(emailAddress: string): Promise<User | null> {
-    return await this.prisma.user.findUnique({
-      where: {
-        emailAddress,
-      },
-    });
-  }
+// Update and return a user by id.
+export async function updateUserById(
+  data: UpdateUserSchemaType,
+  id: string,
+): Promise<User> {
+  return await prisma.user.update({
+    data,
+    where: {
+      id,
+    },
+  });
+}
 
-  // Find and return a user by id.
-  async findOneById(id: string): Promise<User | null> {
-    return await this.prisma.user.findUnique({
-      where: {
-        id,
-      },
-    });
-  }
+// Update user with reset password token by email address.
+export async function updateUserWithResetPasswordToken(
+  data: SendPasswordResetTokenSchemaType,
+): Promise<User> {
+  return await prisma.user.update({
+    data,
+    where: {
+      emailAddress: data.emailAddress,
+    },
+  });
+}
 
-  // Update and return a user by id.
-  async updateOneById(data: UpdateUserSchemaType, id: string): Promise<User> {
-    return await this.prisma.user.update({
-      data,
-      where: {
-        id,
-      },
-    });
-  }
+// Update user with reset password token by email address.
+export async function updateUserPasswordWithResetPasswordToken(
+  passwordResetToken: string,
+  data: ResetPasswordWithTokenSchemaType,
+): Promise<User> {
+  return await prisma.user.update({
+    data: {
+      password: data.password,
+      passwordResetToken: null,
+      passwordResetTokenExpiry: null,
+    },
+    where: {
+      passwordResetToken,
+    },
+  });
+}
 
-  // Update user with reset password token by email address.
-  async updateOneWithResetPasswordToken(
-    data: SendPasswordResetTokenSchemaType,
-  ): Promise<User> {
-    return await this.prisma.user.update({
-      data,
-      where: {
-        emailAddress: data.emailAddress,
-      },
-    });
-  }
-
-  // Update user with reset password token by email address.
-  async updatePasswordWithResetPasswordToken(
-    passwordResetToken: string,
-    data: ResetPasswordWithTokenSchemaType,
-  ): Promise<User> {
-    return await this.prisma.user.update({
-      data: {
-        password: data.password,
-        passwordResetToken: null,
-        passwordResetTokenExpiry: null,
-      },
-      where: {
-        passwordResetToken,
-      },
-    });
-  }
-
-  // Find a user by their reset password token.
-  async findUserByResetPasswordToken(
-    passwordResetToken: string,
-  ): Promise<User | null> {
-    return await this.prisma.user.findUnique({
-      where: {
-        passwordResetToken,
-      },
-    });
-  }
+// Find a user by their reset password token.
+export async function findUserByResetPasswordToken(
+  passwordResetToken: string,
+): Promise<User | null> {
+  return await prisma.user.findUnique({
+    where: {
+      passwordResetToken,
+    },
+  });
 }

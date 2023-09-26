@@ -1,113 +1,114 @@
-import { CarRequestResponse, Prisma, PrismaClient } from '@prisma/client';
+import { CarRequestResponse, Prisma } from '@prisma/client';
 import { CreateCarRequestResponseSchemaType } from 'models/carRequestResponse/validators/createCarRequestResponse.schema';
 import { UpdateCarRequestResponseSchemaType } from 'models/carRequestResponse/validators/updateCarRequestResponse.schema';
+import prisma from 'api/utils/prisma';
 
-export default class CarRequestResponsePrismaService {
-  // Define the prisma client.
-  private readonly prisma: PrismaClient;
+// Create and return a new car request response.
+export async function createCarRequestResponse(
+  data: CreateCarRequestResponseSchemaType,
+): Promise<CarRequestResponse> {
+  return await prisma.carRequestResponse.create({
+    data,
+  });
+}
 
-  constructor() {
-    // Initialise the PrismaClient
-    this.prisma = new PrismaClient();
-  }
+// Delete all car request responses.
+export async function deleteAllCarRequestResponses(): Promise<Prisma.BatchPayload> {
+  return await prisma.carRequestResponse.deleteMany();
+}
 
-  // Create and return a new car request response.
-  async createOne(
-    data: CreateCarRequestResponseSchemaType,
-  ): Promise<CarRequestResponse> {
-    return await this.prisma.carRequestResponse.create({
-      data,
-    });
-  }
+// Delete all car request responses by matching car id.
+export async function deleteAllCarRequestResponsesByCarRequestId(
+  carRequestId: string,
+): Promise<Prisma.BatchPayload> {
+  return await prisma.carRequestResponse.deleteMany({
+    where: {
+      carRequestId,
+    },
+  });
+}
 
-  // Delete all car request responses.
-  async deleteAll(): Promise<Prisma.BatchPayload> {
-    return await this.prisma.carRequestResponse.deleteMany();
-  }
+// Delete all car request responses by matching user id.
+export async function deleteAllCarRequestResponsesByUserId(
+  userId: string,
+): Promise<Prisma.BatchPayload> {
+  return await prisma.carRequestResponse.deleteMany({
+    where: {
+      userId,
+    },
+  });
+}
 
-  // Delete all car request responses by matching car id.
-  async deleteAllByCarRequestId(
-    carRequestId: string,
-  ): Promise<Prisma.BatchPayload> {
-    return await this.prisma.carRequestResponse.deleteMany({
-      where: {
-        carRequestId,
-      },
-    });
-  }
+// Delete a car request response by id.
+export async function deleteCarRequestResponseById(
+  id: string,
+): Promise<CarRequestResponse> {
+  return await prisma.carRequestResponse.delete({
+    where: {
+      id,
+    },
+  });
+}
 
-  // Delete all car request responses by matching user id.
-  async deleteAllByUserId(userId: string): Promise<Prisma.BatchPayload> {
-    return await this.prisma.carRequestResponse.deleteMany({
-      where: {
-        userId,
-      },
-    });
-  }
+// Return all car request responses.
+export async function findAllCarRequestResponses(): Promise<
+  CarRequestResponse[]
+> {
+  return await prisma.carRequestResponse.findMany({
+    include: {
+      user: true,
+    },
+  });
+}
 
-  // Delete a car request response by id.
-  async deleteOneById(id: string): Promise<CarRequestResponse> {
-    return await this.prisma.carRequestResponse.delete({
-      where: {
-        id,
-      },
-    });
-  }
+// Find all car request responses by matching car id.
+export async function findAllCarRequestResponsesByCarRequestId(
+  carRequestId: string,
+): Promise<CarRequestResponse[]> {
+  return await prisma.carRequestResponse.findMany({
+    where: {
+      carRequestId,
+    },
+    include: {
+      user: true,
+    },
+  });
+}
 
-  // Return all car request responses.
-  async findAll(): Promise<CarRequestResponse[]> {
-    return await this.prisma.carRequestResponse.findMany({
-      include: {
-        user: true,
-      },
-    });
-  }
+// Find all car request responses by matching user id.
+export async function findAllCarRequestResponsesByUserId(
+  userId: string,
+): Promise<CarRequestResponse[]> {
+  return await prisma.carRequestResponse.findMany({
+    where: {
+      userId,
+    },
+  });
+}
 
-  // Find all car request responses by matching car id.
-  async findAllByCarRequestId(
-    carRequestId: string,
-  ): Promise<CarRequestResponse[]> {
-    return await this.prisma.carRequestResponse.findMany({
-      where: {
-        carRequestId,
-      },
-      include: {
-        user: true,
-      },
-    });
-  }
+// Find and return a car request response by id.
+export async function findCarRequestResponseById(
+  id: string,
+): Promise<CarRequestResponse | null> {
+  return await prisma.carRequestResponse.findUnique({
+    include: {
+      user: true,
+    },
+    where: {
+      id,
+    },
+  });
+}
 
-  // Find all car request responses by matching user id.
-  async findAllByUserId(userId: string): Promise<CarRequestResponse[]> {
-    return await this.prisma.carRequestResponse.findMany({
-      where: {
-        userId,
-      },
-    });
-  }
-
-  // Find and return a car request response by id.
-  async findOneById(id: string): Promise<CarRequestResponse | null> {
-    return await this.prisma.carRequestResponse.findUnique({
-      include: {
-        user: true,
-      },
-      where: {
-        id,
-      },
-    });
-  }
-
-  // Update a car request response by matching id.
-  async updateCarRequestById(
-    data: UpdateCarRequestResponseSchemaType,
-    id: string,
-  ): Promise<CarRequestResponse> {
-    return await this.prisma.carRequestResponse.update({
-      data,
-      where: {
-        id,
-      },
-    });
-  }
+// Update a car request response by matching id.
+export async function updateCarRequestResponseById(
+  data: UpdateCarRequestResponseSchemaType,
+  id: string,
+): Promise<CarRequestResponse> {
+  return await prisma.carRequestResponse.update({
+    data,
+    where: {
+      id,
+    },
+  });
 }

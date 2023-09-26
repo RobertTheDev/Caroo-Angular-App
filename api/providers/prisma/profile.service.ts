@@ -1,6 +1,6 @@
-import { PrismaClient } from '@prisma/client';
 import AuthenticatedUser from 'models/auth/types/AuthenticatedUser';
 import { UpdateUserSchemaType } from 'models/user/validators/updateUser.schema';
+import prisma from 'api/utils/prisma';
 
 // Defines the fields the user data should return. Avoids displaying sensitive data.
 const userReturnFields = {
@@ -14,37 +14,29 @@ const userReturnFields = {
   lastName: true,
 };
 
-export default class ProfilePrismaService {
-  // Define the prisma client.
-  private readonly prisma: PrismaClient;
+// Gets a user by id proivded from the session.
+export async function getProfile(
+  id: string,
+): Promise<AuthenticatedUser | null> {
+  return await prisma.user.findUnique({
+    select: userReturnFields,
+    where: {
+      id,
+    },
+  });
+}
 
-  constructor() {
-    // Initialise the PrismaClient
-    this.prisma = new PrismaClient();
-  }
-
-  // Gets a user by id proivded from the session.
-  async getProfile(id: string): Promise<AuthenticatedUser | null> {
-    return await this.prisma.user.findUnique({
-      select: userReturnFields,
-      where: {
-        id,
-      },
-    });
-  }
-
-  // Gets a user by id proivded from the session.
-  // Update a user by id.
-  async updateProfile(
-    data: UpdateUserSchemaType,
-    id: string,
-  ): Promise<AuthenticatedUser> {
-    return await this.prisma.user.update({
-      select: userReturnFields,
-      where: {
-        id,
-      },
-      data,
-    });
-  }
+// Gets a user by id proivded from the session.
+// Update a user by id.
+export async function updateProfile(
+  data: UpdateUserSchemaType,
+  id: string,
+): Promise<AuthenticatedUser> {
+  return await prisma.user.update({
+    select: userReturnFields,
+    where: {
+      id,
+    },
+    data,
+  });
 }
