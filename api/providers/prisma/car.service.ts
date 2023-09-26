@@ -1,6 +1,7 @@
 import { Car, Prisma, PrismaClient } from '@prisma/client';
 import { CreateCarSchemaType } from 'models/car/validators/createCar.schema';
 import { UpdateCarSchemaType } from 'models/car/validators/updateCar.schema';
+import { userReturnFields } from './auth.service';
 
 export default class CarPrismaService {
   // Define the prisma client.
@@ -13,9 +14,50 @@ export default class CarPrismaService {
 
   // Create and return a new car.
   async createOne(data: CreateCarSchemaType): Promise<Car> {
-    return await this.prisma.car.create({
-      data,
+    const { images, ...car } = data;
+
+    // Create the car without images
+    const createdCar = await this.prisma.car.create({
+      data: car,
     });
+
+    // Create car images and associate them with the car
+    const createdCarImages = await Promise.all(
+      images.map(async (imageData) => {
+        const { alt, url } = imageData;
+        return await this.prisma.carImage.create({
+          data: {
+            alt,
+            url,
+            car: {
+              connect: {
+                id: createdCar.id,
+              },
+            },
+          },
+        });
+      }),
+    );
+    // Attach the created images to the car
+    const updatedCar = await this.prisma.car.update({
+      include: {
+        owner: {
+          select: userReturnFields,
+        },
+      },
+      where: {
+        id: createdCar.id,
+      },
+      data: {
+        images: {
+          connect: createdCarImages.map((image) => ({
+            id: image.id,
+          })),
+        },
+      },
+    });
+
+    return updatedCar;
   }
 
   // Return all cars.
@@ -23,6 +65,9 @@ export default class CarPrismaService {
     return await this.prisma.car.findMany({
       include: {
         images: true,
+        owner: {
+          select: userReturnFields,
+        },
       },
     });
   }
@@ -44,7 +89,9 @@ export default class CarPrismaService {
     return await this.prisma.car.findUnique({
       include: {
         images: true,
-        owner: true,
+        owner: {
+          select: userReturnFields,
+        },
       },
       where: {
         id,
@@ -53,13 +100,53 @@ export default class CarPrismaService {
   }
 
   // Update and return a car by id.
+
   async updateOneById(data: UpdateCarSchemaType, id: string): Promise<Car> {
-    return await this.prisma.car.update({
-      data,
+    const { images, ...car } = data;
+
+    // Create the car without images
+    const createdCar = await this.prisma.car.update({
+      data: car,
+      where: { id },
+    });
+
+    // Create car images and associate them with the car
+    const createdCarImages = await Promise.all(
+      images.map(async (imageData) => {
+        const { alt, url } = imageData;
+        return await this.prisma.carImage.create({
+          data: {
+            alt,
+            url,
+            car: {
+              connect: {
+                id: createdCar.id,
+              },
+            },
+          },
+        });
+      }),
+    );
+    // Attach the created images to the car
+    const updatedCar = await this.prisma.car.update({
+      include: {
+        owner: {
+          select: userReturnFields,
+        },
+      },
       where: {
-        id,
+        id: createdCar.id,
+      },
+      data: {
+        images: {
+          connect: createdCarImages.map((image) => ({
+            id: image.id,
+          })),
+        },
       },
     });
+
+    return updatedCar;
   }
 
   // Delete all cars.
