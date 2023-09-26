@@ -1,4 +1,6 @@
+import { verifyPassword } from 'api/lib/passwordManagement';
 import AccountPrismaService from 'api/providers/prisma/account.service';
+import UserPrismaService from 'api/providers/prisma/user.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
@@ -32,6 +34,29 @@ export default async function closeAccount(req: Request, res: Response) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: validation.error.issues[0].message,
+      });
+    }
+
+    const userService = new UserPrismaService();
+
+    const findUser = await userService.findOneById(user.id);
+
+    if (!findUser) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `User with id ${user.id} was not found.`,
+      });
+    }
+
+    const isPasswordCorrect = await verifyPassword(
+      validation.data.password,
+      findUser.password,
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'Password entered is incorrect.',
       });
     }
 

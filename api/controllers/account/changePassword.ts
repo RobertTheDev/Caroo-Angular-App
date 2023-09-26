@@ -1,6 +1,7 @@
 // import isPasswordCorrect from 'api/lib/auth/isPasswordCorrect';
-import { hashPassword } from 'api/lib/passwordManagement';
+import { hashPassword, verifyPassword } from 'api/lib/passwordManagement';
 import AccountPrismaService from 'api/providers/prisma/account.service';
+import UserPrismaService from 'api/providers/prisma/user.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
@@ -31,6 +32,29 @@ export default async function changePassword(req: Request, res: Response) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: validation.error.errors[0].message,
+      });
+    }
+
+    const userPrismaService = new UserPrismaService();
+
+    const findUser = await userPrismaService.findOneById(id);
+
+    if (!findUser) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `User with id ${id} was not found.`,
+      });
+    }
+
+    const isPasswordCorrect = await verifyPassword(
+      validation.data.currentPassword,
+      findUser.password,
+    );
+
+    if (!isPasswordCorrect) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'Password entered is incorrect.',
       });
     }
 

@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import winstonLogger from 'api/utils/winstonLogger';
 import AccountPrismaService from 'api/providers/prisma/account.service';
+import isDateExpired from 'api/lib/isDateExpired';
+import UserPrismaService from 'api/providers/prisma/user.service';
+import { format } from 'date-fns';
 
 // This controller verifies a user's email with email verification token.
 // Validation of the token takes place is the isEmailVerificationTokenExpired middleware.
@@ -12,6 +15,16 @@ export default async function verifyEmailWithToken(
   try {
     // Get the request body.
     const { params } = req;
+
+    // Get the request body.
+    const { user } = req.session;
+
+    if (!user) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: 'No user was found in the session.',
+      });
+    }
 
     // Get the email verification token from the request params.
     const { emailVerificationToken } = params;
@@ -24,6 +37,37 @@ export default async function verifyEmailWithToken(
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: `No email verification token was provided.`,
+      });
+    }
+
+    const userPrismaService = new UserPrismaService();
+
+    const findUser = await userPrismaService.findOneById(user.id);
+
+    // Throw error if token has no expiry.
+    if (!findUser) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `The email verification token has no expiry.`,
+      });
+    }
+
+    // Throw error if token has no expiry.
+    if (!findUser.emailVerificationTokenExpiry) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `The email verification token has no expiry.`,
+      });
+    }
+
+    // Throw error if token has expired.
+    if (isDateExpired(findUser.emailVerificationTokenExpiry)) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: `Your email verification token expires 10 minutes after your last request. Please wait until ${format(
+          findUser.emailVerificationTokenExpiry,
+          'HH:mm',
+        )} to request a new one.`,
       });
     }
 
