@@ -17,14 +17,14 @@ accountRouter.put('/update-email-address', isAuthenticated, changeEmailAddress);
 accountRouter.put('/update-password', isAuthenticated, changePassword);
 
 accountRouter.put(
-  '/verify-email-address/:emailVerificationToken',
+  '/verify-email/:emailVerificationToken',
   isAuthenticated,
   isEmailVerificationTokenExpired,
   verifyEmailWithToken,
 );
 
 accountRouter.post(
-  '/send-email-verification-token',
+  '/verify-email/send-token',
   isAuthenticated,
   sendEmailVerificationToken,
 );
