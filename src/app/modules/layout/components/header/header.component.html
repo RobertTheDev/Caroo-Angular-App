@@ -24,20 +24,18 @@
       Login or Sign Up
     </button>
   </div>
+  <div *ngIf="user | async as userData" class="header-controls-container">
+    <button (click)="navigateTo('/saved-cars')" class="header-control-button">
+      <fa-icon class="header-control-icon" [icon]="faHeart"></fa-icon>
+    </button>
 
-  <button (click)="navigateTo('/saved-cars')" class="header-control-button">
-    <fa-icon class="header-control-icon" [icon]="faHeart"></fa-icon>
-  </button>
+    <button (click)="toggleProfileMenu()" class="header-control-button">
+      <fa-icon class="header-control-icon" [icon]="faUser"></fa-icon>
+    </button>
+    <app-profile-menu />
 
-  <button (click)="toggleProfileMenu()" class="header-control-button">
-    <fa-icon class="header-control-icon" [icon]="faUser"></fa-icon>
-  </button>
-  <app-profile-menu />
-
-  <!-- <div *ngIf="user | async as userData" class="header-controls-container"> -->
-  <button (click)="toggleBurgerMenu()" class="header-control-button">
-    <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
-  </button>
-
-  <!-- </div> -->
+    <button (click)="toggleBurgerMenu()" class="header-control-button">
+      <fa-icon class="header-control-icon" [icon]="faBars"></fa-icon>
+    </button>
+  </div>
 </header>
