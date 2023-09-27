@@ -1,3 +1,4 @@
+import { findCarById } from 'api/providers/prisma/car.service';
 import {
   createOneSavedCar,
   deleteOneSavedCarById,
@@ -36,11 +37,26 @@ export default async function saveCar(req: Request, res: Response) {
       });
     }
 
-    // STEP 3: Check to see if a saved car with the user and car id exists.
+    // STEP 3: Check user is not the owner.
+    const car = await findCarById(carId);
+    if (!car) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'No car was found.',
+      });
+    }
+    if (car.ownerId === user.id) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'You cannot save this car as you are the owner.',
+      });
+    }
+
+    // STEP 4: Check to see if a saved car with the user and car id exists.
     // Create saved car.
     const findSavedCar = await findOneSavedCarByCarIdAndUserId(carId, userId);
 
-    // STEP 4: If saved car was found then unsave otherwise save the car.
+    // STEP 5: If saved car was found then unsave otherwise save the car.
     if (!findSavedCar) {
       // Save the car.
       const savedCar = await createOneSavedCar({
