@@ -1,3 +1,4 @@
+import { findOneCarRequestById } from 'api/providers/prisma/carRequest.service';
 import { createOneCarRequestResponse } from 'api/providers/prisma/carRequestResponse.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
@@ -33,7 +34,29 @@ export default async function createCarRequestResponse(
       });
     }
 
-    // STEP 3: Validate the request body.
+    // STEP 3: Check the responder is the car owner.
+    const carRequest = await findOneCarRequestById(carRequestId);
+    if (!carRequest) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'No car request was found.',
+      });
+    }
+    if (!carRequest.car) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'No car was found in the car request.',
+      });
+    }
+    const { ownerId } = carRequest.car;
+    if (ownerId !== user.id) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'Only the car owner can reply to this response.',
+      });
+    }
+
+    // STEP 4: Validate the request body.
     const validation = await createCarRequestResponseSchema.safeParseAsync({
       ...req.body,
       userId,
@@ -49,7 +72,7 @@ export default async function createCarRequestResponse(
       });
     }
 
-    // STEP 4: Create the car request.
+    // STEP 5: Create the car request response.
     const data = await createOneCarRequestResponse(validation.data);
     // Send response with the created car request.
     return res.status(StatusCodes.ACCEPTED).send({
