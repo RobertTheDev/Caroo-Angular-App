@@ -4,9 +4,8 @@ import winstonLogger from 'api/utils/winstonLogger';
 import sendPasswordResetTokenSchema from 'models/auth/validators/sendPasswordResetToken.schema';
 import isDateUnexpired from 'api/lib/isDateUnexpired';
 import { format } from 'date-fns';
-import { findUserById } from 'api/providers/prisma/user.service';
+import { findUserByEmailAddress } from 'api/providers/prisma/user.service';
 import { authSendPasswordResetByEmailAddress } from 'api/providers/prisma/auth.service';
-import isDateExpired from 'api/lib/isDateExpired';
 
 // This controller sends reset password token.
 // We do this using send grid to send a token and update the user in db with the token to be found.
@@ -16,29 +15,6 @@ export default async function sendResetPasswordToken(
   res: Response,
 ) {
   try {
-    // STEP 1: Get the user id from session.
-    // Get the user from the session.
-    const { user } = req.session;
-    // If no user is found return a not found error.
-    if (!user) {
-      return res.status(StatusCodes.UNAUTHORIZED).send({
-        statusCode: StatusCodes.UNAUTHORIZED,
-        statusMessage: 'You are not authorised to perform this action.',
-      });
-    }
-    // Get the user's id.
-    const { id: userId } = user;
-
-    // STEP 2:Find the user by their id.
-    const findUser = await findUserById(userId);
-    // Throw error if token has no expiry.
-    if (!findUser) {
-      return res.status(StatusCodes.NOT_FOUND).send({
-        statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: `The user was not found with that id.`,
-      });
-    }
-
     // STEP 3: Validate the request body.
     // Get the request body.
     const { body } = req;
@@ -54,30 +30,29 @@ export default async function sendResetPasswordToken(
     // Get data from validation.
     const { data } = validation;
 
-    // STEP 4: Check password token has neither expired nor unexpired.
-    // Return an error if token has no expiry.
-    if (!findUser.passwordResetTokenExpiry) {
+    // STEP 1 :Find the user by their email address.
+    const findUser = await findUserByEmailAddress(data.emailAddress);
+    // Throw error if token has no expiry.
+    if (!findUser) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: `The password reset token has no expiry.`,
+        statusMessage: `No user was found with that email address.`,
       });
     }
+
+    // STEP 4: Check password token has neither expired nor unexpired.
+    // Return an error if token has no expiry.
     // Return an error if token has not expired.
-    if (isDateUnexpired(findUser.passwordResetTokenExpiry)) {
+    if (
+      findUser.passwordResetTokenExpiry &&
+      isDateUnexpired(findUser.passwordResetTokenExpiry)
+    ) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: `Your password reset token expires 10 minutes after your last request. Please wait until ${format(
           findUser.passwordResetTokenExpiry,
           'HH:mm',
         )} to request a new one.`,
-      });
-    }
-    // Return an error if token has expired.
-    if (isDateExpired(findUser.passwordResetTokenExpiry)) {
-      return res.status(StatusCodes.BAD_REQUEST).send({
-        statusCode: StatusCodes.BAD_REQUEST,
-        statusMessage:
-          'Your password reset token has expired. Please send a new password reset email.',
       });
     }
 
