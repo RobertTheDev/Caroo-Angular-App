@@ -2,6 +2,19 @@ import { User } from '@prisma/client';
 import { UpdateEmailSchemaType } from 'models/account/validators/updateEmail.schema';
 import { SendEmailVerificationTokenSchemaType } from 'models/account/validators/sendEmailVerificationToken.schema';
 import prisma from 'api/utils/prisma';
+import AuthenticatedUser from 'models/auth/types/AuthenticatedUser';
+
+// Defines the fields the user data should return. Avoids displaying sensitive data.
+const userReturnFields = {
+  id: true,
+  createdAt: true,
+  updatedAt: true,
+  avatar: true,
+  emailAddress: true,
+  emailVerified: true,
+  firstName: true,
+  lastName: true,
+};
 
 // Closes and deletes a user account by email address.
 export async function closeUserAccount(id: string): Promise<User> {
@@ -16,8 +29,9 @@ export async function closeUserAccount(id: string): Promise<User> {
 export async function updateAccountEmailAddress(
   id: string,
   data: UpdateEmailSchemaType,
-): Promise<User | null> {
+): Promise<AuthenticatedUser | null> {
   return await prisma.user.update({
+    select: userReturnFields,
     where: {
       id,
     },
@@ -32,8 +46,9 @@ export async function updateAccountEmailAddress(
 export async function updateAccountPassword(
   id: string,
   password: string,
-): Promise<User | null> {
+): Promise<AuthenticatedUser | null> {
   return await prisma.user.update({
+    select: userReturnFields,
     where: {
       id,
     },
@@ -47,8 +62,9 @@ export async function updateAccountPassword(
 export async function updateAccountWithEmailVerificationToken(
   id: string,
   data: SendEmailVerificationTokenSchemaType,
-): Promise<User> {
+): Promise<AuthenticatedUser> {
   return await prisma.user.update({
+    select: userReturnFields,
     data: {
       emailVerificationToken: data.emailVerificationToken,
       emailVerificationTokenExpiry: data.emailVerificationTokenExpiry,
@@ -62,8 +78,9 @@ export async function updateAccountWithEmailVerificationToken(
 // Verify user email address with email verification token.
 export async function verifyAccountEmailAddressWithEmailVerificationToken(
   emailVerificationToken: string,
-): Promise<User> {
+): Promise<AuthenticatedUser> {
   return await prisma.user.update({
+    select: userReturnFields,
     data: {
       emailVerified: new Date(),
       emailVerificationToken: null,
