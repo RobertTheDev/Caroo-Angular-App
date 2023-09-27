@@ -34,7 +34,7 @@ export default async function updateCarById(req: Request, res: Response) {
     }
 
     // STEP 3: Check to see if user is the car owner to perform action.
-    if (findCar.ownerId === ownerId) {
+    if (findCar.ownerId !== ownerId) {
       return res.status(StatusCodes.UNAUTHORIZED).send({
         statusCode: StatusCodes.UNAUTHORIZED,
         statusMessage:
