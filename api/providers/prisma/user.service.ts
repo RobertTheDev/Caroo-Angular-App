@@ -52,7 +52,7 @@ export async function findUserById(id: string): Promise<User | null> {
 }
 
 // Update and return a user by id.
-export async function updateUserById(
+export async function updateOneUserById(
   data: UpdateUserSchemaType,
   id: string,
 ): Promise<User> {

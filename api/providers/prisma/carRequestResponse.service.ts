@@ -4,11 +4,22 @@ import { UpdateCarRequestResponseSchemaType } from 'models/carRequestResponse/va
 import prisma from 'api/utils/prisma';
 
 // Create and return a new car request response.
-export async function createCarRequestResponse(
+export async function createOneCarRequestResponse(
   data: CreateCarRequestResponseSchemaType,
 ): Promise<CarRequestResponse> {
   return await prisma.carRequestResponse.create({
     data,
+  });
+}
+
+// Delete one car request response by id.
+export async function deleteOneCarRequestResponseById(
+  id: string,
+): Promise<CarRequestResponse> {
+  return await prisma.carRequestResponse.delete({
+    where: {
+      id,
+    },
   });
 }
 
@@ -40,7 +51,7 @@ export async function deleteAllCarRequestResponsesByUserId(
 }
 
 // Delete a car request response by id.
-export async function deleteCarRequestResponseById(
+export async function deleteAllCarRequestResponseById(
   id: string,
 ): Promise<CarRequestResponse> {
   return await prisma.carRequestResponse.delete({
@@ -87,7 +98,7 @@ export async function findAllCarRequestResponsesByUserId(
 }
 
 // Find and return a car request response by id.
-export async function findCarRequestResponseById(
+export async function findOneCarRequestResponseById(
   id: string,
 ): Promise<CarRequestResponse | null> {
   return await prisma.carRequestResponse.findUnique({
@@ -101,7 +112,7 @@ export async function findCarRequestResponseById(
 }
 
 // Update a car request response by matching id.
-export async function updateCarRequestResponseById(
+export async function updateOneCarRequestResponseById(
   data: UpdateCarRequestResponseSchemaType,
   id: string,
 ): Promise<CarRequestResponse> {

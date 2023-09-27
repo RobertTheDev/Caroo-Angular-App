@@ -15,7 +15,7 @@ const userReturnFields = {
 };
 
 // Gets a user by id proivded from the session.
-export async function getProfile(
+export async function getProfileById(
   id: string,
 ): Promise<AuthenticatedUser | null> {
   return await prisma.user.findUnique({
@@ -28,7 +28,7 @@ export async function getProfile(
 
 // Gets a user by id proivded from the session.
 // Update a user by id.
-export async function updateProfile(
+export async function updateProfileById(
   data: UpdateUserSchemaType,
   id: string,
 ): Promise<AuthenticatedUser> {

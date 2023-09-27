@@ -4,7 +4,7 @@ import { UpdateCarImageSchemaType } from 'models/carImage/validators/updateCarIm
 import prisma from 'api/utils/prisma';
 
 // Create and return a car image.
-export async function createCarImage(
+export async function createOneCarImage(
   data: CreateCarImageSchemaType,
 ): Promise<CarImage> {
   return await prisma.carImage.create({
@@ -29,7 +29,7 @@ export async function deleteAllCarImagesByCarId(
 }
 
 // Delete a car image by id.
-export async function deleteCarImageById(id: string): Promise<CarImage> {
+export async function deleteOneCarImageById(id: string): Promise<CarImage> {
   return await prisma.carImage.delete({
     where: {
       id,
@@ -69,7 +69,9 @@ export async function findAllCarImagesByCarId(
 }
 
 // Find and return car image by id.
-export async function findCarImageById(id: string): Promise<CarImage | null> {
+export async function findOneCarImageById(
+  id: string,
+): Promise<CarImage | null> {
   return await prisma.carImage.findUnique({
     include: {
       car: {
@@ -85,7 +87,7 @@ export async function findCarImageById(id: string): Promise<CarImage | null> {
 }
 
 // Delete all saved cars by matching user id.
-export async function updateCarImageById(
+export async function updateOneCarImageById(
   data: UpdateCarImageSchemaType,
   id: string,
 ): Promise<CarImage> {

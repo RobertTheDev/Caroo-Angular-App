@@ -17,7 +17,7 @@ export const userReturnFields = {
 };
 
 // Signs up a user.
-export async function signUp(
+export async function authSignUp(
   data: SignUpSchemaType,
 ): Promise<AuthenticatedUser> {
   return await prisma.user.create({
@@ -27,7 +27,7 @@ export async function signUp(
 }
 
 // Login a user by finding user with email address.
-export async function login(
+export async function authLogin(
   emailAddress: string,
 ): Promise<AuthenticatedUser | null> {
   return await prisma.user.findUnique({
@@ -39,7 +39,7 @@ export async function login(
 }
 
 // Insert the password reset token and expiry into user after sending password reset.
-export async function sendPasswordResetByEmailAddress(
+export async function authSendPasswordResetByEmailAddress(
   emailAddress: string,
   data: SendPasswordResetTokenSchemaType,
 ): Promise<AuthenticatedUser> {
@@ -53,7 +53,7 @@ export async function sendPasswordResetByEmailAddress(
 }
 
 // Reset the user's password using the password reset token.
-export async function resetPasswordWithToken(
+export async function authResetPasswordWithToken(
   passwordResetToken: string,
   data: ResetPasswordWithTokenSchemaType,
 ): Promise<AuthenticatedUser> {
@@ -71,7 +71,7 @@ export async function resetPasswordWithToken(
 }
 
 // Get the authenticated user by id.
-export async function getAuthenticatedUserById(
+export async function authGetAuthenticatedUserById(
   id: string,
 ): Promise<AuthenticatedUser | null> {
   return await prisma.user.findUnique({

@@ -4,7 +4,7 @@ import { UpdateCarRequestSchemaType } from 'models/carRequest/validators/updateC
 import prisma from 'api/utils/prisma';
 
 // Create and return a new car request.
-export async function createCarRequest(
+export async function createOneCarRequest(
   data: CreateCarRequestSchemaType,
 ): Promise<CarRequest> {
   return await prisma.carRequest.create({
@@ -40,7 +40,7 @@ export async function deleteAllCarRequestsByUserId(
 }
 
 // Delete a car request by id.
-export async function deleteCarRequestById(id: string): Promise<CarRequest> {
+export async function deleteOneCarRequestById(id: string): Promise<CarRequest> {
   return await prisma.carRequest.delete({
     where: {
       id,
@@ -63,7 +63,7 @@ export async function findAllCarRequests(): Promise<CarRequest[]> {
 }
 
 // Find all car requests by matching car id.
-export async function findCarRequestsByCarId(
+export async function findAllCarRequestsByCarId(
   carId: string,
 ): Promise<CarRequest[]> {
   return await prisma.carRequest.findMany({
@@ -82,7 +82,7 @@ export async function findCarRequestsByCarId(
 }
 
 // Find all car requests by matching user id.
-export async function findCarRequestsByUserId(
+export async function findAllCarRequestsByUserId(
   userId: string,
 ): Promise<CarRequest[]> {
   return await prisma.carRequest.findMany({
@@ -101,7 +101,7 @@ export async function findCarRequestsByUserId(
 }
 
 // Find and return a car request by id.
-export async function findCarRequestById(
+export async function findOneCarRequestById(
   id: string,
 ): Promise<CarRequest | null> {
   return await prisma.carRequest.findUnique({
@@ -120,7 +120,7 @@ export async function findCarRequestById(
 }
 
 // Update a car request by matching id.
-export async function updateCarRequestById(
+export async function updateOneCarRequestById(
   data: UpdateCarRequestSchemaType,
   id: string,
 ): Promise<CarRequest> {

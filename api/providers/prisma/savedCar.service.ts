@@ -3,7 +3,7 @@ import { CreateSavedCarSchemaType } from 'models/savedCar/createSavedCar.schema'
 import prisma from 'api/utils/prisma';
 
 // Create and return a saved car.
-export async function createSavedCar(
+export async function createOneSavedCar(
   data: CreateSavedCarSchemaType,
 ): Promise<SavedCar> {
   return await prisma.savedCar.create({
@@ -34,7 +34,7 @@ export async function deleteAllSavedCarsByUserId(
 }
 
 // Delete a saved car by id.
-export async function deleteSavedCarById(id: string): Promise<SavedCar> {
+export async function deleteOneSavedCarById(id: string): Promise<SavedCar> {
   return await prisma.savedCar.delete({
     where: {
       id,
@@ -95,7 +95,9 @@ export async function findAllSavedCarsByUserId(
 }
 
 // Find and return a saved car by id.
-export async function findSavedCarById(id: string): Promise<SavedCar | null> {
+export async function findOneSavedCarById(
+  id: string,
+): Promise<SavedCar | null> {
   return await prisma.savedCar.findUnique({
     include: {
       car: {
@@ -107,6 +109,19 @@ export async function findSavedCarById(id: string): Promise<SavedCar | null> {
     },
     where: {
       id,
+    },
+  });
+}
+
+// Find and return a saved car by car id and user id.
+export async function findOneSavedCarByCarIdAndUserId(
+  carId: string,
+  userId: string,
+): Promise<SavedCar | null> {
+  return await prisma.savedCar.findFirst({
+    where: {
+      carId,
+      userId,
     },
   });
 }
