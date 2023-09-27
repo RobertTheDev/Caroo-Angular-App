@@ -50,7 +50,7 @@ export default async function deleteCarRequestById(
     }
 
     // STEP 4: Check to see user is authorized to delete car request.
-    if (findCarRequest.userId === userId) {
+    if (findCarRequest.userId !== userId) {
       return res.status(StatusCodes.UNAUTHORIZED).send({
         statusCode: StatusCodes.UNAUTHORIZED,
         statusMessage: `You are not authorised to perform this action.`,
