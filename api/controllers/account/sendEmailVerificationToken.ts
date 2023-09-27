@@ -27,26 +27,25 @@ export default async function sendEmailVerificationToken(
       });
     }
     // Get the user's id and email address.
-    const { id } = user;
+    const { id: userId } = user;
 
     // STEP 2: Get the user's data.
     // Find user using the id received from session.
-    const findUser = await findUserById(id);
+    const findUser = await findUserById(userId);
     // If no user is found we return a 404 error.
     if (!findUser) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: `User with id ${id} was not found.`,
+        statusMessage: `User with id ${userId} was not found.`,
       });
     }
 
     // STEP 3: Validate the request body.
     // Get the request body.
-    const { body } = req;
     // Validate the request body.
-    const validation = await sendEmailVerificationTokenSchema.safeParseAsync(
-      body,
-    );
+    const validation = await sendEmailVerificationTokenSchema.safeParseAsync({
+      emailAddress: findUser.emailAddress,
+    });
     // If validation is unsuccessful then return a valdation error message.
     if (!validation.success) {
       return res.status(StatusCodes.BAD_REQUEST).send({
@@ -68,15 +67,11 @@ export default async function sendEmailVerificationToken(
     }
 
     // STEP 5: Check the user's email verfication token has expired.
-    // Check user token has an expiry or return error.
-    if (!findUser.emailVerificationTokenExpiry) {
-      return res.status(StatusCodes.NOT_FOUND).send({
-        statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: `The email verification token has no expiry.`,
-      });
-    }
-    // Check user token has not expired or return error.
-    if (isDateUnexpired(findUser.emailVerificationTokenExpiry)) {
+    // Check if user token has expired or return error.
+    if (
+      findUser.emailVerificationTokenExpiry &&
+      isDateUnexpired(findUser.emailVerificationTokenExpiry)
+    ) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: `Your email verification token expires 10 minutes after your last request. Please wait until ${format(
@@ -88,7 +83,7 @@ export default async function sendEmailVerificationToken(
 
     // STEP 6: Update user with email verification token.
     const updatedUser = await updateAccountWithEmailVerificationToken(
-      id,
+      userId,
       validation.data,
     );
     // Return the updated user.
