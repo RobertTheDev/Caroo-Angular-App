@@ -102,9 +102,6 @@ export async function findOneCarRequestResponseById(
   id: string,
 ): Promise<CarRequestResponse | null> {
   return await prisma.carRequestResponse.findUnique({
-    include: {
-      user: true,
-    },
     where: {
       id,
     },

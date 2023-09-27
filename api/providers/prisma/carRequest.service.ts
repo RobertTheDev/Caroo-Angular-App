@@ -2,6 +2,7 @@ import { CarRequest, Prisma } from '@prisma/client';
 import { CreateCarRequestSchemaType } from 'models/carRequest/validators/createCarRequest.schema';
 import { UpdateCarRequestSchemaType } from 'models/carRequest/validators/updateCarRequest.schema';
 import prisma from 'api/utils/prisma';
+import ICarRequest from 'models/carRequest/types/CarRequest';
 
 // Create and return a new car request.
 export async function createOneCarRequest(
@@ -103,8 +104,8 @@ export async function findAllCarRequestsByUserId(
 // Find and return a car request by id.
 export async function findOneCarRequestById(
   id: string,
-): Promise<CarRequest | null> {
-  return await prisma.carRequest.findUnique({
+): Promise<ICarRequest | null> {
+  return (await prisma.carRequest.findUnique({
     include: {
       car: {
         include: {
@@ -115,6 +116,19 @@ export async function findOneCarRequestById(
     },
     where: {
       id,
+    },
+  })) as ICarRequest;
+}
+
+// Find and return a car request by user id and car id.
+export async function findOneCarRequestByCarIdAndUserId(
+  carId: string,
+  userId: string,
+): Promise<CarRequest | null> {
+  return await prisma.carRequest.findFirst({
+    where: {
+      carId,
+      userId,
     },
   });
 }
