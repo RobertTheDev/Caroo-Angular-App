@@ -1,7 +1,6 @@
 import createCarImages from 'api/controllers/carImage/createCarImages';
 import deleteCarImageById from 'api/controllers/carImage/deleteCarImageById';
 import deleteCarImagesByCarId from 'api/controllers/carImage/deleteCarImagesByCarId';
-import deleteCarImages from 'api/controllers/carImage/deleteCarsImages';
 import getCarImageById from 'api/controllers/carImage/getCarImageById';
 import getCarImagesByCarId from 'api/controllers/carImage/getCarImagesByCarId';
 import updateCarImageById from 'api/controllers/carImage/updateCarImageById';
@@ -13,8 +12,6 @@ import { Router } from 'express';
 
 // Define car images router using the express router.
 const carImagesRouter = Router();
-
-carImagesRouter.delete('/', isAuthenticated, deleteCarImages);
 
 carImagesRouter.delete('/:id', isAuthenticated, deleteCarImageById);
 

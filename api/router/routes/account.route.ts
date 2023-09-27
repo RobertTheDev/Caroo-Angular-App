@@ -3,7 +3,6 @@ import changePassword from 'api/controllers/account/changePassword';
 import closeAccount from 'api/controllers/account/closeAccount';
 import sendEmailVerificationToken from 'api/controllers/account/sendEmailVerificationToken';
 import verifyEmailWithToken from 'api/controllers/account/verifyEmailWithToken';
-import isEmailVerificationTokenExpired from 'api/middlewares/account/isEmailVerificationTokenExpired';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import { Router } from 'express';
 
@@ -19,7 +18,6 @@ accountRouter.put('/update-password', isAuthenticated, changePassword);
 accountRouter.put(
   '/verify-email/:emailVerificationToken',
   isAuthenticated,
-  isEmailVerificationTokenExpired,
   verifyEmailWithToken,
 );
 

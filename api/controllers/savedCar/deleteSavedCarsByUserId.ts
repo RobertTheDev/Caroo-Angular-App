@@ -1,38 +1,58 @@
-import SavedCarPrismaService from 'api/providers/prisma/savedCar.service';
+import { deleteAllSavedCarsByUserId } from 'api/providers/prisma/savedCar.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
-import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 
-// This controller deletes saved cars by their user id.
+// This controller deletes saved cars by matching user id.
 
 export default async function deleteSavedCarsByUserId(
   req: Request,
   res: Response,
 ) {
   try {
-    // Get user id from params.
-    const { userId } = req.params;
+    // STEP 1: Get the user id from session.
+    // Get the user from the session.
+    const { user } = req.session;
+    // If no user is found return a not found error.
+    if (!user) {
+      return res.status(StatusCodes.UNAUTHORIZED).send({
+        statusCode: StatusCodes.UNAUTHORIZED,
+        statusMessage: 'You are not authorised to perform this action.',
+      });
+    }
+    // Get the user's id.
+    const { id: userId } = user;
 
-    // Declare and use saved car service.
-    const savedCarPrismaService = new SavedCarPrismaService();
-
-    // Delete saved cars by user id.
-    await savedCarPrismaService.deleteAllByUserId(userId);
-
+    // STEP 2: Delete saved cars by user id.
+    await deleteAllSavedCarsByUserId(userId);
     // Return a response confirming deletion.
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully deleted saved cars with user id ${userId}.`,
       data: null,
     });
-  } catch (error) {
-    // Log the error.
-    winstonLogger.error(`Error deleting saved cars by user id:`, error);
-
-    // Catch and return an error if found.
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-      statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    });
+  } catch (error: unknown) {
+    // Catch and log any errors. If the error is of intance type Error we can add the error message.
+    if (error instanceof Error) {
+      // Log the error.
+      winstonLogger.error(
+        `Error in route ${req.method} ${req.originalUrl}: ${error.message}`,
+      );
+      // If an error occurs - catch and send the error.
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        statusMessage: `An error occurred: ${error.message}`,
+      });
+    } else {
+      // Log the error.
+      winstonLogger.error(
+        `Error in route ${req.method} ${req.originalUrl}: ${error}`,
+      );
+      // If an error occurs - catch and send the error.
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        statusMessage: `An error occurred: ${error}`,
+      });
+    }
   }
 }

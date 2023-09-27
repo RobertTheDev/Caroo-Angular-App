@@ -25,7 +25,18 @@ export default async function changeEmailAddress(req: Request, res: Response) {
     // Get the user's id.
     const { id } = user;
 
-    // STEP 2: Validate the request body.
+    // STEP 2: Get the user's data.
+    // Find user using the id received from session.
+    const findUser = await findUserById(id);
+    // If no user is found we return a 404 error.
+    if (!findUser) {
+      return res.status(StatusCodes.NOT_FOUND).send({
+        statusCode: StatusCodes.NOT_FOUND,
+        statusMessage: `User with id ${id} was not found.`,
+      });
+    }
+
+    // STEP 3: Validate the request body.
     // Get the request body.
     const { body } = req;
     // Validate the request body.
@@ -35,17 +46,6 @@ export default async function changeEmailAddress(req: Request, res: Response) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: validation.error.errors[0].message,
-      });
-    }
-
-    // STEP 3: Get the user's data.
-    // Find user using the id received from session.
-    const findUser = await findUserById(id);
-    // If no user is found we return a 404 error.
-    if (!findUser) {
-      return res.status(StatusCodes.NOT_FOUND).send({
-        statusCode: StatusCodes.NOT_FOUND,
-        statusMessage: `User with id ${id} was not found.`,
       });
     }
 

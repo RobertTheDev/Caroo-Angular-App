@@ -1,17 +1,14 @@
-import SavedCarPrismaService from 'api/providers/prisma/savedCar.service';
+import { findAllSavedCars } from 'api/providers/prisma/savedCar.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
-import { ReasonPhrases, StatusCodes } from 'http-status-codes';
+import { StatusCodes } from 'http-status-codes';
 
 // This controller gets all saved cars.
 
 export default async function getSavedCars(req: Request, res: Response) {
   try {
-    // Declare and use saved car service.
-    const savedCarPrismaService = new SavedCarPrismaService();
-
     // Find all saved cars.
-    const data = await savedCarPrismaService.findAll();
+    const data = await findAllSavedCars();
 
     // Return the saved cars.
     return res.status(StatusCodes.OK).send({
@@ -19,14 +16,28 @@ export default async function getSavedCars(req: Request, res: Response) {
       statusMessage: `Successfully found all saved cars.`,
       data,
     });
-  } catch (error) {
-    // Log the error.
-    winstonLogger.error(`Error getting saved cars:`, error);
-
-    // Catch and return an error if found.
-    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
-      statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
-      statusMessage: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    });
+  } catch (error: unknown) {
+    // Catch and log any errors. If the error is of intance type Error we can add the error message.
+    if (error instanceof Error) {
+      // Log the error.
+      winstonLogger.error(
+        `Error in route ${req.method} ${req.originalUrl}: ${error.message}`,
+      );
+      // If an error occurs - catch and send the error.
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        statusMessage: `An error occurred: ${error.message}`,
+      });
+    } else {
+      // Log the error.
+      winstonLogger.error(
+        `Error in route ${req.method} ${req.originalUrl}: ${error}`,
+      );
+      // If an error occurs - catch and send the error.
+      return res.status(StatusCodes.INTERNAL_SERVER_ERROR).send({
+        statusCode: StatusCodes.INTERNAL_SERVER_ERROR,
+        statusMessage: `An error occurred: ${error}`,
+      });
+    }
   }
 }

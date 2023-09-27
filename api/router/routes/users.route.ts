@@ -4,7 +4,6 @@ import getUserByEmail from 'api/controllers/user/getUserByEmailAddress';
 import getUserById from 'api/controllers/user/getUserById';
 import getUsers from 'api/controllers/user/getUsers';
 import updateUserById from 'api/controllers/user/updateUserById';
-import isEmailVerificationTokenExpired from 'api/middlewares/account/isEmailVerificationTokenExpired';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import { Router } from 'express';
 
@@ -25,7 +24,6 @@ usersRouter.put('/:id', isAuthenticated, updateUserById);
 usersRouter.put(
   '/verify-email-address/:emailVerificationToken',
   isAuthenticated,
-  isEmailVerificationTokenExpired,
   verifyEmailWithToken,
 );
 

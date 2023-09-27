@@ -21,7 +21,7 @@ carsRouter.get('/', getCars);
 
 carsRouter.get('/:id', getCarById);
 
-carsRouter.get('/owner/:userId', getCarsByUserId);
+carsRouter.get('/owner-cars', isAuthenticated, getCarsByUserId);
 
 carsRouter.get('/:id', getCarById);
 

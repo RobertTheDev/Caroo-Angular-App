@@ -1,7 +1,5 @@
 import createCarRequest from 'api/controllers/carRequest/createCarRequest';
 import deleteCarRequestById from 'api/controllers/carRequest/deleteCarRequestById';
-import deleteCarRequests from 'api/controllers/carRequest/deleteCarRequests';
-import deleteCarRequestsByCarId from 'api/controllers/carRequest/deleteCarRequestsByCarId';
 import deleteCarRequestsByUserId from 'api/controllers/carRequest/deleteCarRequestsByUserId';
 import getCarRequestById from 'api/controllers/carRequest/getCarRequestById';
 import getCarRequests from 'api/controllers/carRequest/getCarRequests';
@@ -17,15 +15,7 @@ import { Router } from 'express';
 // Define car requests router using the express router.
 const carRequestsRouter = Router();
 
-carRequestsRouter.delete('/', isAuthenticated, deleteCarRequests);
-
 carRequestsRouter.delete('/:id', isAuthenticated, deleteCarRequestById);
-
-carRequestsRouter.delete(
-  '/car/:carId',
-  isAuthenticated,
-  deleteCarRequestsByCarId,
-);
 
 carRequestsRouter.delete(
   '/user/:userId',

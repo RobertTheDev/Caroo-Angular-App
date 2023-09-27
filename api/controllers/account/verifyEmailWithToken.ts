@@ -7,6 +7,7 @@ import {
 } from 'api/providers/prisma/account.service';
 import isDateExpired from 'api/lib/isDateExpired';
 import { format } from 'date-fns';
+import isDateUnexpired from 'api/lib/isDateUnexpired';
 
 // This controller verifies a user's email with an email verification token.
 // To do this we need to find the user with the token in the database.
@@ -49,7 +50,7 @@ export default async function verifyEmailWithToken(
       });
     }
 
-    // STEP 3: Check the user's token has not expired.
+    // STEP 3: Check the user's token has neither expired not unexpired.
     // Return error if token has no expiry.
     if (!findUser.emailVerificationTokenExpiry) {
       return res.status(StatusCodes.BAD_REQUEST).send({
@@ -59,6 +60,13 @@ export default async function verifyEmailWithToken(
     }
     // Return an error if token has expired.
     if (isDateExpired(findUser.emailVerificationTokenExpiry)) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: `Your email verification token has expired please make a request for a new one.`,
+      });
+    }
+    // Return an error if token has expired.
+    if (isDateUnexpired(findUser.emailVerificationTokenExpiry)) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: `Your email verification token expires 10 minutes after your last request. Please wait until ${format(
