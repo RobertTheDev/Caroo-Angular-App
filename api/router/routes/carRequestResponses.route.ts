@@ -41,7 +41,7 @@ carRequestResponsesRouter.get(
 );
 
 carRequestResponsesRouter.post(
-  '/create',
+  '/:carRequestId',
   isAuthenticated,
   createCarRequestResponse,
 );
