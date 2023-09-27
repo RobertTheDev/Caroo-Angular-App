@@ -14,6 +14,6 @@ savedCarsRouter.delete('/', isAuthenticated, deleteSavedCarsByUserId);
 
 savedCarsRouter.get('/', getSavedCarsByUserId);
 
-savedCarsRouter.post('/save-car/:carId', isAuthenticated, createSavedCar);
+savedCarsRouter.post('/:carId', isAuthenticated, createSavedCar);
 
 export default savedCarsRouter;

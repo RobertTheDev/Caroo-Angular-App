@@ -5,7 +5,6 @@ import createCarRequestResponse from 'api/controllers/carRequestResponse/createC
 import deleteCarRequestResponseById from 'api/controllers/carRequestResponse/deleteCarRequestResponseById';
 import deleteCarRequestResponsesByUserId from 'api/controllers/carRequestResponse/deleteCarRequestResponsesByUserId';
 import getCarRequestResponseById from 'api/controllers/carRequestResponse/getCarRequestResponseById';
-import getCarRequestResponses from 'api/controllers/carRequestResponse/getCarRequestResponses';
 import getCarRequestResponsesByCarRequestId from 'api/controllers/carRequestResponse/getCarRequestResponsesByCarRequestId';
 import getCarRequestResponsesByUserId from 'api/controllers/carRequestResponse/getCarRequestResponsesByUserId';
 import updateCarRequestResponseById from 'api/controllers/carRequestResponse/updateCarRequestResponseById';
@@ -28,8 +27,6 @@ carRequestResponsesRouter.delete(
   isAuthenticated,
   deleteCarRequestResponsesByUserId,
 );
-
-carRequestResponsesRouter.get('/', getCarRequestResponses);
 
 carRequestResponsesRouter.get('/:id', getCarRequestResponseById);
 

@@ -4,7 +4,6 @@ import savedCarsRouter from './routes/savedCars.route';
 import carsRouter from './routes/cars.route';
 import authRouter from './routes/auth.route';
 import accountRouter from './routes/account.route';
-import carImagesRouter from './routes/carImages.route';
 import carRequestsRouter from './routes/carRequests.route';
 import profileRouter from './routes/profile.route';
 import carRequestResponsesRouter from './routes/carRequestResponses.route';
@@ -16,7 +15,6 @@ const appRouter = Router();
 
 appRouter.use('/account', accountRouter);
 appRouter.use('/auth', authRouter);
-appRouter.use('/car-images', carImagesRouter);
 appRouter.use('/car-requests', carRequestsRouter);
 appRouter.use('/car-request-responses', carRequestResponsesRouter);
 appRouter.use('/cars', carsRouter);

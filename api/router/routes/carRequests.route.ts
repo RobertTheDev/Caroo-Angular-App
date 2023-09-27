@@ -2,7 +2,6 @@ import createCarRequest from 'api/controllers/carRequest/createCarRequest';
 import deleteCarRequestById from 'api/controllers/carRequest/deleteCarRequestById';
 import deleteCarRequestsByUserId from 'api/controllers/carRequest/deleteCarRequestsByUserId';
 import getCarRequestById from 'api/controllers/carRequest/getCarRequestById';
-import getCarRequests from 'api/controllers/carRequest/getCarRequests';
 import getCarRequestsByCarId from 'api/controllers/carRequest/getCarRequestsByCarId';
 import getCarRequestsByUserId from 'api/controllers/carRequest/getCarRequestsByUserId';
 import updateCarRequestById from 'api/controllers/carRequest/updateCarRequestById';
@@ -23,11 +22,9 @@ carRequestsRouter.delete(
   deleteCarRequestsByUserId,
 );
 
-carRequestsRouter.get('/', getCarRequests);
-
 carRequestsRouter.get('/:id', getCarRequestById);
 
-carRequestsRouter.get('/user/:userId', getCarRequestsByUserId);
+carRequestsRouter.get('/authenticated-user', getCarRequestsByUserId);
 
 carRequestsRouter.get('/car/:carId', getCarRequestsByCarId);
 
