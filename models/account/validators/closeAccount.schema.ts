@@ -7,12 +7,12 @@ const closeAccountSchema = object({
     invalid_type_error: 'Password must be a string.',
   }).nonempty('Password cannot be empty.'),
   close: string({
-    required_error: 'Please type "CLOSE" to close the account.',
+    required_error: 'Please type CLOSE to close the account.',
     invalid_type_error: 'Close must be a string.',
   })
-    .nonempty('Please type "CLOSE" to close the account.')
+    .nonempty('Please type CLOSE to close the account.')
     .refine((value) => value === 'CLOSE', {
-      message: 'Please type "CLOSE" to close the account.',
+      message: 'Please type CLOSE to close the account.',
     }),
 });
 
