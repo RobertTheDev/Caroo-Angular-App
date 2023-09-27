@@ -25,8 +25,8 @@ export default async function createCarRequestResponse(
     const { id: userId } = user;
 
     // STEP 2: Get the car request id.
-    const { carId } = req.params;
-    if (!carId) {
+    const { carRequestId } = req.params;
+    if (!carRequestId) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: 'No car id was provided.',
@@ -37,7 +37,7 @@ export default async function createCarRequestResponse(
     const validation = await createCarRequestResponseSchema.safeParseAsync({
       ...req.body,
       userId,
-      carId,
+      carRequestId,
     });
     // If validation is successful then create a car request.
     if (!validation.success) {
