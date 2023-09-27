@@ -1,8 +1,12 @@
-import { createOneCarRequest } from 'api/providers/prisma/carRequest.service';
+import {
+  createOneCarRequest,
+  findOneCarRequestByCarIdAndUserId,
+} from 'api/providers/prisma/carRequest.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import createCarRequestSchema from 'models/carRequest/validators/createCarRequest.schema';
+import { findCarById } from 'api/providers/prisma/car.service';
 
 // This controller creates a new car request.
 
@@ -31,7 +35,35 @@ export default async function createCarRequest(req: Request, res: Response) {
       });
     }
 
-    // STEP 3: Validate the request body.
+    // STEP 3: Check user is not the owner.
+    const car = await findCarById(carId);
+    if (!car) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'No car was found.',
+      });
+    }
+    if (car.ownerId === user.id) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage:
+          'You cannot make a request as you are the owner of the car.',
+      });
+    }
+
+    // STEP 4: Check user has not already requested this car.
+    const hasUserAlreadyRequested = await findOneCarRequestByCarIdAndUserId(
+      carId,
+      userId,
+    );
+    if (hasUserAlreadyRequested) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'You cannot make a new request for this car.',
+      });
+    }
+
+    // STEP 5: Validate the request body.
     // Get the request body.
     const { body } = req;
     // Validate the body.
@@ -50,12 +82,12 @@ export default async function createCarRequest(req: Request, res: Response) {
       });
     }
 
-    // STEP 4: Create car owner.
+    // STEP 6: Create car request.
     const data = await createOneCarRequest(validation.data);
     // Send response with the created car request.
-    return res.status(StatusCodes.ACCEPTED).send({
-      statusCode: StatusCodes.ACCEPTED,
-      statusMessage: `A car request has been successfully created with id ${data.id}`,
+    return res.status(StatusCodes.CREATED).send({
+      statusCode: StatusCodes.CREATED,
+      statusMessage: `A car request has been successfully created.`,
       data,
     });
   } catch (error: unknown) {
