@@ -21,12 +21,12 @@ export default async function getCarRequestsByCarId(
     }
 
     // STEP 2: Find  and return car requests by car id.
-    const data = await findAllCarRequestsByCarId(carId);
+    const carRequests = await findAllCarRequestsByCarId(carId);
     // Return car requests.
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully found car requests.`,
-      data,
+      data: carRequests,
     });
   } catch (error: unknown) {
     // Catch and log any errors. If the error is of intance type Error we can add the error message.

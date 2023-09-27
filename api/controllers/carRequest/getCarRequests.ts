@@ -8,13 +8,13 @@ import { StatusCodes } from 'http-status-codes';
 export default async function getCarRequests(req: Request, res: Response) {
   try {
     // STEP 1: Find car requests.
-    const data = await findAllCarRequests();
+    const carRequests = await findAllCarRequests();
 
     // STEP 2: Return car requests.
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully found car requests.`,
-      data,
+      data: carRequests,
     });
   } catch (error: unknown) {
     // Catch and log any errors. If the error is of intance type Error we can add the error message.

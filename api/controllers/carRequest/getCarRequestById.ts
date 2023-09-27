@@ -18,9 +18,9 @@ export default async function getCarRequestById(req: Request, res: Response) {
     }
 
     // STEP 2: Find car request by id.
-    const data = await findOneCarRequestById(id);
+    const carRequest = await findOneCarRequestById(id);
     // Return not found error if no car request found.
-    if (!data) {
+    if (!carRequest) {
       return res.status(StatusCodes.NOT_FOUND).send({
         statusCode: StatusCodes.NOT_FOUND,
         statusMessage: `A car request was not found.`,
@@ -32,7 +32,7 @@ export default async function getCarRequestById(req: Request, res: Response) {
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully found car request with id ${id}.`,
-      data,
+      data: carRequest,
     });
   } catch (error: unknown) {
     // Catch and log any errors. If the error is of intance type Error we can add the error message.
