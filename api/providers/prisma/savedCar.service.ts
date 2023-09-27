@@ -51,7 +51,6 @@ export async function findAllSavedCars(): Promise<SavedCar[]> {
           images: true,
         },
       },
-      user: true,
     },
   });
 }
@@ -70,7 +69,6 @@ export async function findAllSavedCarsByCarId(
           images: true,
         },
       },
-      user: true,
     },
   });
 }
@@ -89,7 +87,6 @@ export async function findAllSavedCarsByUserId(
           images: true,
         },
       },
-      user: true,
     },
   });
 }
@@ -105,7 +102,6 @@ export async function findOneSavedCarById(
           images: true,
         },
       },
-      user: true,
     },
     where: {
       id,
