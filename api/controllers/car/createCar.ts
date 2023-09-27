@@ -43,8 +43,8 @@ export default async function createCar(req: Request, res: Response) {
     // Create new car.
     const data = await createOneCar(validation.data);
     // Send response with the created car.
-    return res.status(StatusCodes.ACCEPTED).send({
-      statusCode: StatusCodes.ACCEPTED,
+    return res.status(StatusCodes.CREATED).send({
+      statusCode: StatusCodes.CREATED,
       statusMessage: `Successfully created car with id ${data.id}`,
       data,
     });
