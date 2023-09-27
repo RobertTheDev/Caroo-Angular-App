@@ -65,7 +65,7 @@ export default async function closeAccount(req: Request, res: Response) {
 
     // STEP 5: Delete the user, destroy the session and return the response message.
     // Delete the user with the session id.
-    const deletedUser = await closeUserAccount(id);
+    await closeUserAccount(id);
     // Remove user from session.
     req.session.user = null;
     // Destroy the express session.
@@ -74,7 +74,6 @@ export default async function closeAccount(req: Request, res: Response) {
     return res.status(StatusCodes.OK).send({
       statusCode: StatusCodes.OK,
       statusMessage: `Successfully deleted the user with id ${id} and email address ${findUser.emailAddress}.`,
-      data: deletedUser,
     });
   } catch (error: unknown) {
     // Catch and log any errors. If the error is of intance type Error we can add the error message.
