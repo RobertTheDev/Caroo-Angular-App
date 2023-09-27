@@ -29,8 +29,8 @@ export default async function signUp(req: Request, res: Response) {
     // Email address from validated request body.
     const { emailAddress } = validation.data;
     // Check email is available by checking a user does not exist in database.
-    const checkEmailIsAvailable = await findUserByEmailAddress(emailAddress);
-    if (!checkEmailIsAvailable) {
+    const isEmailInUse = await findUserByEmailAddress(emailAddress);
+    if (isEmailInUse) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
         statusMessage: `The email ${emailAddress} is already in use.`,
@@ -57,8 +57,8 @@ export default async function signUp(req: Request, res: Response) {
 
     // STEP 6: Return the signed up user.
     // Send response with the signed up user.
-    return res.status(StatusCodes.ACCEPTED).send({
-      statusCode: StatusCodes.ACCEPTED,
+    return res.status(StatusCodes.CREATED).send({
+      statusCode: StatusCodes.CREATED,
       statusMessage: `Successfully signed up user with email ${validation.data.emailAddress}`,
       data: userWithoutPassword,
     });
