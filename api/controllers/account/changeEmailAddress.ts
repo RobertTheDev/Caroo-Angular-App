@@ -1,6 +1,9 @@
 import { verifyPassword } from 'api/lib/passwordManagement';
 import { updateAccountEmailAddress } from 'api/providers/prisma/account.service';
-import { findUserById } from 'api/providers/prisma/user.service';
+import {
+  findUserByEmailAddress,
+  findUserById,
+} from 'api/providers/prisma/user.service';
 import winstonLogger from 'api/utils/winstonLogger';
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
@@ -49,7 +52,20 @@ export default async function changeEmailAddress(req: Request, res: Response) {
       });
     }
 
-    // STEP 4: Check entered password is correct.
+    // STEP 4: Check if email address is in use.
+    // Email address from validated request body.
+    const { emailAddress } = validation.data;
+    // Check email is available by checking a user does not exist in database.
+    const isEmailInUse = await findUserByEmailAddress(emailAddress);
+    if (isEmailInUse) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: `The email ${emailAddress} is already in use.`,
+        data: null,
+      });
+    }
+
+    // STEP 5: Check entered password is correct.
     // Check the password is correct to proceed.
     const isPasswordCorrect = await verifyPassword(
       validation.data.password,
@@ -63,7 +79,7 @@ export default async function changeEmailAddress(req: Request, res: Response) {
       });
     }
 
-    // STEP 5: Update email address and return the data.
+    // STEP 6: Update email address and return the data.
     // Update the user's email address.
     const data = await updateAccountEmailAddress(id, validation.data);
     // Return the updated user.
