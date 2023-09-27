@@ -4,6 +4,7 @@ import winstonLogger from 'api/utils/winstonLogger';
 import resetPasswordWithTokenSchema from 'models/auth/validators/resetPasswordWithToken.schema';
 import { hashPassword } from 'api/lib/passwordManagement';
 import { authResetPasswordWithToken } from 'api/providers/prisma/auth.service';
+import { findUserByResetPasswordToken } from 'api/providers/prisma/user.service';
 
 // This controller resets password with password reset token.
 
@@ -14,6 +15,7 @@ export default async function resetPasswordWithToken(
   try {
     //  STEP 1: Get the reset password token from the request params.
     const { resetPasswordToken } = req.params;
+    // If token does not exist return an error.
     if (!resetPasswordToken) {
       return res.status(StatusCodes.BAD_REQUEST).send({
         statusCode: StatusCodes.BAD_REQUEST,
@@ -21,7 +23,17 @@ export default async function resetPasswordWithToken(
       });
     }
 
-    // STEP 2: Validate the request body.
+    //  STEP 2: Find user with the reset token.
+    const findUser = await findUserByResetPasswordToken(resetPasswordToken);
+    // If user does not exist return an error.
+    if (!findUser) {
+      return res.status(StatusCodes.BAD_REQUEST).send({
+        statusCode: StatusCodes.BAD_REQUEST,
+        statusMessage: 'No user with that password reset token was found.',
+      });
+    }
+
+    // STEP 3: Validate the request body.
     // Get the request body.
     const { body } = req;
     // Declare and use user service to get access to user handlers.
@@ -36,11 +48,11 @@ export default async function resetPasswordWithToken(
     // Get data from the validation.
     const { data } = validation;
 
-    // STEP 3: Hash the password from validated body.
+    // STEP 4: Hash the password from validated body.
     // Hash the password.
     const hashedPassword = await hashPassword(data.password);
 
-    // STEP 4: Update and return user with the hashed password and reset password token.
+    // STEP 5: Update and return user with the hashed password and reset password token.
     // Update user password using the reset password token.
     const updatedUser = await authResetPasswordWithToken(resetPasswordToken, {
       password: hashedPassword,
