@@ -31,7 +31,7 @@ carRequestsRouter.get('/user/:userId', getCarRequestsByUserId);
 
 carRequestsRouter.get('/car/:carId', getCarRequestsByCarId);
 
-carRequestsRouter.post('/create', isAuthenticated, createCarRequest);
+carRequestsRouter.post('/:carId', isAuthenticated, createCarRequest);
 
 carRequestsRouter.put('/:id', isAuthenticated, updateCarRequestById);
 
