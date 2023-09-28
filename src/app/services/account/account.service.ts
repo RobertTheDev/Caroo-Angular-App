@@ -40,10 +40,11 @@ export class AccountService {
 
   closeAccount(
     data: Partial<{
-      close: string;
+      close: string | null;
+      password: string | null;
     }>,
   ): Observable<void> {
-    return this.http.put<void>(
+    return this.http.post<void>(
       `${this.apiUrl}/close-account`,
       data,
       this.options,
@@ -52,7 +53,7 @@ export class AccountService {
 
   sendEmailVerificationToken(): Observable<void> {
     return this.http.post<void>(
-      `${this.apiUrl}/send-email-verification-token`,
+      `${this.apiUrl}/verify-email/send-token`,
       this.options,
     );
   }
