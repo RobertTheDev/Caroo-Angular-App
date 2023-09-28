@@ -39,8 +39,8 @@ export class CarService {
     return this.http.get<{ data: ICar[] }>(this.apiUrl);
   }
 
-  getCarsByUserId(ownerId: string): Observable<{ data: ICar }> {
-    return this.http.get<{ data: ICar }>(`${this.apiUrl}/user/${ownerId}`);
+  getCarsByAuthenticatedUser(): Observable<{ data: ICar[] }> {
+    return this.http.get<{ data: ICar[] }>(`${this.apiUrl}/authenticated-user`);
   }
 
   updateCarById(
