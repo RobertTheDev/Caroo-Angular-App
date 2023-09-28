@@ -1,2 +1,12 @@
 <h1>Saved Cars</h1>
-<app-saved-cars-list />
+<div *ngIf="loading">
+  <p>Loading...</p>
+</div>
+<div *ngIf="!loading && savedCars">
+  <ul class="cars-list-grid-container">
+    <app-car-card *ngFor="let car of savedCars" [car]="car.car" />
+  </ul>
+</div>
+<div *ngIf="!loading && errorMessage">
+  <p>{{ errorMessage }}</p>
+</div>
