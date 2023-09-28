@@ -18,6 +18,7 @@ export class SendEmailVerificationTokenFormComponent {
   // Function to handle sending email verification token
   handleSendEmailVerificationToken(event: Event) {
     event.preventDefault();
+
     // Start loading while form is being processed.
     this.formLoading = true;
 
