@@ -9,7 +9,7 @@ import { Router } from 'express';
 // Define account router using the express router.
 const accountRouter = Router();
 
-accountRouter.delete('/close-account', isAuthenticated, closeAccount);
+accountRouter.post('/close-account', isAuthenticated, closeAccount);
 
 accountRouter.put('/update-email-address', isAuthenticated, changeEmailAddress);
 
