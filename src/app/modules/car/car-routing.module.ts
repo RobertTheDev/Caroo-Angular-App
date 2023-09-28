@@ -6,7 +6,7 @@ import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.compon
 import { CreateCarViewComponent } from './views/create-car-view/create-car-view.component';
 
 const routes: Routes = [
-  { path: 'cars', component: CarsViewComponent },
+  { path: '', component: CarsViewComponent },
   { path: 'cars/:id', component: CarViewComponent },
   { path: 'cars/:id/edit', component: EditCarViewComponent },
   { path: 'sell-a-car', component: CreateCarViewComponent },
