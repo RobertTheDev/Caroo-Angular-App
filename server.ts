@@ -58,7 +58,14 @@ export function app(): express.Express {
   );
 
   // Enable helmet.
-  server.use(helmet());
+  server.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        defaultSrc: ["'self'"],
+        imgSrc: ["'self'", 'https://scontent-man2-1.xx.fbcdn.net'],
+      },
+    }),
+  );
 
   // Allow cors origin for dev local host.
   server.use(
@@ -69,7 +76,7 @@ export function app(): express.Express {
     }),
   );
 
-  // Enable compression.
+  // Enable compression.s
   server.use(compression());
 
   // Allow JSON to be used.
