@@ -17,6 +17,8 @@ Here's a breakdown of what each part does: */
   ) {}
 
   token: string | null = null;
+  formErrorMessage: string | null = null;
+  formLoading = false;
 
   // On init runs before the components has rendered. Using it to get the token from params to query the handler.
   ngOnInit() {
@@ -29,16 +31,22 @@ Here's a breakdown of what each part does: */
   // Login function calls the sign up handler from our auth service to handle user login.
   // The function handles validation and wont submit until fields are valid.
   // The function handles errors and displays error response messages.
-  handleVerifyEmail() {
-    return this.accountService.verifyEmailWithToken('token').subscribe({
-      // If form has successfully handled login - stop the form loading and navigate to home page.
-      next: (data) => {
-        console.log(data);
-      },
-      // If an error contain the error message in the variable. Stop form loading.
-      error: (error) => {
-        console.error(error);
-      },
-    });
+  handleVerifyEmailAddress(event: Event) {
+    event.preventDefault();
+
+    if (!this.token) {
+      return (this.formErrorMessage = 'No token was provided.');
+    } else {
+      return this.accountService.verifyEmailWithToken(this.token).subscribe({
+        // If form has successfully handled login - stop the form loading and navigate to home page.
+        next: (data) => {
+          console.log(data);
+        },
+        // If an error contain the error message in the variable. Stop form loading.
+        error: (error) => {
+          console.error(error);
+        },
+      });
+    }
   }
 }
