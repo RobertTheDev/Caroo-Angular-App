@@ -9,6 +9,8 @@ import { UpdateProfileFormComponent } from './components/update-profile-form/upd
 import { ProfileDetailsComponent } from './components/profile-details/profile-details.component';
 import { ProfileService } from 'src/app/services/profile/profile.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CarService } from 'src/app/services/car/car.service';
+import { CarModule } from '../car/car.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     UpdateProfileFormComponent,
     ProfileDetailsComponent,
   ],
-  imports: [CommonModule, RouterModule, ReactiveFormsModule],
-  providers: [ProfileService],
+  imports: [CommonModule, RouterModule, ReactiveFormsModule, CarModule],
+  providers: [ProfileService, CarService],
 })
 export class ProfileModule {}
