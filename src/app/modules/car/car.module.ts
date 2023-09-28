@@ -28,6 +28,7 @@ import { SharedModule } from '../shared/shared.module';
   exports: [
     CarsViewComponent,
     CarViewComponent,
+    CarCardComponent,
     CreateCarViewComponent,
     EditCarViewComponent,
   ],
