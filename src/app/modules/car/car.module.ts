@@ -12,6 +12,7 @@ import { EditCarViewComponent } from './views/edit-car-view/edit-car-view.compon
 import { CarCardComponent } from './components/car-card/car-card.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from '../shared/shared.module';
+import { SavedCarService } from 'src/app/services/savedCar/saved-car.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,6 @@ import { SharedModule } from '../shared/shared.module';
     CreateCarViewComponent,
     EditCarViewComponent,
   ],
-  providers: [CarService],
+  providers: [CarService, SavedCarService],
 })
 export class CarModule {}
