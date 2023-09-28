@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account/account.service';
 
 @Component({
   selector: 'app-close-account-form',
@@ -10,6 +12,8 @@ export class CloseAccountFormComponent {
   constructor(
     // Angular form builder is used to build forms in Angular with less code.
     private formBuilder: FormBuilder,
+    private accountService: AccountService,
+    private router: Router,
   ) {}
 
   // Variables are used for handling form states - submitted, loading and errors.
@@ -59,19 +63,17 @@ export class CloseAccountFormComponent {
     // Start loading while form is being processed.
     this.formLoading = true;
 
-    alert(JSON.stringify(value));
-
-    // return this.authService.signUp(value).subscribe({
-    //   // If form has successfully handled sign up - stop the form loading and navigate to home page.
-    //   next: () => {
-    //     this.formLoading = false;
-    //     this.router.navigate(['/']);
-    //   },
-    //   // If an error contain the error message in the variable. Stop form loading.
-    //   error: (error) => {
-    //     this.formLoading = false;
-    //     this.formErrorMessage = error.error.statusMessage;
-    //   },
-    // });
+    return this.accountService.closeAccount(value).subscribe({
+      // If form has successfully handled sign up - stop the form loading and navigate to home page.
+      next: () => {
+        this.formLoading = false;
+        this.router.navigate(['/']);
+      },
+      // If an error contain the error message in the variable. Stop form loading.
+      error: (error) => {
+        this.formLoading = false;
+        this.formErrorMessage = error.error.statusMessage;
+      },
+    });
   }
 }
