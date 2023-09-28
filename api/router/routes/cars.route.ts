@@ -2,6 +2,7 @@ import createCar from 'api/controllers/car/createCar';
 import deleteCarsByUserId from 'api/controllers/car/deleteCarsByUserId';
 import getCarById from 'api/controllers/car/getCarById';
 import getCars from 'api/controllers/car/getCars';
+import getCarsByUserId from 'api/controllers/car/getCarsByUserId';
 import updateCarById from 'api/controllers/car/updateCarById';
 import isAuthenticated from 'api/middlewares/auth/isAuthenticated';
 import { Router } from 'express';
@@ -17,6 +18,8 @@ carsRouter.delete('/:userId', isAuthenticated, updateCarById);
 carsRouter.delete('/owner/:userId', isAuthenticated, deleteCarsByUserId);
 
 carsRouter.get('/', getCars);
+
+carsRouter.get('/authenticated-user', isAuthenticated, getCarsByUserId);
 
 carsRouter.get('/:id', getCarById);
 
